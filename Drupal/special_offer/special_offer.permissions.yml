@@ -1,0 +1,11 @@
+view special_offer entity:
+  title: 'View Special Offer entity'
+add special_offer entity:
+  title: 'Add Special Offer entity'
+edit special_offer entity:
+  title: 'Edit Special Offer Entity'
+delete special_offer entity:
+  title: 'Delete Special Offer entity'
+administer special_offer entity:
+  title: 'Administer Special Offer entity'
+  restrict access: TRUE

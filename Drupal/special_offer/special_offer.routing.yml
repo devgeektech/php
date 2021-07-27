@@ -1,0 +1,41 @@
+entity.special_offer.canonical:
+  path: '/admin/special_offer/{special_offer}'
+  defaults:
+    # Calls the view controller, defined in the annotation of the contact entity
+    _entity_view: 'special_offer'
+    _title: 'Special Offer Content'
+  requirements:
+    # Calls the access controller of the entity, $operation 'view'
+    _permission: 'view special_offer entity'
+
+entity.special_offer.collection:
+  path: '/admin/special_offer/list'
+  defaults:
+    _entity_list: 'special_offer'
+    _title: 'Special Offer List'
+  requirements:
+    _permission: 'administer special_offer entity'
+
+entity.special_offer.add:
+  path: '/admin/special_offer/add'
+  defaults:
+    _entity_form: special_offer.add
+    _title: 'Add Special Offer'
+  requirements:
+    _permission: 'add special_offer entity'
+
+entity.special_offer.edit_form:
+  path: '/admin/special_offer/{special_offer}/edit'
+  defaults:
+    _entity_form: special_offer.edit
+    _title: 'Edit Special Offer'
+  requirements:
+    _permission: 'edit special_offer entity'
+
+entity.special_offer.delete_form:
+  path: '/admin/special_offer/{special_offer}/delete'
+  defaults:
+    _entity_form: special_offer.delete
+    _title: 'Delete Special Offer'
+  requirements:
+    _permission: 'delete special_offer entity'

@@ -1,0 +1,162 @@
+<?php
+
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Adds a featured checkbox to the special_offer base field definitions
+ */
+function special_offer_update_8701()
+{
+    $field = BaseFieldDefinition::create('boolean')
+        ->setLabel(t("Featured"))
+        ->setDescription("Whether the special offer should be in the featured list")
+        ->setRequired(false)
+        ->setSettings([
+            'on_label'  => '1',
+            'off_label' => '0'
+        ])
+        ->setDisplayOptions('view', [
+            'label' => 'hidden',
+            'weight' => 5
+        ])
+        ->setDisplayOptions('form', [
+            'type'   => 'boolean_checkbox',
+            'format' => 'boolean',
+            'weight' => 5
+        ]);
+
+    \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition(
+        'featured',
+        'special_offer',
+        'special_offer',
+        $field
+    );
+
+    $fields = BaseFieldDefinition::create('string_long')
+            ->setDescription(t('The copy that will appear below the image / title / end date'))
+            ->setLabel(t('Redirect Link'))
+            ->setRequired(true)
+            ->setSettings([
+                'rows'         => 9,
+                'placeholder'  => '',
+            ])
+            ->setDisplayOptions('view', [
+                'label'  => 'hidden',
+                'type'   => 'string',
+                'weight' => $weight,
+            ])
+            ->setDisplayOptions('form', [
+                'type'   => 'string_textarea',
+                'weight' => $weight,
+            ]);
+            
+             \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition(
+        'redirect_link',
+        'special_offer',
+        'special_offer',
+        $field
+    );
+              $fields = BaseFieldDefinition::create('string')
+            ->setLabel(t('Add Color'))
+            ->setDescription(t('The Color will appear on the background of text above the image'))
+            ->setRequired(true)
+            ->setSettings([
+                'default_value'   => 'FFE5B4',
+                'max_length'      => 255,
+                'text_processing' => 0,
+            ])
+            ->setDisplayOptions('view', [
+                'label'  => 'hidden',
+                'type'   => 'string',
+                'weight' => $weight,
+            ])
+            ->setDisplayOptions('form', [
+                'type'   => 'string_textfield',
+                'weight' => $weight,
+            ]);
+
+             \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition(
+        'select_color',
+        'special_offer',
+        'special_offer',
+        $field
+    );
+
+      $fields = BaseFieldDefinition::create('string')
+            ->setLabel(t('Add Font Size'))
+            ->setDescription(t('The size  will be applied on the text appear above the image'))
+            ->setRequired(true)
+            ->setSettings([
+                'default_value'   => '12',
+                'max_length'      => 255,
+                'text_processing' => 0,
+            ])
+            ->setDisplayOptions('view', [
+                'label'  => 'hidden',
+                'type'   => 'string',
+                'weight' => $weight,
+            ])
+            ->setDisplayOptions('form', [
+                'type'   => 'string_textfield',
+                'weight' => $weight,
+            ]);
+              \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition(
+        'font_size',
+        'special_offer',
+        'special_offer',
+        $field
+    );
+
+
+    $fields = BaseFieldDefinition::create('string')
+            ->setLabel(t('Terms and condition link'))
+            ->setDescription(t('The size  will be applied on the text appear above the image'))
+            ->setRequired(true)
+            ->setSettings([
+                'default_value'   => '',
+                'max_length'      => 255,
+                'text_processing' => 0,
+            ])
+            ->setDisplayOptions('view', [
+                'label'  => 'hidden',
+                'type'   => 'string',
+                'weight' => $weight,
+            ])
+            ->setDisplayOptions('form', [
+                'type'   => 'string_textfield',
+                'weight' => $weight,
+            ]);
+              \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition(
+        'term_condition_lable',
+        'special_offer',
+        'special_offer',
+        $field
+    );
+
+
+    $fields = BaseFieldDefinition::create('string')
+            ->setLabel(t('Offer Name'))
+            ->setDescription(t('The title that will appear below the title'))
+            ->setRequired(true)
+            ->setSettings([
+                'default_value'   => '',
+                'max_length'      => 255,
+                'text_processing' => 0,
+            ])
+            ->setDisplayOptions('view', [
+                'label'  => 'hidden',
+                'type'   => 'string',
+                'weight' => $weight,
+            ])
+            ->setDisplayOptions('form', [
+                'type'   => 'string_textfield',
+                'weight' => $weight,
+            ]);
+              \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition(
+        'offer_name',
+        'special_offer',
+        'special_offer',
+        $field
+    );
+
+}

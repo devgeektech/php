@@ -1,0 +1,6 @@
+entity.damira.special_offer.collection:
+  title: 'Special Offer listing'
+  route_name: entity.special_offer.collection
+  description: 'List the special offers'
+  weight: -6
+  parent: system.admin_structure

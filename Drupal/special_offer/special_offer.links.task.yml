@@ -1,0 +1,15 @@
+special_offer.view:
+  route_name: entity.special_offer.canonical
+  base_route: entity.special_offer.canonical
+  title: View
+
+special_offer.page_edit:
+  route_name: entity.special_offer.edit_form
+  base_route: entity.special_offer.canonical
+  title: Edit
+
+special_offer.delete_confirm:
+  route_name:  entity.special_offer.delete_form
+  base_route:  entity.special_offer.canonical
+  title: Delete
+  weight: 10

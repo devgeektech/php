@@ -1,0 +1,9 @@
+damira.special_offer.add:
+  # Which route will be called by the link
+  route_name: entity.special_offer.add
+  title: 'Add Special Offer'
+
+  # Where will the link appear, defined by route name.
+  appears_on:
+    - entity.special_offer.collection
+    - entity.special_offer.canonical

@@ -11,7 +11,7 @@
  *
  * Text Domain: -
  * Domain Path: -
- *
+ * Using Path: https://apkeland.com/collection/
  */
 /*
  * List WooCommerce Products by tags

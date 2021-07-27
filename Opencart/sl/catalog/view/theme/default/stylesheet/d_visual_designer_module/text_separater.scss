@@ -1,0 +1,27 @@
+.vd-text-separater-container{
+    width:100%;
+        &.vd-text-separater-align-left{
+            display: flex;
+            justify-content: flex-start;
+        }
+        &.vd-text-separater-align-center{
+            display: flex;
+            justify-content: center;
+        }
+        &.vd-text-separater-align-right{
+            display: flex;
+            justify-content: flex-end;
+        }
+        > .vd-text-separater-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            flex-flow: row;
+            > .vd-text-separater{
+                flex: 1;
+            }
+            > h2.vd-separater-title{
+                margin: 0;
+            }
+        }
+}

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="72" height="72" viewBox="0 0 72 72">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ededed;
+      }
+
+      .cls-2 {
+        fill: #dfdfdf;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        fill-rule: evenodd;
+      }
+
+      .cls-3 {
+        fill: #f4c000;
+      }
+
+      .cls-4 {
+        fill: #4196f6;
+      }
+
+      .cls-5 {
+        fill: #72b338;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect width="72" height="72" rx="12" ry="12" class="cls-1"/>
+    <path d="M18.000,53.999 L18.000,47.998 L35.999,47.998 L35.999,53.999 L18.000,53.999 Z" class="cls-2"/>
+    <path d="M18.000,43.998 L18.000,37.999 L65.999,37.999 L65.999,43.998 L18.000,43.998 Z" class="cls-2"/>
+    <path d="M18.000,33.999 L18.000,27.998 L49.999,27.998 L49.999,33.999 L18.000,33.999 Z" class="cls-2"/>
+    <path d="M14.000,49.999 L14.000,43.998 L31.999,43.998 L31.999,49.999 L14.000,49.999 Z" class="cls-3"/>
+    <path d="M14.000,39.999 L14.000,33.999 L62.000,33.999 L62.000,39.999 L14.000,39.999 Z" class="cls-4"/>
+    <path d="M14.000,29.999 L14.000,23.998 L45.999,23.998 L45.999,29.999 L14.000,29.999 Z" class="cls-5"/>
+  </g>
+</svg>

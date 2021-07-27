@@ -1,0 +1,36 @@
+.s-nav-stacked > li {
+  cursor: pointer; }
+  .s-nav-stacked > li > a {
+    width: 100%;
+    display: block;
+    margin-left: 0px !important;
+    margin-bottom: 2px; }
+  .s-nav-stacked > li > span {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -6px; }
+
+.nav.nav-tabs > li {
+  cursor: pointer; }
+
+.vdl-btn-tab {
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer; }
+
+.tile .tile-heading > span.pull-right > a.copy {
+  margin-right: 5px; }
+.tile .tile-heading > span.pull-right > a > i {
+  font-size: 15px; }
+.tile .tile-body > a {
+  display: inline-block; }
+  .tile .tile-body > a.view-setting > i {
+    margin-left: 10px; }
+.tile .tile-footer {
+  min-height: 36px; }
+  .tile .tile-footer > div > .status {
+    margin-bottom: 5px;
+    margin-top: 2px; }
+
+/*# sourceMappingURL=d_visual_designer_landing.css.map */

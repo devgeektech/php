@@ -1,0 +1,1 @@
+<?php include (DIR_APPLICATION.'language/ru-ru/extension/d_visual_designer_module/search_products.php');

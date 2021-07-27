@@ -1,0 +1,392 @@
+<modification>
+	<name>Multiple Warehouse Stock Deduction Management</name>
+	<version>1.0.1</version>
+	<link>https://weismannweb.com</link>
+	<author>weismannweb</author>
+	<code>warehouse_stock_deduction_rules</code>
+	<!-- admin area -->
+	<file path="admin/language/*/extension/module/warehouse_links.php">
+		<operation>
+			<search><![CDATA[$_['text_reset']  = 'Reset';]]></search>
+			<add position="after"><![CDATA[
+			// -- warehouse stock deduction rule
+			$_['text_stock_deduction_rules']  = 'Stock Deduction Rules';
+			$_['text_save']  = 'Save';
+			$_['text_back']  = 'Back';
+			$_['text_rule_sets']  = 'Rule Sets';
+			$_['text_log']  = 'Log';
+			$_['text_add_rule']  = 'Add Rule';
+
+			// -- entry
+			$_['entry_action']  = 'Action';
+			$_['entry_rule_name']  = 'Name';
+			$_['entry_product_type']  = 'Product Type';
+			$_['entry_csa']  = 'CSA';
+			$_['entry_rules']  = 'Rules';
+			$_['entry_priority']  = 'Priority';
+			$_['entry_primary']  = 'Is Primary';
+			// -- end warehouse stock deduction rule
+			]]></add>
+		</operation>
+	</file>
+
+	<file path="admin/language/*/extension/module/warehouse.php">
+		<operation>
+			<search><![CDATA[$_['heading_title']    = 'Warehouse Locations';]]></search>
+			<add position="after"><![CDATA[
+			// -- warehouse stock deduction rule
+			$_['heading_title_stock']    = 'Stock Deduction Rules';
+			// -- end warehouse stock deduction rule
+			]]></add>
+		</operation>
+	</file>
+
+	<file path="admin/controller/common/column_left.php">
+		<operation info="add stock deduction rule submenu">
+			<search><![CDATA['href'     => $this->url->link('extension/module/warehouse', 'user_token=' . $this->session->data['user_token'], true),]]></search>
+			<add position="replace" offset="1"><![CDATA[
+			// -- warehouse stock deduction rule
+			'href' => '',
+			'children' => array(
+				array(
+					'name'	   => $this->language->get('text_warehouse'),
+					'href'     => $this->url->link('extension/module/warehouse', 'user_token=' . $this->session->data['user_token'], true),
+				),
+				array(
+					'name'	   => $this->language->get('text_stock_deduction_rules'),
+					'href'     => $this->url->link('extension/module/warehouse/stock_deduction_rules', 'user_token=' . $this->session->data['user_token'], true),
+				)
+			)
+			// -- end warehouse stock deduction rule
+			]]></add>
+		</operation>
+	</file>
+
+	<file path="admin/controller/extension/module/warehouse.php">
+
+		<operation>
+			<search><![CDATA[$states = $this->request->post['states'];]]></search>
+			<add position="replace"><![CDATA[
+			// -- warehouse stock deduction rule
+			$states = (is_array($this->request->post['states'])) ? $this->request->post['states'] : array();
+			// -- end warehouse stock deduction rule
+			]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[public function getState() {]]></search>
+			<add position="before"><![CDATA[
+			// -- warehouse stock deduction rule
+			public function stock_deduction_rules() {
+				$this->load->language("extension/module/warehouse");
+
+				$data['breadcrumbs'] = array();
+
+				$data['breadcrumbs'][] = array(
+					'text' => $this->language->get('text_home'),
+					'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
+				);
+
+				$data['breadcrumbs'][] = array(
+					'text' => $this->language->get('heading_title'),
+					'href' => $this->url->link('extension/module/warehouse', 'user_token=' . $this->session->data['user_token'], true)
+				);
+
+				$data['breadcrumbs'][] =   array(
+					'text' =>  $this->language->get('heading_title_stock'),
+					'href' =>  $this->url->link('extension/module/warehouse/stock_deduction_rules', 'user_token=' . $this->session->data['user_token'], TRUE)
+				);
+
+				$this->document->setTitle($this->language->get('heading_title_stock'));
+				$data['heading_title'] = $this->language->get('heading_title_stock');
+				
+				$data['back'] = $this->url->link('extension/module/warehouse', 'user_token=' . $this->session->data['user_token'], true);
+
+				$data['user_token'] = $this->session->data['user_token'];
+
+				if (isset($this->error['warning'])) {
+					$data['error_warning'] = $this->error['warning'];
+				} else {
+					$data['error_warning'] = '';
+				}
+
+				if (isset($this->session->data['success'])) {
+					$data['success'] = $this->session->data['success'];
+					unset($this->session->data['success']);
+				} else {
+					$data['success'] = '';
+				}
+
+				$this->load->model('extension/module/warehouse/rules');
+				
+				if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+					$i = 1;
+					$this->model_extension_module_warehouse_rules->deleteRules();
+					while(true) {
+						if ( isset($this->request->post["rule_set_name_${i}"]) ) {
+							$rule_name = $this->request->post["rule_set_name_${i}"];
+							$product_type = $this->request->post["product_type_${i}"];
+							$csas = $this->request->post["csas_${i}"] ?? array();
+							$rule_type = $this->request->post["rule_type_${i}"];
+
+							if (empty($csas) && $rule_type == '') {
+								$i++;
+								continue;
+							}
+
+							$warehouse_id = ($rule_type == 'primary') ? 0 : $this->request->post["warehouse_${i}"];
+							
+							$priority = $this->request->post["priority_${i}"];
+							$rule_data = array(
+								'name' => $rule_name,
+								'product_type' => $product_type,
+								'csas' => $csas,
+								'warehouse_id' => $warehouse_id,
+								'rule_type' => $rule_type,
+								'priority' => $priority,
+							);
+							// insert rule in table
+							$this->model_extension_module_warehouse_rules->addRule($rule_data);
+							$data['success'] = 'Stock Deduction Rules saved successfully';
+							$i++;
+						} else {
+							break;
+						}
+					}
+				}
+
+				// fetch csa
+				$this->load->model('csa/csa');
+				$data['csas'] = $this->model_csa_csa->getCSAList();
+				$this->load->model('extension/module/warehouse');
+				$data['warehouses'] = $this->model_extension_module_warehouse->getwarehouses();
+				$data['rules'] = array();
+				$rules = $this->model_extension_module_warehouse_rules->getRules();
+
+				foreach($rules as $rule) {
+					$csas = $this->model_extension_module_warehouse_rules->getRuleCsas($rule['rule_id']);
+					$data['rules'][] = array(
+						'rule_id' => $rule['rule_id'],
+						'name' => $rule['name'],
+						'product_type' => $rule['product_type'],
+						'warehouse_id' => $rule['warehouse_id'],
+						'csas' => array_map(function($csa) { return $csa['csa_id']; }, $csas),
+						'rule_type' => $rule['rule_type'],
+						'priority' => $rule['priority'],
+					);
+				}
+				
+				$data['log'] = '';
+				if (file_exists(DIR_LOGS . 'warehouse_stock_rules.log')) {
+					$data['log'] = file_get_contents(DIR_LOGS . 'warehouse_stock_rules.log', 'r');
+				}
+				
+				$data['header'] = $this->load->controller('common/header');
+				$data['column_left'] = $this->load->controller('common/column_left');
+				$data['footer'] = $this->load->controller('common/footer');
+
+				$this->response->setOutput($this->load->view('extension/module/warehouse_stock_deduction_rules', $data));
+			}
+
+			public function refreshLog() {
+				$log_content = '';
+				if (file_exists(DIR_LOGS . 'warehouse_stock_rules.log')) {
+					$log_content = file_get_contents(DIR_LOGS . 'warehouse_stock_rules.log', 'r');
+				}
+				echo $log_content;
+			}
+
+			public function clearLog() {
+				$logHandle = fopen(DIR_LOGS . 'warehouse_stock_rules.log', 'w');
+				fclose($logHandle);
+				return true;
+			}
+			// -- end warehouse stock deduction rule
+			]]></add>
+		</operation>
+	</file>
+	<!-- // admin area -->
+
+	<!-- frontend  -->
+	<file path="catalog/model/extension/module/warehouse.php">
+		<operation>
+			<search><![CDATA[$warehouse=$this->getWarehouse($stock_available_warehouse,$warehousesorting,$product['quantity'],$order_info);]]></search>
+			<add position="replace"><![CDATA[
+			// -- warehouse stock deduction rule
+			$warehouse[$this->session->data['warehouse'][$product['product_id']]] = $product['quantity'];
+			// -- end warehouse stock deduction rule
+			]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[public function checkStock($zone_id=0)]]></search>
+			<add position="replace"><![CDATA[
+			// -- warehouse stock deduction rule
+			public function getRules() {
+				$all_rules = array();
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "warehouse_stock_rules ORDER BY priority asc");
+				$rules = $query->rows;
+
+				foreach($rules as $rule) {
+					$q = $this->db->query("SELECT csa_id FROM " . DB_PREFIX . "warehouse_stock_rules_csa WHERE rule_id = {$rule['rule_id']}");
+					$csas = $q->rows;
+
+					$all_rules[] = array(
+						'rule_id' => $rule['rule_id'],
+						'name' => $rule['name'],
+						'product_type' => $rule['product_type'],
+						'warehouse_id' => $rule['warehouse_id'],
+						'csas' => array_map(function($csa) { return $csa['csa_id']; }, $csas),
+						'is_primary' => ($rule['rule_type'] == 'primary') ? 1 : 0,
+						'priority' => $rule['priority'],
+					);
+				}
+			
+				return $all_rules;
+			}
+
+			public function getPrimaryWarehouse() {
+				$query = $this->db->query("SELECT * from `" . DB_PREFIX . "csa` WHERE customer_group_id = " . $this->customer->getGroupId());
+				if ($query->num_rows) {
+					return $query->row['warehouse_id'];
+				}
+				return 0;
+			}
+
+			public function getWarehouseByRule($product) {
+				// get product type
+				$query = $this->db->query("SELECT product_type FROM `" . DB_PREFIX . "product` WHERE product_id='" . $product['product_id'] . "'");
+				$product_type = $query->row['product_type'];
+				if ($product) {
+					// get Rules
+					$rules = $this->getRules();
+					
+					$warehouse_to_consider = array();
+					if (!empty($rules)) {
+						// 1 - marketplace
+						// 2/3/4 - share
+						$product_type = ($product_type == 1) ? 'marketplace' : 'share';
+						$warehouse_checked = array();
+						// sort consider warehouse by primary 1st
+						usort($rules, function($a, $b) {
+							return $a['is_primary'] < $b['is_primary'];
+						});
+					
+						foreach ($rules as $rule) {
+							if ( $rule['product_type'] == $product_type ) {
+								$warehouse_id = $rule['is_primary'] ? $this->getPrimaryWarehouse() : $rule['warehouse_id'];
+								$warehouse_to_consider[] = [
+									'warehouse_id' => $warehouse_id,
+									'priority' => $rule['priority'],
+									'is_primary' => $rule['is_primary'],
+									'rule_name' => $rule['name']
+								];
+							}
+						}
+					
+					return $warehouse_to_consider;
+					} else if (empty($rules) || empty($warehouse_to_consider)) {
+						return $this->getPrimaryWarehouse(); // if no rule exists or no warehouse matched
+					}
+				} else {
+					return 0;
+				}
+			}
+
+			public function checkStockByRule() 
+			{
+                $returnarray = array();
+				$logHandle = fopen(DIR_LOGS . 'warehouse_stock_rules.log', 'a');
+				$date = date('Y-m-d h:i:s');
+				fwrite($logHandle, "------------------------------ Starting Test {$date} ------------------------------\n");
+				$ip = $this->request->server['REMOTE_ADDR'];
+				if ($this->customer->isLogged()) {
+					fwrite($logHandle, "CUSTOMER: {$this->customer->getFirstName()} {$this->customer->getLastName()} (customer_id: {$this->customer->getId()}, ip: {$ip})\n");
+				} else {
+					fwrite($logHandle, "CUSTOMER: Guest(ip: {$ip})\n");
+				}
+				fwrite($logHandle, "EVALUATING RULES:\n");
+
+				foreach ($this->cart->getProducts() as $key => $product) {
+					// match rule by product type and warehouse
+					$warehouses = $this->getWarehouseByRule($product);
+					if (!$warehouses) { $warehouses = array(); }
+
+					$firstWarehouseArray = array();
+					$hasStock = false;
+					foreach ($warehouses as $warehouse) {
+						if ($hasStock) { continue; }
+						$rule_desc = "Rule(Name: {$warehouse['rule_name']}, Is Primary: {$warehouse['is_primary']}, Priority: {$warehouse['priority']})";
+						fwrite($logHandle, "--- EVALUATING ${rule_desc} ---\n");
+
+						$temparray = array();
+						$warehouseid = $warehouse['warehouse_id'];
+						$productquantity = $this->getWarehouseProductStock($warehouseid, $product['product_id']);
+						$log_msg = "Product(Name: {$product['name']}, id: {$product['product_id']}) Warehouse(id: {$warehouseid}, qty: 0) ordered quantity = {$product['quantity']}";
+						if ($productquantity <= 0) {
+							$temparray[$product['cart_id']]['name'] = $product['name'];
+							$temparray[$product['cart_id']]['qty'] = 0;
+							fwrite($logHandle, "UNAVAILABLE - {$log_msg}\n");
+						} elseif ($productquantity < $product['quantity']) {
+							$temparray[$product['cart_id']]['name'] = $product['name'];
+							$temparray[$product['cart_id']]['qty'] = $productquantity;
+							fwrite($logHandle, "UNAVAILABLE - {$log_msg}\n");
+						} else {
+							fwrite($logHandle, "AVAILABLE - {$log_msg}\n");
+						}
+						if (isset($product['option']) && !empty($product['option'])) {
+							foreach ($product['option'] as $option) {
+								$productoptionquantity = $this->getWarehouseProductOptionStock($warehouseid, $option['product_option_value_id']);
+								$option_name_value = $product['name'] . ": " . $option['name'] . ": " . $option['value'];
+								$log_msg = "Product Option(Name: ${option_name_value}, id: {$product['product_id']}) Warehouse(id: ${warehouseid}, qty = {$productoptionquantity}) ordered qty = {$product['quantity']}";
+								if ($productoptionquantity <= 0) {
+									$temparray[$product['cart_id']]['name'] = $option_name_value;
+									$temparray[$product['cart_id']]['qty'] = 0;
+									fwrite($logHandle, "UNAVAILABLE - {$log_msg}\n");
+								} elseif ($productoptionquantity < $product['quantity']) {
+									$temparray[$product['cart_id']]['name'] = $option_name_value;
+									$temparray[$product['cart_id']]['qty'] = $productoptionquantity;
+									fwrite($logHandle, "UNAVAILABLE - {$log_msg}\n");
+								} else {
+									fwrite($logHandle, "AVAILABLE - {$log_msg}\n");
+								}
+							}
+						}
+
+						if (empty($temparray)) {
+							$hasStock = true;
+							fwrite($logHandle, "--- ENABLED ${rule_desc} ---\n");
+							$this->session->data['warehouse'][$product['product_id']] = $warehouseid;
+						} elseif (empty($firstWarehouseArray)) {
+							$firstWarehouseArray = $temparray;
+							fwrite($logHandle, "--- DISABLED ${rule_desc} ---\n");
+						}
+						fwrite($logHandle, "------------------------------------------------------------\n");
+					}
+					if (!$hasStock) { // it means no warehouse has stock
+						$returnarray[$product['cart_id']] = array_values($firstWarehouseArray)[0];
+					}
+				}
+                
+                fclose($logHandle);
+				return (!empty($returnarray)) ? $returnarray : 0;
+			}
+
+			public function checkStock($zone_id=0)
+			// -- end warehouse stock deduction rule
+			]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[$warehousesort=$this->warehouseSorting();]]></search>
+			<add position="replace"><![CDATA[
+			 // -- warehouse stock deduction rule
+			return $this->checkStockByRule(); // check stock by rules
+			// -- end warehouse stock deduction rule
+			$warehousesort=$this->warehouseSorting();
+			]]></add>
+		</operation>
+
+	</file>
+	<!-- // frontend  -->
+</modification>

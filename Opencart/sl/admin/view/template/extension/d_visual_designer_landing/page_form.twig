@@ -1,0 +1,233 @@
+{{header}} {{column_left}}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <button type="submit" form="form-information" data-toggle="tooltip" title="{{button_save}}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                <a href="{{cancel}}" data-toggle="tooltip" title="{{button_cancel}}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+            </div>
+            <h1>{{heading_title}} {{version}}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                    <li><a href="{{breadcrumb.href}}">{{breadcrumb.text}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if error_warning %}
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{error_warning}}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{text_form}}</h3>
+            </div>
+            <div class="panel-body">
+                <form action="{{action}}" method="post" enctype="multipart/form-data" id="form-page" class="form-horizontal">
+                    <ul class="nav nav-tabs">
+                        {% if page_id %}
+                            <li class="active"><a href="#tab-variation" data-toggle="tab">{{tab_variation}}</a></li>
+                            <li><a href="#tab-general" data-toggle="tab">{{tab_general}}</a></li>
+                        {% else %}
+                            <li class="active"><a href="#tab-general" data-toggle="tab">{{tab_general}}</a></li>
+                        {% endif %}
+                        <li><a href="#tab-data" data-toggle="tab">{{tab_data}}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        {% if page_id %}
+                            <div class="tab-pane active" id="tab-variation">
+                                <div class="tab-content">
+                                    <div class="row">
+                                        {% for variation in variations %}
+                                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                                <div class="tile tile-primary">
+                                                    <div class="tile-heading clearfix">{{text_variation}} {{variation.character}}
+                                                        <span class="pull-right">
+                                                            <a href="{{variation.copy}}" class="copy"  data-toggle="tooltip" title="" data-original-title="{{text_copy_variation}}"><i class="fa fa-copy"></i></a>
+                                                            <a href="{{variation.delete}}"  data-toggle="tooltip" title="" data-original-title="{{text_delete_variation}}"><i class="fa fa-times"></i></a>
+                                                        </span>
+                                                    </div>
+                                                    <div class="tile-body">
+                                                        <a href="{{variation.view}}" target="_blank" data-toggle="tooltip" title="" data-original-title="{{text_view_variation}}"><i class="fa fa-eye"></i></a>
+                                                        <a href="{{variation.edit}}" class="view-setting" data-toggle="tooltip"  title="" data-original-title="{{text_variation_edit}}"><i class="fa fa-pencil"></i></a>
+                                                        <h2 class="pull-right"  data-toggle="tooltip" title="" data-original-title="{{text_count_view}}">{{variation.count_view}}</h2>
+                                                    </div>
+                                                    <div class="tile-footer form-inline clearfix">
+                                                        <div class="">
+                                                            {{text_status}}
+                                                            <div class="pull-right status">
+                                                                <input type="hidden" name="variation[{{variation.variation_id}}]" value="0" />
+                                                                <input type="checkbox" name="variation[{{variation.variation_id}}]" class="switcher"  data-size="mini" {{variation.status?'checked="checked"'}} value="1" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="tile tile-primary">
+                                                <div class="tile-heading">{{text_create_new_variation}}</div>
+                                                <a href="{{add_variation}}" id="create_setting" class="create-setting">
+                                                    <div class="tile-body">
+                                                        <i class="fa fa-plus"></i>
+                                                        <h3 class="pull-right">{{text_create_variation}}</h3>
+                                                    </div>
+                                                </a>
+                                                <div class="tile-footer">{{text_set_status}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="tab-pane {{ not page_id?'active'}}" id="tab-general">
+                            <div class="tab-content">
+                                <ul class="nav nav-tabs" id="language">
+                                    {% for language in languages %}
+                                        <li>
+                                            <a href="#language-{{language.language_id}}" data-toggle="tab">
+                                                <img src="{{language.flag}}" title="{{language.name}}" /> {{language.name}}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <div class="tab-content">
+                                    {% for language in languages %}
+                                        <div class="tab-pane" id="language-{{language.language_id}}">
+                                            <div class="form-group required">
+                                                <label class="control-label col-sm-2">{{entry_title}}</label>
+                                                <div class="col-sm-10">
+                                                    <input name="page_description[{{language.language_id}}][title]" placeholder="{{entry_title}}" class="form-control" value="{{page_description[language.language_id].title}}">
+                                                    {% if error_title[language.language_id] %}
+                                                        <div class="text-danger">{{error_title[language.language_id]}}</div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label col-sm-2">{{entry_meta_title}}</label>
+                                                <div class="col-sm-10">
+                                                    <input name="page_description[{{language.language_id}}][meta_title]" placeholder="{{entry_meta_title}}" class="form-control" value="{{page_description[language.language_id].meta_title}}">
+                                                    {% if error_meta_title[language.language_id] %}
+                                                        <div class="text-danger">{{error_meta_title[language.language_id]}}</div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">{{entry_meta_description}}</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" rows="5" name="page_description[{{language.language_id}}][meta_description]" placeholder="{{entry_meta_description}}">{{page_description[language.language_id].meta_description}}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">{{entry_meta_keyword}}</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" rows="5"  name="page_description[{{language.language_id}}][meta_keyword]" placeholder="{{entry_meta_keyword}}"/>{{page_description[language.language_id].meta_keyword}}</textarea>
+                                                </div>
+                                            </div>
+
+                                            {{html_tab_general_language[language.language_id]}}
+
+                                            {{html_stores}}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-data">
+                            <div class="tab-content">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-status">{{entry_status}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="hidden" name="status" value="0" />
+                                        <input type="checkbox" class="switcher" data-label-text="{{text_enabled}}" id="input-status" name="status" {{status?'checked="checked"'}} value="1" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-status">{{entry_header_status}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="hidden" name="header_status" value="0" />
+                                        <input type="checkbox" class="switcher" data-label-text="{{text_enabled}}" id="input-status" name="header_status" {{header_status?'checked="checked"'}} value="1" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-status">{{entry_footer_status}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="hidden" name="footer_status" value="0" />
+                                        <input type="checkbox" class="switcher" data-label-text="{{text_enabled}}" id="input-status" name="footer_status" {{footer_status?'checked="checked"'}} value="1" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-display-title">{{entry_display_title}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="hidden" name="display_title" value="0" />
+                                        <input type="checkbox" class="switcher" data-label-text="{{text_enabled}}" id="input-display-title" name="display_title" {{display_title?'checked="checked"'}} value="1" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-full-width">{{entry_full_width}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="hidden" name="full_width" value="0" />
+                                        <input type="checkbox" class="switcher" data-label-text="{{text_enabled}}" id="input-full-width" name="full_width" {{full_width?'checked="checked"'}} value="1" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{entry_store}}</label>
+                                    <div class="col-sm-10">
+                                        <div class="well well-sm" style="height: 150px; overflow: auto;">
+                                            <div class="checkbox">
+                                                <label>
+                                                    {% if 0 in page_store %}
+                                                        <input type="checkbox" name="page_store[]" value="0" checked="checked" />
+                                                        {{text_default}}
+                                                    {% else %}
+                                                        <input type="checkbox" name="page_store[]" value="0" />
+                                                        {{text_default}}
+                                                    {% endif %}
+                                                </label>
+                                            </div>
+                                            {% for store in stores %}
+                                                <div class="checkbox">
+                                                    <label>
+                                                        {% if store.store_id in page_store %}
+                                                            <input type="checkbox" name="page_store[]" value="{{store.store_id}}" checked="checked" />
+                                                            {{store.name}}
+                                                        {% else %}
+                                                            <input type="checkbox" name="page_store[]" value="{{store.store_id}}" />
+                                                            {{store.name}}
+                                                        {% endif %}
+                                                    </label>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-sort-order">{{entry_sort_order}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="sort_order" value="{{sort_order}}" placeholder="{{entry_sort_order}}" id="input-sort-order" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{html_script}}
+    {{html_style}}
+</div>
+<script type="text/javascript">
+
+    $(".switcher[type='checkbox']").bootstrapSwitch({
+        'onColor': 'success',
+        'onText': '{{text_yes}}',
+        'offText': '{{text_no}}',
+    });
+
+    $('#language a:first').tab('show');
+</script>
+{{footer}}

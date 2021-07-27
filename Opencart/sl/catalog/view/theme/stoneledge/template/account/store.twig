@@ -1,0 +1,145 @@
+{{ header }}
+<div id="account-store">
+    <div class="page-content-body">
+        <div class="container page-content-wrapper">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    {% if success %}
+                        <div class="alert alert-registered alert-dismissible">{{ success }}</div>
+                    {% endif %}
+                    {% if error_warning %}
+                        <div class="alert alert-registered alert-dismissible">{{ error_warning }}</div>
+                    {% endif %}                
+                </div>
+            </div>
+            
+            <div class="account-store-select">
+               
+                <div class="col-md-12">
+                    <div class="row ">
+
+                      {% if harvest_seasons %}
+                        <div class="account-store-select-content">
+                            <p> Admins change Harvest:</p>
+                            <select name="harvest_id" id="input-harvest" class="form-control">
+                                {% for harvest in harvest_seasons %}
+                                  {% if harvest.harvest_id == harvest_id %}
+                                    <option value="{{ harvest.harvest_id }}" selected="selected">{{ harvest.harvest_title }}</option>
+                                  {% else %}
+                                    <option value="{{ harvest.harvest_id }}">{{ harvest.harvest_title }}</option>
+                                  {% endif %}
+                                {% endfor %}
+                           </select>
+                        </div>
+                      {% endif %}
+
+                      {% if customer_groups  %}
+                        <div class="account-store-select-content">
+                            <p> Admins change CSA</p>
+                            <select name="csa_id" id="input-csa" class="form-control">
+                                {% for customer_group in customer_groups %}
+                                    {% if customer_group.customer_group_id == customer_group_id %}
+                                        <option value="{{customer_group.customer_group_id}}" selected="selected">{{customer_group.name}}</option>
+                                    {% else %}    
+                                        <option value="{{customer_group.customer_group_id}}">{{customer_group.name}}</option>
+                                    {% endif %}    
+                                {% endfor %}
+                            </select>
+                        </div>
+                      {% endif %}  
+                    </div>
+                 </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="bd_block_catalog1">
+                                <a href="{% if is_mandatory_suggested == '1' %}mandatory_shares{% elseif is_suggested_product_found == '1' %}additional_shares{% else %}catalog_shares{% endif %}">
+                                    <img src="{{ img_folder_path }}/shares.png">
+                                    <div class="bd_block_catalog_text1">
+                                        <h4>{{ harvests['harvest_display_title'] }}</h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="bd_block_catalog1">
+                                <img src="{{ img_folder_path }}/marketplace.jpg">
+                                {% if is_marketplace_available %}
+                                    <a href="index.php?route=product/category&path=96">
+                                        <div class="bd_block_catalog_text1">
+                                            <h4>MARKETPLACE AVAILABLE</h4>
+                                        </div>
+                                    </a>
+                                 {% else %}
+                                        <div class="bd_block_catalog_text1">
+                                            <h4>MARKETPLACE UNAVAILABLE</h4>
+                                            <h5 style="color:#fff; padding:10px;">Purchase your required CSA vegetable share to enable Marketplace purchases</h5>
+                                        </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="bd_block_catalog1">
+                                <a href="/index.php?route=account/account">
+                                    <img src="{{ img_folder_path }}/account.png">
+                                    <div class="bd_block_catalog_text1">
+                                        <h4>MY ACCOUNT</h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="" {{ class }} >{{ content_top }}{{ content_bottom }}</div>
+                {{ column_right }}</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#input-harvest').change(function(){
+        var harvest_id = $(this).val();
+	$.ajax({
+		url: 'index.php?route=account/store/change_harvest&harvest_id='+harvest_id,
+		type: 'get',
+		dataType: 'json',
+		success: function(json) {
+
+			if (json['error']) {
+                            json['error'];
+			}
+
+			if (json['success']) {
+				window.location.reload();
+			}
+		}
+	});
+    });
+     $('#input-csa').change(function(){
+        var customer_group_id = $(this).val();
+	$.ajax({
+		url: 'index.php?route=account/store/change_csa&customer_group_id='+customer_group_id,
+		type: 'get',
+		dataType: 'json',
+		success: function(json) {
+
+			if (json['error']) {
+                            json['error'];
+			}
+
+			if (json['success']) {
+				window.location.reload();
+			}
+		}
+	});
+    });
+});
+</script>
+{{ footer }}

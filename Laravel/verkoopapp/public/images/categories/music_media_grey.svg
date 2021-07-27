@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <g id="music_media_grey" transform="translate(-3 -3)">
+    <g id="Icon" transform="translate(3 3)">
+      <path id="Combined_Shape" data-name="Combined Shape" d="M0,28.889V20a20,20,0,0,1,40,0v8.889Z" fill="#d1d1d1"/>
+      <path id="Combined_Shape-2" data-name="Combined Shape" d="M30.889,15.556a2,2,0,0,1-2-2V2a2,2,0,0,1,2-2H38a2,2,0,0,1,2,2V13.556a2,2,0,0,1-2,2ZM2,15.556a2,2,0,0,1-2-2V2A2,2,0,0,1,2,0H9.111a2,2,0,0,1,2,2V13.556a2,2,0,0,1-2,2Z" transform="translate(0 24.444)" fill="#9c9c9c"/>
+    </g>
+  </g>
+</svg>

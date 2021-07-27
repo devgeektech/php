@@ -1,0 +1,265 @@
+{{header}}
+<style>
+    {{custom_style}}
+    </style>
+
+    <div class="page-content-header news {{ post_type }}">
+        <div class="container">
+            <div class="row intro-heading">
+                <div class="col-lg-12">
+                    <h1 class="pageTitle" id="list">{#{heading_title}#}
+                        {% for breadcrumb in breadcrumbs %}
+                            {% if loop.index == 3 %}
+                                {{breadcrumb.text}}
+                            {% endif %}
+                        {% endfor %}
+                    </h1>
+                    <p>Please check back here for new recipes posted regularly. Want to submit a recipe? <a href="#" title="Submit a Recipe">Click here</a>.</p>
+
+                            <ul class="breadcrumb">
+                                                {% for breadcrumb in breadcrumbs %}
+                                                  {% if loop.index != 1 %} 
+                                                    {% if breadcrumb.href %}
+                                                        <li><a href="{{breadcrumb.href}}">{{breadcrumb.text}}</a></li>
+                                                    {% endif %}
+                                                  {% endif %}          
+                                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-content-body {{ post_type }}">
+                <div class="container page-content-wrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="recipe-card">
+                                <div class="recipe-head clearfix">
+                                    <div class="info matchHeight" style="min-height: 83px;">
+                                        <div class="name"> {{heading_title}}</div>
+                                        <div class="category">
+                                            <ul>
+					{% for breadcrumb in breadcrumbs|reverse %}
+                                                    {% if loop.index == 2 or  loop.index == 3 %}
+                                                    <li>{{breadcrumb.text}}</li>
+                                                    {% endif %}
+                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="print matchHeight" style="min-height: 83px;">
+                                                <div class="print-block">
+                                                    <span>Print</span>
+                                                    <ul class="share-buttons">
+                                                        <li><a href="" class="icon-wrapper print-button"><i class="fa fa-print custom-icon printer" aria-hidden="true"></i></a></li>
+                                                    </ul>
+                                                    <script>
+                                                        $('.print-button').on('click', function() {
+                                                            window.print();
+                                                            return false; // why false?
+                                                        });
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                                <div class="share matchHeight" style="min-height: 83px;">
+                                                    <span>Share</span>
+                                                    <ul class="share-buttons">
+                                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=&amp;t={{heading_title}}" class="icon-wrapper" target="_blank" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL), 'sharer', 'toolbar=0,status=0,width=650,height=436');
+                                                                                        return false;"><i class="fa fa-facebook custom-icon facebook"></i></a></li>
+                                                                <li><a href="//pinterest.com/pin/create/link/?url=' + encodeURIComponent(document.URL) + '&amp;description={{heading_title}}" class="icon-wrapper" target="_blank" title="Share via Pinterest"><i class="fa fa-pinterest-p custom-icon pinterest"></i></a></li>
+                                                                <li><a href="https://twitter.com/intent/tweet?source=&amp;text=:{{heading_title}}" class="icon-wrapper" target="_blank" title="Share on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20' + encodeURIComponent(document.URL), 'sharer', 'toolbar=0,status=0,width=650,height=436');
+                                                                                        return false;"><i class="fa fa-twitter custom-icon twitter"></i></a></li>
+                                                                        <li><a href="//pinterest.com/pin/create/link/?url=' + encodeURIComponent(document.URL) + '&amp;description={{heading_title}}" class="icon-wrapper" target="_blank" title="Share via Google+"><i class="fa fa-google-plus custom-icon googleplus"></i></a></li>
+                                                                        <li><a href="mailto:?subject={{heading_title}}&amp;body=:%20{{heading_title}}" class="icon-wrapper" target="_blank" title="Share via Email" onclick="window.open('mailto:?subject=' + encodeURIComponent(document.title) + '&amp;body=' + encodeURIComponent(document.URL));
+                                                                                        return false;"><i class="fa fa-envelope custom-icon"></i></a></li>
+
+
+                                                                            </ul>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="recipe-body clearfix">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-4 recipe-left {{thumb}}23">
+										{% if thumb %}
+                                            {% if popup %}
+                                                                                    <a class="popup" href="{{popup}}" title="{{heading_title}}">
+                                                                                        <img src="{{thumb}}" title="{{image_title}}" alt="{{image_alt}}" class="recipe-image" />
+                                                                                    </a>
+                                            {% else %}
+                                                                                    <img src="{{thumb}}" title="{{image_title}}" alt="{{image_alt}}" class="recipe-image" />
+                                            {% endif %}
+                                        {% endif %}
+                                        {% if post_type == 'recipes' %}
+                                                                                    <strong>Serves:</strong>&nbsp;&nbsp; {{ serves }} <br>(serving size: {{ serving_size}})
+                                                                                    <br><br>
+                                                                                    <ul>
+                                                                                        <li><strong>Prep Time:</strong>&nbsp;&nbsp; {{ prep_time }}</li>
+                                                                                        <li><strong>Cook Time:</strong>&nbsp;&nbsp; {{ cook_time }}</li>
+                                                                                        <li><strong>Total Time:</strong>&nbsp;&nbsp; {{ total_time }}</li>
+                                                                                    </ul>
+                                        {% endif %}
+                                                                                </div>
+
+                                                                                <div class="col-sm-8 recipe-right">
+                                                                                    <div id="description" class="description">
+                                    {% if post_type == 'recipes' %}
+                                                                                            <h2>Ingredients</h2>
+                                    {% endif %}
+                                    {{description}}
+                                    {% if post_type == 'recipes' %}
+                                                                                            <h2>Directions</h2>
+                                    {{ short_description }}
+                                    {% endif %}
+                                                                                        </div>
+
+
+                {% if post_videos %}
+                                                                                        <div class="bm-videos">
+                        {% for post_video in post_videos %}
+                                                                                                <div class="bm-video">
+                                                                                                    <h2>{{post_video.text}}</h2>
+                                                                                                    <div style="text-align: center;">
+                                    {{post_video.code}}
+                                                                                                        </div>
+                                                                                                    </div>
+                        {% endfor %}
+                                                                                                </div>
+                {% endif %}
+
+                {#% if setting.post.tag_display and tags %}
+                                                                                                <div class="tag">
+                                                                                                    <span class="tag-title">{{text_tags}}</span>
+                    {% for tag in tags %}
+                                                                                                    <a href="{{tag.href}}">{{tag.text}}</a>
+                    {% endfor %}
+                                                                                                </div>
+                {% endif %#}
+
+
+                {#% if setting.post.nav_display and (prev_post or next_post) %}
+                <div class="row post-nav">
+                    <div class="col-md-6 post-nav-left">
+                        {% if prev_post %}
+                            <a href="{{prev_post.href}}" class="media">
+                                {% if (prev_post.thumb) %}
+                                    <div class="media-left">
+                                         <img class="media-object"  src="{{prev_post.thumb}}" data-holder-rendered="true">
+                                    </div>
+                                {% endif %}
+                                <div class="media-body">
+                                    <div class="h4 media-heading">{{prev_post.text}}</div>
+                                    <div class="media-body">{{prev_post.short_description}}</div>
+                                </div>
+                            </a>
+                            {# <a class="btn btn-default" href="{{prev_post.href}}">⟵ {{prev_post.text}}</a> #}
+                        {#% endif %}
+                    </div>
+                    <div class="col-md-6 post-nav-right">
+                        {% if next_post %}
+                            <a href="{{next_post.href}}" class="media">
+                                <div class="media-body">
+                                    <div class="h4 media-heading">{{next_post.text}}</div>
+                                    <div class="media-body">{{next_post.short_description}}</div>
+                                </div>
+                                {% if (next_post.thumb) %}
+                                    <div class="media-right">
+                                         <img class="media-object" src="{{next_post.thumb}}" data-holder-rendered="true">
+                                    </div>
+                                {% endif %}
+                            </a>
+                            {# <a class="btn btn-default pull-right" href="{{next_post.href}}">{{next_post.text}} ⟶</a> #}
+                        {#% endif %}
+                    </div>
+                </div>
+                {% endif %#}
+
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="author_review">
+                                                                    <div class="container">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+            {% if setting.post.author_display %}
+                                                                                    <div class="bm-author">
+                                                                                        <div class="author-image">
+                                                                                            <a href="{{author_link}}"><img src="{{author_image}}" class="img-responsive" /></a>
+                                                                                        </div>
+                                                                                        <div class="author-body">
+                                                                                            <a href="{{author_link}}"><div class="h4 author-name">{{author_name}}</div></a>
+                                                                                            <div class="author-description">{{author_description}}</div>
+                                                                                            <a href="{{author_link}}" class="read-more">{{text_read_more}}</a>
+                                                                                        </div>
+                                                                                    </div>
+            {% endif %}
+
+            {#% if review_display %}
+                {{review}}
+            {% endif %#}
+                                                                                </div></div></div>
+                                                                    </div>
+
+                                                                    <div class="widget-panel">
+                                                                        <div class="container-fluid" style="padding:0px;">
+																		{{ content_bottom }}
+
+
+
+
+                                                                                <div class="col-md-4 block">
+                                                                                    <h2>Instagram</h2> <a href="https://www.instagram.com/stoneledge.farm/" class="greenborder-cta ctaHeading" target="_blank">See All &rsaquo;</a>
+                                                                                    <div class="clear"></div>
+                                                                                    <p>Don't forget to follow us on Instagram to catch a glimpse at life on the farm!</p>
+                                                                                    <div class="block-item instagram">
+
+                                                                                        <div class="postbox">
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                            <div class="container">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12 block">
+                                                                                        <div class="block-item logos">
+                                                                                            <div class="owl-carousel owl-theme" id="logoslider">
+
+                                                                                                <div class="item"><img src="image/catalog/Pure-Catskills-923335510271017.png" /></div>
+
+                                                                                                <div class="item"><img src="image/catalog/Parnter-Charter-60221911271017.png" /></div>
+
+                                                                                                <div class="item"><img src="image/catalog/image-2361.png" /></div>
+
+                                                                                                <div class="item"><img src="image/catalog/USDA-Organic-906541011271017.png" /></div>
+
+                                                                                                <div class="item"><img src="image/catalog/Pride-of-New-York-591351111271017.png" /></div>
+
+                                                                                                <div class="item"><img src="image/catalog/image-8842.png" /></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="widget-panel-wrapper"></div>
+                                                                            <div class="farm-sketch"></div>
+                                                                        </div>
+{{footer}}
+                                                                        <script>
+                                                                                                                                                            $('.parallax-window').parallax({imageSrc: 'image/catalog/image-4983.jpg'});
+                                                                            </script>

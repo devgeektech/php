@@ -1,0 +1,78 @@
+{
+    "codename": "d_visual_designer_extra",
+    "version": "1.0.1",
+    "name": "Visual Designer Extra Blocks",
+    "description": "Additional blocks for visual designer ",
+    "author": {
+        "name": "Dreamvention",
+        "email": "info@dreamvention.com",
+        "url": "https://dreamvention.com/"
+    },
+    "opencart_version": [
+        "2.0.1.0",
+        "2.0.1.1",
+        "2.0.2.0",
+        "2.0.3.1",
+        "2.1.0.1",
+        "2.1.0.2",
+        "2.2.0.0",
+        "2.3.0.0",
+        "2.3.0.1",
+        "2.3.0.2",
+        "3.0.0.0",
+        "3.0.1.1",
+        "3.0.1.2",
+        "3.0.2.0",
+        "3.0.3.1"
+    ],
+    "type": "module",
+    "license": {
+        "type": "commercial",
+        "url": "https://shopunity.net/licenses/commercial"
+    },
+    "install": {
+        "url": "extension/extension/module/install&extension=d_visual_designer_landing"
+    },
+    "uninstall": {
+        "url": "extension/extension/module/uninstall&extension=d_visual_designer_landing"
+    },
+    "support": {
+        "email": "support@dreamvention.com",
+        "url": "https://dreamvention.com/support"
+    },
+    "required": {
+        "d_visual_designer": ">= 3.0.0"
+    },
+    "files": [
+        "system/library/d_shopunity/extension/d_visual_designer_extra.json",
+        "admin/controller/extension/d_visual_designer_module/social_icons.php",
+        "admin/language/en-gb/extension/d_visual_designer_module/social_icons.php",
+        "admin/language/english/extension/d_visual_designer_module/social_icons.php",
+        "admin/language/ru-ru/extension/d_visual_designer_module/social_icons.php",
+        "admin/language/russian/extension/d_visual_designer_module/social_icons.php",
+        "admin/view/template/extension/d_visual_designer/settings_block/vd-setting-block-social_icons.tag",
+        "admin/view/template/extension/d_visual_designer_module/social_icons.twig",
+        "catalog/controller/extension/d_visual_designer_module/social_icons.php",
+        "catalog/language/en-gb/extension/d_visual_designer_module/social_icons.php",
+        "catalog/language/english/extension/d_visual_designer_module/social_icons.php",
+        "catalog/language/ru-ru/extension/d_visual_designer_module/social_icons.php",
+        "catalog/language/russian/extension/d_visual_designer_module/social_icons.php",
+        "catalog/view/theme/default/template/extension/d_visual_designer/content_blocks/vd-block-social_icons.tag",
+        "catalog/view/theme/default/template/extension/d_visual_designer_module/social_icons.twig",
+        "image/catalog/d_visual_designer/social_icons.svg",
+        "system/config/d_visual_designer/social_icons.php"
+    ],
+    "dirs": [
+        "catalog/view/theme/default/stylesheet/d_visual_designer_extra"
+    ],
+    "changelog": [
+        {
+            "version":"1.0.1",
+            "change":"Added support OC 3.0.3.1"
+        },
+        {
+            "version":"1.0.0",
+            "change":"First version"
+        }
+    ]
+}

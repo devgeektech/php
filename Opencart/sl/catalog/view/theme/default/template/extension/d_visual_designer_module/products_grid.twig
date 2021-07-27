@@ -1,0 +1,11 @@
+{% if setting.global.title %}
+    <div class="h3">{{ setting.global.title }}</div>
+{% endif %}
+
+<div class="row {{id}}">
+    {% for product in setting.user.products %}
+    <div class="product-layout col-md-{{ setting.global.width }} col-sm-{{ setting.global.width_tablet }} col-{{ setting.global.width_phone }}" >
+        {{ product.partial }}
+    </div>
+    {% endfor %}
+</div>

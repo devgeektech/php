@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	
+	<name>MailChimp Integration Customization</name>
+    <code>mailchimp_integration_customization</code>
+	<version>1.0.1</version>
+	<author>weismannweb</author>
+
+    <file path="system/library/mailchimp_integration.php">
+        <operation>
+            <search><![CDATA[if (!empty($data['addresses'])) {]]></search>
+            <add position="before"><![CDATA[
+            // MailChimp Integration Customization
+            // get CSA
+            if (!empty($customer_group)) {
+                $customer_csa = $this->db->query("SELECT * FROM " . DB_PREFIX . "csa WHERE customer_group_id = " . (int)$customer['customer_group_id'])->row;
+                $customer['customer_csa_name'] = (!empty($customer_csa['csaname'])) ? $customer_csa['csaname'] : '';
+            }
+            // check if customer has order this harvest year
+			$harvest = $this->db->query("SELECT harvest_id FROM " . DB_PREFIX . "harvests where status = 1")->row;
+			$customer['has_order'] = '';
+			if ($harvest) {
+				$harvest_id = $harvest['harvest_id'];
+				$order = $this->db->query("SELECT * FROM " . DB_PREFIX . "order where customer_id = '" . $data['customer_id'] . "' and harvest_id = '" . $harvest_id . "'")->row;
+				if (!empty($order)) {
+					$customer['has_order'] = 'Yes';
+				}
+			}
+            // -- end MailChimp Integration Customization
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[if ($merge['tag'] == 'EMAIL') continue;]]></search>
+            <add position="after" offset="2"><![CDATA[
+            // MailChimp Integration Customization
+            if ($merge['tag'] === 'CSA' || $merge['tag'] === 'ORDERS') {
+                if ($merge['tag'] === 'CSA') {
+                    $merge_array[$merge['tag']] = $customer['customer_csa_name'];
+                } else {
+                    $merge_array[$merge['tag']] = $customer['has_order'];
+                }
+            } else // --- end MailChimp Integration Customization
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/model/catalog/product.php">
+        <operation>
+            <search><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "customer SET csa_id = '".$data['csa_id']."']]></search>
+            <add position="after"><![CDATA[
+            // MailChimp Integration Customization
+            if ($this->customer->getNewsletter()) {
+                $data['newsletter'] = 1;
+            }
+            if (version_compare(VERSION, '2.1', '<')) $this->load->library('mailchimp_integration');
+            $mailchimp_integration = new MailChimp_Integration($this->registry);
+            $mailchimp_integration->send(array_merge($data, array('customer_id' => $this->customer->getId(), 'double_optin' => false, 'send_welcome' => false)));
+            // -- end MailChimp Integration Customization
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/model/checkout/order.php">
+        <operation>
+            <search><![CDATA[email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "']]></search>
+            <add position="replace"><![CDATA[email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', harvest_id = '" . (int) $this->customer->harvestId() . "']]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/event/activity.php">
+        <operation>
+            <search><![CDATA[$this->model_account_activity->addActivity('order_account', $activity_data);]]></search>
+            <add position="before"><![CDATA[
+            // update customer order info in mailchimp
+            if ($this->customer->getNewsletter()) {
+                $activity_data['newsletter'] = 1;
+            }
+            if (version_compare(VERSION, '2.1', '<')) $this->load->library('mailchimp_integration');
+            $mailchimp_integration = new MailChimp_Integration($this->registry);
+            $mailchimp_integration->send(array_merge($activity_data, array('customer_id' => $order_info['customer_id'], 'double_optin' => false, 'send_welcome' => false)));
+            ]]></add>
+        </operation>
+    </file>
+
+</modification>

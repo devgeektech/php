@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="72" height="72" viewBox="0 0 72 72">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fdeedc;
+      }
+
+      .cls-2 {
+        fill: #ecd9c1;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #db841b;
+      }
+
+      .cls-5 {
+        fill: #2d1d04;
+        fill-rule: evenodd;
+      }
+
+      .cls-6 {
+        fill: #fae7a4;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect width="72" height="72" rx="12" ry="12" class="cls-1"/>
+    <g>
+      <rect x="44.25" y="47.25" width="17.5" height="13.5" class="cls-2"/>
+      <rect x="43.25" y="46.25" width="17.5" height="13.5" class="cls-3"/>
+      <rect x="44.25" y="47.25" width="15.5" height="11.5" class="cls-4"/>
+      <path d="M47.875,55.867 C51.532,55.867 52.003,54.548 54.759,54.548 C57.373,54.548 59.186,55.410 59.750,55.750 L59.750,58.750 L44.250,58.750 L44.250,53.250 C44.760,53.687 46.177,55.867 47.875,55.867 Z" class="cls-5"/>
+      <circle cx="48.91" cy="51.14" r="1.5" class="cls-6"/>
+    </g>
+    <g>
+      <rect x="11.25" y="47.25" width="17.5" height="13.5" class="cls-2"/>
+      <rect x="10.25" y="46.25" width="17.5" height="13.5" class="cls-3"/>
+      <rect x="11.25" y="47.25" width="15.5" height="11.5" class="cls-4"/>
+      <path d="M14.875,55.867 C18.532,55.867 19.003,54.548 21.759,54.548 C24.373,54.548 26.186,55.410 26.750,55.750 L26.750,58.750 L11.250,58.750 L11.250,53.250 C11.760,53.687 13.177,55.867 14.875,55.867 Z" class="cls-5"/>
+      <circle cx="15.91" cy="51.14" r="1.5" class="cls-6"/>
+    </g>
+    <g>
+      <rect x="20" y="12" width="35" height="27" class="cls-2"/>
+      <rect x="18" y="10" width="35" height="27" class="cls-3"/>
+      <rect x="20" y="12" width="31" height="23" class="cls-4"/>
+      <path d="M27.250,29.234 C34.564,29.234 35.506,26.598 41.017,26.598 C46.245,26.598 49.872,28.320 51.000,29.000 L51.000,35.000 L20.000,35.000 L20.000,24.000 C21.020,24.873 23.853,29.234 27.250,29.234 Z" class="cls-5"/>
+      <circle cx="29.325" cy="19.8" r="3.015" class="cls-6"/>
+    </g>
+  </g>
+</svg>

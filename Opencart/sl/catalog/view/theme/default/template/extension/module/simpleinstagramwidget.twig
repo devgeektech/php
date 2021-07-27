@@ -1,0 +1,60 @@
+<div class="row">
+   <div class="instagram-wrapper box col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="instagram-wrapper-inner">
+         <div class="box_heading_desc">{{ heading_title }}</div>
+         <div class="box_heading_desc"><a href="{{ account_url }}" target="_blank">{{ account_name }}</a></div>
+         <div id="instagram" class="owl-carousel">
+            {% for image in images %}
+            <div class="item text-center">
+               {% if image.link %}
+               <a href="{{ image.link }}" target='_blank'>
+                  <img src="{{ image.image }}" alt="{{ image.title }}" class="img-responsive" />	
+                  <div class="insta-hover"><i class="fa fa-instagram"></i>
+                     <span class="insta-date"> {{ image.time }} </span>
+                  </div>
+               </a>
+               
+               {#
+               <div class="insta_comments_likes">
+                  <span class="insta-likes"> <i class="fa fa-heart"></i> {{ image.likes }} </span>
+                  <span class="insta-comments"> <i class="fa fa-comment"></i> {{ image.comments }}</span>
+               </div>
+               #}
+               
+               {% else %}
+               <img src="{{ image.image }}" alt="{{ image.title }}" class="img-responsive" />
+               {% endif %}
+            </div>
+            {% endfor %}
+         </div>
+      </div>
+   </div>
+</div>
+
+<script type="text/javascript"><!--
+$(document).ready(function () {
+	$('#instagram').owlCarousel({
+		center: true,
+		loop: true,
+		items: {{ items_desktop	}},
+		autoPlay: 2000,
+		navigation: true,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+		pagination: false,
+		lazyLoad: false,
+		stopOnHover: true,
+		lazyEffect: 'fade',
+		rewindNav: true,
+		itemsDesktop: [1299, {{ items_desktop	}}],
+		itemsDesktopSmall: [979, {{ items_desktop	}}],
+		itemsTablet: [767, {{ items_tablet	}}],
+		itemsMobile: [479, {{ items_mobile	}}]
+	});
+});
+-->
+</script>
+
+
+
+
+

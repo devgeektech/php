@@ -1,0 +1,197 @@
+<style>
+.crop-harvest {
+    background: url({{route}}image/catalog/grocery.png) left top no-repeat;
+    padding-top: 170px;
+    position: relative;
+}
+.crop-harvest h2, .crop-harvest-popup h2 {
+    color: #842a1c;
+    font-family: 'Merriweather', serif;
+    font-size: 30px;
+    font-weight: 300;
+    margin: 0 0 5px 0;
+}
+.crop-harvest h3, .crop-harvest-popup h3 {
+    color: #b53d24;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 300;
+    margin-bottom: 25px;
+}
+.greenborder-cta {
+    border: 2px solid #90c052;
+    color: #5d5d5d;
+    display: inline-block;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 5px 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+.crop-harvest-popup {
+    background: url({{route}}image/grocery-bg.png) center center no-repeat;
+    background-color: #f2f1eb;
+    border-radius: 0px;
+    border: 7px solid #48520f;
+    min-height: 20px;
+    padding: 50px;
+    margin: 30px 15px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+.crop-harvest-popup .inner-wrap {
+    background: url({{route}}image/grocery-border-left.png) left bottom repeat-y, url({{route}}image/grocery-border-right.png) right top repeat-y;
+    padding: 0px 40px;
+}
+.crop-harvest-popup .inner-wrap img{
+	display: block;
+    max-width: 100%;
+    height: auto;
+}
+.crop-harvest-popup .jqrpopup_close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: #48520F;
+    border: none;
+    border-radius: 0px;
+        border-bottom-left-radius: 0px;
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    border-bottom-left-radius: 4px;
+    color: #fff;
+    padding: 10px 15px;
+    transition: all 0.5s ease;
+	font-size:17px;
+	box-shadow:none;
+}
+.crop-harvest-popup .jqrpopup_close:hover {
+	opacity: .5;
+}
+.crop-harvest-popup .controls .next {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    background: #48520F;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    -webkit-transform: translate(0,-50%);
+    -moz-transform: translate(0,-50%);
+    -ms-transform: translate(0,-50%);
+    -o-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+}
+.crop-harvest-popup .controls .prev {
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    background: #48520F;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    -webkit-transform: translate(0,-50%);
+    -moz-transform: translate(0,-50%);
+    -ms-transform: translate(0,-50%);
+    -o-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+}
+</style>
+{% if posts %}
+{% if num_posts > 1 %}
+
+<div class="crop-harvest">
+	<h2>{{ heading_title }}</h2>
+	<p><button class="greenborder-cta jqrpopup_open">{{ text_button }} ›</button></p>
+</div>
+
+<div id="jqrpopup" class="crop-harvest-popup" style="max-width: 750px;">
+	<div class="inner-wrap">
+	<div class="controls">
+		<div class="next">
+			<i class="fa fa-arrow-right" aria-hidden="true"></i>
+		</div>
+		<div class="prev">
+			<i class="fa fa-arrow-left" aria-hidden="true"></i>
+		</div>
+	</div>
+	<h2>{{ heading_title }}</h2>
+	<div class="owl-carousel outofseason owl-theme" id="outofseason">
+	{% for post in posts %}
+		<div class="item">
+		<h3>{{ post['post_title'] }}</h3>
+		{{ post['description'] }}
+		</div>
+	{% endfor %}
+	
+	</div>
+		
+	<button class="jqrpopup_close btn btn-default">X</button>
+	</div>
+</div>
+
+
+<script src="{{route}}catalog/view/javascript/jquery.popupoverlay.js"></script>
+<script>
+$(document).ready(function () {
+	
+    $('#jqrpopup').popup({
+		transition: 'all 0.3s',
+		scrolllock: true
+    });
+	
+	
+		var marquee = $('#outofseason');
+		$('#outofseason').owlCarousel({
+			items:1,
+			loop:true,
+			margin:0,
+			touchDrag: false,
+			mouseDrag:false,
+			autoHeight:true,
+			nav:false,
+			dots:false
+		});
+		
+		$('#jqrpopup .next').click( function(e){  
+			e.stopImmediatePropagation();
+			marquee.trigger('next.owl.carousel');
+		});
+		$('#jqrpopup .prev').click( function(e){
+			e.stopImmediatePropagation();
+			marquee.trigger('prev.owl.carousel');
+		});
+	
+});
+
+</script>
+{% else %}
+<div class="crop-harvest">
+	<h2>{{ heading_title }}</h2>
+	<p><button class="greenborder-cta jqrpopup_open">{{ text_button }} ›</button></p>
+</div>
+<div id="jqrpopup" class="crop-harvest-popup" style="max-width: 750px;">
+	<div class="inner-wrap">
+		<h2>{{ heading_title }}</h2>
+		<h3>{{ posts[0]['post_title'] }}</h3>
+		{{ posts[0]['description'] }}
+		<button class="jqrpopup_close btn btn-default">X</button>
+	</div>
+</div>
+
+<script src="{{route}}catalog/view/javascript/jquery.popupoverlay.js"></script>
+<script>
+$(document).ready(function () {
+	
+    $('#jqrpopup').popup({
+		transition: 'all 0.3s',
+		scrolllock: true
+    });
+
+});
+</script>
+{% endif %}
+{% endif %}

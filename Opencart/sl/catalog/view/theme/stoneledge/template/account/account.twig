@@ -1,0 +1,86 @@
+{{ header }}
+<style>
+.checkout-process {
+    display: none;
+}
+</style>
+<div class="page-content-body">
+    <div class="container page-content-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="checkout-process">
+                    <ul class="nav nav-wizard">
+    {% for breadcrumb in breadcrumbs %}
+                            <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12">
+                        <h2>{{ text_my_account }}</h2>
+                        <p>You can edit your account below.</p>
+                        <br>
+
+                        <div class="myAccount">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="block-heading">My Profile
+                                        <span>
+                                            <a href="{{ password }}" class="secondary-cta" title="">Change Password ›</a>
+                                            <a href="{{ edit }}" class="secondary-cta" title="">Edit Profile ›</a>
+                                        </span>
+                                    </div>
+                                    <table class="table table-responsive noHead">
+                                        <tbody>
+                                            <tr>
+                                                <td>Name:</td>
+                                                <td>{{ customer_info.firstname }} {{ customer_info.lastname }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email:</td>
+                                                <td>{{ customer_info.email }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone #:</td>
+                                                <td>{{ customer_info.telephone }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address:</td>
+                                                <td>{{ customer_address.address_1 }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <a href="{{ address }}" class="secondary-cta" title="">Address Book ›</a>
+                                    <a href="{{ order }}" class="secondary-cta" title="">Order History ›</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="block-heading">My CSA</div>
+                                    <h4>{{csa_info.csaname}}</h4>
+                                    
+                                    {% if (pickup_address) %}
+                                        {{pickup_address}}<br><br>
+                                    {% endif %}
+                                    {% if (operating_hours) %}
+                                        {{operating_hours}} <br>
+                                    {% endif %}
+                                    
+                                    {% if csa_info.website %}
+                                        <div class="heading">
+                                            <a href="{{ csa_info.website }}" target="_blank">CSA Website</a>
+                                        </div>
+                                    {% endif %}    
+                                </div>
+                            </div>
+                            <br>
+                            <div class="block-heading">My Share Partner <a href="#" class="secondary-cta" title="">Add A Share Partner ›</a></div>
+                            <p style="font-size:16px;"><strong>NOTE: </strong>Share Partner must accept share partner request before your purchase your shares. The partner request is sent via email. If not accepted you are responsible for the full share amount.</p>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{{ footer }}

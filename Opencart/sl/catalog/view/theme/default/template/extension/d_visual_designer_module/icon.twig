@@ -1,0 +1,15 @@
+<div class="container-fluid vd-icon-container vd-icon-align-{{ setting.global.align }} {{ setting.global.align_phone ? 'vd-icon-align-phone-'.setting.global.align_phone }} {{ setting.global.align_tablet ? 'vd-icon-align-tablet-'.setting.global.align_tablet  }} {{id}}">
+    {% if setting.global.link %}
+        <a href="{{ setting.global.link }}" style="text-decoration: none;">
+            <div class="vd-icon vd-icon-block vd-icon-{{ setting.global.size }} {{ setting.global.size_phone ? 'vd-icon-phone-'.setting.global.size_phone}} {{ setting.global.size_tablet ? 'vd-icon-tablet-'.setting.global.size_tablet }} vd-icon-style-{{ setting.global.background_style }}">
+                <span class="{{ setting.global.icon }}"></span>
+            </div>
+        </a>
+    {% endif %}
+    {% if not setting.global.link %}
+        <div class="vd-icon vd-icon-block vd-icon-{{ setting.global.size }} {{ setting.global.size_phone ? 'vd-icon-phone-'.setting.global.size_phone}} {{ setting.global.size_tablet ? 'vd-icon-tablet-'.setting.global.size_tablet }} vd-icon-style-{{ setting.global.background_style }}">
+            <span class="{{ setting.global.icon }}"></span>
+        </div>
+    {% endif %}
+
+</div>

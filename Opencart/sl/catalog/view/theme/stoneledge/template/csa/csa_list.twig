@@ -1,0 +1,159 @@
+{{ header }}
+<div class="page-content">
+	<div class="page-content-header">
+		<div class="intro-bg">
+			<div class="container">
+				<div class="row intro-heading">
+					<div class="col-lg-12">
+						<h1 class="pageTitle">Community Supported Agriculture (CSA)</h1>
+						<p></p>
+						<p>Community Supported Agriculture (CSA) is a unique relationship of mutual support and commitment between a farm and community members for an entire growing season. CSA members purchase a share for the growing season before the harvest begins. The price of the share enables the farm to cover yearly costs, almost all of which are incurred before the crops are ready for harvest. This entitles the member to a share of the harvest thought out the season, grown and delivered by a farm they know and trust.</p>
+						<p style="text-align: center;">
+							<a href="https://docs.google.com/document/d/1F8dBdKonPmh9YwuxJSH0rsX7PY-g04yN31GTQWyNNOI/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Monday Pickup Schedule-2020</a>
+						</p>
+						<p style="text-align: center;">
+							<a href="https://docs.google.com/document/d/1jE6_haWfM0yQ_sZIOaSbzqIKBEk_vLnhw1e4PYS7vao/edit?ts=5ed4e934" rel="noopener noreferrer" target="_blank">Tuesday Pickup Schedule-2020</a>
+						</p>
+						<p style="text-align: center;">
+							<a href="https://docs.google.com/document/d/1bhu2yGbID5lZwffjSGAaDh-u4Iny6RsGLEnTZNL_5Q8/edit?ts=5ed4e02f" rel="noopener noreferrer" target="_blank">Wednesday Pickup Schedule-2020</a>
+						</p>
+						<p style="text-align: center;">
+							<strong>
+								<a href="https://docs.google.com/document/d/1G3qzcTiUunX6u7b87uzhcbTd0B0X5vlCF4DbRK6SAM8/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Stoneledge Farms Sanitation and Hygiene Practices - 2020 Season &amp; FACT SHEET- produce safety and COVID-19</a>
+							</strong>
+						</p>
+						<p style="text-align: center;"><br></p>
+						<p></p>
+						<p class="member-cta">
+							<a href="{{register_link}}#locations" class="greenborder-cta">New Member Registrations ›</a>
+
+							<a href="{{login_link}}" class="greenborder-cta">Member Log In ›</a>
+						</p>
+						<h2>
+							<em>The CSA season runs 24 weeks from June until November.</em>
+						</h2>
+						<p>The 2020 CSA season delivery dates:<br>
+							Monday CSA sites will be June 8 - November 16, 2020<br>
+							Tuesday CSA sites will be June 9 - November 17, 2020<br>
+							Wednesday CSA sites will be June 10 - November 18, 2020</p>
+						<br><br>
+						<div class="largeText shares-heading">Our Shares</div>
+						<p></p>
+						<p>The vegetable share is our base CSA share, it is grown on our farm and is certified organic. Optional shares can be added to your base Vegetable share and are a great way to supplement and add variety to your weekly delivery. Optional shares include optional coffee share, optional dry bean share, optional mushroom share &amp; optional local fruit share.</p>
+						<p></p>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="product-grid clearfix">
+		<div class="page-content-body csa">
+			{{ featured }}
+
+			<div class="container page-content-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<br><br>
+
+						<a href="#" id="locations"></a>
+						<div class="pageTitleSecondary">CSA LOCATIONS &amp; PRICING</div>
+						<p>Stoneledge Farm has partnered with over 20 CSA locations -- stretching from the boroughs of New York City to the Hudson Valley, and into Connecticut -- leaving you with plenty of options to find a CSA convenient to you. Our current locations have all been marked on the map below, find one near you to join, and continue on to our CSA Program to register or login!</p>
+						<p>
+							<strong>Under each CSA location will be specific pickup information to keep everyone safe this harvest season. &nbsp;Please select
+								<u>Details &amp; Pricing</u>
+								to find your site's information.&nbsp;</strong>
+						</p>
+						<p style="text-align: center;">
+							<a href="https://docs.google.com/document/d/1F8dBdKonPmh9YwuxJSH0rsX7PY-g04yN31GTQWyNNOI/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Monday Pickup Schedule-2020</a>
+						</p>
+						<p style="text-align: center;">
+							<a href="https://docs.google.com/document/d/1jE6_haWfM0yQ_sZIOaSbzqIKBEk_vLnhw1e4PYS7vao/edit?ts=5ed4e934" rel="noopener noreferrer" target="_blank">Tuesday Pickup Schedule-2020</a>
+						</p>
+						<p style="text-align: center;">
+							<a href="https://docs.google.com/document/d/1bhu2yGbID5lZwffjSGAaDh-u4Iny6RsGLEnTZNL_5Q8/edit?ts=5ed4e02f" rel="noopener noreferrer" target="_blank">Wednesday Pickup Schedule-2020</a>
+						</p>
+
+						<br>
+
+
+						<div class="csa-listing">
+							<div class="listing row">
+								<div class="feedbox clearfix">
+
+									{% for csa in all_csa %}
+										<div class="col-lg-3 col-md-4 col-sm-6 item">
+
+											<a href="{{ csa.view }}" class="name">{{ csa.csaname }}</a>
+											<p>{{ csa.pickup_address }}</p>
+											<a href="{{ csa.view }}" class="details">Details &amp; Pricing</a><br/>
+											<a class="csa-status" href="{{ csa.register_link }}">New Member{% if csa.registration == 0 %} Waiting List{% else %} Register{% endif %}</a>
+										</div>
+										{% if not loop.first and loop.index % 4 == 0 %}
+										<div class="clearfix"></div>
+										{% endif %}
+									{% endfor %}
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="widget-panel">
+	<div class="container-fluid" style="padding:0px;">
+	{{ content_bottom }}
+
+		<div class="col-md-4 block">
+			<h2>Instagram</h2>
+			<a href="https://www.instagram.com/stoneledge.farm/" class="greenborder-cta ctaHeading" target="_blank">See All &rsaquo;</a>
+			<div class="clear"></div>
+			<p>Don't forget to follow us on Instagram to catch a glimpse at life on the farm!</p>
+			<div class="block-item instagram">
+
+				<div class="postbox"></div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 block">
+				<div class="block-item logos">
+					<div class="owl-carousel owl-theme" id="logoslider">
+
+						<div class="item"><img src="image/catalog/Pure-Catskills-923335510271017.png"/></div>
+
+						<div class="item"><img src="image/catalog/Parnter-Charter-60221911271017.png"/></div>
+
+						<div class="item"><img src="image/catalog/image-2361.png"/></div>
+
+						<div class="item"><img src="image/catalog/USDA-Organic-906541011271017.png"/></div>
+
+						<div class="item"><img src="image/catalog/Pride-of-New-York-591351111271017.png"/></div>
+
+						<div class="item"><img src="image/catalog/image-8842.png"/></div>
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="widget-panel-wrapper"></div>
+	<div class="farm-sketch"></div>
+</div>
+<script>
+    $(document).ready(function() {
+		$('.parallax-window').parallax({imageSrc: '{{ store_url }}image/catalog/seedling-2021195556295.jpg'});
+    });
+</script>
+{{ footer}}

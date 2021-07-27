@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>Tmd Customer Group Price</name>
+	<id>Tmd Customer Group Price</id>
+	<code>Tmd Customer Group Price</code>
+	<version>2.0</version>
+	<author>TMD(opencartextensions.in)</author>
+	
+	<file path="admin/controller/catalog/product.php">
+		<operation error="log">
+			<search ><![CDATA[$product_option_value_data[] = array(]]></search>
+			<add position="before"><![CDATA[
+			// xml area customer_group
+			$cproduct_id=0;
+					if(isset($this->request->get['product_id']))
+					{
+						$cproduct_id=$this->request->get['product_id'];
+					}
+					elseif(!empty($result['product_id']))
+					{
+						$cproduct_id=$result['product_id'];
+					}
+					$customersgroups = array();
+					$this->load->model('customer/customer_group');
+					$data['entry_customer_price'] = $this->language->get('entry_customer_price');
+					$data['entry_cprice'] = $this->language->get('entry_cprice');
+					$customers_groups = $this->model_customer_customer_group->getCustomerGroups();
+					foreach($customers_groups as $groups) {
+						$price='';
+						$price = $this->model_catalog_product->getCustomerGroupOptions($cproduct_id,$groups['customer_group_id'],$product_option_value['product_option_value_id']);				
+						$customersgroups[$groups['customer_group_id']] =$price;
+					}
+					
+			// xml area customer_group ends
+			]]></add>
+		</operation>
+		<operation error="log">
+			<search ><![CDATA['price_prefix'            => $product_option_value['price_prefix']]]></search>
+			<add position="before"><![CDATA['customers_groups'        => $customersgroups,]]></add>
+		</operation>
+		
+		<operation error="log">
+			<search ><![CDATA[$data['layouts'] = $this->model_design_layout->getLayouts();]]></search>
+			<add position="before"><![CDATA[
+				// xml area customer_group
+				$data['entry_customer_price'] = $this->language->get('entry_customer_price');
+				$data['entry_cprice'] = $this->language->get('entry_cprice');
+				if (isset($this->request->post['customer_group'])) {
+						$data['customer_group'] = $this->request->post['customer_group'];
+					} elseif (isset($this->request->get['product_id'])) {
+						$data['customer_group'] = $this->model_catalog_product->getCustomerPrice($this->request->get['product_id']);
+					} else {
+						$data['customer_group'] = array();
+
+					}
+
+					$this->load->model('customer/customer_group');
+					$data['options'] = $this->model_customer_customer_group->getCustomerGroups();
+				// xml area customer_group ends
+			]]></add>
+		</operation>
+
+		<operation error="log">
+			<search ><![CDATA[$data['products'][] = array(]]></search>
+			<add position="before"><![CDATA[
+	//xml customer group price start		
+		$this->load->model('customer/customer_group');
+		
+		$customer_group_infos = $this->model_catalog_product->getCustomerPrice($result['product_id']);
+			$group_prices = array();
+
+			foreach ($customer_group_infos as $customer_group_info) {
+			$customer_group_name = $this->model_customer_customer_group->getCustomerGroup($customer_group_info['customer_group_id']);
+				if(isset($customer_group_name['name'])){
+				$group_prices[] = array(
+					'customer_group_price' => $this->currency->format($customer_group_info['price'], $this->config->get('config_currency')),
+					'customer_group_name' => $customer_group_name['name']
+
+					);
+					}
+				}	
+	//xml customer group price end
+			]]></add>
+		</operation>
+		<operation error="log">
+			<search ><![CDATA['quantity'   => $result['quantity'],]]></search>
+			<add position="before"><![CDATA[
+	//xml customer group price start			
+				'group_prices'    => $group_prices,
+	//xml customer group price end
+			]]></add>
+		</operation>
+		<operation error="log">
+			<search ><![CDATA[$data['sort_quantity'] = $this->url->link('catalog/product', 'user_token=' . $this->session->data['user_token'] . '&sort=p.quantity' . $url, true);]]></search>
+			<add position="before"><![CDATA[
+	//xml customer group price start			
+				$data['sort_customer_group_price'] = $this->url->link('catalog/product', 'user_token=' . $this->session->data['user_token'] . '&sort=customer_group_price' . $url, true);
+	//xml customer group price end
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="admin/language/*/catalog/product.php">
+		<operation error="log">
+			<search><![CDATA[$_['heading_title']          = 'Products';]]></search>
+			<add position="before"><![CDATA[
+				// xml customer_group
+				$_['entry_customer_price']   = 'Customer Group';
+				$_['entry_cprice']   		 = 'Price ';
+				$_['column_customer_price']   		 = 'Customer Group Price';
+				// xml customer_group ends
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="admin/model/catalog/product.php">
+		<operation error="log">
+			<search ><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_id = '" . (int)$product_option_id . "', product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', option_value_id = '" . (int)$product_option_value['option_value_id'] . "', quantity = '" . (int)$product_option_value['quantity'] . "', subtract = '" . (int)$product_option_value['subtract'] . "', price = '" . (float)$product_option_value['price'] . "', price_prefix = '" . $this->db->escape($product_option_value['price_prefix']) . "', points = '" . (int)$product_option_value['points'] . "', points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "', weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");]]></search>
+			<add position="after"><![CDATA[
+				// xml area customer_group
+				$product_option_value_id = $this->db->getLastId();
+				if (isset($product_option_value['customergroup_option'])) {
+					foreach ($product_option_value['customergroup_option'] as $key => $groups) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "product_customergroup_optionvalue SET 
+						product_option_id 		= '" . (int)$product_option_id . "', 
+						product_option_value_id = '" . (int)$product_option_value_id . "', 
+						product_id 				= '" . (int)$product_id . "',
+						option_value_id 		= '" . (int)$product_option_value['option_value_id'] . "', 
+						option_id 				= '" . (int)$product_option['option_id'] . "',
+		 				customer_group_id 		= '" . (int)$key . "',
+						price 					= '" . (float)$groups['price'] . "'");
+					}
+				}
+				// xml area customer_group ends
+			]]></add>
+		</operation>
+		<operation error="log">
+			<search ><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_value_id = '" . (int)$product_option_value['product_option_value_id'] . "', product_option_id = '" . (int)$product_option_id . "', product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', option_value_id = '" . (int)$product_option_value['option_value_id'] . "', quantity = '" . (int)$product_option_value['quantity'] . "', subtract = '" . (int)$product_option_value['subtract'] . "', price = '" . (float)$product_option_value['price'] . "', price_prefix = '" . $this->db->escape($product_option_value['price_prefix']) . "', points = '" . (int)$product_option_value['points'] . "', points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "', weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");]]></search>
+			<add position="after"><![CDATA[
+				// xml area customer_group
+				//$product_option_value_id = $this->db->getLastId();
+                                //since warehouse.cmod.xml installed there was a conflict in the code here. So, below code is the fix of it.
+                                if(isset($product_optionvalue_id) && !empty($product_optionvalue_id)){
+                                    $product_option_value_id = $product_optionvalue_id;			
+                                } else {
+                                    $product_option_value_id = $this->db->getLastId();
+                                }
+				if (isset($product_option_value['customergroup_option'])) {
+					foreach ($product_option_value['customergroup_option'] as $key => $groups) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "product_customergroup_optionvalue SET 
+						product_option_id 		= '" . (int)$product_option_id . "', 
+						product_option_value_id = '" . (int)$product_option_value_id . "', 
+						product_id 				= '" . (int)$product_id . "',
+						option_value_id 		= '" . (int)$product_option_value['option_value_id'] . "', 
+						option_id 				= '" . (int)$product_option['option_id'] . "',
+		 				customer_group_id 		= '" . (int)$key . "',
+						price 					= '" . (float)$groups['price'] . "'");
+					}
+				}
+				// xml area customer_group ends
+			]]></add>
+		</operation>
+	
+		<operation error="log">
+			<search ><![CDATA[if (isset($data['product_store'])) {]]></search>
+			<add position="before"><![CDATA[
+			// xml area customer_group
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_customergroup_optionvalue WHERE product_id = '" . (int)$product_id . "'");
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_customergroup_price WHERE product_id = '" . (int)$product_id . "'");
+		        if (isset($data['customer_group'])) {
+			    foreach ($data['customer_group'] as $key => $group) {
+				  $this->db->query("INSERT INTO " . DB_PREFIX . "product_customergroup_price SET 
+					product_id = '" . (int)$product_id . "',
+					  customer_group_id = '" . (int)$key . "',
+					    price  = '".$this->db->escape($group['price'])."'");
+			    }
+		    }
+		    // xml area customer_group ends
+		]]></add>
+		</operation>
+		
+		
+		<operation error="log">
+			<search ><![CDATA[public function deleteProduct($product_id) {]]></search>
+			<add position="after"><![CDATA[
+				// xml area customer_group
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_customergroup_optionvalue WHERE product_id = '" . (int)$product_id . "'");
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_customergroup_price WHERE product_id = '" . (int)$product_id . "'");
+				// xml area customer_group ends]]></add>
+		</operation>
+		<operation error="log">
+			<search ><![CDATA[public function getTotalProductsByLayoutId($layout_id) {]]></search>
+			<add position="before"><![CDATA[
+			// xml area customer_group
+				  public function getCustomerPrice($product_id) {
+		          $customer_group_data = array();
+
+		          $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_price WHERE product_id = '" . (int)$product_id . "'");
+
+		          foreach ($query->rows as $group) {
+			      $customer_group_data[$group['customer_group_id']] = array(
+			      'price' => $group['price'],
+			      'customer_group_id' => $group['customer_group_id']
+			      );
+		        }
+
+		           return $customer_group_data;
+	        }
+		
+	                public function getCustomerGroupOptions($product_id,$customer_group_id,$product_option_value_id) {
+		            $group_query = $this->db->query("SELECT * FROM " .DB_PREFIX. "product_customergroup_optionvalue WHERE product_id = '".(int)$product_id."' and product_option_value_id='".(int)$product_option_value_id."' and customer_group_id='".$customer_group_id."'");
+		            $price='';
+		              if (isset($group_query->row['price'])) {
+			            $price = $group_query->row['price'];
+		            }
+		          return $price;
+	            }
+	         // xml area customer_group ends
+				
+			
+				]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/catalog/product_form.twig">
+		<operation error="log">
+			<search ><![CDATA[<label class="col-sm-2 control-label" for="input-tax-class">{{ entry_tax_class }}</label>]]></search>
+			<add position="before" offset="1"><![CDATA[
+              <div class="form-group cgp_price">
+                <label class="col-sm-2 control-label" for="input-price">{{ entry_customer_price }}</label>
+                <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <td class="text-left">{{ entry_customer_price }}</td>
+                      <td class="text-left">{{ entry_cprice }}</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for customergroup in customer_groups %}
+                    <tr>
+                      <td class="text-left">{{ customergroup.name }}</td>
+                      <td class="text-left"><input type="text" name="customer_group[{{ customergroup.customer_group_id }}][price]" value="{{ customer_group[customergroup.customer_group_id] ? customer_group[customergroup.customer_group_id].price }}" placeholder="{{ entry_cprice }}" class="form-control" /></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              </div>
+             ]]></add>
+		</operation>
+		<operation error="log">
+			<search ><![CDATA[<td class="text-right"><select name="product_option[{{ option_row }}][product_option_value][{{ option_value_row }}][price_prefix]" class="form-control">]]></search>
+			<add position="replace"><![CDATA[
+			<td class="text-right">
+                    <table class="table table-bordered">
+                        <thead>
+                             <tr>
+                                <td>{{ entry_customer_price }}</td>
+                                <td>{{ entry_cprice }}</td>
+                                </tr>
+                               {% if customer_groups %}
+                                 {% for customergroup in customer_groups %}
+                                <tr>
+                                <td class="text-left">{{ customergroup.name }}</td>
+                                <td class="text-left"><input type="text" name="product_option[{{ option_row }}][product_option_value][{{ option_value_row }}][customergroup_option][{{ customergroup.customer_group_id }}][price]" value="{{ product_option_value.customers_groups[customergroup.customer_group_id] }}" placeholder="{{ entry_cprice }}" class="form-control" /></td>
+                                </tr> 
+                                {% endfor %}
+                               {% endif %}
+                        </thead>
+                    </table>
+					<select name="product_option[{{ option_row }}][product_option_value][{{ option_value_row }}][price_prefix]" class="form-control">
+            ]]></add>
+		</operation>
+		<operation error="log">
+			<search><![CDATA[html += '  <td class="text-right"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][price_prefix]" class="form-control">';]]></search>
+			<add position="replace"><![CDATA[
+					html +='  <td class="text-right">';
+					html +='<table class="table table-bordered">';
+                   html += '<thead>';
+                   html += '<tr>';
+                   html += '<th>{{ entry_customer_price }}</th>';
+                   html += '<th>{{ entry_cprice }}</th>';
+                   html += '</tr>';
+                   {% for customergroup in customer_groups %}
+                   html += '<tr>';
+                   html += '<td class="text-left">{{ customergroup.name }}</td>';
+                   html += '<td class="text-left"><input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][customergroup_option][{{ customergroup.customer_group_id }}][price]" placeholder="{{ entry_cprice }}" class="form-control" /></td>';
+                   html += '</tr>';
+                   {% endfor %}
+                   html += '</thead>';
+                   html += '</table>';
+                   html +='<select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][price_prefix]" class="form-control">';
+            ]]></add>
+		</operation>
+	</file>
+
+	<file path="admin/view/template/catalog/product_list.twig">
+		<operation error="log">
+			<search ><![CDATA[<td class="text-right">{% if sort == 'p.price' %} <a href="{{ sort_price }}" class="{{ order|lower }}">{{ column_price }}</a> {% else %} <a href="{{ sort_price }}">{{ column_price }}</a> {% endif %}</td>]]></search>
+			<add position="after" ><![CDATA[
+			<!-- xml customer group price start-->
+                    <td class="text-left">{% if sort == 'customer_group_price  ' %} <a href="{{ sort_customer_group_price }}" class="{{ order|lower }}">{{ column_customer_price }}</a> {% else %} <a href="{{ sort_customer_group_price }}">{{ column_customer_price }}</a> {% endif %}</td>
+                <!-- xml customer group price end-->
+			]]></add>
+		</operation>
+		<operation error="log">
+			<search ><![CDATA[<td class="text-right">{% if product.quantity <= 0 %} <span class="label label-warning">{{ product.quantity }}</span> {% elseif product.quantity <= 5 %} <span class="label label-danger">{{ product.quantity }}</span> {% else %} <span class="label label-success">{{ product.quantity }}</span> {% endif %}</td>]]></search>
+			<add position="before" ><![CDATA[
+					<!-- xml customer group price start-->
+                       <td class="text-left">
+                        {% if product['group_prices'] %}
+						<div class="prices-data" id="prices_data_{{ product.product_id }}">
+                          {% for group_price in product['group_prices'] %}
+                          <b>{{ group_price.customer_group_name }}</b>: {{ group_price.customer_group_price }} </br>
+                          {% endfor %}
+						</div>
+						<a id="more_{{ product.product_id }}" class="more" href="javascript:void(0);" onclick="showAllPricesData({{ product.product_id }})">...more </a>
+						<a id="less_{{ product.product_id }}" class="less" href="javascript:void(0);" onclick="hideAllPricesData({{ product.product_id }})">less </a>
+                        {% endif %}
+                       </td>
+                   <!-- xml customer group price end-->
+			]]></add>
+		</operation>
+		<operation error="log">
+			<search ><![CDATA[//--></script></div>]]></search>
+			<add position="before" ><![CDATA[
+function showAllPricesData(pid)
+{
+    $('#prices_data_'+pid).css({
+        'height': 'auto'
+    })
+	$('#more_'+pid).hide();
+	$('#less_'+pid).show();
+}
+function hideAllPricesData(pid)
+{
+    $('#prices_data_'+pid).css({
+        'height': '60px'
+    })
+	$('#more_'+pid).show();
+	$('#less_'+pid).hide();
+}
+$('.prices-data').css({
+	'height': '60px',
+	'overflow': 'hidden'
+});
+$('.less').hide();
+			]]></add>
+		</operation>
+	</file>	
+
+	<file path="catalog/model/catalog/product.php">
+		<operation error="log">
+			<search ><![CDATA[return array(]]></search>
+			<add position="before" ><![CDATA[
+			/// xml customer group price manage ///
+			$customer_group_price = array();
+			$customergroupprice_data = $this->config->get('customergroupprice_data');
+			if (!empty($customergroupprice_data)) {
+				foreach ($customergroupprice_data as $key => $value) {
+					$customer_group_price[$value['customer_group_id']] = array(
+						'customer_group_id' => $value['customer_group_id'],
+						'prefix' 			=> $value['prefix'],
+						'value' 			=> $value['value'],
+					 );
+				}
+			}
+$groupprice_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_price WHERE product_id = '" . (int)$product_id . "' and customer_group_id='".$this->customer->getGroupId()."'");
+				if ($groupprice_query->num_rows) {
+					$query->row['price'] = $groupprice_query->row['price'];
+				}
+				else{
+			if (!empty($customer_group_price[$this->customer->getGroupId()]['value'])) {
+				$prefix = $customer_group_price[$this->customer->getGroupId()]['prefix'];
+				$value = (int) $customer_group_price[$this->customer->getGroupId()]['value'];
+				if ($prefix == 1) {
+					$query->row['price'] = $query->row['price'] + $value;
+				}else if ($prefix == 2 && $query->row['price'] > $value){
+					$query->row['price'] = $query->row['price'] - $value;
+				}else if ($prefix == 3){
+					$query->row['price'] = $query->row['price'] + ($query->row['price'] * $value)/100;
+				}else if ($prefix == 4){
+					$query->row['price'] = $query->row['price'] - ($query->row['price'] * $value)/100;
+				}
+			}
+				
+			}
+			/// xml customer group price manage ///
+			]]></add>
+		</operation>
+		
+		<operation error="log">
+			<search ><![CDATA[$product_option_value_data[] = array(]]></search>
+			<add position="before" ><![CDATA[
+			    /// xml customer group option price manage ///
+				$customer_group_price = array();
+				$customergroupprice_data = $this->config->get('customergroupprice_data');
+				if (!empty($customergroupprice_data)) {
+					foreach ($customergroupprice_data as $key => $value) {
+						$customer_group_price[$value['customer_group_id']] = array(
+							'customer_group_id' => $value['customer_group_id'],
+							'prefix' 			=> $value['prefix'],
+							'value' 			=> $value['value'],
+						 );
+					}
+				}
+				
+				$optionprice_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_optionvalue WHERE product_option_value_id = '" . (int)$product_option_value['product_option_value_id'] . "' and customer_group_id='".$this->customer->getGroupId()."'");
+					if ($optionprice_query->num_rows) {
+						$product_option_value['price'] = $optionprice_query->row['price'];
+					}
+					else {
+
+				if (!empty($customer_group_price[$this->customer->getGroupId()]['value'])) {
+					$prefix = $customer_group_price[$this->customer->getGroupId()]['prefix'];
+					$value = (int) $customer_group_price[$this->customer->getGroupId()]['value'];
+					if ($prefix == 1) {
+						$product_option_value['price'] = $product_option_value['price'] + $value;
+					}else if ($prefix == 2 && $product_option_value['price'] > $value){
+						$product_option_value['price'] = $product_option_value['price']  - $value;
+					}else if ($prefix == 3){
+						$product_option_value['price'] = $product_option_value['price']  + ($product_option_value['price'] * $value)/100;
+					}else if ($prefix == 4){
+						$product_option_value['price'] = $product_option_value['price']  - ($product_option_value['price'] * $value)/100;
+					}
+				}
+					
+				}
+				/// xml customer group option price manage ///
+			]]></add>
+		</operation>
+	</file>	
+	
+	<file path="catalog/model/journal3/product.php">
+		<operation error="log">
+			<search ><![CDATA[$result[$row['product_id']] = array(]]></search>
+			<add position="before" ><![CDATA[
+			/// xml customer group price manage ///
+			$customer_group_price = array();
+			$customergroupprice_data = $this->config->get('customergroupprice_data');
+			if (!empty($customergroupprice_data)) {
+				foreach ($customergroupprice_data as $key => $value) {
+					$customer_group_price[$value['customer_group_id']] = array(
+						'customer_group_id' => $value['customer_group_id'],
+						'prefix' 			=> $value['prefix'],
+						'value' 			=> $value['value'],
+					 );
+				}
+			}
+$groupprice_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_price WHERE product_id = '" . (int)$row['product_id'] . "' and customer_group_id='".$this->customer->getGroupId()."'");
+				if ($groupprice_query->num_rows) {
+					$row['price'] = $groupprice_query->row['price'];
+				}
+				else{
+			if (!empty($customer_group_price[$this->customer->getGroupId()]['value'])) {
+				$prefix = $customer_group_price[$this->customer->getGroupId()]['prefix'];
+				$value = (int) $customer_group_price[$this->customer->getGroupId()]['value'];
+				if ($prefix == 1) {
+					$row['price'] = $row['price'] + $value;
+				}else if ($prefix == 2 && $row['price'] > $value){
+					$row['price'] = $row['price'] - $value;
+				}else if ($prefix == 3){
+					$row['price'] = $row['price'] + ($row['price'] * $value)/100;
+				}else if ($prefix == 4){
+					$row['price'] = $row['price'] - ($row['price'] * $value)/100;
+				}
+			}}
+			/// xml customer group price manage ///
+			
+			
+			]]></add>
+		</operation>
+	</file>	
+	<file path="catalog/model/journal2/product.php">
+		<operation error="log">
+			<search><![CDATA[$product_option_value_data[] = array(]]></search>
+			<add position="before"><![CDATA[
+			 /// xml customer group option price manage ///
+				$customer_group_price = array();
+				$customergroupprice_data = $this->config->get('customergroupprice_data');
+				if (!empty($customergroupprice_data)) {
+					foreach ($customergroupprice_data as $key => $value) {
+						$customer_group_price[$value['customer_group_id']] = array(
+							'customer_group_id' => $value['customer_group_id'],
+							'prefix' 			=> $value['prefix'],
+							'value' 			=> $value['value'],
+						 );
+					}
+				}
+				$optionprice_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_optionvalue WHERE product_option_value_id = '" . (int)$product_option_value['product_option_value_id'] . "' and customer_group_id='".$this->customer->getGroupId()."'");
+					if ($optionprice_query->num_rows) {
+						$product_option_value['price'] = $optionprice_query->row['price'];
+					}
+					else{
+				if (!empty($customer_group_price[$this->customer->getGroupId()]['value'])) {
+					$prefix = $customer_group_price[$this->customer->getGroupId()]['prefix'];
+					$value = (int) $customer_group_price[$this->customer->getGroupId()]['value'];
+					if ($prefix == 1) {
+						$product_option_value['price'] = $product_option_value['price'] + $value;
+					}else if ($prefix == 2 && $product_option_value['price'] > $value){
+						$product_option_value['price'] = $product_option_value['price']  - $value;
+					}else if ($prefix == 3){
+						$product_option_value['price'] = $product_option_value['price']  + ($product_option_value['price'] * $value)/100;
+					}else if ($prefix == 4){
+						$product_option_value['price'] = $product_option_value['price']  - ($product_option_value['price'] * $value)/100;
+					}
+				}
+				}
+				/// xml customer group option price manage ///
+				
+				
+
+
+			]]></add>
+		</operation>
+		</file>
+	<file path="catalog/controller/journal3/price.php">
+		<operation error="log">
+			<search ><![CDATA[foreach ($product_option_values as $product_option_value) {]]></search>
+			<add position="after" ><![CDATA[
+			/// xml customer group option price manage ///
+				$customer_group_price = array();
+				$customergroupprice_data = $this->config->get('customergroupprice_data');
+				if (!empty($customergroupprice_data)) {
+					foreach ($customergroupprice_data as $key => $value) {
+						$customer_group_price[$value['customer_group_id']] = array(
+							'customer_group_id' => $value['customer_group_id'],
+							'prefix' 			=> $value['prefix'],
+							'value' 			=> $value['value'],
+						 );
+					}
+				}
+				$optionprice_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_optionvalue WHERE product_option_value_id = '" . (int)$product_option_value['product_option_value_id'] . "' and customer_group_id='".$this->customer->getGroupId()."'");
+					if ($optionprice_query->num_rows) {
+						$product_option_value['price'] = $optionprice_query->row['price'];
+					}
+					else {
+				if (!empty($customer_group_price[$this->customer->getGroupId()]['value'])) {
+					$prefix = $customer_group_price[$this->customer->getGroupId()]['prefix'];
+					$value = (int) $customer_group_price[$this->customer->getGroupId()]['value'];
+					if ($prefix == 1) {
+						$product_option_value['price'] = $product_option_value['price'] + $value;
+					}else if ($prefix == 2 && $product_option_value['price'] > $value){
+						$product_option_value['price'] = $product_option_value['price']  - $value;
+					}else if ($prefix == 3){
+						$product_option_value['price'] = $product_option_value['price']  + ($product_option_value['price'] * $value)/100;
+					}else if ($prefix == 4){
+						$product_option_value['price'] = $product_option_value['price']  - ($product_option_value['price'] * $value)/100;
+					}
+				}
+				}
+				/// xml customer group option price manage ///
+				
+				
+			]]></add>
+		</operation>
+	</file>	
+	<file path="system/library/cart/cart.php">
+		<operation error="log">
+			<search ><![CDATA[pov.quantity]]></search>
+			<add position="replace"><![CDATA[pov.quantity,pov.product_option_value_id]]></add>
+		</operation>
+		<operation error="log">
+			<search ><![CDATA[public function getProducts() {]]></search>
+			<add position="after"><![CDATA[
+					/// xml customer group option price manage ///
+				$customer_group_price = array();
+				$customergroupprice_data = $this->config->get('customergroupprice_data');
+				if (!empty($customergroupprice_data)) {
+					foreach ($customergroupprice_data as $key => $value) {
+						$customer_group_price[$value['customer_group_id']] = array(
+							'customer_group_id' => $value['customer_group_id'],
+							'prefix' 			=> $value['prefix'],
+							'value' 			=> $value['value'],
+						 );
+					}
+				}
+
+				/// xml customer group option price manage ///
+			]]></add>
+		</operation>
+		<operation error="log">
+			<search ><![CDATA[if ($option_value_query->num_rows) {]]></search>
+			<add position="before"><![CDATA[
+					/// xml customer group option price manage ///
+			$optionprice_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_optionvalue WHERE customer_group_id='".$this->customer->getGroupId()."' and product_option_value_id='".$option_value_query->row['product_option_value_id']."'");
+					if ($optionprice_query->num_rows) {
+						$option_value_query->row['price'] = $optionprice_query->row['price'];
+				    }
+					else{
+				if (!empty($customer_group_price[$this->customer->getGroupId()]['value'])) {
+					$prefix = $customer_group_price[$this->customer->getGroupId()]['prefix'];
+					$value = $customer_group_price[$this->customer->getGroupId()]['value'];
+					if ($prefix == 1) {
+						$option_value_query->row['price'] = $option_value_query->row['price'] + $value;
+					}else if ($prefix == 2 && $option_value_query->row['price'] > $value){
+						$option_value_query->row['price'] = $option_value_query->row['price']  - $value;
+					}else if ($prefix == 3){
+						$option_value_query->row['price'] = $option_value_query->row['price']  + ($option_value_query->row['price'] * $value)/100;
+					}else if ($prefix == 4){
+						$option_value_query->row['price'] = $option_value_query->row['price']  - ($option_value_query->row['price'] * $value)/100;
+					}
+				}
+					
+					
+				}
+				/// xml customer group option price manage ///
+			]]></add>
+		</operation>	
+		<operation error="log">
+			<search  ><![CDATA[$price = $product_query->row['price'];]]></search>
+			<add position="after"><![CDATA[
+			/// xml customer group price manage ///
+				
+				$groupprice_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_price WHERE customer_group_id='".$this->customer->getGroupId()."' and product_id='".$product_query->row['product_id']."'");
+						if ($groupprice_query->num_rows) {
+							$price = $groupprice_query->row['price'];
+						}
+						else {
+				if (!empty($customer_group_price[$this->customer->getGroupId()]['value'])) {
+					$prefix = $customer_group_price[$this->customer->getGroupId()]['prefix'];
+					$value = $customer_group_price[$this->customer->getGroupId()]['value'];
+					if ($prefix == 1) {
+						$price = $price + $value;
+					}else if ($prefix == 2 && $price > $value){
+						$price = $price  - $value;
+					}else if ($prefix == 3){
+						$price = $price  + ($price * $value)/100;
+					}else if ($prefix == 4){
+						$price = $price  - ($price * $value)/100;
+					}
+				}	
+					}
+				/// xml customer group price manage ///
+			]]></add>
+		</operation>		
+	</file>
+</modification>

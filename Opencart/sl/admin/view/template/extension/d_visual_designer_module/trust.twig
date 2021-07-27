@@ -1,0 +1,12 @@
+<div class="{{id}}">
+    {% if setting.global.title %}
+        <div class="h2">{{ setting.global.title }}</div>
+    {% endif %}
+    <div>
+        {% for image in setting.user.images %}
+            <a class="image-popup" target="_blank" href="{{ image.link }}" style="text-decoration: none;">
+                <img src="{{ image.thumb }}"/>
+            </a>
+        {% endfor %}
+    </div>
+</div>

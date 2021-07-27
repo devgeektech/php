@@ -1,0 +1,47 @@
+.vd-button-container {
+    &.vd-button-align-left{
+        display: flex;
+        justify-content: flex-start;
+    }
+    &.vd-button-align-center{
+        display: flex;
+        justify-content: center;
+    }
+    &.vd-button-align-right{
+        display: flex;
+        justify-content: flex-end;
+    }
+    > .vd-button {
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+            text-decoration: none;
+        }
+        &.vd-button-icon{
+            &.vd-button-icon-hover{
+                &:hover{
+                    > span:not(.title){
+                        display:block;
+                    }
+                }
+            }
+            &:not(.vd-button-icon-hover) > span:not(.title){
+                display:block;
+            }
+        }
+        > span.title {
+
+        }
+        > span:not(.title){
+            display:none;
+             &.left{
+                padding-right:5px;
+            }
+            &.right{
+                padding-left:5px;
+            }
+        }
+    }
+}

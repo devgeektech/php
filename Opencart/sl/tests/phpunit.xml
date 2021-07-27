@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="../upload/system/storage/vendor/autoload.php">
+    <testsuites>
+        <testsuite name="admin-tests">
+            <directory suffix="test.php">./admin/</directory>
+        </testsuite>
+        <testsuite name="catalog-tests">
+            <directory suffix="test.php">./customer/</directory>
+        </testsuite> 
+    </testsuites>
+    <php>
+        <env name="OC_ROOT" value="D:/wamp64/www/sl/upload"/>
+        <env name="HTTP_SERVER" value="https://stoneledge.opencartdev.work/" />
+        <env name="TEST_CONFIG" value="admin" />
+    </php>
+</phpunit>

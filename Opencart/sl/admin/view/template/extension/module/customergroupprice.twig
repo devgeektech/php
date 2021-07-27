@@ -1,0 +1,123 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-tmddependent" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    {% if error_success %}
+    <div class="alert alert-success alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_success }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-tmddependent" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="customergroupprice_status" id="input-status" class="form-control">
+                {% if customergroupprice_status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+
+
+          <legend><i class="fa fa-wrench" aria-hidden="true"></i>  {{ entry_rule }}</legend>  
+              <div class="table-responsive">
+                <table id="attribute" class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <th class="text-left">{{ column_customer_group }}</th>  
+                    <th class="text-left">{{ entry_prefix }}</th>  
+                    <th class="text-left">{{ entry_value }}</th>
+                  </thead>
+                  <tbody>
+                      {% for customergroupprice in customer_group_infos %}
+                    <tr >
+                      <td class="text-left">
+                        {{ customergroupprice.name }}
+                          <input type="hidden" name="customergroupprice_data[{{ customergroupprice.customer_group_id }}][customer_group_id]" value="{{ customergroupprice.customer_group_id }}">
+                        </td>
+                      <td class="text-left">
+                         <select name="customergroupprice_data[{{ customergroupprice.customer_group_id }}][prefix]" id="input-prefix" class="form-control">
+
+                           <option value="1" {% if  customergroupprice_data[customergroupprice.customer_group_id].prefix == '1' %} selected="selected" {% endif %}>{{ text_plus }}</option>
+                           <option value="2" {% if  customergroupprice_data[customergroupprice.customer_group_id].prefix == '2' %} selected="selected" {% endif %}>{{ text_minus }}</option>
+                           <option value="3" {% if  customergroupprice_data[customergroupprice.customer_group_id].prefix == '3' %} selected="selected" {% endif %}>{{ text_pluspercent }}</option>
+                           <option value="4" {% if  customergroupprice_data[customergroupprice.customer_group_id].prefix == '4' %} selected="selected" {% endif %}>{{ text_minuspercent }}</option>
+                      </select>
+                      </td>
+                      <td class="text-right"><input type="text" name="customergroupprice_data[{{ customergroupprice.customer_group_id }}][value]" value="{{ customergroupprice_data[customergroupprice.customer_group_id] ? customergroupprice_data[customergroupprice.customer_group_id].value }}" placeholder="{{ entry_value }}" class="form-control" /></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <legend><i class="fa fa-upload" aria-hidden="true"></i> {{ entry_import }} & {{ entry_export }} <i class="fa fa-download" aria-hidden="true"></i></legend> 
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <th class="text-left">{{ entry_import }}</th>  
+                    <th class="text-left">{{ entry_export }}</th>  
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="width: 50%;">
+                        <input type="file" name="import" style="width: 50%;margin: 5px;"/>
+                        <label style="width: 50%;margin: 5px;"><b style="padding: 5px;">{{ entry_importby }}</b>
+                          <select name="customergroupprice_importby" class="form-control">
+                            <option value="product_id" {% if customergroupprice_importby == 'product_id' %} selected="selected" {% endif %}>{{ entry_product_id }}</option>
+                            <option value="model" {% if customergroupprice_importby == 'model' %} selected="selected" {% endif %}>{{ entry_model }}</option>
+                            <option value="sku" {% if customergroupprice_importby == 'sku' %} selected="selected" {% endif %}>{{ entry_sku }}</option>
+                          </select></label>
+                      </td>
+                      <td><input type="text" value="{{ customergroupprice_exportfilename }}" name="customergroupprice_exportfilename" class="form-control filename" placeholder="Enter Export Filename" /></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="javascript:void()" onclick="$('#form-tmddependent').attr('action','{{ import }}');$('#form-tmddependent').submit();" class="btn btn-primary import"><i class="fa fa-upload"></i> {{ entry_import }}</a>
+                      </td>
+                      <td>
+                        <a href="{{ export }}" class="btn btn-primary"><i class="fa fa-download"></i> {{ entry_export }}</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
+<style>
+legend{
+    font-size: 16px;
+    background: #49a7de;
+    color: #fff;
+    padding: 6px 20px;
+}
+</style>  

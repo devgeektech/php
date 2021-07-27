@@ -1,0 +1,29 @@
+<style>
+    .gallery > li > img {
+        height: auto;
+        max-width: 100%;
+        display: block;
+        vertical-align: middle;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+{% if setting.global.title %}
+    <div class="h2">{{setting.global.title}}</div>
+{% endif %}
+{% if setting.global.type_gallery in ['slider_fade', 'slider_slide'] %}
+    <ul class="gallery {{id}}">
+        {% for image in setting.user.images %}
+            <li data-thumb="{{image.thumb}}" data-src="{{image.popup}}">
+                <img src="{{image.thumb}}"/>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% if setting.global.type_gallery in ['image_grid'] %}
+<div class="gallery {{id}}">
+    {% for image in setting.user.images %}
+        <a><img src="{{image.thumb}}"/></a>
+    {% endfor %}
+</div>
+{% endif %}

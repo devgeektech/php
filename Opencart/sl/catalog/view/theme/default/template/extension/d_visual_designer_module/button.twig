@@ -1,0 +1,11 @@
+    <div class="button vd-button-container vd-button-align-{{setting.global.alignment}} {{id}}">
+        <button onclick="{{setting.user.action}}" class="vd-button {{setting.global.display_icon?'vd-button-icon'}} {{setting.global.display_icon_hover?'vd-button-icon-hover'}}">
+            {% if setting.global.icon_align == 'left' %}
+                <span class="{{setting.global.icon}} left"></span>
+            {% endif %}
+            <span class="title">{{setting.global.text}}</span>
+            {% if setting.global.icon_align == 'right' %}
+                <span class="{{setting.global.icon}} right"></span>
+            {% endif %}
+        </button>
+    </div>

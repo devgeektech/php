@@ -1,0 +1,7 @@
+<svg id="ticket_voucher_colored" xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
+  <rect id="Bg" width="46" height="46" fill="#fff" opacity="0"/>
+  <g id="Icon" transform="translate(3 4)">
+    <path id="Combined_Shape" data-name="Combined Shape" d="M30.111,24.444H1a1,1,0,0,1-1-1V1A1,1,0,0,1,1,0H30.111a1,1,0,0,1,1,1V23.444A1,1,0,0,1,30.111,24.444ZM5.444,11.111a1,1,0,0,0-1,1v.222a1,1,0,0,0,1,1h6.889a1,1,0,0,0,1-1v-.222a1,1,0,0,0-1-1Zm0-4.445a1,1,0,0,0-1,1v.221a1,1,0,0,0,1,1H19a1,1,0,0,0,1-1V7.667a1,1,0,0,0-1-1Z" transform="translate(4.444)"/>
+    <path id="Combined_Shape-2" data-name="Combined Shape" d="M0-3.27a.5.5,0,0,1,.793-.405L20,10.2,39.207-3.675A.5.5,0,0,1,40-3.27V22.641a2,2,0,0,1-2,2H2a2,2,0,0,1-2-2Z" transform="translate(0 13.136)" fill="#cf2028"/>
+  </g>
+</svg>

@@ -1,0 +1,31 @@
+<div class="vd-image-caption-container vd-image-caption-text-{{ setting.global.position_text }} {{ setting.global.size=='responsive' ? 'responsive' }} {{id}}">
+    {% if setting.global.position_text in ['top', 'left'] %}
+        <div class="vd-image-caption-text">
+            {% if setting.global.title %}
+                <h4>{{ setting.global.title }}</h4>
+            {% endif %}
+            <p class="vd-image-caption-main-text">
+                {{ setting.user.text }}
+            </p>
+        </div>
+    {% endif %}
+
+    <div class="vd-image-caption-wrapper vd-image-caption-size-{{ setting.global.size }}">
+        <div class="vd-image-caption vd-animate-{{ setting.global.animate }}">
+            <img src="{{ setting.user.thumb }}" width="{{ setting.user.width }}"
+                 height="{{ setting.user.height }}" alt="{{ setting.global.image_alt }}"
+                 title="{{ setting.global.image_title }}"/>
+        </div>
+    </div>
+    {% if setting.global.position_text in ['bottom', 'right'] %}
+        <div class="vd-image-caption-text vd-image-caption-text-{{ setting.global.position_text }}">
+            {% if setting.global.title %}
+                <h4>{{ setting.global.title }}</h4>
+            {% endif %}
+            <p class="vd-image-caption-main-text">
+                {{ setting.user.text }}
+            </p>
+        </div>
+    {% endif %}
+
+</div>

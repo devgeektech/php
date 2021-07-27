@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<name>Customer Group Products/Categories</name>
+	<code>productjcustomergroup</code>
+	<version>1.0</version>
+	<author>ExtensionStudio</author>
+	<link>www.extensionstudio.net</link>
+	<!-- Admin starts -->
+	<file path="admin/controller/common/column_left.php">
+		<operation error="skip">
+			<search><![CDATA[if ($this->user->hasPermission('access', 'catalog/recurring')) {]]></search>
+			<add position="before"><![CDATA[
+				$customergroupjproduct = $this->load->controller('customergroupjproduct/customergroupjproduct/getAdminMenu');
+
+				if ($customergroupjproduct) {
+					$catalog[] = $customergroupjproduct;
+				}
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/catalog/product_form.twig">
+		<operation error="skip">
+			<search><![CDATA[<div class="tab-pane" id="tab-links">]]></search>
+			<add position="after"><![CDATA[
+				<div class="form-group">
+	                <label class="col-sm-2 control-label">{{ entry_customer_groups }}</label>
+	                <div class="col-sm-10">
+	                  <div class="well well-sm" style="height: 150px; overflow: auto;">
+	                    {% for customer_group in customer_groups %}
+	                    <div class="checkbox">
+	                      <label>
+	                        {% if customer_group.customer_group_id in product_customer_group %}
+	                        <input type="checkbox" name="product_customer_group[]" value="{{ customer_group.customer_group_id }}" checked="checked" />
+	                        {{ customer_group.name }}
+	                        {% else %}
+	                        <input type="checkbox" name="product_customer_group[]" value="{{ customer_group.customer_group_id }}" />
+	                        {{ customer_group.name }}
+	                        {% endif %}
+	                      </label>
+	                    </div>
+	                    {% endfor %}</td>
+	                  </div>
+	                </div>
+              	</div>
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/catalog/product.php">
+		<operation error="skip">
+			<search><![CDATA[protected function getList() {]]></search>
+			<add position="after"><![CDATA[
+				$this->load->model('customergroupjproduct/customergroupjproduct');
+				$this->model_customergroupjproduct_customergroupjproduct->CreateGroupProductTable();
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[protected function getForm() {]]></search>
+			<add position="after"><![CDATA[
+				$this->load->model('customergroupjproduct/customergroupjproduct');
+				$this->model_customergroupjproduct_customergroupjproduct->CreateGroupProductTable();
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[getCustomerGroups();]]></search>
+			<add position="after"><![CDATA[
+				$data['entry_customer_groups'] = $this->language->get('entry_customer_groups');
+
+				if (isset($this->request->post['product_customer_group'])) {
+					$data['product_customer_group'] = $this->request->post['product_customer_group'];
+				} elseif (isset($this->request->get['product_id'])) {
+					$data['product_customer_group'] = $this->model_catalog_product->getProductCustomerGroups($this->request->get['product_id']);
+				} else {
+					$data['product_customer_group'] = array(0);
+				}
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/language/*/catalog/product.php">
+		<operation error="skip">
+			<search><![CDATA[// Text]]></search>
+			<add position="after"><![CDATA[
+				$_['entry_customer_groups']          = 'Customer Groups';
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/model/catalog/product.php">
+		<operation error="skip">
+			<search><![CDATA[$product_id = $this->db->getLastId();]]></search>
+			<add position="after"><![CDATA[
+				if (isset($data['product_customer_group'])) {
+					foreach ($data['product_customer_group'] as $customer_group_id) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "product_customer_group SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$customer_group_id . "'");
+					}
+				}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");]]></search>
+			<add position="after"><![CDATA[
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_customer_group WHERE product_id = '" . (int)$product_id . "'");
+
+				if (isset($data['product_customer_group'])) {
+					foreach ($data['product_customer_group'] as $customer_group_id) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "product_customer_group SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$customer_group_id . "'");
+					}
+				}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$data['product_store'] = $this->getProductStores($product_id);]]></search>
+			<add position="after"><![CDATA[
+				$data['product_customer_group'] = $this->getProductCustomerGroups($product_id);
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[public function deleteProduct($product_id) {]]></search>
+			<add position="after"><![CDATA[
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_customer_group WHERE product_id = '" . (int)$product_id . "'");
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[public function getProductStores($product_id) {]]></search>
+			<add position="before"><![CDATA[
+				public function getProductCustomerGroups($product_id) {
+					$product_customer_group_data = array();
+
+					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customer_group WHERE product_id = '" . (int)$product_id . "'");
+
+					foreach ($query->rows as $result) {
+						$product_customer_group_data[] = $result['customer_group_id'];
+					}
+
+					return $product_customer_group_data;
+				}
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/catalog/category_form.twig">
+		<operation error="skip">
+			<search><![CDATA[<div class="tab-pane" id="tab-data">]]></search>
+			<add position="after"><![CDATA[
+				<div class="form-group">
+	                <label class="col-sm-2 control-label">{{ entry_customer_groups }}</label>
+	                <div class="col-sm-10">
+	                  <div class="well well-sm" style="height: 150px; overflow: auto;">
+	                    {% for customer_group in customer_groups %}
+	                    <div class="checkbox">
+	                      <label>
+	                        {% if customer_group.customer_group_id in category_customer_group %}
+	                        <input type="checkbox" name="category_customer_group[]" value="{{ customer_group.customer_group_id }}" checked="checked" />
+	                        {{ customer_group.name }}
+	                        {% else %}
+	                        <input type="checkbox" name="category_customer_group[]" value="{{ customer_group.customer_group_id }}" />
+	                        {{ customer_group.name }}
+	                        {% endif %}
+	                      </label>
+	                    </div>
+	                    {% endfor %}</td>
+	                  </div>
+	                </div>
+              	</div>
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/catalog/category.php">
+		<operation error="skip">
+			<search><![CDATA[if (isset($this->request->post['category_seo_url'])) {]]></search>
+			<add position="before"><![CDATA[
+				$this->load->model('customer/customer_group');
+
+				$data['customer_groups'] = $this->model_customer_customer_group->getCustomerGroups();
+
+				$data['entry_customer_groups'] = $this->language->get('entry_customer_groups');
+
+				if (isset($this->request->post['category_customer_group'])) {
+					$data['category_customer_group'] = $this->request->post['category_customer_group'];
+				} elseif (isset($this->request->get['category_id'])) {
+					$data['category_customer_group'] = $this->model_catalog_category->getCategoryCustomerGroups($this->request->get['category_id']);
+				} else {
+					$data['category_customer_group'] = array(0);
+				}
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/language/*/catalog/category.php">
+		<operation error="skip">
+			<search><![CDATA[// Text]]></search>
+			<add position="after"><![CDATA[
+				$_['entry_customer_groups']          = 'Customer Groups';
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/model/catalog/category.php">
+		<operation error="skip">
+			<search><![CDATA[$category_id = $this->db->getLastId();]]></search>
+			<add position="after"><![CDATA[
+				if (isset($data['category_customer_group'])) {
+					foreach ($data['category_customer_group'] as $customer_group_id) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "category_customer_group SET category_id = '" . (int)$category_id . "', customer_group_id = '" . (int)$customer_group_id . "'");
+					}
+				}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[date_modified = NOW() WHERE category_id = '" . (int)$category_id . "'");]]></search>
+			<add position="after"><![CDATA[
+				$this->db->query("DELETE FROM " . DB_PREFIX . "category_customer_group WHERE category_id = '" . (int)$category_id . "'");
+
+				if (isset($data['category_customer_group'])) {
+					foreach ($data['category_customer_group'] as $customer_group_id) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "category_customer_group SET category_id = '" . (int)$category_id . "', customer_group_id = '" . (int)$customer_group_id . "'");
+					}
+				}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[function deleteCategory($category_id) {]]></search>
+			<add position="after"><![CDATA[
+				$this->db->query("DELETE FROM " . DB_PREFIX . "category_customer_group WHERE category_id = '" . (int)$category_id . "'");
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[public function getCategoryStores($category_id) {]]></search>
+			<add position="before"><![CDATA[
+				public function getCategoryCustomerGroups($category_id) {
+					$category_customer_group_data = array();
+
+					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_customer_group WHERE category_id = '" . (int)$category_id . "'");
+
+					foreach ($query->rows as $result) {
+						$category_customer_group_data[] = $result['customer_group_id'];
+					}
+
+					return $category_customer_group_data;
+				}
+			]]></add>
+		</operation>
+	</file>
+
+	<!-- Admin ends -->
+	<!-- Catalog starts -->
+
+	<file path="system/library/cart/cart.php">
+		<operation error="skip">
+			<search><![CDATA[p.date_available <= NOW() AND p.status = '1']]></search>
+			<add position="replace"><![CDATA[p.date_available <= NOW() AND p.status = '1'
+				AND
+				CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "category_customer_group ciccg1 WHERE ciccg1.category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category cip2c1 WHERE cip2c1.product_id=p.product_id) ) > 0 THEN
+					CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "category_customer_group ciccg1 WHERE ciccg1.category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category cip2c1 WHERE cip2c1.product_id=p.product_id) AND ciccg1.customer_group_id IN(". (int)$this->config->get('config_customer_group_id') .") ) > 0 THEN
+						true
+					ELSE
+						false
+					END
+				ELSE
+					true
+				END
+				AND
+				CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "product_customer_group pcg WHERE pcg.product_id=p.product_id) > 0 THEN
+					CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "product_customer_group pcg WHERE pcg.product_id=p.product_id AND pcg.customer_group_id='". (int)$this->config->get('config_customer_group_id') ."') > 0 THEN
+						true
+					ELSE
+						false
+					END
+				ELSE
+					true
+				END]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/catalog/product.php">
+		<operation error="skip">
+			<search><![CDATA[WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "']]></search>
+			<add position="replace"><![CDATA[WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'
+			AND (harvest_id = '".$this->customer->harvestId()."' || harvest_id = 0) AND 
+			CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "category_customer_group ciccg1 WHERE ciccg1.category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category cip2c1 WHERE cip2c1.product_id=p.product_id) ) > 0 THEN
+				CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "category_customer_group ciccg1 WHERE ciccg1.category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category cip2c1 WHERE cip2c1.product_id=p.product_id) AND ciccg1.customer_group_id IN(". (int)$this->config->get('config_customer_group_id') .") ) > 0 THEN
+					true
+				ELSE
+					false
+				END
+			ELSE
+				true
+			END
+			AND
+			CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "product_customer_group pcg WHERE pcg.product_id=p.product_id) > 0 THEN
+				CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "product_customer_group pcg WHERE pcg.product_id=p.product_id AND pcg.customer_group_id='". (int)$this->config->get('config_customer_group_id') ."') > 0 THEN
+					true
+				ELSE
+					false
+				END
+			ELSE
+				true
+			END
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[if (!empty($data['filter_manufacturer_id'])) {]]></search>
+			<add position="before"><![CDATA[
+			$sql .= " AND (harvest_id = '".$this->customer->harvestId()."' || harvest_id = 0) AND 
+			CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "category_customer_group ciccg1 WHERE ciccg1.category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category cip2c1 WHERE cip2c1.product_id=p.product_id) ) > 0 THEN
+				CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "category_customer_group ciccg1 WHERE ciccg1.category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category cip2c1 WHERE cip2c1.product_id=p.product_id) AND ciccg1.customer_group_id IN(". (int)$this->config->get('config_customer_group_id') .") ) > 0 THEN
+					true
+				ELSE
+					false
+				END
+			ELSE
+				true
+			END
+			AND
+			CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "product_customer_group pcg WHERE pcg.product_id=p.product_id) > 0 THEN
+				CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "product_customer_group pcg1 WHERE pcg1.product_id=p.product_id AND pcg1.customer_group_id='". (int)$this->config->get('config_customer_group_id') ."') > 0 THEN
+					true
+				ELSE
+					false
+				END
+			ELSE
+				true
+			END ";
+			]]></add>
+		</operation>
+	</file>
+
+	<file path="catalog/model/journal3/product.php">
+		<operation error="skip">
+			<search><![CDATA[WHERE p.product_id IN (" . implode(',', $product_ids) . ") AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "']]></search>
+			<add position="replace"><![CDATA[WHERE p.product_id IN (" . implode(',', $product_ids) . ") AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'
+			AND
+			CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "category_customer_group ciccg1 WHERE ciccg1.category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category cip2c1 WHERE cip2c1.product_id=p.product_id) ) > 0 THEN
+				CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "category_customer_group ciccg1 WHERE ciccg1.category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category cip2c1 WHERE cip2c1.product_id=p.product_id) AND ciccg1.customer_group_id IN(". (int)$this->config->get('config_customer_group_id') .") ) > 0 THEN
+					true
+				ELSE
+					false
+				END
+			ELSE
+				true
+			END
+			AND
+			CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "product_customer_group pcg WHERE pcg.product_id=p.product_id) > 0 THEN
+				CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "product_customer_group pcg WHERE pcg.product_id=p.product_id AND pcg.customer_group_id='". (int)$this->config->get('config_customer_group_id') ."') > 0 THEN
+					true
+				ELSE
+					false
+				END
+			ELSE
+				true
+			END
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/journal3/filter.php">
+		<operation error="skip">
+			<search><![CDATA[if ($query !== 'manufacturer') {]]></search>
+			<add position="before"><![CDATA[
+			$sql .= " AND
+			CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "category_customer_group ciccg1 WHERE ciccg1.category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category cip2c1 WHERE cip2c1.product_id=p.product_id) ) > 0 THEN
+				CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "category_customer_group ciccg1 WHERE ciccg1.category_id IN (SELECT category_id FROM " . DB_PREFIX . "product_to_category cip2c1 WHERE cip2c1.product_id=p.product_id) AND ciccg1.customer_group_id IN(". (int)$this->config->get('config_customer_group_id') .") ) > 0 THEN
+					true
+				ELSE
+					false
+				END
+			ELSE
+				true
+			END
+			AND
+			CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "product_customer_group pcg WHERE pcg.product_id=p.product_id) > 0 THEN
+				CASE WHEN (SELECT COUNT(*) as total FROM " . DB_PREFIX . "product_customer_group pcg1 WHERE pcg1.product_id=p.product_id AND pcg1.customer_group_id='". (int)$this->config->get('config_customer_group_id') ."') > 0 THEN
+					true
+				ELSE
+					false
+				END
+			ELSE
+				true
+			END ";
+			]]></add>
+		</operation>
+	</file>
+
+	<!-- little bug fix -->
+	<file path="catalog/controller/api/customer.php">
+		<operation error="skip">
+			<search><![CDATA[$custom_fields = $this->model_account_custom_field->getCustomFields($customer_group_id);]]></search>
+			<add position="before"><![CDATA[
+				if(!empty($this->request->post['customer_group_id'])) {
+					$customer_group_id = $this->request->post['customer_group_id'];
+				}
+			]]></add>
+		</operation>
+	</file>
+	<!-- Catalog ends -->
+</modification>

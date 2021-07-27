@@ -1,0 +1,11 @@
+{% if setting.global.title %}
+    <div class="h3">{{ setting.global.title }}</div>
+{% endif %}
+
+<div class="row {{id}}">
+    {% for product in setting.user.products %}
+        <div class="product-layout col-md-{{ 12/setting.global.count }} col-sm-12" >
+            {{ product.partial }}
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,14 @@
+<div class="{{id}}">
+    {% if setting.global.title %}
+        <div class="h2">{{ setting.global.title }}</div>
+    {% endif %}
+    {% for key, value in setting.global.values %}
+        <div class="progress">
+            <div class="progress-bar progress-bar-danger {{ setting.global.stripes?'progress-bar-striped' }} {{ setting.global.animate?'active' }}"
+                 role="progressbar" aria-valuenow="{{ value.value }}" aria-valuemin="0" aria-valuemax="100"
+                 style="width: {{ value.value }}%; background-color:{{ value.color }}">
+                {{ value.label }} {{ value.value }}{{ setting.global.units }}
+            </div>
+        </div>
+    {% endfor %}
+</div>

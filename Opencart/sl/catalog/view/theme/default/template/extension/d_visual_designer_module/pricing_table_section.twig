@@ -1,0 +1,49 @@
+<div class="block-price-section {{id}}">
+    <svg width="0" height="0">
+        <defs>
+            <clipPath id="vd-pricing-table-clip-shape" clipPathUnits="objectBoundingBox">
+                <polygon points="0.5 1, 0 0, 1 0"/>
+            </clipPath>
+        </defs>
+    </svg>
+    <div class="vd-pricing-table {{ setting.global.style }}">
+        <div class="vd-pricing-table-title">
+            {% if setting.global.display_icon %}
+                <div class="vd-pricing-table-icon">
+                    <i class="{{ setting.global.icon }}"></i>
+                </div>
+            {% endif %}
+            <div class="h3">{{ setting.global.title }}</div>
+            {% if setting.global.subtitle %}
+                <h4>{{ setting.global.subtitle }}</h4>
+            {% endif %}
+            <hr/>
+            {% if setting.global.price %}
+                <div class="vd-price-container">
+                <span class="vd-price-wrapper">
+                    {% if setting.global.currency %}
+                        <span class="vd-price-curency">{{ setting.global.currency }}</span>
+                    {% endif %}
+                    <span class="vd-price-text">{{ setting.global.price }}</span>
+                    <span class="vd-price-per">{{ setting.global.per }}</span>
+                </span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="vd-price-bottom-container"></div>
+        <div class="vd-pricing-table-container">
+            {% if setting.global.feautures %}
+                <div class="vd-pricing-table-content">
+                    {% for value in setting.global.feautures|split(',') %}
+                        <div class="vd-pricing-table-feauture">{{ value }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if setting.global.display_button %}
+                <div class="vd-pricing-table-button-container">
+                    <a class="vd-pricing-table-button">{{ setting.global.button_text }}</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

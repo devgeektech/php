@@ -1,0 +1,24 @@
+<div class="vd-features-container image-style-{{ setting.global.image_position }} {{id}}">
+    <div class="image vd-image-size-{setting.global.size}">
+        <img src="{{ setting.user.thumb }}" alt="{setting.global.image_alt}" title="{{ setting.global.image_title }}"/>
+        {% if setting.global.image_position == 'left_top' %}
+            <div class="title h3">{{ setting.global.title }}</div>
+        {% endif %}
+    </div>
+    {% if setting.global.image_position == 'left' %}
+        <div class="text-container">
+            {% if setting.global.image_position !=' left_top' %}
+                <div class="title h3">{{ setting.global.title }}</div>
+            {% endif %}
+            <div class="text">{{ setting.global.text }}</div>
+        </div>
+    {% endif %}
+    {% if setting.global.image_position != 'left' %}
+        <div>
+            {% if setting.global.image_position !='left_top' %}
+                <div class="title h3">{{ setting.global.title }}</div>
+            {% endif %}
+            <div class="text">{{ setting.global.text }}</div>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,35 @@
+.form-group{
+    .bootstrap-switch.bootstrap-switch.bootstrap-switch {
+        .bootstrap-switch-handle-off, .bootstrap-switch-handle-on, .bootstrap-switch-label {
+            display: table-cell!important;
+        }
+    }
+}
+
+.table {
+    tr {
+        td {
+            input.form-control[type="checkbox"]{
+                min-height: auto;
+            }
+        }
+    }
+}
+a#button-menu{
+    -webkit-appearance: none!important;
+}
+.panel .note-toolbar.panel-heading {
+    justify-content: left;
+}
+
+.alertify-notifier .ajs-message.ajs-success {
+    font-size: 17px;
+}
+
+.alertify-notifier .ajs-message.ajs-error {
+    font-size: 17px;
+}
+
+.alertify-notifier .ajs-message.ajs-warning {
+    font-size: 17px;
+}

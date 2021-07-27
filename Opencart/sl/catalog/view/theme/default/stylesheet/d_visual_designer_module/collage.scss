@@ -1,0 +1,35 @@
+.vd-collage {
+    display:flex;
+    flex-flow: row;
+    @media screen and (max-device-width: 768px)  {
+        &{
+            flex-flow: column;
+            .vd-collage-big, .vd-collage-small {
+                width: 100%!important;
+            }
+            .vd-collage-border, .vd-collage-horizontal-border{
+                display:none;
+            }
+        }
+    }
+    .vd-collage-big {
+        > a {
+            display: block;
+            height: 100%;
+            > img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+    }
+    .vd-collage-small {
+        > a {
+            display: block;
+            > img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Price and Quantity Updates</name>
+    <code>price_and_quantity_updates</code>
+    <version>1.0</version>
+    <author>weismannweb</author>
+    <link>weismannweb</link>
+
+    <file path="admin/view/template/catalog/product_form.twig">
+         <operation>
+            <search><![CDATA[html += '      <option value="{{ recurring.recurring_id }}">{{ recurring.name }}</option>';]]></search>
+            <add position="replace"><![CDATA[
+            {% set recurring_name= recurring.name|replace({"'" : "\\'"}) %}
+            html += '<option value="{{ recurring.recurring_id }}">{{ recurring_name }}</option>';
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[title="{{ button_option_value_add }}" class="btn btn-primary"]]></search>
+            <add><![CDATA[title="{{ button_option_value_add }}" class="btn btn-primary option_add_btn"]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[{{ footer }}]]></search>
+            <add position="before"><![CDATA[
+            <script type="text/javascript"><!--
+                $(document).ready(function () {
+                    function setMainStockPrice() {
+                        if ($('#input-stock_option_level').is(':checked')) {
+                            // hide main stock and price option
+                            $('#tab-data .warehouse_qty').hide();
+                            $('#tab-data .cgp_price').hide();
+                        } else {
+                            $('#tab-data .warehouse_qty').show();
+                            $('#tab-data .cgp_price').show();
+                        }
+                    }
+                    
+                    function setPriceStockOptions() {
+                        var productType = $('#input-product_type').val();
+                        if (productType == 1) { // marketplace product
+                            $('.warehouse_qty').hide();
+                            $('#stock_option_level').hide();
+                            $('#input-stock_option_level').removeAttr('checked');
+                        } else if (productType == 2 || productType == 3 || productType == 4) { // share product
+                            // show the stock checkbox and check it by default
+                            $('#stock_option_level').show();
+                            $('#input-stock_option_level').prop('checked', true);
+                            $('.warehouse_qty').show();
+                            // hide the main qty and price under stock as checkbox checked
+                            setMainStockPrice();
+                        } else {
+                            $('#stock_option_level').hide();
+                        }
+                    }
+                    var productType = $('#input-product_type').val();
+                    if (productType == 1) { // marketplace product
+                        $('.warehouse_qty').hide();
+                        $('#stock_option_level').hide();
+                    } else if (productType == 2 || productType == 3 || productType == 4) { // share product
+                        $('#stock_option_level').show();
+                        $('.warehouse_qty, .cgp_price').show();
+                        setMainStockPrice();
+                    } else {
+                        $('#stock_option_level').hide();
+                    }
+
+                    $('.option_add_btn').click(setPriceStockOptions);
+                    $('#input-product_type').change(setPriceStockOptions);
+                    $('#input-stock_option_level').change(setMainStockPrice);
+                });
+            //--></script>
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/language/*/catalog/product.php">
+        <operation>
+            <search><![CDATA[$_['error_warning']]]></search>
+            <add position="before"><![CDATA[$_['error_stock_option_level'] = 'Atleast one option is required for stock management';]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/controller/catalog/product.php">
+        <operation>
+            <search><![CDATA[if (isset($this->error['name'])) {]]></search>
+            <add position="before"><![CDATA[
+            if (isset($this->error['error_stock_option_level'])) {
+                $data['error_stock_option_level'] = $this->error['error_stock_option_level'];
+            } else {
+                $data['error_stock_option_level'] = array();
+            }
+            ]]></add>
+        </operation>
+        <operation>
+            <search><![CDATA[if ($this->request->post['product_seo_url']) {]]></search>
+            <add position="before"><![CDATA[
+            if (isset($this->request->post['stock_option_level'])) {
+                $has_options = false;
+                if (isset($this->request->post['product_option'])) {
+                    foreach ($this->request->post['product_option'] as $product_option) {
+                        if (isset($product_option['product_option_value'])) {
+                            $has_options = true;
+                            break;
+                        }
+                    }
+                }
+                if (!$has_options) {
+                    $this->error['error_stock_option_level'] = $this->language->get('error_stock_option_level');
+                }
+            }
+            ]]></add>
+        </operation>
+        <operation>
+            <search><![CDATA[if (isset($this->request->post['sku'])) {]]></search>
+            <add position="before"><![CDATA[
+            if (isset($this->request->post['stock_option_level'])) {
+                $data['stock_option_level'] = $this->request->post['stock_option_level'];
+            } elseif (!empty($product_info)) {
+                $data['stock_option_level'] = $product_info['stock_option_level'];
+            } else {
+                $data['stock_option_level'] = 1; // default 1
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/model/catalog/product.php">
+        <operation>
+            <search><![CDATA[shipping = '" . (int)$data['shipping'] . "',]]></search>
+            <add position="replace"><![CDATA[shipping = '" . (int)$data['shipping'] . "', stock_option_level = '" . (isset($data['stock_option_level']) ? (int)$data['stock_option_level'] : 0) . "',]]></add>
+        </operation>
+    </file>
+</modification>

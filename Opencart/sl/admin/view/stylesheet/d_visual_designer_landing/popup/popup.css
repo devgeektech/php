@@ -1,0 +1,13 @@
+.block-hot-corners.block-inner.block-container {
+  position: relative;
+  margin-top: 45px; }
+  .block-hot-corners.block-inner.block-container > .control.control-hot-corners > a {
+    background-color: #4c5866; }
+    .block-hot-corners.block-inner.block-container > .control.control-hot-corners > a:hover {
+      -webkit-filter: brightness(120%);
+      filter: brightness(120%);
+      background-color: #4c5866; }
+  .block-hot-corners.block-inner.block-container > .vd-border {
+    background-color: #4c5866; }
+
+/*# sourceMappingURL=popup.css.map */

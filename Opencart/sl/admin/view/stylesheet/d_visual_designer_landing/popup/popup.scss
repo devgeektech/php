@@ -1,0 +1,17 @@
+.block-hot-corners.block-inner.block-container{
+    position: relative;
+    margin-top:45px;
+    > .control.control-hot-corners{
+        > a{
+            background-color: #4c5866;
+            &:hover{
+                -webkit-filter: brightness(120%);
+                filter: brightness(120%);
+                background-color: #4c5866;
+            }
+        }
+    }
+    >.vd-border{
+        background-color: #4c5866;
+    }
+}

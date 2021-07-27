@@ -1,0 +1,279 @@
+{% if error_warning %}
+<div class="alert alert-warning alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+{% endif %}
+{% if shipping_methods %}
+<p>{{ text_shipping_method }}</p>
+{% for shipping_method in shipping_methods %}
+<p><strong>{{ shipping_method.title }}</strong></p>
+{% if not shipping_method.error %}
+{% for quote in shipping_method.quote %}
+<div class="radio">
+  <label> {% if quote.code == code or not code %}
+    {% set code = quote.code %}
+    <input type="radio" name="shipping_method" value="{{ quote.code }}" checked="checked" />
+    {% else %}
+    <input type="radio" name="shipping_method" value="{{ quote.code }}" />
+    {% endif %}
+    {{ quote.title }} - {{ quote.text }}</label>
+</div>
+{% endfor %}
+{% else %}
+<div class="alert alert-danger alert-dismissible">{{ shipping_method.error }}</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+	            <!-- Extendons - Checkout Manager -->
+	            	<br>
+		    		{% if (my_custom_input_fields is defined and my_custom_input_fields is not empty) %}
+						{% for field in my_custom_input_fields %}
+
+						  	{% if ( field['field_input_type'] == 'text' and (field['field_existance'] != 'default') and ( field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+
+		                    	{% if (field.field_visibility != 0 and 2 in field.field_visibility) %}
+		                    		<input type="hidden" name="{{ (field.field_existance == 'default') ? field.field_name : 'billing_address[' ~ field.field_name ~ ']' }}" id="{{ field.field_id }}" value="" />
+		                        {% else %}
+							  		<div class="col-sm-12" style="width:{{ field.field_width }}%">
+								  		<p><strong>{{ field['field_label'] }} {{ (field['field_condition'] == 'required') ? '<span style="color:red;">*</span>' : '' }}</strong></p>
+								  		<p>
+								  			<input
+		                                        type="text"
+								                  name="{{ (field['field_existance'] == 'default') ? field['field_name'] : 'billing_address[' ~ field['field_name'] ~ ']' }}"
+								                  value=""
+								                  placeholder="{{ field['field_placeholder'] }}"
+								                  id="{{ field['field_id'] }}"
+								                  class="form-control"
+						                          {{ (field['field_condition'] == 'required') ? 'required' : '' }}
+								            />
+								  		</p>
+								  	</div>
+			                    {% endif %}
+
+						  {% elseif ( field['field_input_type'] == 'date' and (field['field_existance'] != 'default') and ( field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+
+		                    	{% if (field.field_visibility != 0 and 2 in field.field_visibility) %}
+		                    		<input type="hidden" name="{{ (field.field_existance == 'default') ? field.field_name : 'billing_address[' ~ field.field_name ~ ']' }}" id="{{ field.field_id }}" value="" />
+		                        {% else %}
+							  		<div class="col-sm-12" style="width:{{ field.field_width }}%">
+								  		<p><strong>{{ field['field_label'] }} {{ (field['field_condition'] == 'required') ? '<span style="color:red;">*</span>' : '' }}</strong></p>
+								  		<p>
+								  			<div class="input-group date" {{ (field['field_width'] is not empty) ? 'style="width:' ~ field['field_width'] ~ '%;"' : '' }} >
+								                  <input
+		                                            type="text"
+								                      name="{{ (field['field_existance'] == 'default') ? field['field_name'] : 'billing_address[' ~ field['field_name'] ~ ']' }}"
+								                      value=""
+								                      placeholder="YYYY-MM-DD"
+								                      id="{{ field['field_id'] }}"
+								                      class="form-control"
+								                      data-date-format="YYYY-MM-DD"
+						                            {{ (field['field_condition'] == 'required') ? 'required' : '' }}
+								                  /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span>
+								              </div>
+								  		</p>
+								    </div>
+			                    {% endif %}
+
+						  {% elseif (field['field_input_type'] == 'time' and (field['field_existance'] != 'default') and ( field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+
+		                    	{% if (field.field_visibility != 0 and 2 in field.field_visibility) %}
+		                    		<input type="hidden" name="{{ (field.field_existance == 'default') ? field.field_name : 'billing_address[' ~ field.field_name ~ ']' }}" id="{{ field.field_id }}" value="" />
+		                        {% else %}
+							  		<div class="col-sm-12" style="width:{{ field.field_width }}%">
+								  		<p><strong>{{ field['field_label'] }} {{ (field['field_condition'] == 'required') ? '<span style="color:red;">*</span>' : '' }}</strong></p>
+								  		<p>
+								  			<div class="input-group time" {{ (field['field_width'] is not empty) ? 'style="width:' ~ field['field_width'] ~ '%;"' : '' }} >
+								                  <input
+		                                            type="text"
+								                      name="{{ (field['field_existance'] == 'default') ? field['field_name'] : 'billing_address[' ~ field['field_name'] ~ ']' }}"
+								                      value=""
+								                      placeholder="HH:mm"
+								                      id="{{ field['field_id'] }}"
+								                      class="form-control" 
+								                      data-date-format="HH:mm"
+								                  /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span>
+								              </div>
+								  		</p>
+								    </div>
+			                    {% endif %}
+						      
+						  {% elseif (field['field_input_type'] == 'datetime' and (field['field_existance'] != 'default') and ( field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+
+		                    	{% if (field.field_visibility != 0 and 2 in field.field_visibility) %}
+		                    		<input type="hidden" name="{{ (field.field_existance == 'default') ? field.field_name : 'billing_address[' ~ field.field_name ~ ']' }}" id="{{ field.field_id }}" value="" />
+		                        {% else %}
+							  		<div class="col-sm-12" style="width:{{ field.field_width }}%">
+								      	<p><strong>{{ field['field_label'] }}</strong></p>
+								  		<p>
+								  			<div class="input-group datetime" {{ (field['field_width'] is not empty) ? 'style="width:' ~ field['field_width'] ~ '%;"' : '' }} >
+								                  <input
+		                                            type="text"
+								                      name="{{ (field['field_existance'] == 'default') ? field['field_name'] : 'billing_address[' ~ field['field_name'] ~ ']' }}"
+								                      value=""
+								                      placeholder="YYYY-MM-DD HH:mm"
+								                      id="{{ field['field_id'] }}" class="form-control"
+								                      data-date-format="YYYY-MM-DD HH:mm"
+								                  /><span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span>
+								              </div>
+								  		</p>
+								   	</div>
+			                    {% endif %}
+						      
+						  {% elseif (field['field_input_type'] == 'textarea' and (field['field_existance'] != 'default') and ( field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+
+						  		<div class="col-sm-12" style="width:{{ field.field_width }}%">
+							  		<p><strong>{{ field['field_label'] }} {{ (field['field_condition'] == 'required') ? '<span style="color:red;">*</span>' : '' }}</strong></p>
+							  		<p>
+							  			<textarea cols="3"
+							                  name="{{ (field['field_existance'] == 'default') ? field['field_name'] : 'billing_address[' ~ field['field_name'] ~ ']' }}"
+							                  id="{{ field['field_id'] }}"
+							                  class="form-control"
+							                  placeholder="{{ field['field_placeholder'] }}"
+							              ></textarea>
+							  		</p>
+							  	</div>
+						     
+						  {% elseif (field['field_input_type'] == 'radio' and (field['field_existance'] != 'default') and ( field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+
+						  		<div class="col-sm-12" style="width:{{ field.field_width }}%">
+							  		<p><strong>{{ field['field_label'] }} {{ (field['field_condition'] == 'required') ? '<span style="color:red;">*</span>' : '' }}</strong></p>
+				                    <p>
+							  			{% if (field['field_condition'] is defined and field['field_condition'] == 'required') %}
+							                <input type="hidden" name="{{ (field['field_existance'] == 'default') ? field['field_name'] : 'billing_address[' ~ field['field_name'] ~ ']' }}" value="{{ field['field_condition'] }}">
+							            {% endif %}
+
+				                        {% if (field['field_options'] is not empty) %}
+					                        {% for option in field['field_options'] %}
+					                        		<label class="radio-inline">
+						                                <input type="radio"
+						                                    name="billing_address[{{ field['field_name'] }}]"
+						                                    value="{{ option['op_value'] }}"
+						                                    {{ (option['default_value'] == 'selected') ? 'checked="checked"' : '' }}
+						                                />
+						                                {{ option['op_name'] }}
+						                            </label>
+					                        {% endfor %}
+				                        {% endif %}
+				                        <!-- show error here by finding this id -->
+				                        <input type="hidden" id="{{ field['field_id'] }}">
+							  		</p>
+							  	</div>
+						      
+						  {% elseif (field['field_input_type'] == 'checkbox' and (field['field_existance'] != 'default') and ( field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+
+						  		<div class="col-sm-12" style="width:{{ field.field_width }}%">
+							  		<p><strong>{{ field['field_label'] }} {{ (field['field_condition'] == 'required') ? '<span style="color:red;">*</span>' : '' }}</strong></p>
+							  		<p>
+							  			{% if (field['field_condition'] is defined and field['field_condition'] == 'required') %}
+							                  <input type="hidden" name="{{ (field['field_existance'] == 'default') ? field['field_name'] : 'billing_address[' ~ field['field_name'] ~ ']' }}" value="{{ field['field_condition'] }}">
+							              {% endif %}
+
+				                        {% if (field['field_options'] is not empty) %}
+					                        {% for option in field['field_options'] %}
+					                        		<label class="checkbox-inline">
+						                                <input type="checkbox"
+						                                    name="billing_address[{{ field['field_name'] }}][]"
+						                                    value="{{ option['op_value'] }}"
+						                                    {{ (option['default_value'] == 'selected') ? 'checked="checked"' : '' }}
+						                                />
+						                                {{ option['op_name'] }}
+						                            </label>
+					                        {% endfor %}
+				                        {% endif %}
+				                        <!-- show error here by finding this id -->
+				                        <input type="hidden" id="{{ field['field_id'] }}">
+				                    </p>
+				                </div>
+
+						  {% elseif (field['field_input_type'] == 'select' and (field['field_existance'] != 'default') and ( field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+
+						        <div class="col-sm-12" style="width:{{ field.field_width }}%">
+							  		<p><strong>{{ field['field_label'] }} {{ (field['field_condition'] == 'required') ? '<span style="color:red;">*</span>' : '' }}</strong></p>
+							  		<p>
+							  			<select
+							                  name="{{ (field['field_existance'] == 'default') ? field['field_name'] : 'billing_address[' ~ field['field_name'] ~ ']' }}"
+							                  id="{{ field['field_id'] }}"
+							                  class="form-control" >
+							                  {% if (field['field_name'] == 'country_id') %}
+							                      <option value="">{{ text_select }}</option>
+							                      {% for country in countries %}
+							                          {% if (country['country_id'] == country_id) %}
+							                              <option value="{{ country['country_id'] }}" selected="selected">{{ country['name'] }}</option>
+							                          {% else %}
+							                              <option value="{{ country['country_id'] }}">{{ country['name'] }}</option>
+							                          {% endif %}
+							                      {% endfor %}
+							                  {% else %}
+								                        {% if (field['field_options'] is not empty) %}
+									                        {% for option in field['field_options'] %}
+										                            <option value="{{ option['op_value'] }}" {{ (option['default_value'] == 'selected') ? 'selected="selected"' : '' }}>{{ option['op_name'] }}</option>
+									                        {% endfor %}
+								                        {% endif %}
+							                  {% endif %}
+							              </select>
+							  		</p>
+							  	</div>
+						      
+						  {% elseif ( field['field_input_type'] == 'multi-select' and (field['field_existance'] != 'default') and (field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+						        
+						        <div class="col-sm-12" style="width:{{ field.field_width }}%">
+							  		<p><strong>{{ field['field_label'] }} {{ (field['field_condition'] == 'required') ? '<span style="color:red;">*</span>' : '' }}</strong></p>
+							  		<p>
+		                                    {% if (field.field_condition is defined and field.field_condition == 'required') %}
+		                                        <input type="hidden" name="billing_address[{{ field.field_name }}]" value="{{ field.field_condition }}">
+		                                    {% endif %}
+		                                    <div class="input-group" style="width:{{ (field.field_width is not empty) ? field.field_width ~ '%' : '100%' }};border: 1px solid #ccc;border-radius: 4px;padding: 5px 15px 5px 15px;">
+		                                        {% if field.field_options is not empty %}
+		                                            {% for option in field.field_options %}
+		                                                <label style="margin: 0 0 1px 0;width: 100%;padding-left: 2px;height: 25px;">
+		                                                    <input type="checkbox" aria-label="..."
+		                                                    name="billing_address[{{ field.field_name }}][]"
+		                                                    value="{{ option.op_value }}"
+		                                                    {{ (option['default_value'] == 'selected') ? 'selected="selected"' : '' }}
+		                                                    >
+		                                                    {{ option.op_name }}
+		                                                </label><br>
+		                                            {% endfor %}
+		                                        {% endif %}
+		                                        <input type="hidden" id="{{ field.field_id }}">
+		                                    </div>
+							  		</p>
+							  	</div>
+						      
+						  {% elseif (field['field_input_type'] == 'file' and (field['field_existance'] != 'default') and ( field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+
+						  		<div class="col-sm-12" style="width:{{ field.field_width }}%">
+							  		<p><strong>{{ field['field_label'] }} {{ (field['field_condition'] == 'required') ? '<span style="color:red;">*</span>' : '' }}</strong></p>
+							  		<p><input type="file"
+							                  name="{{ (field['field_existance'] == 'default') ? field['field_name'] : 'billing_address[' ~ field['field_name'] ~ ']' }}"
+							                  value=""
+							                  id="{{ field['field_id'] }}"
+							                  class="form-control"
+							                  accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf" />
+							  		</p>
+							  	</div>
+						      
+						  	{% elseif (field['field_input_type'] == 'image' and (field['field_existance'] != 'default') and ( field['field_to_show'] == 0 or 3 in field['field_to_show']) ) %}
+						  		
+						  		<div class="col-sm-12" style="width:{{ field.field_width }}%">
+							  		<p><strong>{{ field['field_label'] }} {{ (field['field_condition'] == 'required') ? '<span style="color:red;">*</span>' : '' }}</strong></p>
+							  		<p><input type="file"
+							                  name="{{ (field['field_existance'] == 'default') ? field['field_name'] : 'billing_address[' ~ field['field_name'] ~ ']' }}"
+							                  value=""
+							                  id="{{ field['field_id'] }}" class="form-control"
+							                  accept="image/*" />
+							  		</p>
+							  	</div>
+						  	{% endif %}
+						{% endfor %}
+					{% endif %}
+	            <!-- Extendons - Checkout Manager /- END -->
+		    	
+<p><strong>{{ text_comments }}</strong></p>
+<p>
+  <textarea name="comment" rows="8" class="form-control">{{ comment }}</textarea>
+</p>
+<div class="buttons">
+  <div class="pull-right">
+    <input type="button" value="{{ button_continue }}" id="button-shipping-method" data-loading-text="{{ text_loading }}" class="primary-cta" />
+  </div>
+</div>

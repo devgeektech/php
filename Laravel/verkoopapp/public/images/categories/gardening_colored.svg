@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30.205" height="37.204" viewBox="0 0 30.205 37.204">
+  <g id="gardening_colored" transform="translate(-8.097 -4.129)">
+    <g id="Icon" transform="translate(7 3)">
+      <path id="Path_36_Copy_2" data-name="Path 36 Copy 2" d="M-5.1,0S5.1,17.073-5.1,25C-14.87,17.073-5.1,0-5.1,0Z" transform="translate(9.272 0.846) rotate(-30)" opacity="0.596"/>
+      <path id="Path_36_Copy_3" data-name="Path 36 Copy 3" d="M5.1,0S-5.1,17.073,5.1,25C14.87,17.073,5.1,0,5.1,0Z" transform="translate(23.127 0.846) rotate(30)" opacity="0.596"/>
+      <path id="Path_36" data-name="Path 36" d="M5.1,0S-5.1,17.073,5.1,25C14.87,17.073,5.1,0,5.1,0Z" transform="translate(11.208 1.667)" opacity="0.596"/>
+      <path id="Rectangle_71" data-name="Rectangle 71" d="M-.644,1.287A1,1,0,0,1,.314,0H20.959a1,1,0,0,1,.958,1.287L17.731,15.241a2,2,0,0,1-1.916,1.425H5.458a2,2,0,0,1-1.916-1.425Z" transform="translate(5.667 21.667)" fill="#cf2028"/>
+    </g>
+  </g>
+</svg>

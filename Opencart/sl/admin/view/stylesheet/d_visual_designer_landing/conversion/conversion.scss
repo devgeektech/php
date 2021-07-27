@@ -1,0 +1,51 @@
+.conversion-container
+{
+    .vd-conversion
+    {
+        width: 300px;
+        margin-right: auto;
+        margin-left: auto;
+        background-color: #1F7DC7;
+        box-shadow: 0.707px 0.707px 3px 0px rgba(0, 0, 0, 0.2);
+        > div
+        {
+            display: inline-block;
+
+            width: 31%;
+            padding-top: 15px;
+
+            background: rgba(197, 70, 70, 0);
+            > span
+            {
+                font-size: 16px;
+
+                display: block;
+
+                padding: 20px;
+                padding-top: 6px;
+                padding-bottom: 15px;
+
+                text-align: center;
+
+                color: #fff;
+                &.title
+                {
+                    font-size: 10px;
+                    font-weight: bold;
+                    line-height: 1;
+
+                    display: block;
+
+                    padding: 0;
+
+                    letter-spacing: .15px;
+
+                    color: #fff;
+                }
+            }
+            &.viewed{
+                background-color: #F5C000;
+            }
+        }
+    }
+}

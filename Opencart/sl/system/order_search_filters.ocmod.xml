@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Orders Search Filters</name>
+    <code>order_search_filter</code>
+    <version>1.0</version>
+    <author>weismannweb</author>
+    <link>weismannweb</link>
+    <!-- Admin starts -->
+	<file path="admin/controller/sale/order.php">
+		<operation error="skip">
+            <search index="0"><![CDATA[$filter_date_added = $this->request->get['filter_date_added'];]]></search>
+            <add position="before" offset="1"><![CDATA[
+                if (isset($this->request->get['filter_member_csa_id'])) {
+					$filter_member_csa_id = $this->request->get['filter_member_csa_id'];
+				} else {
+					$filter_member_csa_id = '';
+				}
+                if (isset($this->request->get['filter_harvest_id'])) {
+					$filter_harvest_id = $this->request->get['filter_harvest_id'];
+				} else {
+					$filter_harvest_id = '';
+				}
+				if (isset($this->request->get['filter_date_added_to'])) {
+					$filter_date_added_to = $this->request->get['filter_date_added_to'];
+				} else {
+					$filter_date_added_to = '';
+				}
+				if (isset($this->request->get['filter_date_modified_to'])) {
+					$filter_date_modified_to = $this->request->get['filter_date_modified_to'];
+				} else {
+					$filter_date_modified_to = '';
+				}
+				
+            ]]></add>
+        </operation>
+		<operation error="skip">
+            <search><![CDATA[$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];]]></search>
+            <add position="before" offset="1"><![CDATA[
+                if (isset($this->request->get['filter_member_csa_id'])) {
+					$url .= '&filter_member_csa_id=' . $this->request->get['filter_member_csa_id'];
+				}
+                if (isset($this->request->get['filter_harvest_id'])) {
+					$url .= '&filter_harvest_id=' . $this->request->get['filter_harvest_id'];
+				}
+				if (isset($this->request->get['filter_date_added_to'])) {
+					$url .= '&filter_date_added_to=' . $this->request->get['filter_date_added_to'];
+				}
+				if (isset($this->request->get['filter_date_modified_to'])) {
+					$url .= '&filter_date_modified_to=' . $this->request->get['filter_date_modified_to'];
+				}
+            ]]></add>
+        </operation>
+		<operation error="skip">
+            <search><![CDATA['filter_order_status'    => $filter_order_status,]]></search>
+            <add position="after"><![CDATA[
+                'filter_member_csa_id' => $filter_member_csa_id,
+                'filter_harvest_id' => $filter_harvest_id,
+				'filter_date_added_to' => $filter_date_added_to,
+				'filter_date_modified_to' => $filter_date_modified_to,
+				
+            ]]></add>
+        </operation>
+		
+		<operation error="skip">
+            <search><![CDATA[$data['filter_date_modified'] = $filter_date_modified;]]></search>
+            <add position="after"><![CDATA[
+                $this->load->model('customer/customer_group');
+				$data['csa'] = $this->model_customer_customer_group->getCustomerGroups();
+				
+				$this->load->model('csa/harvests');
+				$filter_data_harvest = array(
+					'filter_name' => '',
+					'filter_status' => '',
+					'filter_start_date' => '',
+					'filter_end_date' => '',
+					'sort' => 'harvest_title',
+					'order' => 'ASC',
+				);
+				$data['harvest'] = $this->model_csa_harvests->getHarvestList($filter_data_harvest);
+            ]]></add>
+        </operation>
+		<operation error="skip">
+            <search><![CDATA[$data['filter_date_modified'] = $filter_date_modified;]]></search>
+            <add position="before"><![CDATA[
+                $data['filter_member_csa_id'] = $filter_member_csa_id;
+                $data['filter_harvest_id'] = $filter_harvest_id;
+				$data['filter_date_added_to'] = $filter_date_added_to;
+				$data['filter_date_modified_to'] = $filter_date_modified_to;
+            ]]></add>
+        </operation>
+		
+    </file>
+	<file path="admin/model/sale/order.php">
+		<operation error="skip">
+            <search><![CDATA[if (!empty($data['filter_order_id'])) {]]></search>
+            <add position="before"><![CDATA[
+				if (!empty($data['filter_member_csa_id'])) {
+					$sql .= " AND customer_group_id = '" . (int)$data['filter_member_csa_id'] . "'";
+				}
+				if (!empty($data['filter_harvest_id'])) {
+					$sql .= " AND harvest_id = '" . (int)$data['filter_harvest_id'] . "'";
+				}
+            ]]></add>
+        </operation>
+		<operation error="skip">
+            <search><![CDATA[if (!empty($data['filter_date_added'])) {]]></search>
+            <add position="replace" offset="2"><![CDATA[
+                if (!empty($data['filter_date_added']) && !isset($data['filter_date_added_to']) ) {
+					$sql .= " AND DATE(date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+				}else if (!empty($data['filter_date_added']) && !empty($data['filter_date_added_to'])) {
+					$sql .= " AND DATE(date_added) BETWEEN DATE('" . $this->db->escape($data['filter_date_added']) . "') AND DATE('" . $this->db->escape($data['filter_date_added_to']) . "')";
+				} else if (!empty($data['filter_date_added']) && empty($data['filter_date_added_to'])) {
+					$sql .= " AND DATE(date_added) >= DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+				} else if (empty($data['filter_date_added']) && !empty($data['filter_date_added_to'])) {
+					$sql .= " AND DATE(date_added) <= DATE('" . $this->db->escape($data['filter_date_added_to']) . "')";
+				}
+            ]]></add>
+        </operation>
+		<operation error="skip">
+            <search><![CDATA[if (!empty($data['filter_date_modified'])) {]]></search>
+            <add position="replace" offset="2"><![CDATA[
+                if (!empty($data['filter_date_modified']) && !isset($data['filter_date_modified_to']) ) {
+					$sql .= " AND DATE(date_modified) = DATE('" . $this->db->escape($data['filter_date_modified']) . "')";
+				}else if (!empty($data['filter_date_modified']) && !empty($data['filter_date_modified_to'])) {
+					$sql .= " AND DATE(date_modified) BETWEEN DATE('" . $this->db->escape($data['filter_date_modified']) . "') AND DATE('" . $this->db->escape($data['filter_date_modified_to']) . "')";
+				} else if (!empty($data['filter_date_modified']) && empty($data['filter_date_modified_to'])) {
+					$sql .= " AND DATE(date_modified) >= DATE('" . $this->db->escape($data['filter_date_modified']) . "')";
+				} else if (empty($data['filter_date_modified']) && !empty($data['filter_date_modified_to'])) {
+					$sql .= " AND DATE(date_modified) <= DATE('" . $this->db->escape($data['filter_date_modified_to']) . "')";
+				}
+				
+            ]]></add>
+        </operation>
+	</file>
+	<file path="admin/view/template/sale/order_list.twig">
+		<operation error="skip">
+            <search><![CDATA[<label class="control-label" for="input-date-added">{{ entry_date_added }}</label>]]></search>
+            <add position="before" offset="1"><![CDATA[
+			<div class="form-group">
+              <label class="control-label" for="input-customer-group">Harvest Season</label>
+              <select name="filter_harvest_id" id="filter_harvest_id" class="form-control">
+                <option value="">All</option>
+                {% for customer_harvest in harvest %}
+                {% if customer_harvest.harvest_id == filter_harvest_id %}
+                <option value="{{ customer_harvest.harvest_id }}" selected="selected">{{ customer_harvest.harvest_title }}</option>
+                {% else %}
+                <option value="{{ customer_harvest.harvest_id }}">{{ customer_harvest.harvest_title }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="input-customer-group">CSA</label>
+              <select name="filter_member_csa_id" id="filter_member_csa_id" class="form-control">
+                <option value="">All</option>
+                {% for customer_csa in csa %}
+                {% if customer_csa.customer_group_id == filter_member_csa_id %}
+                <option value="{{ customer_csa.customer_group_id }}" selected="selected">{{ customer_csa.name }}</option>
+                {% else %}
+                <option value="{{ customer_csa.customer_group_id }}">{{ customer_csa.name }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+			
+            ]]></add>
+        </operation>
+		<operation error="skip">
+            <search><![CDATA[<input type="text" name="filter_date_added" value="{{ filter_date_added }}" placeholder="{{ entry_date_added }}" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />]]></search>
+            <add position="after" offset="3"><![CDATA[
+				<br><div class="input-group date">
+                <input type="text" name="filter_date_added_to" value="{{ filter_date_added_to }}" placeholder="To Date" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                </span>
+              </div>
+               
+            ]]></add>
+        </operation>
+		<operation error="skip">
+            <search><![CDATA[<input type="text" name="filter_date_added" value="{{ filter_date_added }}" placeholder="{{ entry_date_added }}" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />]]></search>
+            <add position="replace"><![CDATA[
+			<input type="text" name="filter_date_added" value="{{ filter_date_added }}" placeholder="From Date" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
+            ]]></add>
+        </operation>
+		
+		<operation error="skip">
+            <search><![CDATA[<input type="text" name="filter_date_modified" value="{{ filter_date_modified }}" placeholder="{{ entry_date_modified }}" data-date-format="YYYY-MM-DD" id="input-date-modified" class="form-control" />]]></search>
+            <add position="after" offset="3"><![CDATA[
+				<br><div class="input-group date">
+                <input type="text" name="filter_date_modified_to" value="{{ filter_date_modified_to }}" placeholder="To Date" data-date-format="YYYY-MM-DD" id="input-date-modified" class="form-control" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                </span>
+              </div>
+               
+            ]]></add>
+        </operation>
+		<operation error="skip">
+            <search><![CDATA[<input type="text" name="filter_date_modified" value="{{ filter_date_modified }}" placeholder="{{ entry_date_modified }}" data-date-format="YYYY-MM-DD" id="input-date-modified" class="form-control" />]]></search>
+            <add position="replace"><![CDATA[
+			<input type="text" name="filter_date_modified" value="{{ filter_date_modified }}" placeholder="From Date" data-date-format="YYYY-MM-DD" id="input-date-modified" class="form-control" />
+            ]]></add>
+        </operation>
+		<operation error="skip">
+            <search><![CDATA[var filter_date_added = $('input[name=\'filter_date_added\']').val();]]></search>
+            <add position="before"><![CDATA[
+				var filter_member_csa_id = $('#filter_member_csa_id').val(); 
+				if (filter_member_csa_id) {
+				  url += '&filter_member_csa_id=' + encodeURIComponent(filter_member_csa_id);
+				}
+                var filter_harvest_id = $('#filter_harvest_id').val();
+				if (filter_harvest_id) {
+				  url += '&filter_harvest_id=' + encodeURIComponent(filter_harvest_id);
+				}
+				var filter_date_added_to = $('input[name=\'filter_date_added_to\']').val();
+				if (filter_date_added_to) {
+				  url += '&filter_date_added_to=' + encodeURIComponent(filter_date_added_to);
+				}
+				var filter_date_modified_to = $('input[name=\'filter_date_modified_to\']').val();
+				if (filter_date_modified_to) {
+				  url += '&filter_date_modified_to=' + encodeURIComponent(filter_date_modified_to);
+				}
+            ]]></add>
+        </operation>
+    </file>
+	
+
+    
+</modification>
+

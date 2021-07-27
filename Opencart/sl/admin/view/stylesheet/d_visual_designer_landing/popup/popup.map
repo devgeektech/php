@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,8CAA8C;EAC1C,QAAQ,EAAE,QAAQ;EAClB,UAAU,EAAC,IAAI;EAEX,iFAAG;IACC,gBAAgB,EAAE,OAAO;IACzB,uFAAO;MACH,cAAc,EAAE,gBAAgB;MAChC,MAAM,EAAE,gBAAgB;MACxB,gBAAgB,EAAE,OAAO;EAIrC,2DAAW;IACP,gBAAgB,EAAE,OAAO",
+"sources": ["popup.scss"],
+"names": [],
+"file": "popup.css"
+}

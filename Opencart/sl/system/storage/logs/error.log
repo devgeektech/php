@@ -1,0 +1,820 @@
+2020-11-26 7:21:59 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 14
+2020-11-26 7:21:59 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 16
+2020-11-26 7:21:59 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 18
+2020-11-26 7:21:59 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 20
+2020-11-26 7:21:59 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 22
+2020-11-26 7:21:59 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 24
+2020-11-26 7:21:59 - PHP Warning:  copy(/opt/lampp/htdocs/sl/image/cache/profile-45x45.png): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/model/tool/image.php on line 37
+2020-11-26 7:21:59 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606378919): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:21:59 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:21:59 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:21:59 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:21:59 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:21:59 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:21:59 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606378919): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:21:59 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:21:59 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:21:59 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:21:59 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:21:59 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:22:00 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 14
+2020-11-26 7:22:00 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 16
+2020-11-26 7:22:00 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 18
+2020-11-26 7:22:00 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 20
+2020-11-26 7:22:00 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 22
+2020-11-26 7:22:00 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 24
+2020-11-26 7:22:00 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 14
+2020-11-26 7:22:00 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 16
+2020-11-26 7:22:00 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 18
+2020-11-26 7:22:00 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 20
+2020-11-26 7:22:00 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 22
+2020-11-26 7:22:00 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/startup/sass.php on line 24
+2020-11-26 7:22:35 - PHP Warning:  copy(/opt/lampp/htdocs/sl/image/cache/profile-45x45.png): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/model/tool/image.php on line 37
+2020-11-26 7:22:35 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606378955): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:22:35 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:22:35 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:22:35 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:22:35 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:22:35 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:22:35 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606378955): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:22:35 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:22:35 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:22:35 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:22:35 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:22:35 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:22:55 - PHP Warning:  copy(/opt/lampp/htdocs/sl/image/cache/profile-45x45.png): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/model/tool/image.php on line 37
+2020-11-26 7:22:55 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606378975): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:22:55 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:22:55 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:22:55 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:22:55 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:22:55 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:22:55 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606378975): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:22:55 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:22:55 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:22:55 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:22:55 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:22:55 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:23:17 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606378997): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:23:17 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:23:17 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:23:17 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:23:17 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:23:17 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:23:17 - PHP Warning:  copy(/opt/lampp/htdocs/sl/image/cache/profile-45x45.png): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/model/tool/image.php on line 37
+2020-11-26 7:23:17 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606378997): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:23:17 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:23:17 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:23:17 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:23:17 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:23:17 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:23:17 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606378997): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:23:17 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:23:17 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:23:17 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:23:17 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:23:17 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:23:26 - PHP Warning:  copy(/opt/lampp/htdocs/sl/image/cache/profile-45x45.png): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/model/tool/image.php on line 37
+2020-11-26 7:23:26 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379006): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:23:26 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:23:26 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:23:26 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:23:26 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:23:26 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:23:26 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379006): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:23:26 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:23:26 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:23:26 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:23:26 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:23:26 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:23:29 - PHP Warning:  copy(/opt/lampp/htdocs/sl/image/cache/profile-45x45.png): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/model/tool/image.php on line 37
+2020-11-26 7:23:29 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379009): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:23:29 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:23:29 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:23:29 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:23:29 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:23:29 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:23:29 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379009): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:23:29 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:23:29 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:23:29 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:23:29 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:23:29 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/engine/action.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/engine/loader.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/config.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/language.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/template/template.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/template/twig.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/extension/module/d_blog_module_featured_posts.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/extension/d_blog_module/post.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/extension/d_blog_module/post.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/extension/module/d_blog_module_featured_posts.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/language/en-gb/extension/d_blog_module/post.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/extension/d_blog_module/post.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/extension/d_blog_module/post.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/extension/d_blog_module/post_list.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/extension/d_blog_module/post_form.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/extension/d_blog_module/category.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/response.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/language/en-gb/common/column_left.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/common/column_left.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/extension/module/warehouse.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/language/en-gb/extension/module/warehouse.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/customer/customer_group.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/customer/customer_form.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/customer/customer.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/customer/customer.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/catalog/product.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/account/account.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/catalog/product.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/catalog/product.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/catalog/product_form.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/catalog/product_list.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/extension/module/warehouse_producteditview.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/language/en-gb/catalog/product.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/sale/order_form.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/sale/return_form.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/extension/module/featured.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/sale/return_list.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/product/product.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/language/en-gb/customer/customer_group.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/customer/customer_group_form.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/customer/customer_group.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/extension/total/total.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/checkout/order.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/catalog/category_form.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/catalog/category.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/language/en-gb/catalog/category.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/catalog/category.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/cart/cart.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/api/customer.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/customer/customer_list.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/user/user_permission.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/startup/permission.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/setting/extension.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/setting/modification.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/marketplace/install.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/common/filemanager.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/common/filemanager.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/common/header.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/tool/image.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/tool/image.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/localisation/language.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/config/catalog.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/extension/module/emailtemplate.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/mail.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/mail/smtp.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/mail/mail.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/cache.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/cache/apc.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/cache/mem.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/cache/memcached.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/db/mssql.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/db/mysql.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/db/mysqli.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/db/postgre.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/account/order.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/affiliate/login.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/account/login.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/sale/order.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/sale/order.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/sale/order_info.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/sale/order_invoice.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/sale/order_shipping.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/startup/startup.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/confirm.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/guest_shipping.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/guest.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/register.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/payment_address.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/payment_method.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/shipping_address.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/shipping_method.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/account/register.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/account/address.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/mail/order.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/extension/module/klarna_checkout_module.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/extension/payment/klarna_checkout.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/extension/total/shipping.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/api/shipping.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/api/payment.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/account/address.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/account/order.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/checkout/guest_shipping.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/checkout/guest_shipping.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/checkout/guest.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/checkout/guest.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/checkout/register.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/checkout/register.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/checkout/checkout.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/checkout/checkout.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/checkout/payment_address.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/checkout/payment_address.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/checkout/payment_method.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/checkout/payment_method.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/checkout/shipping_address.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/checkout/shipping_address.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/checkout/shipping_method.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/checkout/shipping_method.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/mail/order_add.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/mail/order_add.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/account/order_info.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/account/order_info.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/account/register.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/account/register.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/account/address_form.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/account/address_form.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/setting/module.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/extension/module/featured.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/sale/order_list.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/common/menu.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/common/footer.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/common/home.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/common/header.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/setting/extension.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/mailchimp_integration.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/event/activity.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/account/customer.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/common/footer.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/common/footer.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/information/contact.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/account/newsletter.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/account/return.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/account/store.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/api/cart.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/api/order.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/cart.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/checkout.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/checkout/login.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/common/language.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/event/theme.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/mail/affiliate.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/mail/forgotten.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/mail/register.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/product/category.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/product/manufacturer.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/product/search.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/product/special.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/startup/seo_url.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/extension/total/coupon.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/controller/extension/total/voucher.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/extension/module/d_seo_module.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/language/en-gb/en-gb.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/product/category.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/product/special.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/product/special.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/product/search.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/product/search.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/product/product.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/extension/module/featured.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/extension/module/featured.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/extension/module/special.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/extension/module/special.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/extension/module/latest.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/extension/module/latest.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/default/template/extension/module/bestseller.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/view/theme/stoneledge/template/extension/module/bestseller.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/cart/customer.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/language/en-gb/account/register.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/extension/payment/squareup.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/extension/module/warehouse_import.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/extension/module/warehouse.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/extension/module/warehouse_order.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/extension/module/warehouse_list.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/extension/module/warehouse_setting.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/extension/module/warehouse_transaction.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/language/en-gb/extension/module/warehouse_links.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/extension/module/warehouse.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/setting/setting.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/setting/store.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/catalog/manufacturer.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/catalog/information.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/extension/d_blog_module/category.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/extension/d_blog_module/author.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/system/library/template.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/mail/affiliate.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/mail/customer.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/view/template/customer/customer_history.twig): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/mail/reward.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/mail/transaction.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/marketing/contact.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/mail/return.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/sale/return.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/controller/sale/voucher.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/catalog/review.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/extension/report/coupon.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/catalog/model/extension/total/coupon.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/modification/admin/model/localisation/currency.php): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 413
+2020-11-26 7:23:32 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 415
+2020-11-26 7:23:32 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/admin/controller/marketplace/modification.php on line 417
+2020-11-26 7:23:32 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /opt/lampp/htdocs/sl/admin/controller/startup/error.php:34) in /opt/lampp/htdocs/sl/system/library/response.php on line 36
+2020-11-26 7:24:19 - PHP Warning:  copy(/opt/lampp/htdocs/sl/image/cache/profile-45x45.png): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/storage/modification/admin/model/tool/image.php on line 53
+2020-11-26 7:24:19 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379059): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:24:19 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:24:19 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:24:19 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:24:19 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:24:19 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:24:20 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379060): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:24:20 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:24:20 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:24:20 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:24:20 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:24:20 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:24:22 - PHP Warning:  copy(/opt/lampp/htdocs/sl/image/cache/profile-45x45.png): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/admin/model/tool/image.php on line 37
+2020-11-26 7:24:22 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379062): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:24:22 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:24:22 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:24:22 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:24:22 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:24:22 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:24:23 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379063): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:24:23 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:24:23 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:24:23 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:24:23 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:24:23 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:24:24 - PHP Warning:  copy(/opt/lampp/htdocs/sl/image/cache/profile-45x45.png): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/storage/modification/admin/model/tool/image.php on line 53
+2020-11-26 7:24:24 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379064): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:24:24 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:24:24 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:24:24 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:24:24 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:24:24 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:24:24 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379064): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:24:24 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:24:24 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:24:24 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:24:24 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:24:24 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:25:17 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379117): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:25:17 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:25:17 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:25:17 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:25:17 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:25:17 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:25:17 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379117): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:25:17 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:25:17 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:25:17 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:25:17 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:25:17 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:25:20 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379120): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:25:20 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:25:20 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:25:20 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:25:20 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:25:20 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:25:20 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379120): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:25:20 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:25:20 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:25:20 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:25:20 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:25:20 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:25:21 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379121): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:25:21 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:25:21 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:25:21 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:25:21 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:25:21 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:25:21 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379121): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:25:21 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:25:21 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:25:21 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:25:21 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:25:21 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:25:22 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379122): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:25:22 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:25:22 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:25:22 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:25:22 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:25:22 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:25:22 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379122): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:25:22 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:25:22 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:25:22 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:25:22 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:25:22 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:25:23 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379123): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:25:23 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:25:23 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:25:23 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:25:23 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:25:23 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59
+2020-11-26 7:25:23 - PHP Warning:  fopen(/opt/lampp/htdocs/sl/system/storage/cache/cache.store.1606379123): failed to open stream: No such file or directory in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 49
+2020-11-26 7:25:23 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 51
+2020-11-26 7:25:23 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 53
+2020-11-26 7:25:23 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 55
+2020-11-26 7:25:23 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 57
+2020-11-26 7:25:23 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /opt/lampp/htdocs/sl/system/library/cache/file.php on line 59

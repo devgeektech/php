@@ -1,0 +1,211 @@
+{{ header }}
+<div class="page-content-body">
+    <div class="container page-content-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="checkout-process">
+                    <ul class="nav nav-wizard">
+                        {% for breadcrumb in breadcrumbs %}
+                            <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                            {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12">
+                <form id="change_csa_form" method="POST">
+                    <select id="csa_id" name="csa_id" class="selectpicker" data-live-search="true" >
+                        {% for csa_detail in csa_details %}
+                            <option value="{{ csa_detail.csa_id }}" {% if current_csa == csa_detail.csa_id %} selected {% endif %}>{{ csa_detail.csaname }} | {{ csa_detail.pickup_address }}</option>
+                        {% endfor %}
+                    </select>
+                    <table class="csa-details table table-responsive noHead">
+                        <tbody>
+                            <tr>
+
+                                <td style="vertical-align: top; width: 250px;" class="colHeading">Description</td>
+
+                                <td style="width: 566px;" class="coltext"><span id="description"></span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td style="vertical-align: top; width: 250px;"class="colHeading">Pickup Address</td>
+
+                                <td style="width: 566px;" class="coltext"><span id="pickup_address"></span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td style="vertical-align: top; width: 250px;" class="colHeading">Operating Hours</td>
+
+                                <td style="width: 566px;" class="coltext"><span id="operating_hours"></span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td style="vertical-align: top; width: 250px;" class="colHeading">Contact Email</td>
+
+                                <td style="width: 566px;" class="coltext"><span id="email"></span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td style="vertical-align: top; width: 250px;" class="colHeading">Onsite Phone</td>
+
+                                <td style="width: 566px;" class="coltext"><span id="phone"></span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td style="vertical-align: top; width: 250px;" class="colHeading">Website</td>
+
+                                <td style="width: 566px;" class="coltext"><span id="website"></span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td style="vertical-align: top; width: 250px;" class="colHeading">Brochure</td>
+
+                                <td style="width: 566px;" class="coltext"><span id="brochure"></span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td style="vertical-align: top; width: 250px;" class="colHeading">Member Requirements</td>
+
+                                <td style="width: 566px;" class="coltext"><span id="member_requirements"></span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td class="colHeading"></td>
+
+                                <td class="coltext">
+
+                                    <a href="javascript:void(0);" id="change_csa_button" onclick="$('#change_csa_form').submit();" class="submit" style="display:none; padding:1px 10px;">Change CSA</a>
+
+                                </td>
+
+                            </tr>
+
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('select#csa_id').selectmenu({
+            format: addressFormatting,
+            style: 'popup',
+            width: 400
+        });
+        $('#csa_id').trigger('change');
+    });
+
+    var addressFormatting = function (text) {
+        var newText = text;
+        var findreps = [
+            {find: /^([^\-]+) \- /g, rep: '<span class="ui-selectmenu-item-header">$1</span>'},
+            {find: /([^\|><]+) \| /g, rep: '<span class="ui-selectmenu-item-content">$1</span>'},
+            {find: /(\([^\|><]+\))$/g, rep: '<span class="ui-selectmenu-item-footer">$1</span>'}
+        ];
+
+        for (var i in findreps) {
+            newText = newText.replace(findreps[i].find, findreps[i].rep);
+        }
+        return newText;
+    }
+
+    $('#csa_id').change(function() {
+        var csa_id = $(this).val();
+        console.log(csa_id);
+	$.ajax({
+		url: 'index.php?route=account/account/get_csa_details&csa_id='+csa_id,
+		type: 'get',
+		dataType: 'json',
+		success: function(json) {
+                    if(json) {
+                        console.log(json);
+                        if (json.description) {
+                                $('#description').html(json.description);
+                        } else {
+                                $('#description').parent().parent().remove();
+                        }
+
+                        if (json.pickup_address) {
+                                $('#pickup_address').html(json.pickup_address);
+                        } else {
+                                $('#pickup_address').parent().parent().remove();
+                        }
+
+                        if (json.operating_hours) {
+                                $('#operating_hours').html(json.operating_hours);
+                        } else {
+                                $('#operating_hours').parent().parent().remove();
+                        }
+
+                        if (json.csa_email) {
+                            
+                                $('#email').html('<a href="mailto:'+json.csa_email+'">'+json.csa_email+'</a>');
+                        } else {
+                                $('#email').parent().parent().remove();
+                        }
+
+                        if (json.csa_phone) {
+                                $('#phone').html(json.csa_phone);
+                        } else {
+                                $('#phone').parent().parent().remove();
+                        }
+                        
+                        if (json.website) {
+                                $('#website').html('<a href="'+json.website+'">'+json.website+'</a>');
+                        } else {
+                                $('#website').parent().parent().remove();
+                        }
+                        if (json.brochure_link) {
+                                $('#brochure').html('<a href="'+json.brochure_link+'">'+json.brochure_link+'</a>');
+                        } else {
+                                $('#brochure').parent().parent().remove();
+                        }
+                        
+                        if (json.checkout_volunteer_messages) {
+                                $('#member_requirements').html(json.checkout_volunteer_messages);
+                        } else {
+                                $('#member_requirements').parent().parent().remove();
+                        }
+                        
+                        if (csa_id == '{{ current_csa }}') {
+                                $('#change_csa_button').hide();
+                        } else {
+                                $('#change_csa_button').show();
+                        }
+                    }
+
+		},
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+	});
+});
+
+</script>
+
+<link href="catalog/view/javascript/selectmenu/css/jquery.ui.selectmenu.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/javascript/selectmenu/css/jquery.ui.theme.css" rel="stylesheet" type="text/css" />
+<script src="catalog/view/javascript/selectmenu/js/jquery.ui.core.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/selectmenu/js/jquery.ui.widget.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/selectmenu/js/jquery.ui.position.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/selectmenu/js/jquery.ui.selectmenu.js" type="text/javascript"></script>
+{{ footer }}

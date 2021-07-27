@@ -1,0 +1,383 @@
+/*<div class="displayTest">
+YELLOW = Default (Resposive not detected)
+RED = Large Screen desktops and laptops: RED<br>
+GREEN = Landscape tablets and medium desktops (iPad mini Landscape & Kindle Fire landscape)<br>
+BLUE = Portrait tablets and small desktops (iPad portrait)<br>
+ORANGE = Landscape phones and portrait tablets: (iPhone landscape / Kindle Fire Portrait)<br>
+GRAY = Portrait phones and smaller devices (iPhone Portrait)<br>
+</div>*/
+
+/* --------------------------------------------------
+RESPONSIVE CSS
+-------------------------------------------------- */
+
+/* Large screen desktops and laptops */
+@media (min-width: 1200px) {
+	/*.displayTest {
+		background-color:red;
+		padding:20px;
+		color:black
+	}*/
+
+}
+
+/* Landscape tablets and medium desktops (iPad mini Landscape & Kindle Fire landscape) */
+@media (min-width: 992px) and (max-width: 1199px) {
+	/*.displayTest {
+		background-color:green;
+		padding:20px;
+		color:black
+	}*/
+
+}
+
+/* Portrait tablets and small desktops (iPad portrait) */
+@media (min-width: 768px) and (max-width: 991px) {
+	/*.displayTest {
+		background-color:blue;
+		padding:20px;
+		color:black
+	}*/
+
+}
+
+/* Landscape phones and portrait tablets: (iPhone landscape / Kindle Fire Portrait) */
+@media (max-width: 767px) {
+	/*.displayTest {
+		background-color:orange;
+		padding:20px;
+		color:black
+	}*/
+	
+.row-eq-height {
+	display: block;
+}
+
+.tagline {
+	margin-bottom: 15px;
+}
+
+.memberLogin {
+	width: 287px;
+}
+.memberLogin a {
+	letter-spacing: 1px;
+}
+
+.accountBlock {
+	text-align: left;	
+	margin-top: 25px;
+}
+
+.page-content-header {
+	min-height: auto;
+}
+
+.intro-heading {
+	padding-top: 25px;
+}
+
+footer,
+.copyright > div:last-child {
+	text-align: center;
+}
+
+.accountBlock {
+	text-align: left;	
+}
+
+}
+
+/* Portrait phones and smaller devices (iPhone Portrait) */
+@media (max-width: 480px) {
+	/*.displayTest {
+		background-color:gray;
+		padding:20px;
+		color:black
+	}*/
+
+}
+/* -------------------------------------------------- */
+
+@media (max-width: 1199px) and (min-width: 992px){
+	.health {
+	   background: none;
+	}
+	.product-grid .grid-item .content h3 {
+	   font-size: 16px;
+	   line-height: 23px;
+	}
+	.product-grid .main .heading {
+	   font-size: 29px;
+	}
+	.widget-panel .block .ctaHeading {
+	   float: none;
+	   margin-bottom: 10px;
+	   text-align: center;
+	   width: 100%;
+	}
+	}
+	@media screen and (max-width:1199px) {
+	.health
+	{
+		background: #fff;
+	}
+	.product-grid .main .heading
+	{
+		font-size: 30px;
+		line-height: 38px;
+	}
+	.product-grid .grid-item .content h3, .product-grid .grid-empty .content h3
+	{
+		font-size: 16px;
+		line-height: 24px;
+	}
+	.widget-panel .block h2
+	{
+		float: none;
+		width: 100%;
+	}
+	.widget-panel .block .ctaHeading
+	{
+		float: none;
+		width: 100%;
+		text-align: center;
+		margin-bottom: 14px;
+	}
+	.vd-image-container>.vd-image-wrapper>.vd-image img {
+	   display: block;
+	   margin: 0 auto 20px auto;
+	   width: 428px;
+	   max-width: 100%;
+	}
+	.recipe-grid > li img {
+		height: 220px;
+	 }
+	}
+	@media screen and (max-width:991px) {
+	#marquee, #marquee .item
+	{
+		height: 350px;
+	}
+	.nav-full ul > li a
+	{
+		font-size: 14px;
+		padding: 3px 16px;
+	}
+	.health-wrapper
+	{
+		padding: 40px 50px;
+	}
+	.health-system
+	{
+		padding-right: 0;
+	}
+	.health-item:first-child
+	{
+		margin-bottom: 50px !important;
+	}
+	.product-grid
+	{
+		height: auto;
+	}
+	.product-grid .grid-left
+	{
+		float: none;
+		width: 100%;
+		height: auto;
+		min-height: inherit !important;
+	}
+	.product-grid .main
+	{
+		background-position: top !important;
+		height: 100%;
+		min-height: auto;
+	}
+	.product-grid .grid-right
+	{
+		float: none;
+		width: 100%;
+		min-height:inherit !important;
+	}
+	.product-grid .grid-item
+	{
+		height: 250px;
+		width: 50%;
+	}
+	.product-grid .grid-item .content
+	{
+		padding: 0 15px;
+		width: 100%;
+	}
+	.widget-panel .block h2
+	{
+		float: left;
+		width: auto;
+	}
+	.widget-panel .block .ctaHeading
+	{
+		float: right;
+		width: auto;
+	}
+	.product-grid .panel-5.grid-item:last-child, .product-grid .panel-7.grid-item:last-child
+	{
+		width: 100% !important;
+	}
+	.widget-panel .block
+	{
+		margin-bottom: 50px;
+	}
+	.widget-panel .block:last-child
+	{
+		margin-bottom: 0;
+	}
+	.steps > div {
+	   width: 100% !important;
+	   float: none !important;
+	   margin: auto auto 15px auto !important;
+	   padding-left: 30px !important;
+	}
+	#sortable .block-parent-wrapper.block-container.show_desktop.show_mobile.show_tablet {
+	   padding: 0 15px !important;
+	}
+	.faq-accordion .panel-heading {
+		padding-left: 40px;
+		position: relative;
+	 }
+	 .faq-accordion .panel-heading a span {
+		position: absolute;
+		left: 0;
+		top: 10px;
+		z-index: 111;
+	 }
+	 .block-container p {
+		word-break: break-all;
+	 }
+	 .recipe-grid > li img {
+		height: 180px;
+	 }
+	 .recipe-head .info {
+		width: 100%;
+	 }
+	 .recipe-head > div {
+		border-bottom: 1px solid #a9b94d;
+	 }
+	 .recipe-head > div:nth-child(2), .recipe-head > div:nth-child(3) {
+		padding: 17px 0px;
+		border: none;
+	 }
+	 .recipe-head .print {
+		width: 50%;
+	 }
+	 .recipe-head .share {
+		width: 50%;
+	 }
+	 .recipe-head .print-block {
+		float: right;
+	 }
+	 .recipe-head .share span {
+		display: none;
+	 }
+	}
+	@media screen and (max-width:767px) {
+	#marquee, #marquee .item
+	{
+		height: 220px;
+	}
+	.health-wrapper
+	{
+		padding: 40px 0px;
+	}
+	.product-grid .grid-item
+	{
+		height: 200px;
+	}
+	.steps > div {
+	   width: 100% !important;
+	   float: none !important;
+	   margin: auto auto 48px auto !important;
+	   padding-left: 30px !important;
+	   padding-right: 0px;
+	}
+	.steps > div:nth-child(1):after, .steps > div:nth-child(2):after {
+	   top: auto;
+	   left: 43%;
+	}
+	.nav-full {
+		display: none;
+	}
+	#main .navbar {
+	   display: block;
+	}
+	.navbar-header {
+	text-align: center;	
+	}
+	.navbar-header * {
+	display: inline-block;
+	}
+	.navbar-toggle {
+	background: none;
+	border: none;
+	border-radius: 0px;
+	color: #fff;
+	float: none;
+	margin: 0px;
+	padding: 10px;
+	width: 100%;
+	}
+	.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+	background-color: #842A1C;	
+	}
+	.recipe-grid > li img {
+		height: 300px;
+		width: 100%;
+	 }
+	 .recipe-head .print {
+		display: none;
+	 }
+	 .recipe-head > div:nth-child(2), .recipe-head > div:nth-child(3) {
+		padding: 10px 0px;
+		border: none;
+	 }
+	 .recipe-head .share-buttons .custom-icon {
+		font-size: 14px;
+		height: 30px;
+		width: 30px;
+	 }
+	 .recipe-head .share {
+		width: 100%;
+		float: none;
+	 }
+	 .share-buttons li {
+		display: inline-block;
+		margin: 15px 5px;
+	 }
+	}
+	
+	@media screen and (max-width:480px) {
+	.member-cta a:last-child
+	{
+		margin-left: 0;
+		margin-top: 15px;
+	}
+	.widget-panel .block h2
+	{
+		float: none;
+		width: 100%;
+	}
+	.widget-panel .block .ctaHeading
+	{
+		float: none;
+		width: 100%;
+	}
+	}
+	@media screen and (max-width:479px) {
+
+	}
+	@media screen and (max-width:414px) {
+
+	}
+	@media screen and (max-width:360px) {
+
+	}
+	

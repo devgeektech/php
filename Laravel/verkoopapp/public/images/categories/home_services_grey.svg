@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="32" viewBox="0 0 42 32">
+  <g id="home_services_grey" transform="translate(-2 -7)">
+    <g id="Icon" transform="translate(2 7)">
+      <path id="Combined_Shape" data-name="Combined Shape" d="M35.364,16.942a1,1,0,0,1-1-1V14.177a1,1,0,0,1,1-1H41a1,1,0,0,1,1,1v1.764a1,1,0,0,1-1,1ZM1,16.942a1,1,0,0,1-1-1V14.177a1,1,0,0,1,1-1H6.637a1,1,0,0,1,1,1v1.764a1,1,0,0,1-1,1ZM4.064,7.529a.5.5,0,0,1-.339-.871A53.474,53.474,0,0,1,17.182,3.9V1a1,1,0,0,1,1-1h5.637a1,1,0,0,1,1,1V3.765h.742A28.611,28.611,0,0,1,35.727,5.648l2.388.915a.5.5,0,0,1-.179.967Zm-.179-.967a.525.525,0,0,0-.16.1q-.862.3-1.711.622Z" fill="#9c9c9c"/>
+      <path id="Rectangle_203" data-name="Rectangle 203" d="M1,0H29.545a1,1,0,0,1,1,1V18.588a4,4,0,0,1-4,4H4a4,4,0,0,1-4-4V1A1,1,0,0,1,1,0Z" transform="translate(5.727 9.412)" fill="#d1d1d1"/>
+    </g>
+  </g>
+</svg>

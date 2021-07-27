@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<name>SquareUp Sandbox Feature</name>
+	<id>SquareUp Sandbox Feature</id>
+	<code>squareup_sandbox_feature</code>
+	<version>1.0.1</version>
+	<author>weismannweb</author>
+	
+	<file path="admin/view/template/extension/payment/squareup.twig">
+		<operation>
+            <search><![CDATA[<label class="col-sm-2 control-label" for="input_payment_squareup_webhook_signature">]]></search>
+            <add position="before" offset="1"><![CDATA[
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="input_payment_squareup_test_mode">Test Mode</label>
+                <div class="col-sm-10">
+                    <select name="payment_squareup_test_mode" id="input_payment_squareup_test_mode" class="form-control">
+                        <option value="1" {% if payment_squareup_test_mode == 1 %}selected="selected"{% endif %}>Enabled</option>
+                        <option value="0" {% if payment_squareup_test_mode == 0 %}selected="selected"{% endif %}>Disabled</option>
+                    </select>
+                </div>
+            </div>
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[payment_squareup_client_id: $('#input_payment_squareup_client_id').val(),]]></search>
+            <add position="before"><![CDATA[payment_squareup_test_mode: $('#input_payment_squareup_test_mode').val(),]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/controller/extension/payment/squareup.php">
+
+        <operation>
+            <search><![CDATA[$data['payment_squareup_webhook_signature']         = $this->getSettingValue('payment_squareup_webhook_signature');]]></search>
+            <add position="before"><![CDATA[$data['payment_squareup_test_mode']         = $this->getSettingValue('payment_squareup_test_mode');]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[$this->session->data['payment_squareup_connect']['payment_squareup_client_id'] = $this->request->post['payment_squareup_client_id'];]]></search>
+            <add position="after"><![CDATA[
+            $this->session->data['payment_squareup_connect']['payment_squareup_test_mode'] = $this->request->post['payment_squareup_test_mode'];
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[if (empty($this->request->post['payment_squareup_client_id']) || strlen($this->request->post['payment_squareup_client_id']) > 32) {]]></search>
+            <add position="replace"><![CDATA[
+            $client_id_limit = 32;
+            $client_secret_limit = 50;
+            if ($this->request->post['payment_squareup_test_mode'] == 1) {
+                $client_id_limit = 37;
+                $client_secret_limit = 58;
+            }
+
+            if (empty($this->request->post['payment_squareup_client_id']) || strlen($this->request->post['payment_squareup_client_id']) > $client_id_limit) {
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[if (empty($this->request->post['payment_squareup_client_secret']) || strlen($this->request->post['payment_squareup_client_secret']) > 50) {]]></search>
+            <add position="replace"><![CDATA[if (empty($this->request->post['payment_squareup_client_secret']) || strlen($this->request->post['payment_squareup_client_secret']) > $client_secret_limit) {]]></add>
+        </operation>
+
+    </file>
+
+    <file path="system/library/squareup.php">
+        <operation>
+            <search><![CDATA[const MYSQL_GROUP_CONCAT_MAX_LEN = 1000000;]]></search>
+            <add position="after"><![CDATA[
+            const SANDBOX_PAYMENT_FORM_URL = 'https://js.squareupsandbox.com/v2/paymentform';
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="system/library/squareup/api.php">
+        <operation>
+            <search><![CDATA[const API_URL = 'https://connect.squareup.com';]]></search>
+            <add position="after"><![CDATA[
+            const SANDBOX_API_URL = 'https://connect.squareupsandbox.com';
+            const SANDBOX_HREF_SQUARE_ITEM = 'https://squareupsandbox.com/dashboard/items/library/%s';
+            const SANDBOX_ENDPOINT_MERCHANT_INFO = 'v2/merchants';
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[$url = self::API_URL;]]></search>
+            <add position="replace"><![CDATA[
+            if ($this->config->get('payment_squareup_test_mode') || (isset($this->session->data['payment_squareup_connect']) && isset($this->session->data['payment_squareup_connect']['payment_squareup_test_mode']) && $this->session->data['payment_squareup_connect']['payment_squareup_test_mode'])) {
+                $url = self::SANDBOX_API_URL;
+            } else {
+                $url = self::API_URL;
+            }
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[return self::API_URL . '/' . self::ENDPOINT_AUTH . '?' . http_build_query($params);]]></search>
+            <add position="replace"><![CDATA[
+            if ($this->config->get('payment_squareup_test_mode') || (isset($this->session->data['payment_squareup_connect']) && isset($this->session->data['payment_squareup_connect']['payment_squareup_test_mode']) && $this->session->data['payment_squareup_connect']['payment_squareup_test_mode'])) {
+                return self::SANDBOX_API_URL . '/' . self::ENDPOINT_AUTH . '?' . http_build_query($params);
+            } else {
+                return self::API_URL . '/' . self::ENDPOINT_AUTH . '?' . http_build_query($params);
+            }
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[return sprintf(self::HREF_SQUARE_ITEM, $item_id);]]></search>
+            <add position="replace"><![CDATA[
+            if ($this->config->get('payment_squareup_test_mode')) {
+                return sprintf(self::SANDBOX_HREF_SQUARE_ITEM, $item_id);
+            } else {
+                return sprintf(self::HREF_SQUARE_ITEM, $item_id);
+            } 
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA['endpoint' => self::ENDPOINT_MERCHANT_INFO,]]></search>
+            <add position="replace"><![CDATA[
+            'endpoint' => ($this->config->get('payment_squareup_test_mode')) ? self::SANDBOX_ENDPOINT_MERCHANT_INFO : self::ENDPOINT_MERCHANT_INFO,
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/extension/payment/squareup.php">
+        <operation>
+            <search><![CDATA[$data['squareup_js_api'] = Squareup::PAYMENT_FORM_URL;]]></search>
+            <add position="replace"><![CDATA[
+            $data['squareup_js_api'] = ($this->config->get('payment_squareup_test_mode')) ? Squareup::SANDBOX_PAYMENT_FORM_URL : Squareup::PAYMENT_FORM_URL;
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA['integration_id' => Squareup::SQUARE_INTEGRATION_ID]]></search>
+            <add position="replace" offset="1"><![CDATA[
+                // 'integration_id' => Squareup::SQUARE_INTEGRATION_ID
+            );
+
+            if (!$this->config->get('payment_squareup_test_mode')) {
+                $transaction_data['integration_id'] = Squareup::SQUARE_INTEGRATION_ID;
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/model/extension/payment/squareup.php">
+        <operation>
+            <search><![CDATA['integration_id' => Squareup::SQUARE_INTEGRATION_ID]]></search>
+            <add position="replace" offset="1"><![CDATA[
+                // 'integration_id' => Squareup::SQUARE_INTEGRATION_ID
+            );
+
+            if (!$this->config->get('payment_squareup_test_mode')) {
+                $transaction['integration_id'] = Squareup::SQUARE_INTEGRATION_ID;
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+</modification>

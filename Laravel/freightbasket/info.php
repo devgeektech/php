@@ -1,0 +1,4 @@
+<?php
+/*jass*/
+phpinfo();
+?>

@@ -1,0 +1,21 @@
+<div class="vd-frontend">
+    {% if edit_url %}
+        <div class="vd-btn-frontend-edit btn-group-xs btn-edit" >
+            <a class="btn btn-default" href="{{edit_url}}" target="_blank">
+                <i class="fa fa-pencil"></i>{{text_edit}}
+            </a>
+        </div>
+    {% endif %}
+    <visual-designer id="{{designer_id}}"><div class="vd">{{ content }}</div></visual-designer>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        d_visual_designer.initLocal({{local|json_encode(constant('JSON_FORCE_OBJECT'))}})
+        d_visual_designer.initOptions({{options|json_encode(constant('JSON_FORCE_OBJECT'))}})
+        d_visual_designer.initState({{state|json_encode(constant('JSON_FORCE_OBJECT'))|raw}})
+        riot.compile({{riot_tags|json_encode}}, function(){
+            riot.mount(document.getElementById('{{ designer_id }}'));
+        })
+    })
+</script>

@@ -1,0 +1,54 @@
+{% if posts %}
+{% if post_type == 1 %}
+
+<div class="col-md-4 block">
+	<h2>{{ module_name }}</h2> <a href="{{ see_all_link }}" class="greenborder-cta ctaHeading">See All ›</a>
+	<div class="clear"></div>
+		<p>Check out our recipe section to learn new ways to prepare your CSA items! </p>
+		<div class="block-item recipe">
+		<div class="owl-carousel owl-theme" id="recipeslider">
+			{% for post in posts %}
+				<a href="{{ post.href }}" class="item" style="background-image:url({% if post.thumb %} '{{ post.thumb }}' {% else %} 'image/no-image.jpg' {% endif %});">
+					<div class="wrapper">
+						<div class="callout">
+							<div class="title">{{ post.title }}</div>
+								<div class="category clearfix">
+								<ul>
+								{% for category in post.categories %}
+								<li>{{category.title}}</li>
+								{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% elseif post_type == 2 %}
+
+<div class="col-md-4 block"> 
+	<h2>{{ module_name }}</h2> <a href="{{ see_all_link }}" class="greenborder-cta ctaHeading">See All &rsaquo;</a>
+	<div class="clear"></div>
+		<p>Stay up-to-date on news and events at our certified organic farm! </p>
+		<div class="block-item news">
+			<div class="owl-carousel owl-theme" id="newsslider">
+			{% for post in posts %}
+				<a href="{{ post.href }}" class="item" style="background-image:url({% if post.thumb %}'{{ post.thumb }}' {% else %} 'image/no-image.jpg' {% endif %});">
+					<div class="wrapper noLoop">
+						<div class="callout">
+							
+							<p>{{ post.title }}</p>
+							
+						</div>
+					</div>
+				</a>
+		{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% endif %}
+{% endif %}

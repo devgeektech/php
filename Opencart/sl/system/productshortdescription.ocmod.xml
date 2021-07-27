@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<name>Product Short Description</name>
+	<id>Product Short Description</id>
+	<code>OCMP_PSD</code>
+	<version>3.0.2</version>
+	<vqmver required="true">2.4.0</vqmver>
+	<author>support@opencartmarkteplace.com</author>
+	<link>http://opencartmarkteplace.com</link>
+	
+	<file path="admin/controller/catalog/product.php">
+		<operation error="skip">
+			<search><![CDATA[$data['text_form'] = !isset($this->request->get['product_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');]]></search>
+			<add position="after"><![CDATA[
+			$this->model_catalog_product->addShortDescription();
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/language/*/catalog/product.php">
+		<operation error="skip">
+			<search><![CDATA[$_['entry_description']      = 'Description';]]></search>
+			<add position="before"><![CDATA[$_['entry_short_description']      = 'Short Description';]]></add>
+		</operation>
+	</file>	
+
+	<file path="admin/model/catalog/product.php">
+		<operation error="skip">
+			<search><![CDATA[, description = '" . $this->db->escape($value['description']) . "']]></search>
+			<add position="replace"><![CDATA[, short_description = '" . $this->db->escape($value['short_description']) . "', description = '" . $this->db->escape($value['description']) . "']]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[public function getProductDescriptions($product_id) {]]></search>
+			<add position="before"><![CDATA[
+			
+			public function addShortDescription() {
+			$query = $this->db->query("SHOW COLUMNS FROM " . DB_PREFIX . "product_description LIKE 'short_description'");
+			//echo $query->num_rows; die();
+			if($query->num_rows < 1) {
+				$this->db->query("ALTER TABLE `" . DB_PREFIX . "product_description` ADD `short_description` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `description`;");
+			}
+			}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA['description'      => $result['description']]]></search>
+			<add position="before"><![CDATA['short_description'      => $result['short_description'],]]></add>
+		</operation>
+	</file>	
+	
+	<file path="admin/view/template/catalog/product_form.twig">
+		<operation error="skip">
+			<search><![CDATA[<label class="col-sm-2 control-label" for="input-description{{ language.language_id }}">{{ entry_description }}</label>]]></search>
+			<add position="after" offset="4"><![CDATA[
+				<!-- /* START */ -->
+				<div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-short-description{{ language.language_id }}">{{ entry_short_description }}</label>
+                    <div class="col-sm-10">
+                      <textarea name="product_description[{{ language.language_id }}][short_description]" rows="5" placeholder="{{ entry_short_description }}" id="input-short-description{{ language.language_id }}" class="form-control" data-toggle="summernote">{{ product_description[language.language_id] ? product_description[language.language_id].short_description }}</textarea>
+                    </div>
+                  </div>
+				<!-- /* END */ -->				  
+				  ]]></add>
+		</operation>
+	</file>	
+	<file path="catalog/controller/product/{category,special,search,manufacturer}.php">
+		<operation error="skip">
+			<search><![CDATA['name'        => $result['name'],]]></search>
+			<add position="after"><![CDATA[				/* START */
+					'short_description' => html_entity_decode(($result['short_description']) ? $result['short_description'] : '', ENT_QUOTES, 'UTF-8'),
+				/* END */]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/*/template/product/{category,special,search,manufacturer}.twig">
+		<operation error="skip">
+			<search><![CDATA[<p>{{ product.description }}</p>]]></search>
+			<add position="replace"><![CDATA[				
+			<!-- /* START */ -->
+			{% if product.short_description %}
+				<p>{{ product.short_description }}</p>
+			{% else %}
+				<p>{{ product.description }}</p>
+			{% endif %}
+			<!-- /* END */ -->			
+]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/product.php">
+		<operation error="skip">
+			<search><![CDATA[$data['heading_title'] = $product_info['name'];]]></search>
+			<add position="after"><![CDATA[				/* START */
+					$data['short_description']  = html_entity_decode(($product_info['short_description']) ? $product_info['short_description'] : '', ENT_QUOTES, 'UTF-8');
+				/* END */]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA['name'        => $result['name'],]]></search>
+			<add position="after"><![CDATA[				/* START */
+					'short_description' => html_entity_decode(($result['short_description']) ? $result['short_description'] : '', ENT_QUOTES, 'UTF-8'),
+				/* END */]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/view/theme/*/template/product/product.twig">
+		<operation error="skip">
+			<search><![CDATA[<h1>{{ heading_title }}</h1>]]></search>
+			<add position="after"><![CDATA[				<!--START -->
+					<p>{{ short_description }}</p>
+				<!-- END --> ]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[<p>{{ product.description }}</p>]]></search>
+			<add position="replace"><![CDATA[
+			<!-- /* START */ -->
+			{% if product.short_description %}
+				<p>{{ product.short_description }}</p>
+			{% else %}
+				<p>{{ product.description }}</p>
+			{% endif %}
+			<!-- /* END */ -->					
+			]]></add>
+		</operation>		
+	</file>	
+	
+	
+	<file path="catalog/model/catalog/product.php">
+		<operation error="skip">
+			<search><![CDATA['description'      => $query->row['description'],]]></search>
+			<add position="after"><![CDATA[				/* START */
+					'short_description'      => $query->row['short_description'],
+				/* END */]]></add>
+		</operation>
+	</file>
+	
+
+	<file path="catalog/controller/extension/module/{featured,manufacturer,bestseller,special}.php">
+		<operation error="skip">
+			<search><![CDATA['name'        => $product_info['name'],]]></search>
+			<add position="after"><![CDATA[				/* START */
+					'short_description' => html_entity_decode(($product_info['short_description']) ? $product_info['short_description'] : '', ENT_QUOTES, 'UTF-8'),
+				/* END */]]></add>
+		</operation>
+	</file>
+
+	<file path="catalog/view/theme/*/template/extension/*/{featured,special,latest,bestseller,manufacturer_info}.twig">
+		<operation error="skip">
+			<search><![CDATA[<p>{{ product.description }}</p>]]></search>
+			<add position="replace"><![CDATA[				
+			<!-- /* START */ -->
+			{% if product.short_description %}
+				<p>{{ product.short_description }}</p>
+			{% else %}
+				<p>{{ product.description }}</p>
+			{% endif %}
+			<!-- /* END */ -->			
+]]></add>
+		</operation>
+	</file>	
+</modification>

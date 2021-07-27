@@ -1,0 +1,9 @@
+{% if setting.global.title %}
+<div class="h2">{{ setting.global.title }}</div>
+{% endif %}
+
+<div class="carousel {{id}}">
+    {% for image in setting.user.images %}
+        <a><img src="{{ image.thumb }}"/></a>
+    {% endfor %}
+</div>

@@ -1,0 +1,3 @@
+@title: Dear #NAME#;
+@content: Your banner has been rejected, please see the details below:<br><br>#CONTENT#;
+@footer: Best Regards,<br>Verkoop Team;

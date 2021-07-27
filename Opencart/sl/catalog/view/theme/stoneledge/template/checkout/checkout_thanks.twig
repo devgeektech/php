@@ -1,0 +1,57 @@
+{{ header }}
+<div class="page-content-body">
+    <div class="container page-content-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="checkout-process">
+                    <ul class="nav nav-wizard">
+                        {% for breadcrumb in breadcrumbs %}
+                            <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                            {% endfor %}
+                    </ul>
+                </div>
+                <div class="marketplace-grid">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-4 product-left">
+                            <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
+                            <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                                <h3>Thank you for adding the shares to your cart. You can now:</h3>
+
+                                <p><a href="{{continue}}" class="primary-cta" style="background-color:gray;">Shop The Marketplace</a></p>
+                                <p><strong>Marketplace Orders Please Note:</strong><br>Any marketplace orders ordered before 1 pm the day before your CSA delivery will be delivered this CSA pickup. Any marketplace orders ordered after 1 pm will be delivered the following CSA pickup. Marketplace mushroom delivery cutoff is Friday by 12 pm before your CSA pickup. Any marketplace mushrooms ordered after this time will be delivered the following CSA pickup.<br></p>
+                                <p><strong>OR</strong></p>
+                                <p><a href="{{checkout}}" class="primary-cta">Proceed To Checkout</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 product-right">
+                            <div id="cart" class="cartBlock">{{ cart_success }}
+                                <div class="block-heading">Your Shopping Cart</div>
+                                <form action="{{ cart_action }}" method="post" enctype="multipart/form-data">
+                                    <ul class="cart-list">
+                                        {% for cart in cart_products %}
+                                            <li class="cart-list-item">
+                                                <h4>{{ cart.name }} <button type="button" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger close_btn" onclick="cart.remove('{{ cart.cart_id }}');"><i class="fa fa-times-circle"></i></button></h4>
+                                                <p>{{ cart.model }}</p>
+                                                <div class="form-group">
+                                                    <input type="text" name="quantity[{{ cart.cart_id }}]" value="{{ cart.quantity }}" size="1" class="form-control" />
+                                                    <strong>{{ cart.total }}</strong>
+                                                    <input type="submit" data-toggle="tooltip" title="{{ button_update }}" value="Update" style="background: none; border: none; padding: 0px; text-decoration: underline; float: right; padding-top: 7px;">
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </form>
+                                <div class="cartTotal">
+                                    {% for total in totals %}
+                                        <p class="{{ total.title }}"><span>{{ total.title }}:</span> {{ total.text }}</p>
+                                    {% endfor %}
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }} 

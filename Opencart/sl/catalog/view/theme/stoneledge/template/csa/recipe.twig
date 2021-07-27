@@ -1,0 +1,167 @@
+{{ header }}
+
+<div class="page-content-header news recipe">
+			<div class="container">
+				<div class="row intro-heading">
+					<div class="col-lg-12">
+						<h1 class="pageTitle">{{ heading_title }}</h1>
+						<p>Please check back here for new Recipe posted regularly. Want to submit a Recipe? <a href="#" title="Submit a News">Click here</a>.</p>
+					  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+  </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+<div class="page-content-body">
+			<div class="container page-content-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						
+						<div class="recipe-card">
+							<div class="recipe-head clearfix">
+								<div class="info matchHeight" style="min-height: 83px;">
+									<div class="name">{{ heading_title }}</div>
+									<div class="category">
+										<ul>
+										</ul>
+									</div>
+								</div>
+								<div class="print matchHeight" style="min-height: 83px;">
+									<div class="print-block">
+										<span>Print</span>
+										<ul class="share-buttons">
+											<li><a href="" class="icon-wrapper print-button"><i class="fa fa-print custom-icon printer" aria-hidden="true"></i></a></li>
+										</ul>
+										<script>
+											$('.print-button').on('click', function() {  
+											  window.print();  
+											  return false; // why false?
+											});
+										</script>
+									</div>
+								</div>
+								<div class="share matchHeight" style="min-height: 83px;"> 
+<span>Share</span>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=&amp;t={{ heading_title }}" class="icon-wrapper" target="_blank" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL),'sharer','toolbar=0,status=0,width=650,height=436'); return false;"><i class="fa fa-facebook custom-icon facebook"></i></a></li>
+	<li><a href="//pinterest.com/pin/create/link/?url=' + encodeURIComponent(document.URL) + '&amp;description={{ heading_title }}" class="icon-wrapper" target="_blank" title="Share via Pinterest"><i class="fa fa-pinterest-p custom-icon pinterest"></i></a></li>
+	<li><a href="https://twitter.com/intent/tweet?source=&amp;text=:%20{{ heading_title }}" class="icon-wrapper" target="_blank" title="Share on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20' + encodeURIComponent(document.URL),'sharer','toolbar=0,status=0,width=650,height=436'); return false;"><i class="fa fa-twitter custom-icon twitter"></i></a></li>
+	<li><a href="//pinterest.com/pin/create/link/?url=' + encodeURIComponent(document.URL) + '&amp;description={{ heading_title }}" class="icon-wrapper" target="_blank" title="Share via Google+"><i class="fa fa-google-plus custom-icon googleplus"></i></a></li>
+	<li><a href="mailto:?subject={{ heading_title }}&amp;body=:%20{{ heading_title }}" class="icon-wrapper" target="_blank" title="Share via Email" onclick="window.open('mailto:?subject=' + encodeURIComponent(document.title) + '&amp;body=' +  encodeURIComponent(document.URL)); return false;"><i class="fa fa-envelope custom-icon"></i></a></li>
+	
+	
+</ul>
+
+</div>
+							</div>
+							<div class="recipe-body clearfix">
+								<div class="row">
+									<div class="col-sm-4 recipe-left">
+										{% if image %}
+                    <img src="{{ image }}" alt="{{ heading_title }}" class="recipe-image">
+                    {% endif %}
+
+                    <strong>Serves:</strong>&nbsp;&nbsp; {{ serves }} <br>(serving size: {{ serving_size }})
+										<br><br>
+										<ul>
+											<li><strong>Prep Time:</strong>&nbsp;&nbsp; {{ prep_time }}</li>
+											<li><strong>Cook Time:</strong>&nbsp;&nbsp; {{ cook_time }}</li>
+											<li><strong>Total Time:</strong>&nbsp;&nbsp; {{ total_time }}</li>
+										</ul>
+
+									</div>
+
+									<div class="col-sm-8 recipe-right">
+                  <h2>Ingredients</h2>
+                  {{ ingredients }}
+                  <h2>Directions</h2>
+                  {{ directions }}
+                  </div>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+   <div class="widget-panel">
+<div class="container-fluid" style="padding:0px;">
+ {{ content_bottom }}   
+
+  <div class="col-md-4 block">
+    <h2>Instagram</h2> <a href="https://www.instagram.com/stoneledge.farm/" class="greenborder-cta ctaHeading" target="_blank">See All &rsaquo;</a>
+        <div class="clear"></div>
+        <p>Don't forget to follow us on Instagram to catch a glimpse at life on the farm!</p>
+        <div class="block-item instagram">
+          
+          <div class="postbox">
+
+          </div>
+        </div>
+</div>
+
+    </div>
+
+   <div class="container">
+      <div class="row">
+          <div class="col-lg-12 block">
+              <div class="block-item logos">
+                  <div class="owl-carousel owl-theme" id="logoslider">
+                      
+                      <div class="item"><img src="image/catalog/Pure-Catskills-923335510271017.png" /></div>
+                      
+                      <div class="item"><img src="image/catalog/Parnter-Charter-60221911271017.png" /></div>
+                      
+                      <div class="item"><img src="image/catalog/image-2361.png" /></div>
+                      
+                      <div class="item"><img src="image/catalog/USDA-Organic-906541011271017.png" /></div>
+                      
+                      <div class="item"><img src="image/catalog/Pride-of-New-York-591351111271017.png" /></div>
+                      
+                      <div class="item"><img src="image/catalog/image-8842.png" /></div>
+                      
+                      
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <div class="widget-panel-wrapper"></div>
+    <div class="farm-sketch"></div>
+  </div>
+
+
+
+  {{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div class="{{ class }}">{{ content_top }}
+      
+	  {{ content_bottom }}</div>
+    {{ column_right }}
+{{ footer }}
+{% if banner_image %}
+<script>
+	$('.parallax-window').parallax({imageSrc: '{{ banner_image }}'});
+</script>
+{% else %}
+<script>
+	$('.parallax-window').parallax({imageSrc: 'image/catalog/banner_ji1pwfacaw.jpg'});
+</script>
+{% endif %}

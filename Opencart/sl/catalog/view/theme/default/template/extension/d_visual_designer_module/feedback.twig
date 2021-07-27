@@ -1,0 +1,24 @@
+<div class="{{id}}">
+    <div class="form-group required">
+        <label class="control-label">{{ local.entry_name }}</label>
+        <input class="form-control" type="text" name="name" value="" data-name="" data-validate="" />
+    </div>
+    <div class="form-group required">
+        <label class="control-label">{{ local.entry_email }}</label>
+        <input class="form-control" type="text" name="email" value="" data-name="" data-validate="" />
+    </div>
+    {% for field, key in setting.global.fields %}
+        <div class="form-group">
+            <label class="control-label">{{ field.name[options.language_id] }}</label>
+            <input class="form-control" type="text" name="fields[{{ key }}][value]" value="{{ field.value }}" />
+            <input type="hidden" name="fields[{{ key }}}][name]" value="{{ field.name }}" />
+        </div>
+    {% endfor %}
+    <div class="form-group required">
+        <label class="control-label">{{ local.entry_comment }}</label>
+        <textarea class="form-control" name="comment" data-name="" data-validate=""></textarea>
+    </div>
+    <div class="pull-right">
+        <button type="button" class="btn btn-primary button-send">{{ local.button_send }}</button>
+    </div>
+</div>

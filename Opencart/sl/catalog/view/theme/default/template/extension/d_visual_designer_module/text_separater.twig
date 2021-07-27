@@ -1,0 +1,15 @@
+<div class="vd-text-separater-container vd-text-separater-align-{{ setting.global.align }} {{id}}">
+    <div class="vd-text-separater-wrapper" style="flex:0 0 {{ setting.global.width }}">
+        {% if setting.global.title_align in ['right', 'center'] %}
+            <div class="vd-text-separater left">
+                <hr style="border-top:{{ setting.global.border_width}} {{ setting.global.border_style}} {{ setting.global.border_color }}"/>
+            </div>
+        {% endif %}
+        <h2 class="vd-separater-title">{{ setting.global.title }}</h2>
+        {% if setting.global.title_align in ['left', 'center'] %}
+        <div class="vd-text-separater right">
+            {% endif %}
+            <hr style="border-top:{{ setting.global.border_width}} {{ setting.global.border_style}} {{ setting.global.border_color }}"/>
+        </div>
+    </div>
+</div>

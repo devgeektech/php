@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Search Orders by phone number, email, fax</name>
+    <code>filter_order_by_multi_order_status</code>
+    <version>2.3.0.2</version>
+    <author>LCA</author>
+    <link>LCA</link>
+    <file path="admin/view/template/sale/order_list.twig" error="log">
+        <operation error="log">
+            <search><![CDATA[<select name="filter_order_status_id" id="input-order-status" class="form-control">]]>
+            </search>
+            <add position="replace" offset="1">
+            <![CDATA[
+                <!-- store selected order status ids in a attibute , so it can be used in javascript to keep selected  multiple order status even after page refresh -->
+                <span class="MltiStsIDstore"  selcetedStsID='{{ filter_order_status }}'> </span>
+                <select name="filter_order_status" id="input-order-status" class="form-control" multiple>
+                <option value="*" selected>All Order Status</option>
+            ]]>
+            </add>
+        </operation>
+        
+        <operation error="log">
+            <search><![CDATA[var filter_order_status_id]]>
+            </search>
+            <add position="before">
+            <![CDATA[
+                var filter_order_status = $('select[name=\'filter_order_status\']').val();
+                if (filter_order_status !== '' && filter_order_status != '*' && filter_order_status !== null)  {
+                    url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
+                }
+            ]]>
+            </add>
+        </operation>
+	
+        <operation error="log">
+            <search><![CDATA[var filter_order_status_id = $('select[name=\'filter_order_status_id\']').val();]]>
+            </search>
+            <add position="replace">
+            <![CDATA[
+                var filter_order_status_id = '';
+            ]]>
+            </add>
+        </operation>	
+                
+        <operation error="log">
+            <search><![CDATA[{{ footer }}]]>
+            </search>
+            <add position="before" >
+		<![CDATA[
+                    <link rel="stylesheet" href="view/stylesheet/cstm/bootstrap-multiselect.css" type="text/css">
+                    <script type="text/javascript" src="view/javascript/cstm/bootstrap-multiselect.js"></script>
+ 
+
+                    <script type="text/javascript">
+                    
+                        $('#input-order-status').multiselect({
+                        nonSelectedText: 'Must select at least one order status',
+                            selectAllValue: false,
+                            enableCaseInsensitiveFiltering: true,
+                            enableFiltering: true,
+                            includeSelectAllOption: false,
+                            maxHeight: '300',
+                            select: ['*'],
+                            buttonWidth: '100%',
+                            onChange: function(element, checked) {
+                                if (checked === true) {
+                                    if(element.val() == '*'){
+                                        $('#input-order-status').multiselect('clearSelection', false);
+                                        $("#input-order-status").multiselect('select', '*');
+                                    }else{
+                                        $("#input-order-status").multiselect('deselect', '*');
+                                    }
+                                }else if (checked === false) { 
+                                }
+                            }
+                        });
+                 
+          
+                    
+                    // On page refresh keep selected all selected order status 
+                    
+                var MltiSlctdStsIDs =    $('.MltiStsIDstore').attr('selcetedStsID');
+                var MltiSlctdStsIDsObj = MltiSlctdStsIDs.split(',');
+
+                var i;
+                for (i = 0; i < MltiSlctdStsIDsObj.length; i++) { 
+                 $("#input-order-status").multiselect('select', MltiSlctdStsIDsObj[i]); 
+                }
+  
+                    // If on page load ALL ORDER STATUS (*) is also selected along with other oreder status ? then unselect ALL ORDER STATUS and keep remaining selected other status
+                    $(document).ready(function() {
+                     var multiSelctSelectedVal = $('#input-order-status').val();
+                     if (multiSelctSelectedVal != '*') {
+                     $("#input-order-status").multiselect('deselect', '*');
+                     }
+                     });
+                      
+                </script>
+                <style>
+                    .multiselect-container>li>a>label>input[type=checkbox] {
+                        margin-bottom: 0px;
+                        margin-top: 4px;
+                    }
+                </style>
+                ]]>
+            </add>
+        </operation>
+    </file>
+	<file path="admin/model/sale/order.php" error="log">
+        <operation error="log">
+            <search><![CDATA[if (!empty($data['filter_order_status'])) {]]>
+            </search>
+            <add position="replace">
+			
+            <![CDATA[if (isset($data['filter_order_status']) && $data['filter_order_status'] !== '') {]]>
+            </add>
+        </operation>
+	</file>
+</modification>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="33.334" viewBox="0 0 40 33.334">
+  <g id="photography_grey" transform="translate(-3 -6)">
+    <g id="Icon" transform="translate(3 6)">
+      <path id="Combined_Shape" data-name="Combined Shape" d="M38,26.667H2a2,2,0,0,1-2-2V2A2,2,0,0,1,2,0H38a2,2,0,0,1,2,2V24.666A2,2,0,0,1,38,26.667ZM20,4.444a8.889,8.889,0,1,0,8.889,8.889A8.9,8.9,0,0,0,20,4.444Z" transform="translate(0 6.667)" fill="#d1d1d1"/>
+      <rect id="Rectangle" width="13.333" height="4.444" rx="1.5" transform="translate(13.333)" fill="#9c9c9c"/>
+      <circle id="Oval_2" data-name="Oval 2" cx="4.444" cy="4.444" r="4.444" transform="translate(15.556 15.556)" fill="#9c9c9c"/>
+    </g>
+  </g>
+</svg>

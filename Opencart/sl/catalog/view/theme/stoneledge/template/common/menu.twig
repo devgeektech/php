@@ -1,0 +1,179 @@
+{% if logged and is_store_page %}
+<div class="page-content-header">
+	<div class="intro-heading store-page">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8">
+					<h1 class="pageTitle">{{ title }}</h1>
+					
+				</div>
+				<div class="col-sm-4">
+					<div class="accountBlock">
+						<span class="welcomeText">Welcome, {{ name }}</span>
+						<span class="lastVisited">Member Since {{ date_added }}</span>
+						{% if user_info.manager_csa_id != 0 %}<a href="#" class="link" title="My Account">CSA Reports</a>
+							|{% endif %}
+                      	<a href="{{ account }}" class="link" title="My Account">My Account</a> | <a href="{{ logout }}" class="link">Sign Out</a>
+					</div>
+				</div>
+			</div>
+                        
+                            <div class="row">
+                                    <div class="col-lg-12">
+                                            <ul class="top_bread">
+                                                {% for breadcrumb in breadcrumbs %}
+                                                    {% if breadcrumb.href %}
+                                                        <li><a href="{{breadcrumb.href}}">{{breadcrumb.text}}</a></li>
+                                                    {% else %}
+                                                        <li>{{breadcrumb.text}}</li>
+                                                    {% endif %}    
+                                                {% endfor %}    
+                                            </ul>                  
+                                    </div>
+                            </div>
+
+		</div>
+	</div>
+</div>
+{% else %}
+<div class="memberLogin">
+  <a href="{{ login }}">Member Log In</a>
+</div>
+                  
+ {% endif %}
+ 
+{% if route == 'common/home' or route == '' %}
+<div id="marquee">
+					
+		<div class="controls">
+			<div class="next">
+				<i class="fa fa-arrow-right" aria-hidden="true"></i>
+			</div>
+			<div class="prev">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+			</div>
+		</div>
+	
+		<div class="owl-carousel owl-theme" id="marqueeslider">
+			
+			<div class="item" style="background-image:url('image/catalog/image-200311014458628.jpg');" title="Sunflower/Tomatoes"></div>
+			
+			<div class="item" style="background-image:url('image/catalog/image-8389.jpg');" title="Stoneledge Farm Managers"></div>
+			
+			<div class="item" style="background-image:url('image/catalog/Red-barn-81434211291217.jpeg');" title="Stoneledge Scenery"></div>
+			
+			<div class="item" style="background-image:url('image/catalog/Seedling-1442161291217.jpg');" title="Seedlings"></div>
+			
+			<div class="item" style="background-image:url('image/catalog/image-4590.jpg');" title="Stoneledge Tractor"></div>
+			
+			<div class="item" style="background-image:url('image/catalog/Pop-corn-195283693118.jpg');" title="Popcorn"></div>
+			
+			<div class="item" style="background-image:url('image/catalog/Seedlings-and-truck-bed-42517191291217.jpg');" title="Seedlings and Organic "></div>
+			
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			var marquee = $('#marqueeslider');
+			marquee.owlCarousel({
+				loop:true,
+				margin:0,
+				autoplay: true,
+				autoplaySpeed: 2000,
+				touchDrag: false,
+				mouseDrag:false,
+				autoHeight:true,
+				nav:false,
+				dots:false,
+				animateIn: 'fadeIn',
+				animateOut: 'fadeOut',
+				onInitialized: syncHeightM,
+				items:1
+			});
+			function syncHeightM(){
+				setTimeout(function(){
+					marquee.trigger('refresh.owl.carousel');
+				},1000);
+			}
+			$('#marquee .next').click( function(){
+				marquee.trigger('next.owl.carousel');
+			});
+			$('#marquee .prev').click( function(){
+				marquee.trigger('prev.owl.carousel');
+			});
+		});
+	</script>
+{% elseif not is_store_page %}
+	  <!--div class="inner_banner"></div-->
+	  <div class="parallax-window" data-parallax="scroll" data-speed="0.5" data-image-src="#"></div>
+	
+{% endif %}
+{% if not is_store_page %}
+<div class="nav-full">
+<ul>
+	<li{% if c_url == our_farm_link %} class="selected"{% endif %}>
+	<a href="{{our_farm_link}}">Our Farm</a>
+	</li>
+	<li{% if c_url == our_csa_link  or route == 'csa/csa/csa'%} class="selected"{% endif %}>
+	<a href="{{our_csa_link}}">Our CSA</a>
+	</li>
+	</ul>
+	<div class="nav-icon">
+	<div class="nav-icon-wrapper">
+	<div class="nav-icon-image"><img src="image/catalog/nav-icon1.gif" alt="" class=""></div>
+	</div>
+	</div>
+	<ul>
+	<li{% if c_url == marketplace_link %} class="selected"{% endif %}>
+	<a href="{{marketplace_link}}">Marketplace</a>
+	</li>
+      <li{% if c_url == faq_link %} class="selected"{% endif %}>
+	<a href="{{faq_link}}">FAQ</a>
+	</li>
+</ul>
+</div>
+
+<nav class="navbar navbar-default site-nav" role="navigation">
+		<div class="navbar-header">
+			
+			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+				<span class="sr-only">Toggle navigation</span>
+				<i class="fa fa-bars" aria-hidden="true"></i>
+				<div style="margin-left: 10px;">MENU</div>
+			</button>
+		</div>
+		<div id="navbarCollapse" class="navbar-collapse collapse" style="">
+			<ul class="nav navbar-nav">
+				
+						<li>
+							<a href="{{our_farm_link}}">Our Farm</a>
+						</li>
+					
+						<li>
+							<a href="{{our_csa_link}}">Our CSA</a>
+						</li>
+					
+						<li>
+							<a href="{{marketplace_link}}">Marketplace</a>
+						</li>
+					
+						<li>
+							<a href="{{faq_link}}">FAQ</a>
+						</li>
+					
+						<li>
+							<a href="#">Recipes</a>
+						</li>
+					
+						<li>
+							<a href="#">News</a>
+						</li>
+					
+						<li>
+							<a href="#">Contact Us</a>
+						</li>
+					
+			</ul>
+		</div>
+	</nav>
+{% endif %}

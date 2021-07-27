@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>Seo url issue fixes</name>
+	<code>seo_url_issue_fixes</code>
+	<version>1.0.1</version>
+	<author>Weismannweb</author>
+	<link>https://weismannweb.com/</link>
+
+ 	<file path="catalog/controller/startup/seo_url.php">
+		<operation>
+		<search index="0"><![CDATA[} elseif ($key == 'path') {]]></search>
+			<add position="before"><![CDATA[
+			} elseif ($key == 'route') {
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "seo_url WHERE `query` = '" . $this->db->escape($value) . "' AND store_id = '" . (int)$this->config->get('config_store_id') . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
+				if ($query->num_rows && $query->row['keyword']) {
+					$url .= '/' . $query->row['keyword'];
+					unset($data[$key]);
+				} else if ($data['route'] == "common/home") { 
+					$url .= '/'; 
+				} 	
+			]]></add>
+		</operation>
+	</file>
+	
+</modification>

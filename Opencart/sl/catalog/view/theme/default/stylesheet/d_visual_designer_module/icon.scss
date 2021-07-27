@@ -1,0 +1,202 @@
+.vd-icon-container {
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    &.vd-icon-align-left {
+        justify-content: flex-start;
+    }
+    &.vd-icon-align-center {
+        justify-content: center;
+    }
+    &.vd-icon-align-right {
+        justify-content: flex-end;
+    }
+    &.vd-icon-align-phone-left{
+        @media screen and (max-width: 767px){
+            justify-content: flex-start;
+        }
+    }
+    &.vd-icon-align-phone-center{
+        @media screen and (max-width: 767px){
+            justify-content: center;
+        }
+    }
+    &.vd-icon-align-phone-right{
+        @media screen and (max-width: 767px){
+            justify-content: flex-end;
+        }
+    }
+    &.vd-icon-align-tablet-left{
+        @media screen and (min-width: 768px) and (max-width: 992px){
+            justify-content: flex-start;
+        }
+    }
+    &.vd-icon-align-tablet-center{
+        @media screen and (min-width: 768px) and (max-width: 992px){
+            justify-content: center;
+        }
+    }
+    &.vd-icon-align-tablet-right{
+        @media screen and (min-width: 768px) and (max-width: 992px){
+            justify-content: flex-end;
+        }
+    }
+    .vd-icon {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        @media screen and (max-width: 767px ) {
+            &.vd-icon-block.vd-icon-phone-xs {
+                width: 2.5em!important;
+                height: 2.5em!important;
+                line-height: 2.5em!important;
+                span {
+                    font-size: 1.2em!important;
+                }
+            }
+            &.vd-icon-block.vd-icon-phone-sm {
+                width: 3.15em!important;
+                height: 3.15em!important;
+                line-height: 3.15em!important;
+                span {
+                    font-size: 1.6em!important;
+                }
+            }
+            &.vd-icon-block.vd-icon-phone-md {
+                width: 3em!important;
+                height: 3em!important;
+                line-height: 3em!important;
+                span {
+                    font-size: 2.15em!important;
+                }
+            }
+            &.vd-icon-block.vd-icon-phone-lg {
+                width: 5em!important;
+                height: 5em!important;
+                line-height: 5em!important;
+                span {
+                    font-size: 2.85em!important;
+                }
+            }
+            &.vd-icon-block.vd-icon-phone-xl {
+                width: 7.15em!important;
+                height: 7.15em!important;
+                line-height: 7.15em!important;
+                span {
+                    font-size: 5em!important;
+                }
+            }
+        }
+        @media screen and (min-width: 768px) and (max-width: 992px ) {
+            &.vd-icon-block.vd-icon-tablet-xs {
+                width: 2.5em!important;
+                height: 2.5em!important;
+                line-height: 2.5em!important;
+                span {
+                    font-size: 1.2em!important;
+                }
+            }
+            &.vd-icon-block.vd-icon-tablet-sm {
+                width: 3.15em!important;
+                height: 3.15em!important;
+                line-height: 3.15em!important;
+                span {
+                    font-size: 1.6em!important;
+                }
+            }
+            &.vd-icon-block.vd-icon-tablet-md {
+                width: 3em!important;
+                height: 3em!important;
+                line-height: 3em!important;
+                span {
+                    font-size: 2.15em!important;
+                }
+            }
+            &.vd-icon-block.vd-icon-tablet-lg {
+                width: 5em!important;
+                height: 5em!important;
+                line-height: 5em!important;
+                span {
+                    font-size: 2.85em!important;
+                }
+            }
+            &.vd-icon-block.vd-icon-tablet-xl {
+                width: 7.15em!important;
+                height: 7.15em!important;
+                line-height: 7.15em!important;
+                span {
+                    font-size: 5em!important;
+                }
+            }
+        }
+        &.vd-icon-xs {
+            width: 2.5em!important;
+            height: 2.5em!important;
+            line-height: 2.5em!important;
+            span {
+                font-size: 1.2em!important;
+            }
+        }
+        &.vd-icon-sm {
+            width: 3.15em!important;
+            height: 3.15em!important;
+            line-height: 3.15em!important;
+            span {
+                font-size: 1.6em!important;
+            }
+        }
+        &.vd-icon-md {
+            width: 3em!important;
+            height: 3em!important;
+            line-height: 3em!important;
+            span {
+                font-size: 2.15em!important;
+            }
+        }
+        &.vd-icon-lg {
+            width: 5em!important;
+            height: 5em!important;
+            line-height: 5em!important;
+            span {
+                font-size: 2.85em!important;
+            }
+        }
+        &.vd-icon-xl {
+            width: 7.15em!important;
+            height: 7.15em!important;
+            line-height: 7.15em!important;
+            span {
+                font-size: 5em!important;
+            }
+        }
+        >span {
+            display: flex!important;
+            justify-content: center;
+            align-items: center;
+            ::before {
+                vertical-align: middle;
+            }
+        }
+        &.vd-icon-style-rounded {
+            border-radius: 50%;
+        }
+        &.vd-icon-style-rounded-less {
+            border-radius: 5px;
+        }
+        &.vd-icon-style-rounded-outline {
+            border-radius: 50%;
+            border-width: 1px;
+            border-style: solid;
+        }
+        &.vd-icon-style-rounded-less-outline {
+            border-radius: 5px;
+            border-width: 1px;
+            border-style: solid;
+        }
+        &.vd-icon-style-boxed-outline {
+            border-width: 1px;
+            border-style: solid;
+        }
+    }
+}

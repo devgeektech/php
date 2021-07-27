@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Product Type Setting</name>
+    <code>ProductTypeSetting</code>
+    <version>1.0</version>
+    <author>weismannweb</author>
+    <link>weismannweb</link>
+    <!-- Admin starts -->
+    <file path="admin/language/*/catalog/product.php">
+        <operation error="skip">
+            <search><![CDATA[$_['entry_name']]]></search>
+            <add position="before"><![CDATA[
+                $_['entry_product_type']     = 'Product Type';
+                $_['entry_charge_admin_fee']     = 'Charge Admin Fee';
+                $_['help_charge_admin_fee']     = 'It can only be checked for one Current Harvest Mandatory product.';
+                $_['error_product_type']     = 'Product type required!';
+                $_['error_charge_admin_fee']     = 'Admin fee is already entered for the selected Harvest Season!';
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/catalog/product_form.twig">
+        <operation error="skip">
+            <search><![CDATA[<label class="col-sm-2 control-label" for="input-manufacturer">]]></search>
+            <add position="before" offset="1"><![CDATA[
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-product_type">{{ entry_product_type }}</label>
+                <div class="col-sm-10">
+                  <select name="product_type" id="input-product_type" class="form-control">
+                    <option value="">Choose one</option>
+                    <option value="1" {% if product_type == 1 %} selected {% endif %}>Marketplace Product</option>
+                    <option value="2" {% if product_type == 2 %} selected {% endif %}>Normal Share</option>
+                    <option value="3" {% if product_type == 3 %} selected {% endif %}>Mandatory Share</option>
+                    <option value="4" {% if product_type == 4 %} selected {% endif %}>Suggested Share</option>
+                  </select>
+                    {% if error_product_type %}
+                      <div class="text-danger">{{ error_product_type }}</div>
+                    {% endif %}
+                </div>
+              </div>
+            
+            <div class="form-group" id="stock_option_level">
+                <label class="col-sm-2 control-label" for="input-stock_option_level">Stock Done On Option Level</label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                     {% if stock_option_level %}
+                        <input type="checkbox" name="stock_option_level" value="1" id="input-stock_option_level" checked="checked">&nbsp;
+                      {% else %}
+                        <input type="checkbox" name="stock_option_level" value="1" id="input-stock_option_level">&nbsp;
+                      {% endif %}
+                    </label>
+                    {% if error_stock_option_level %}
+                      <div class="text-danger">{{ error_stock_option_level }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+            </div>
+
+              <div class="form-group div-charge_admin_fee" {% if product_type != '3'%} style="display:none;" {% endif%}>
+                <label class="col-sm-2 control-label" for="input-charge_admin_fee"><span data-toggle="tooltip" title="{{ help_charge_admin_fee }}">{{ entry_charge_admin_fee }}</span></label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>{% if charge_admin_fee %}
+                      <input type="checkbox" name="charge_admin_fee" value="1" checked="checked" id="input-charge_admin_fee" />
+                      {% else %}
+                      <input type="checkbox" name="charge_admin_fee" value="1" id="input-charge_admin_fee" />
+                      {% endif %}                      
+                      &nbsp;</label>
+                      {% if error_charge_admin_fee %}
+                      <div class="text-danger">{{ error_charge_admin_fee }}</div>
+                     {% endif %}
+                  </div>
+                </div>
+              </div>
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[{{ footer }} ]]></search>
+            <add position="before"><![CDATA[
+                <script>
+                    $(document).ready(function(){
+                        $('#input-product_type').change(function(){
+                            if($(this).val() == '3') {
+                                $('.div-charge_admin_fee').show();
+                            } else {
+                                $('.div-charge_admin_fee').hide();
+                            }
+                        });
+                    });
+                </script>
+            ]]></add>
+        </operation>        
+        
+    </file>
+
+    <file path="admin/controller/catalog/product.php">
+        <operation error="skip">
+            <search><![CDATA[if (isset($this->request->post['width'])) {]]></search>
+            <add position="before"><![CDATA[
+                if (isset($this->request->post['product_type'])) {
+                    $data['product_type'] = $this->request->post['product_type'];
+		} elseif (!empty($product_info)) {
+                    $data['product_type'] = $product_info['product_type'];
+		} else {
+                    $data['product_type'] = '';
+		}
+                
+                if (isset($this->request->post['charge_admin_fee'])) {
+                    $data['charge_admin_fee'] = $this->request->post['charge_admin_fee'];
+		} elseif (!empty($product_info)) {
+                    $data['charge_admin_fee'] = $product_info['charge_admin_fee'];
+		} else {
+                    $data['charge_admin_fee'] = '0';
+		}
+                
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[if (isset($this->error['keyword'])) {]]></search>
+            <add position="before"><![CDATA[
+                if (isset($this->error['product_type'])) {
+			$data['error_product_type'] = $this->error['product_type'];
+		} else {
+			$data['error_product_type'] = '';
+		}
+                if (isset($this->error['charge_admin_fee'])) {
+			$data['error_charge_admin_fee'] = $this->error['charge_admin_fee'];
+		} else {
+			$data['error_charge_admin_fee'] = '';
+		}
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search><![CDATA[if ((utf8_strlen($this->request->post['model']) < 1)]]></search>
+            <add position="before"><![CDATA[
+                if (empty($this->request->post['product_type'])) {
+			$this->error['product_type'] = $this->language->get('error_product_type');
+		}
+                
+                if (!empty($this->request->post['charge_admin_fee']) && $this->request->post['product_type'] == '3') {
+                    $pid = '';
+                    if(!empty($this->request->get['product_id'])) {
+                        $pid = $this->request->get['product_id'];
+                    }
+                    $product_total = $this->model_catalog_product->checkHarvestHasOneMandatoryProduct($this->request->post['harvest_id'], $pid);
+                    if($product_total) 
+                        $this->error['charge_admin_fee'] = $this->language->get('error_charge_admin_fee');
+                }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/model/catalog/product.php">
+        <operation error="skip">
+            <search><![CDATA[status = '" . (int)$data['status'] . "']]></search>
+            <add position="replace" trim="true"><![CDATA[
+                status = '" . (int)$data['status'] . "', product_type = '" . (int)$data['product_type'] . "', charge_admin_fee = '" . (isset($data['charge_admin_fee']) ? (int)$data['charge_admin_fee'] : 0) . "'
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[public function getTotalProductsByLayoutId($layout_id) {]]></search>
+            <add position="before" trim="true"><![CDATA[
+                public function checkHarvestHasOneMandatoryProduct($harvest_id, $product_id = '') {
+                    
+                    $sql = "SELECT COUNT(DISTINCT p.product_id) AS total FROM " . DB_PREFIX . "product p WHERE p.product_type = '3' AND p.harvest_id = '".(int)$harvest_id."' AND p.harvest_id != '0' AND p.charge_admin_fee = '1' AND p.status = '1' ";
+                    if($product_id != '') {
+                        $sql .= " AND p.product_id != '".(int)$product_id."' ";
+                    }
+                    $query = $this->db->query($sql);
+                    return $query->row['total'];
+                }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/model/catalog/product.php">
+        <operation error="skip">
+            <search><![CDATA[if (!empty($data['filter_manufacturer_id']))]]></search>
+            <add position="before"><![CDATA[
+            if (isset($data['filter_product_type'])) {
+                $sql .= " AND p.product_type = '".$data['filter_product_type']."' ";
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA['tag'              => $query->row['tag'],]]></search>
+            <add position="before"><![CDATA[
+				'product_type'              => $query->row['product_type'],
+                'harvest_id'              => $query->row['harvest_id'],
+            ]]></add>
+        </operation>
+        
+        <operation error="skip">
+            <search><![CDATA[public function getProduct($product_id)]]></search>
+            <add position="before"><![CDATA[
+                
+                public function getProductOptionToWarehouse($product_id, $product_option_value_id) {
+                    $sql = "SELECT * FROM " . DB_PREFIX . "product_option_to_warehouse WHERE product_id = '".$product_id."' AND product_option_value_id = '".$product_option_value_id."' AND warehouse_id = '".$this->customer->getWarehouseId()."' ";
+                    $query = $this->db->query($sql);
+                    return $query->row;
+                }
+                
+                //this function call will remove Cart items from the logged in customer if they dont belong to current season session.
+                public function removeCartItemsNotFromSeason() {
+                    $sql= "DELETE c FROM " . DB_PREFIX . "cart c LEFT JOIN " . DB_PREFIX . "product p ON (p.product_id = c.product_id) WHERE c.customer_id = '".$this->customer->getId()."' AND (p.harvest_id !=0 AND p.harvest_id != '".$this->customer->harvestId()."') ";                    
+                    $this->db->query($sql);                    
+                }
+                
+                //this function call will remove Cart items from the logged in customer if they dont belong to current csa.
+                public function removeCartItemsNotFromCsa($csa_customer_group_id) {
+                    $sql= "DELETE c FROM " . DB_PREFIX . "cart c LEFT JOIN " . DB_PREFIX . "product_customer_group p ON (p.product_id = c.product_id) WHERE c.customer_id = '".$this->customer->getId()."' AND p.product_id !=0 AND p.product_id != '".$csa_customer_group_id."'";                    
+                    $this->db->query($sql);                        
+                }
+                
+                // check marketplace available or not
+                 /*public function checkMarketplaceAvailability() {
+                    $is_marketplace_available = 0;
+                    $product_ids = array();
+                    $products = $this->cart->getProducts();
+                    if (!empty($products)) {
+                        foreach ($products as $product) {
+                           $product_ids[] = $product['product_id'];
+                        }
+                        $product_arr = implode(',', $product_ids);
+                        $query = $this->db->query("SELECT count(*) as total FROM " . DB_PREFIX . "product WHERE product_id IN ($product_arr) AND product_type = 3");
+                        if($query->row['total'] > 0) {
+                           $is_marketplace_available = 1;
+                        }
+                    }
+                    return $is_marketplace_available;
+                }*/
+
+                //satisfied mandatory purchases all
+                public function satisfied_mandatory_purchases_all($harvest_id) {
+                    $product_ids_in_cart = $mandatory_product_ids = $man_product = $product_arr = array();
+                    $suggested_product_ids = array();
+                    $man_product['mandatory_product_id'] = '';
+                    $man_product['found_in_past_order'] = '';
+                    $man_product['suggested_product_id'] = '';
+                    
+                    /***get mandatory products***/
+                    $query = $this->db->query("SELECT p.product_id,pd.name FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_customer_group pcg ON (pcg.product_id=p.product_id) WHERE p.status = '1' AND pcg.customer_group_id='". (int)$this->config->get('config_customer_group_id')."' AND p.product_type = '3' AND p.harvest_id = '".(int) $harvest_id."' GROUP BY p.product_id ORDER BY p.sort_order ASC");
+                    if ($query->num_rows) { // mandatory share products(type = 1)
+                        foreach ($query->rows as $val) {
+                            $product_arr[] = array(
+                                'name'          => $val['name'],
+                                'product_id'    => $val['product_id'],
+                                'type'          => 1
+                            );
+                        }
+                    }
+                    $query = $this->db->query("SELECT p.product_id,pd.name FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_customer_group pcg ON (pcg.product_id=p.product_id) WHERE p.status = '1' AND p.product_type = '4' AND pcg.customer_group_id='". (int)$this->config->get('config_customer_group_id')."' AND p.harvest_id = '".(int) $harvest_id."' GROUP BY p.product_id ORDER BY p.sort_order ASC");
+                    if ($query->num_rows) { // suggested share products(type = 2)
+                        foreach ($query->rows as $val) {
+                            $product_arr[] = array(
+                                'name'          => $val['name'],
+                                'product_id'    => $val['product_id'],
+                                'type'          => 2
+                            );
+                        }
+                    }
+                    $man_product['mandatory_products'] = $product_arr;
+                    /***end get mandatory products***/
+
+                    
+                    /***get cart product***/
+                    $cart_products = $this->cart->getProducts();
+                    if (!empty($cart_products)) {
+                        foreach ($cart_products as $product) {
+                            $product_ids_in_cart[$product['product_id']] = $product['product_id'];
+                        }
+                    }
+                    /***get cart product***/
+                    
+                    
+                    foreach ($man_product['mandatory_products'] as $product) {
+                        if ($product['type'] == '1') { //type = 1(mandatory products)
+                            $mandatory_product_ids[] = $product['product_id'];
+                        } else {
+                            $suggested_product_ids[] = $product['product_id'];
+                        }
+                    }
+
+                    if(!empty($mandatory_product_ids)) {
+                        $product_arr = implode(',', $mandatory_product_ids);
+                        $customer_id = $this->customer->getId();
+                        // check mandatory products in old order
+                        $order_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order o LEFT JOIN " . DB_PREFIX . "order_product op ON(o.order_id = op.order_id) WHERE o.customer_id = '" . (int)$customer_id . "' AND op.harvest_id = '" . (int)$harvest_id . "' AND product_id IN ($product_arr) AND o.order_status_id != 0");
+                        if ($order_query->num_rows && $harvest_id != 0) {
+                            $man_product['found_in_past_order'] = 1;
+                        } else { // if not found in old order then check in cart
+                            if(empty($product_ids_in_cart)){
+                                // remove additional item from session
+                                if(isset($this->session->data['additional_products'])) { 
+                                    unset($this->session->data['additional_products']);
+                                }
+                                
+                                $man_product['mandatory_product_id'] = $mandatory_product_ids[0];
+                            } else { //if not found in cart 
+                                
+                                //check mandatory products in cart item
+                                foreach ($mandatory_product_ids as $mandatory_product_id) { 
+                                    if (!isset($product_ids_in_cart[$mandatory_product_id])) {
+                                        $man_product['mandatory_product_id'] = $mandatory_product_id;
+                                        break;
+                                    }
+                                }
+                                //end case- check mandatory products in cart item
+                                
+                                // if mandatory products all added then check additional product in session is added or not
+                                if(empty($man_product['mandatory_product_id'])) {
+                                    foreach ($suggested_product_ids as $suggested_product_id) { 
+                                        if(!isset($this->session->data['additional_products'][$suggested_product_id])) {
+                                          $man_product['suggested_product_id']  = $suggested_product_id;
+                                          break;
+                                        }
+                                    }
+                                }
+                                //end case-  if mandatory products all added then check additional product in session is added or not
+                            }
+                        }
+                    }
+                    return $man_product;
+                }
+                
+                //add additional share product in session       
+                public function createAdditionalProductSession($product_id) {
+                    $query = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product WHERE status = '1' AND product_type = '4' AND harvest_id = '".(int) $this->customer->harvestId()."' ORDER BY sort_order ASC");
+                    if ($query->num_rows) { 
+                        foreach ($query->rows as $val) {
+                           if($val['product_id'] == $product_id) { //check additional product session is created or not
+                               $this->session->data['additional_products'][$product_id] = $product_id;
+                           }
+                        }
+                    }
+                }
+
+                // get harvest details
+                 public function getHarvestDetails($harvest_id) {
+                    $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "harvests WHERE harvest_id = '".$harvest_id."'");
+                    return $query->row;
+                }
+
+                public function getHarvestList($data = array()) {
+                    $sql = "SELECT * FROM " . DB_PREFIX . "harvests";
+                    $implode = array();
+                    if (isset($data['filter_status']) && $data['filter_status'] !== '') {
+                        $implode[] = " status = '" . (int) $data['filter_status'] . "'";
+                    }
+
+                    if ($implode) {
+                        $sql .= " WHERE " . implode(" AND ", $implode);
+                    }
+
+                    $sort_data = array(
+                        'harvest_title',
+                        'status',
+                        'start_date',
+                        'end_date'
+                    );
+
+                    if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+                        $sql .= " ORDER BY " . $data['sort'];
+                    } else {
+                        $sql .= " ORDER BY harvest_title";
+                    }
+
+                    if (isset($data['order']) && ($data['order'] == 'DESC')) {
+                            $sql .= " DESC";
+                        } else {
+                            $sql .= " ASC";
+                    }
+
+                    $query = $this->db->query($sql);
+                    return $query->rows;
+                }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/product/product.php">
+        <operation error="skip">
+            <search><![CDATA[$_['entry_category']         = 'Categories';]]></search>
+            <add position="before"><![CDATA[
+		$_['entry_harvest']         = 'Harvest Seasons';
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search><![CDATA[$product_info = $this->model_catalog_product->getProduct($product_id);]]></search>
+            <add position="before"><![CDATA[
+                $data['csa_detail'] = $this->model_catalog_product->getCustomerCSAFromSession();
+                /***check mandatory products***/
+                if ($this->customer->isLogged()) { // if customer is logged in then check else show them description page
+                        $man_product = $this->model_catalog_product->satisfied_mandatory_purchases_all($this->customer->harvestId());
+                } else {
+                        $man_product = array('mandatory_products' => []);
+                }
+                $data['mandatory_products'] = $man_product['mandatory_products'];
+                $data['next_product_id'] = '';
+                $data['is_mandatory_suggested_product'] = $data['is_mandatory_added'] = $data['is_suggested_product'] = 0;
+                if(empty($man_product['found_in_past_order'])) { //mandatory product case
+                    if(!empty($man_product['mandatory_product_id'])) {
+                        $data['is_mandatory_suggested_product'] = 1;
+                        if($man_product['mandatory_product_id'] != $product_id) {
+                            $this->response->redirect($this->url->link('product/product', 'product_id=' . $man_product['mandatory_product_id']));
+                        }
+                    } else { //suggested product/ marketplace product case
+                        foreach($data['mandatory_products'] as $key => $mandatory_product) {
+                                if($product_id == $mandatory_product['product_id']) {
+                                    if($mandatory_product['type'] == '1'){ //check if mandatory product already in cart
+                                        $data['is_mandatory_added'] = 1;// if any mandatory found in url                                            
+                                    } else {
+                                        $data['is_suggested_product'] = 1;    
+                                    }  
+                                    $data['is_mandatory_suggested_product'] =  1;
+                                    if(isset($data['mandatory_products'][$key+1]['product_id'])) {
+                                        $data['next_product_id'] = $this->url->link('product/product&product_id=' . $data['mandatory_products'][$key+1]['product_id']);
+                                        break;
+                                    }
+                                }
+                        }
+
+                        //$data['is_mandatory_added'] = 1;
+                        if(empty($data['next_product_id'])) { //if all suggested products is added or continue then open checkout thanks
+                            $data['next_product_id'] = $this->url->link('checkout/cart/checkout_thanks', '', true);
+                        }
+                    }
+                }
+                /***check mandatory products***/
+            ]]></add>
+        </operation>
+        
+        <operation error="skip">
+            <search><![CDATA[public function getRecurringDescription()]]></search>
+            <add position="before"><![CDATA[
+                //add additional share product in session       
+                public function createAdditionalProductSession() {
+                    $this->load->model('catalog/product');
+                    if (isset($this->request->get['product_id'])) {
+                        $product_id = $this->request->get['product_id'];
+                        $this->model_catalog_product->createAdditionalProductSession($product_id);
+                    } 
+                    $json['success'] = TRUE;
+                    $this->response->addHeader('Content-Type: application/json');
+                    $this->response->setOutput(json_encode($json));
+                }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="system/library/cart/customer.php">        
+        <operation error="skip">
+            <search><![CDATA[public function __construct($registry)]]></search>
+            <add position="before"><![CDATA[
+                private $harvest_id;
+                private $warehouse_id;
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[$this->session = $registry->get('session');]]></search>
+            <add position="after"><![CDATA[
+                $this->log = $registry->get('log');
+            ]]></add>
+        </operation>      
+        <operation error="skip">
+            <search index="0"><![CDATA[$this->customer_group_id = $customer_query->row['customer_group_id'];]]></search>
+            <add position="replace"><![CDATA[
+                if(empty($this->session->data['customer_group_id'])) {
+                    $this->customer_group_id = $customer_query->row['customer_group_id'];
+                } elseif(!empty($this->session->data['customer_group_id'])) {
+                    $this->customer_group_id = $this->session->data['customer_group_id'];
+                }
+                
+                //find Warehouse(CSA/Warhouse) of logged in Customer from session customer_group_id
+                $this->warehouse_id = $this->getWarehouseByGroupId($this->customer_group_id);
+            ]]></add>
+        </operation>  
+        <operation error="skip">
+            <search index="0"><![CDATA[$this->address_id = $customer_query->row['address_id'];]]></search>
+            <add position="after"><![CDATA[
+                if(empty($this->session->data['harvest_id'])) {
+                    $harvest_query = $this->db->query("SELECT harvest_id FROM " . DB_PREFIX . "harvests WHERE status = '1' ORDER BY date_added DESC LIMIT 1");
+                    if ($harvest_query->num_rows) {
+                        $this->harvest_id = $harvest_query->row['harvest_id'];
+                    }
+                } elseif(!empty($this->session->data['harvest_id'])) {
+                    $this->harvest_id = $this->session->data['harvest_id'];
+                }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[$this->session->data['customer_id'] = $customer_query->row['customer_id'];]]></search>
+            <add position="after"><![CDATA[
+                $harvest_query = $this->db->query("SELECT harvest_id FROM " . DB_PREFIX . "harvests WHERE status = '1' ORDER BY date_added DESC LIMIT 1");
+                if ($harvest_query->num_rows) {
+                    $this->harvest_id = $harvest_query->row['harvest_id'];
+                }
+            ]]></add>
+        </operation>        
+        <operation error="skip">
+            <search index="1"><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "customer]]></search>
+            <add position="before"><![CDATA[
+                //this logic call will remove Cart items from the logged in customer if they dont belong to current season session.
+                $sql= "DELETE c FROM " . DB_PREFIX . "cart c LEFT JOIN " . DB_PREFIX . "product p ON (p.product_id = c.product_id) WHERE c.customer_id = '".$this->customer_id."' AND (p.harvest_id !=0 AND p.harvest_id != '".$this->harvest_id."')";
+                $this->db->query($sql);                    
+            ]]></add>    
+        </operation>
+                
+        <operation error="skip">
+            <search><![CDATA[public function getFirstName()]]></search>
+            <add position="before"><![CDATA[
+                public function harvestId() {
+                    // if harvest id NULL -- in case of logged out customers get default harvest
+					if ($this->harvest_id == 0) {
+						$q = $this->db->query("SELECT harvest_id FROM " . DB_PREFIX . "harvests where status = 1");
+						if (!empty($q->row)) {
+							return $q->row['harvest_id'];
+						}
+					}
+                    return $this->harvest_id;
+                }
+
+                /*when login customer from admin and then we wanted to change harvest season. Set it in session  **/
+                public function setHarvestId($harvest_id) {
+                    // if harvest id NULL -- in case of logged out customers get default harvest
+					if ($harvest_id == 0) {
+						$q = $this->db->query("SELECT harvest_id FROM " . DB_PREFIX . "harvests where status = 1");
+						if (!empty($q->row)) {
+							$harvest_id = $q->row['harvest_id'];
+						}
+					}
+                    $this->session->data['harvest_id'] = $harvest_id;
+                    return $this->harvest_id = $harvest_id;
+                }
+                
+                /*when login customer from admin and then we wanted to change customer group. Set it in session  **/
+                public function setCustomerGroupId($customer_group_id) {
+                    $this->session->data['customer_group_id'] = $customer_group_id;
+                    return $this->customer_group_id = $customer_group_id;
+                }
+                
+                public function getWarehouseByGroupId($customer_group_id) {
+                    $sql = "SELECT * FROM " . DB_PREFIX . "warehouse_to_customergroup WHERE customer_group_id = '". (int)$customer_group_id."' ";
+                    $q = $this->db->query($sql);
+                    return ($q->num_rows) ? $q->row['warehouse_id'] : 0;
+                }
+                
+                public function getWarehouseId() {
+                    return $this->warehouse_id;
+                }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[unset($this->session->data['customer_id']);]]></search>
+            <add position="after"><![CDATA[
+                if(!empty($this->session->data['customer_group_id'])) {
+                    unset($this->session->data['customer_group_id']);
+                }
+                if(!empty($this->session->data['harvest_id'])) {
+                    unset($this->session->data['harvest_id']);
+                }
+                $this->harvest_id = '';
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/checkout/checkout.php">
+        <operation error="skip">
+            <search><![CDATA[foreach ($products as $product) {]]></search>
+            <add position="before"><![CDATA[
+                /***check mandatory products***/
+                $this->load->model('catalog/product');
+                $man_product = $this->model_catalog_product->satisfied_mandatory_purchases_all($this->customer->harvestId());
+                if(!empty($man_product['mandatory_product_id']) && empty($man_product['found_in_past_order'])) {
+                    $this->response->redirect($this->url->link('product/product', 'product_id=' . $man_product['mandatory_product_id']));
+                } else if(!empty($man_product['suggested_product_id'])) {
+                    $this->response->redirect($this->url->link('product/product', 'product_id=' . $man_product['suggested_product_id']));
+                } else {
+                    //skip - normal product case
+                }
+                /***check mandatory products***/
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/model/checkout/order.php">
+        <operation error="skip">
+            <search><![CDATA['" . $this->db->escape($product['model']) . "']]></search>
+            <add position="replace" trim="true"><![CDATA[
+                '" . $this->db->escape($product['model']) . "',harvest_id = '" . (int)$this->customer->harvestId() . "'
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[if ($order_info) {]]></search>
+            <add position="before"><![CDATA[
+                // remove additional item from session
+                if(isset($this->session->data['additional_products'])) { 
+                    unset($this->session->data['additional_products']);
+                }
+            ]]></add>
+        </operation>
+    </file>
+    <file path="catalog/controller/checkout/cart.php">
+        <operation error="skip">
+            <search><![CDATA[foreach ($products as $product) {]]></search>
+            <add position="before"><![CDATA[
+                /***check mandatory products***/
+                $this->load->model('catalog/product');
+                $man_product = $this->model_catalog_product->satisfied_mandatory_purchases_all($this->customer->harvestId());
+                if(!empty($man_product['mandatory_product_id']) && empty($man_product['found_in_past_order'])) {
+                    $this->response->redirect($this->url->link('product/product', 'product_id=' . $man_product['mandatory_product_id']));
+                }
+                /***check mandatory products***/
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search index="0"><![CDATA[$this->response->addHeader('Content-Type: application/json');]]></search>
+            <add position="before"><![CDATA[
+                //add additional product in session
+                $this->model_catalog_product->createAdditionalProductSession($this->request->post['product_id']);
+                
+                /***check mandatory products***/
+                if ($this->customer->isLogged()) { // if customer is logged in then check else show them description page
+                    $man_product = $this->model_catalog_product->satisfied_mandatory_purchases_all($this->customer->harvestId());
+                } else {
+                    $man_product = array('mandatory_products' => []);
+                }
+                $man_product['mandatory_products'];
+                $json['next_product_id'] = '';
+                if (empty($man_product['found_in_past_order'])) { //mandatory product case
+                    foreach ($man_product['mandatory_products'] as $key => $mandatory_product) {
+                        if ($product_id == $mandatory_product['product_id']) {
+                            if (isset($man_product['mandatory_products'][$key + 1]['product_id'])) {
+                                $json['next_product_id'] = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $man_product['mandatory_products'][$key + 1]['product_id']));
+                                break;
+                            }
+                        }
+                    }
+                    if(empty($json['next_product_id'])) { //if all suggested products is added or continue then open checkout thanks
+                        $json['next_product_id'] = $this->url->link('checkout/cart/checkout_thanks', '', true);
+                    }
+                }
+                /***check mandatory products***/
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[public function add()]]></search>
+            <add position="before"><![CDATA[
+                 public function checkout_thanks() {
+                    $this->load->model('tool/image');
+                    $this->document->setTitle('Checkout Thanks');
+                    $data['breadcrumbs'] = array();
+
+                    $data['breadcrumbs'][] = array(
+                        'text' => $this->language->get('text_home'),
+                        'href' => $this->url->link('common/home')
+                    );
+                    $data['breadcrumbs'][] = array(
+                        'text' => 'Checkout Thanks',
+                        'href' => $this->url->link('checkout/cart/checkout_thanks')
+                    );
+                    $this->load->model('tool/upload');
+                    $data['heading_title'] = 'Checkout Thanks';
+                    $this->load->language('checkout/cart');
+                    $cart_array = $this->cart->getProducts();
+
+                    /***check mandatory products***/
+                    $this->load->model('catalog/product');
+                    $man_product = $this->model_catalog_product->satisfied_mandatory_purchases_all($this->customer->harvestId());
+                    if(!empty($man_product['mandatory_product_id']) && empty($man_product['found_in_past_order'])) {
+                        $this->response->redirect($this->url->link('product/product', 'product_id=' . $man_product['mandatory_product_id']));
+                    } else if (!empty($man_product['suggested_product_id'])) {
+                        $this->response->redirect($this->url->link('product/product', 'product_id=' . $man_product['suggested_product_id']));
+                    } else {
+                        //skip - normal product case
+                    }
+                    /***check mandatory products***/
+                    if ($cart_array) {
+                        //$data['cart_array'] = $cart_array;
+
+                        foreach ($cart_array as $product) {
+                            $product_total = 0;
+
+                            foreach ($cart_array as $product_2) {
+                                if ($product_2['product_id'] == $product['product_id']) {
+                                    $product_total += $product_2['quantity'];
+                                }
+                            }
+
+                            if ($product['minimum'] > $product_total) {
+                                $data['error_warning'] = sprintf($this->language->get('error_minimum'), $product['name'], $product['minimum']);
+                            }
+
+                            if ($product['image']) {
+                                $image = $this->model_tool_image->resize($product['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_height'));
+                            } else {
+                                $image = '';
+                            }
+
+                            $option_data = array();
+
+                            foreach ($product['option'] as $option) {
+                                if ($option['type'] != 'file') {
+                                    $value = $option['value'];
+                                } else {
+                                    $upload_info = $this->model_tool_upload->getUploadByCode($option['value']);
+
+                                    if ($upload_info) {
+                                        $value = $upload_info['name'];
+                                    } else {
+                                        $value = '';
+                                    }
+                                }
+
+                                $option_data[] = array(
+                                    'name' => $option['name'],
+                                    'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+                                );
+                            }
+
+                            // Display prices
+                            if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+                                $unit_price = $this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'));
+
+                                $price = $this->currency->format($unit_price, $this->session->data['currency']);
+                                $total = $this->currency->format($unit_price * $product['quantity'], $this->session->data['currency']);
+                            } else {
+                                $price = false;
+                                $total = false;
+                            }
+
+                            $recurring = '';
+
+                            if ($product['recurring']) {
+                                $frequencies = array(
+                                    'day' => $this->language->get('text_day'),
+                                    'week' => $this->language->get('text_week'),
+                                    'semi_month' => $this->language->get('text_semi_month'),
+                                    'month' => $this->language->get('text_month'),
+                                    'year' => $this->language->get('text_year')
+                                );
+
+                                if ($product['recurring']['trial']) {
+                                    $recurring = sprintf($this->language->get('text_trial_description'), $this->currency->format($this->tax->calculate($product['recurring']['trial_price'] * $product['quantity'], $product['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']), $product['recurring']['trial_cycle'], $frequencies[$product['recurring']['trial_frequency']], $product['recurring']['trial_duration']) . ' ';
+                                }
+
+                                if ($product['recurring']['duration']) {
+                                    $recurring .= sprintf($this->language->get('text_payment_description'), $this->currency->format($this->tax->calculate($product['recurring']['price'] * $product['quantity'], $product['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']), $product['recurring']['cycle'], $frequencies[$product['recurring']['frequency']], $product['recurring']['duration']);
+                                } else {
+                                    $recurring .= sprintf($this->language->get('text_payment_cancel'), $this->currency->format($this->tax->calculate($product['recurring']['price'] * $product['quantity'], $product['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']), $product['recurring']['cycle'], $frequencies[$product['recurring']['frequency']], $product['recurring']['duration']);
+                                }
+                            }
+
+                            $data['cart_products'][] = array(
+                                'cart_id' => $product['cart_id'],
+                                'thumb' => $image,
+                                'name' => $product['name'],
+                                'model' => $product['model'],
+                                'option' => $option_data,
+                                'recurring' => $recurring,
+                                'quantity' => $product['quantity'],
+                                'stock' => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
+                                'reward' => ($product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : ''),
+                                'price' => $price,
+                                'total' => $total,
+                                'href' => $this->url->link('product/product', 'product_id=' . $product['product_id'])
+                            );
+                        }
+
+                        if (isset($this->session->data['success'])) {
+                            $data['cart_success'] = $this->session->data['success'];
+
+                            unset($this->session->data['success']);
+                        } else {
+                            $data['cart_success'] = '';
+                        }
+                        $data['cart_action'] = $this->url->link('checkout/cart/edit', '', true);
+                        // Totals
+                        $this->load->model('setting/extension');
+
+                        $totals = array();
+                        $taxes = $this->cart->getTaxes();
+                        $total = 0;
+
+                        // Because __call can not keep var references so we put them into an array.
+                        $total_data = array(
+                            'totals' => &$totals,
+                            'taxes' => &$taxes,
+                            'total' => &$total
+                        );
+
+                        // Display prices
+                        if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+                            $sort_order = array();
+
+                            $results = $this->model_setting_extension->getExtensions('total');
+
+                            foreach ($results as $key => $value) {
+                                $sort_order[$key] = $this->config->get('total_' . $value['code'] . '_sort_order');
+                            }
+
+                            array_multisort($sort_order, SORT_ASC, $results);
+
+                            foreach ($results as $result) {
+                                if ($this->config->get('total_' . $result['code'] . '_status')) {
+                                    $this->load->model('extension/total/' . $result['code']);
+
+                                    // We have to put the totals in an array so that they pass by reference.
+                                    $this->{'model_extension_total_' . $result['code']}->getTotal($total_data);
+                                }
+                            }
+
+                            $sort_order = array();
+
+                            foreach ($totals as $key => $value) {
+                                $sort_order[$key] = $value['sort_order'];
+                            }
+
+                            array_multisort($sort_order, SORT_ASC, $totals);
+                        }
+
+                        $data['totals'] = array();
+
+                        foreach ($totals as $total) {
+                            $data['totals'][] = array(
+                                'title' => $total['title'],
+                                'text' => $this->currency->format($total['value'], $this->session->data['currency'])
+                            );
+                        }
+
+                        $data['continue'] = $this->url->link('product/category', 'path=96', true);
+                        $data['checkout'] = $this->url->link('checkout/checkout', '', true);
+                    }
+                    $data['column_left'] = $this->load->controller('common/column_left');
+                    $data['column_right'] = $this->load->controller('common/column_right');
+                    $data['content_top'] = $this->load->controller('common/content_top');
+                    $data['content_bottom'] = $this->load->controller('common/content_bottom');
+                    $data['footer'] = $this->load->controller('common/footer');
+                    $data['header'] = $this->load->controller('common/header');
+                    $this->response->setOutput($this->load->view('checkout/checkout_thanks', $data));
+                }
+            ]]></add>
+        </operation>
+    </file>
+    
+     <file path="catalog/controller/account/logout.php">
+        <operation error="skip">
+            <search><![CDATA[unset($this->session->data['vouchers']);]]></search>
+            <add position="before"><![CDATA[
+                unset($this->session->data['additional_products']);
+            ]]></add>
+        </operation>
+    </file>
+
+</modification>
+

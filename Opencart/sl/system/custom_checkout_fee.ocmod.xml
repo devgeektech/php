@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Allow adding a checkout fee on customer group</name>
+    <code>custom_checkout_fee</code>
+    <version>1.0</version>
+    <author>wdev</author>
+    <link>wdev</link>
+    
+    <file path="system/library/cart/cart.php">
+        <operation error="skip">
+            <search><![CDATA[$product_data[] = array(]]></search>
+            <add position="before"><![CDATA[
+                if($product_query->row['charge_admin_fee'] == '1') {
+                    $sql = "SELECT csa_admin_fee FROM " . DB_PREFIX . "csa  WHERE customer_group_id = '" . (int)$this->customer->getGroupId() . "' ";
+                    $query = $this->db->query($sql);
+                    $price += $query->row['csa_admin_fee'];
+                }
+            ]]></add>
+        </operation>
+    </file>
+    
+</modification>

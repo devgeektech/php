@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Registration Fields</name>
+    <code>registration_fields</code>
+    <version>1.0</version>
+    <author>weismannweb</author>
+    <link>weismannweb.com</link>
+    
+    <file path="catalog/controller/extension/module/account.php">
+        <operation error="log">
+            <search><![CDATA[$this->url->link('account/login', '', true);]]></search>
+            <add position="replace"><![CDATA[$this->url->link('account/store', '', true);]]></add>
+        </operation>         
+    </file>    
+   
+   <file path="catalog/language/*/account/edit.php">
+        <operation error="log">
+            <search><![CDATA[$_['heading_title']      = 'My Account Information';]]></search>
+            <add position="replace"><![CDATA[$_['heading_title']      = 'Update My Profile';]]></add>
+        </operation>         
+    </file>
+   
+
+    <!--catalog-->
+    <file path="catalog/language/*/account/register.php">
+        <operation error="log">
+            <search><![CDATA[$_['entry_telephone']]]></search>
+            <add position="after"><![CDATA[
+               // Registration Fields
+                $_['entry_address_1']       = 'Address 1';
+                $_['entry_address_2']       = 'Address 2';
+                $_['entry_city']            = 'City';
+                $_['entry_zone']            = 'State';
+                $_['entry_postcode']        = 'Zip';
+                $_['button_signup']         = 'SIGN UP';
+                $_['text_csa_success']      = 'YOU HAVE BEEN REGISTERED WITH THE CSA.';
+                $_['text_csa_error']   = 'You HAVE BEEN ADDED TO THE WAITING LIST OF THE CSA. YOU DONT HAVE AN ACCOUNT CREATED YET TO LOGIN.';
+               // -- Registration Fields
+            ]]></add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[$_['error_telephone']]]></search>
+            <add position="after"><![CDATA[
+                // Registration Fields
+                $_['error_address_1']      = 'Address must be between 3 and 128 characters!';
+                $_['error_postcode']       = 'Zip must be between 2 and 10 characters!';
+                $_['error_city']           = 'City must be between 2 and 128 characters!';
+                $_['error_zone']           = 'Please select a region / state!';
+                $_['error_confirm_pass']   = "Password for account must contain at least (6) six letter or numbers and must not contain any spaces.";
+                // -- Registration Fields
+            ]]></add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[$_['entry_email']          = 'E-Mail';]]></search>
+            <add position="replace" offset="2"><![CDATA[
+            $_['entry_email']          = 'Email Address';
+            $_['entry_telephone']      = 'Phone';
+            ]]></add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[$_['entry_newsletter']     = 'Subscribe';]]></search>
+            <add position="replace"><![CDATA[$_['entry_newsletter']     = 'Receive Newsletter?';]]></add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[$_['error_telephone']      = 'Telephone must be between 3 and 32 characters!';]]></search>
+            <add position="replace"><![CDATA[$_['error_telephone']      = 'Phone must be between 3 and 32 characters!';]]></add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[E-Mail]]></search>
+            <add position="replace"><![CDATA[Email]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/*/template/account/register.twig">
+
+        <operation>
+            <search><![CDATA[<h1>{{ heading_title }}</h1>]]></search>
+            <add position="replace"><![CDATA[]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[<p>{{ text_account_already }}</p>]]></search>
+            <add position="replace"><![CDATA[]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[<legend>{{ text_your_details }}</legend>]]></search>
+            <add position="replace"><![CDATA[]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[<legend>{{ text_your_password }}</legend>]]></search>
+            <add position="replace"><![CDATA[]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[<legend>{{ text_newsletter }}</legend>]]></search>
+            <add position="replace"><![CDATA[]]></add>
+        </operation>
+
+        <operation>
+            <search index="1"><![CDATA[<fieldset>]]></search>
+            <add position="replace" offset="20"><![CDATA[]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[<div class="text-danger">{{ error_email }}</div>]]></search>
+            <add position="replace" offset="10"><![CDATA[
+            <div class="text-danger">{{ error_email }}</div>
+            {% endif %} </div>
+          </div>]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[{% if field.field_input_type == 'text' and (5 in field.field_to_show) %}]]></search>
+            <add position="before" offset="3"><![CDATA[
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{ entry_newsletter }}</label>
+                    <div class="col-sm-10"> {% if newsletter %}
+                    <label class="radio-inline">
+                        <input type="radio" name="newsletter" value="1" checked="checked" />
+                        {{ text_yes }}</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="newsletter" value="0" />
+                        {{ text_no }}</label>
+                    {% else %}
+                    <label class="radio-inline">
+                        <input type="radio" name="newsletter" value="1" checked="checked" />
+                        {{ text_yes }}</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="newsletter" value="0" />
+                        {{ text_no }}</label>
+                    {% endif %} </div>
+                </div>
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[<div class="form-group required" style="display: {% if customer_groups|length > 1 %} block {% else %} none {% endif %};">]]></search>
+            <add position="replace"><![CDATA[<div class="form-group required" style="display: none;">]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[{% if field.field_name == 'firstname' or field.field_name == 'lastname' or field.field_name == 'email' or field.field_name == 'telephone' %}]]></search>
+            <add position="replace"><![CDATA[{% if field.field_name == 'firstname' or field.field_name == 'lastname' or field.field_name == 'email'%}]]></add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[{{ captcha }}]]></search>
+            <add position="before"><![CDATA[
+            <!-- Registration Fields -->
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-address-1">{{ entry_address_1 }}</label>
+                <div class="col-sm-10">
+                <input type="text" name="address_1" value="{{ address_1 }}" placeholder="{{ entry_address_1 }}" id="input-address-1" class="form-control" />
+                {% if error_address_1 %}
+                <div class="text-danger">{{ error_address_1 }}</div>
+                {% endif %} </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-address-2">{{ entry_address_2 }}</label>
+                <div class="col-sm-10">
+                <input type="text" name="address_2" value="{{ address_2 }}" placeholder="{{ entry_address_2 }}" id="input-address-2" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-city">{{ entry_city }}</label>
+                <div class="col-sm-10">
+                <input type="text" name="city" value="{{ city }}" placeholder="{{ entry_city }}" id="input-city" class="form-control" />
+                {% if error_city %}
+                <div class="text-danger">{{ error_city }}</div>
+                {% endif %} </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-zone">{{ entry_zone }}</label>
+                <div class="col-sm-4">
+                <select name="zone_id" id="input-zone" class="form-control">
+                    {% for zone in zones %}
+                    {% if zone.zone_id == zone_id %}
+                         <option value="{{zone.zone_id}}" selected = "selected">{{zone.name}}</option>
+                    {% else %}     
+                        <option value="{{zone.zone_id}}">{{zone.name}}</option>
+                    {% endif %}     
+                    {% endfor%}
+                </select>
+                {% if error_zone %}
+                    <div class="text-danger">{{ error_zone }}</div>
+                {% endif %} </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-postcode">{{ entry_postcode }}</label>
+                <div class="col-sm-4">
+                <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-postcode" class="form-control" />
+                {% if error_postcode %}
+                <div class="text-danger">{{ error_postcode }}</div>
+                {% endif %} </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-telephone">{{ entry_telephone }}</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                        <input type="tel" name="telephone" value="{{ telephone }}" placeholder="{{ entry_telephone }}" id="input-telephone" class="form-control" />
+                    </div>
+                {% if error_telephone %}
+                <div class="text-danger">{{ error_telephone }}</div>
+                {% endif %} </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Receive Text Messages?</label>
+		<div class="col-sm-10">{% if receive_text %}
+                    <label class="radio-inline">
+                        <input type="radio" name="receive_text" value="1" checked="checked" />
+                        {{ text_yes }}</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="receive_text" value="0" />
+                        {{ text_no }}</label>
+                    {% else %}
+                    <label class="radio-inline">
+                        <input type="radio" name="receive_text" value="1" />
+                        {{ text_yes }}</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="receive_text" value="0" checked="checked" />
+                        {{ text_no }}</label>
+                    {% endif %}
+	        </div>
+            </div>
+
+            <!-- // Registration Fields -->
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[<div id="content" class="{{ class }}">]]></search>
+            <add position="before"><![CDATA[
+             {% if csa %}
+                <h2 class="form-register-heading">CSA Registration</h2>
+             {% endif %}
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[<fieldset id="account">]]></search>
+            <add position="before"><![CDATA[
+            {% if csa %}
+                <div class="text-right"><p><span class="req-color">* = required fields</span></p></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Your CSA</label>
+                    <div class="col-sm-10">
+                        <p>
+                            <h4>{{csa.csaname}}</h4>
+                            {{ csa_pickup_address|raw }}<br/>
+                            {{csa_operating_hours|raw}}</br>
+
+                            {% if csa_website %}
+                                <a href="{{ csa_website }}" class="website" target="_blank">CSA Website</a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">CSA Status</label>
+                    <div class="col-sm-10">
+                        <p>
+                        {% if csa.registration == 0 %}
+                            <strong>Waiting List</strong><br/>
+                            {{csa.csaname}} is currently full. Please enter your contact information below to be placed on the waiting list.
+                        {% else %}
+                            <strong>Registration Open</strong><br/>
+                            {{csa.csaname}} is now accepting CSA membership registrations. Please enter your contact information below to register.
+                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[{{ button_continue }}]]></search>
+            <add position="replace"><![CDATA[{{ button_signup }}]]></add>
+        </operation>
+
+    </file>
+
+    <file path="catalog/controller/account/register.php">
+        <operation>
+            <search><![CDATA[public function index() {]]></search>
+            <add position="after"><![CDATA[
+                //if csa param is not present in the URL redirect back to csa program page
+                if(empty($this->request->get['csa'])) {
+                    $this->response->redirect($this->url->link('csa/csa', '', true));
+                }
+		
+]]></add>
+        </operation>
+        
+        <operation error="log">
+            <search><![CDATA[$data['action'] = $this->url->link('account/register', '', true);]]></search>
+            <add position="before"><![CDATA[
+            // Registration Fields
+            $this->load->model('localisation/zone');
+		    $data['zones'] = $this->model_localisation_zone->getZonesByCountryId(223);
+            // -- Registration Fields
+            ]]></add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[$this->response->redirect($this->url->link('account/success'));]]></search>
+            <add position="replace"><![CDATA[
+                if(!empty($this->request->post['csa_id'])) {
+                    $csa_id = $this->encryption->decrypt('csa_id', $this->request->post['csa_id']);
+                    $this->load->model('csa/csa');
+                    $csa_info = $this->model_csa_csa->getCSA($csa_id);
+                    if ($csa_info) {
+                        if($csa_info['registration'] == '1') {//open
+                            $this->session->data['success'] = $this->language->get('text_csa_success');
+                        } else {
+                            $this->session->data['error'] = $this->language->get('text_csa_error');
+                        }
+                    }
+                }    
+               $this->response->redirect($this->url->link('account/store', '', TRUE));
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[if (isset($this->request->post['firstname'])) {]]></search>
+            <add position="before"><![CDATA[
+
+		if (isset($this->request->post['receive_text'])) {
+			$data['receive_text'] = $this->request->post['receive_text'];
+		} else {
+			$data['receive_text'] = '';
+		}
+
+            // Registration Fields
+            if (isset($this->request->get['csa'])) {
+                $csa_name = ucwords(preg_replace('/[_]+/', ' ', strtolower(trim($this->request->get['csa']))));
+                $this->load->model('csa/csa');
+                $csa = $this->model_csa_csa->getCSAByName($csa_name);
+                if ($csa) {
+                    $data['customer_group_id'] = $csa['customer_group_id'];
+                    $this->load->model('account/customer_group');
+                    $customer_group = $this->model_account_customer_group->getCustomerGroup($csa['customer_group_id']);
+                    $data['customer_groups'] = [];
+                    $data['customer_groups'][] = $customer_group;
+                    $data['csa'] = $csa;
+                    $csa_website = '';
+                    if(!empty($csa['website'])) {
+                        $csa_website = preg_replace('/^(?!https?:\/\/)/', 'http://', html_entity_decode($csa['website'], ENT_QUOTES));;
+                    }
+                    $data['csa_website'] = $csa_website;
+                    $data['csa_name'] = $csa['csaname'];
+		    $data['csa_pickup_address'] = html_entity_decode($csa['pickup_address']);
+                    $data['csa_operating_hours'] = html_entity_decode($csa['operating_hours']);
+                    $data['csa_id'] = $this->encryption->encrypt('csa_id', $csa['csa_id']);
+                }
+            }
+
+            // -- Registration Fields
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[$data['action'] = $this->url->link('account/register', '', true);]]></search>
+            <add position="replace"><![CDATA[
+            // Registration Fields
+            if (isset($this->request->get['csa'])) {
+                $data['action'] = $this->url->link('account/register&csa=' . $this->request->get['csa'], '', true);
+            } else {
+                $data['action'] = $this->url->link('account/register', '', true);
+            }
+            // -- Registration Fields
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[if ($this->request->post['confirm'] != $this->request->post['password']) {]]></search>
+            <add position="before"><![CDATA[
+            // Registration Fields
+            if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 128)) {
+                $this->error['address_1'] = $this->language->get('error_address_1');
+            }
+
+            if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
+                $this->error['city'] = $this->language->get('error_city');
+            }
+
+            $this->load->model('localisation/country');
+
+            $country_info = $this->model_localisation_country->getCountry(223); // Country - US
+
+            if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+                $this->error['postcode'] = $this->language->get('error_postcode');
+            }
+
+            if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
+                $this->error['zone'] = $this->language->get('error_zone');
+            }
+            // -- Registration Fields
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[$data['customer_groups'] = array();]]></search>
+            <add position="before"><![CDATA[
+            // Registration Fields
+            if (isset($this->error['address_1'])) {
+                $data['error_address_1'] = $this->error['address_1'];
+            } else {
+                $data['error_address_1'] = '';
+            }
+
+            if (isset($this->error['city'])) {
+                $data['error_city'] = $this->error['city'];
+            } else {
+                $data['error_city'] = '';
+            }
+
+            if (isset($this->error['postcode'])) {
+                $data['error_postcode'] = $this->error['postcode'];
+            } else {
+                $data['error_postcode'] = '';
+            }
+
+            if (isset($this->error['zone'])) {
+                $data['error_zone'] = $this->error['zone'];
+            } else {
+                $data['error_zone'] = '';
+            }
+
+            if (isset($this->error['telephone'])) {
+                $data['error_telephone'] = $this->error['telephone'];
+            } else {
+                $data['error_telephone'] = '';
+            }
+            // -- Registration Fields
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[if (isset($this->request->post['telephone'])) {]]></search>
+            <add position="before"><![CDATA[
+            // Registration Fields
+            if (isset($this->request->post['address_1'])) {
+                $data['address_1'] = $this->request->post['address_1'];
+            } else {
+                $data['address_1'] = '';
+            }
+
+            if (isset($this->request->post['address_2'])) {
+                $data['address_2'] = $this->request->post['address_2'];
+            } else {
+                $data['address_2'] = '';
+            }
+
+            if (isset($this->request->post['postcode'])) {
+                $data['postcode'] = $this->request->post['postcode'];
+            } else {
+                $data['postcode'] = '';
+            }
+
+            if (isset($this->request->post['city'])) {
+                $data['city'] = $this->request->post['city'];
+            } else {
+                $data['city'] = '';
+            }
+
+            if (isset($this->request->post['zone_id'])) {
+                $data['zone_id'] = (int)$this->request->post['zone_id'];
+            }  else {
+                $data['zone_id'] = '';
+            }
+            // -- Registration Fields
+        ]]></add>
+        </operation>
+        <operation>
+            <search><![CDATA[$customer_id = $this->model_account_customer->addCustomer($this->request->post);]]></search>
+            <add position="after"><![CDATA[
+            // Registration Fields
+            $this->load->model('account/address');
+			if (!isset($this->request->post['country_id'])) {
+				$this->request->post['country_id'] = 223; // Country - US
+			}
+			$this->request->post['default'] = 1;
+			$this->model_account_address->addAddress($customer_id, $this->request->post);
+            // -- Registration Fields
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/model/account/customer.php">
+        <operation>
+            <search><![CDATA[$customer_group_info = $this->model_account_customer_group->getCustomerGroup($customer_group_id);]]></search>
+            <add position="after"><![CDATA[
+                if(!empty($data['csa_id'])) {
+                    $csa_id = $this->encryption->decrypt('csa_id', $data['csa_id']);
+                    $this->load->model('csa/csa');
+                    $csa_info = $this->model_csa_csa->getCSA($csa_id);
+                    if ($csa_info) {
+                        if($csa_info['registration'] == '1') {//open
+                            $customer_group_info['approval'] = FALSE;//below it will toggle to TRUE
+                        }
+                    }
+                }
+
+]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[status = '" . (int)!$customer_group_info['approval'] . "',]]></search>
+            <add position="replace"><![CDATA[status = '" . (int)!$customer_group_info['approval'] . "', receive_text = '" . (int)$data['receive_text'] . "',]]></add>
+        </operation>
+    </file>
+
+
+    <!--// catalog-->
+</modification>

@@ -1,0 +1,27 @@
+.block-pricing-table.block-inner.block-container > .control.pricing-table-control > a {
+  background-color: #4c5866; }
+  .block-pricing-table.block-inner.block-container > .control.pricing-table-control > a:hover {
+    -webkit-filter: brightness(120%);
+    filter: brightness(120%);
+    background-color: #4c5866; }
+.block-pricing-table.block-inner.block-container > .vd-border {
+  background-color: #4c5866; }
+
+.block-pricing-table-content {
+  display: flex;
+  text-align: center; }
+  .block-pricing-table-content > .block-price-section.block-container {
+    float: left;
+    flex-grow: 1; }
+    .block-pricing-table-content > .block-price-section.block-container.active-control > .control {
+      -webkit-animation: bounce-bottom 0.9s 0.18s  both;
+      -moz-animation: bounce-bottom 0.9s 0.18s both;
+      animation: bounce-bottom 0.9s 0.18s both;
+      visibility: visible;
+      opacity: 1; }
+    .block-pricing-table-content > .block-price-section.block-container.deactive-control > .control {
+      -webkit-animation: slide-out-bottom 0.2s 0.15s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+      -moz-animation: slide-out-bottom 0.2s 0.15s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+      animation: slide-out-bottom 0.2s 0.15s cubic-bezier(0.55, 0.085, 0.68, 0.53) both; }
+
+/*# sourceMappingURL=pricing_table.css.map */

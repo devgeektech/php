@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<name>Payment Methods By Customer Groups - JadeAgile</name>
+	<version>1.0</version>
+	<code>jade-customer-group-payment</code>
+    <author>JadeAgile</author>
+	<file path="admin/controller/customer/customer_group.php">
+		<operation error="skip">
+			<search><![CDATA[if (isset($this->request->post['sort_order'])) {]]></search>
+			<add position="before"><![CDATA[
+		/* Jade Payment Method Customer Group Starts */
+		$this->load->language('customer/jade_customer_group_payment');
+
+		$data['entry_payment_method'] = $this->language->get('entry_payment_method');
+
+		$this->load->model('customer/jade_customer_group_payment');
+		$this->model_customer_jade_customer_group_payment->CreateTableCustomerGroupPayment();
+
+		$this->load->model('setting/extension');
+		$payments = $this->model_setting_extension->getInstalled('payment');
+
+		$data['installed_payments'] = array();
+		foreach($payments as $payment_key => $payment) {
+			$this->load->language('extension/payment/' . $payment);
+
+			$data['installed_payments'][] = array(
+				'payment_name'       => $this->language->get('heading_title'),
+				'payment_code'       => $payment,
+			);
+		}
+
+		if (isset($this->request->post['customer_group_payment_method'])) {
+			$data['customer_group_payment_method'] = $this->request->post['customer_group_payment_method'];
+		} elseif (!empty($customer_group_info)) {
+			$data['customer_group_payment_method'] = $this->model_customer_jade_customer_group_payment->getCustomerGroupPaymentMethod($customer_group_info['customer_group_id']);
+		} else {
+			$data['customer_group_payment_method'] = array();
+		}
+		/* Jade Payment Method Customer Group Ends */
+				]]>
+			</add>
+		</operation>
+	</file>
+	<file path="admin/model/customer/customer_group.php">
+		<operation error="skip">
+			<search><![CDATA[$customer_group_id = $this->db->getLastId();]]></search>
+			<add position="after"><![CDATA[
+		/* Jade Payment Method Customer Group Starts */
+		if (isset($data['customer_group_payment_method'])) {
+			foreach ($data['customer_group_payment_method'] as $payment_code) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "jade_customer_group_payment SET customer_group_id = '" . (int)$customer_group_id . "', payment_code = '" . $this->db->escape($payment_code) . "'");
+			}
+		}
+		/* Jade Payment Method Customer Group Ends */
+				]]>
+			</add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[public function editCustomerGroup($customer_group_id, $data) {]]></search>
+			<add position="after"><![CDATA[
+		/* Jade Payment Method Customer Group Starts */
+		$this->db->query("DELETE FROM " . DB_PREFIX . "jade_customer_group_payment WHERE customer_group_id = '" . (int)$customer_group_id . "'");
+
+		if (isset($data['customer_group_payment_method'])) {
+			foreach ($data['customer_group_payment_method'] as $payment_code) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "jade_customer_group_payment SET customer_group_id = '" . (int)$customer_group_id . "', payment_code = '" . $this->db->escape($payment_code) . "'");
+			}
+		}
+		/* Jade Payment Method Customer Group Ends */
+				]]>
+			</add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[public function deleteCustomerGroup($customer_group_id) {]]></search>
+			<add position="after"><![CDATA[
+		/* Jade Payment Method Customer Group Starts */
+		$this->db->query("DELETE FROM " . DB_PREFIX . "jade_customer_group_payment WHERE customer_group_id = '" . (int)$customer_group_id . "'");
+		/* Jade Payment Method Customer Group Ends */
+				]]>
+			</add>
+		</operation>
+	</file>
+	<file path="admin/view/template/customer/customer_group_form.twig">
+		<operation error="skip">
+			<search><![CDATA[</form>]]></search>
+			<add position="before"><![CDATA[
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{ entry_payment_method }}</label>
+            <div class="col-sm-10">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                {% for installed_payment in installed_payments %}
+                  {% if customer_group_payment_method and installed_payment.payment_code in customer_group_payment_method %}
+                  <label class="btn btn-default active"><input type="checkbox" name="customer_group_payment_method[]" value="{{ installed_payment.payment_code }}" checked="checked" /> {{ installed_payment.payment_name }}</label>
+                  {% else %}
+                  <label class="btn btn-default"><input type="checkbox" name="customer_group_payment_method[]" value="{{ installed_payment.payment_code }}" /> {{ installed_payment.payment_name }}</label>
+                  {% endif %}
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+				]]>
+			</add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[{{ footer }}]]></search>
+			<add position="before"><![CDATA[
+<style type="text/css">
+.btn-group .active{
+  background-color : #dab310;;
+  border-color: #dab310;;
+  color: #fff;
+}
+.btn-group .btn:hover{
+  background-color: #dab310;
+  border-color: #dab310;;
+  color: #fff;
+}
+</style>
+				]]>
+			</add>
+		</operation>
+	</file>
+	<file path="catalog/model/setting/extension.php">
+		<operation error="skip">
+			<search><![CDATA[$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "extension WHERE `type` = '" . $this->db->escape($type) . "'");]]></search>
+			<add position="after"><![CDATA[
+          /* Jade Payment Method Customer Group Starts */
+          if($type == 'payment') {
+
+			$jade_customer_group_payment_query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "jade_customer_group_payment jcp WHERE jcp.customer_group_id = '". (int)$this->config->get('config_customer_group_id') ."'");
+			if($jade_customer_group_payment_query->row['total']) {
+
+				$query = $this->db->query("SELECT ext.* FROM " . DB_PREFIX . "extension ext LEFT JOIN " . DB_PREFIX . "jade_customer_group_payment jcp ON (ext.code = jcp.payment_code) WHERE ext.type = '" . $this->db->escape($type) . "' AND jcp.customer_group_id = '". (int)$this->config->get('config_customer_group_id') ."'");
+			}
+		}
+        /* Jade Payment Method Customer Group Ends */
+				]]>
+			</add>
+		</operation>
+	</file>
+</modification>

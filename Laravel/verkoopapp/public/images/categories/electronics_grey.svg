@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="37.5" viewBox="0 0 40 37.5">
+  <g id="electronics_grey" transform="translate(-3 -4)">
+    <g id="Icon" transform="translate(3 4)">
+      <path id="Combined_Shape" data-name="Combined Shape" d="M0,0V20H30V0Z" transform="translate(5 5)" fill="#9c9c9c"/>
+      <path id="Combined_Shape-2" data-name="Combined Shape" d="M9,12.5H1a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H5V1A1,1,0,0,1,6,0H9a1,1,0,0,1,1,1v9h4a1,1,0,0,1,1,1v.5a1,1,0,0,1-1,1Z" transform="translate(12.5 25)" fill="#d1d1d1"/>
+      <path id="Combined_Shape-3" data-name="Combined Shape" d="M5,30a5,5,0,0,1-5-5V5A5,5,0,0,1,5,0H35a5,5,0,0,1,5,5V25a5,5,0,0,1-5,5Z" fill="#d1d1d1"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Featured Shares Marketplace Module</name>
+	<id>featured-shares-marketplace-module</id>
+    <version>1.0.1</version>
+    <author>weismannweb</author>
+	<link>https://weismannweb.com</link>
+    <code>featured-shares-marketplace-module</code>
+
+    <file path="catalog/model/setting/module.php">
+        <operation>
+            <search><![CDATA[public function getModule($module_id) {]]></search>
+            <add position="before"><![CDATA[
+            public function getModuleByName($module_name, $code) {
+                $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "module WHERE name = '" . $module_name . "' and code = '" . $code . "'");
+                if ($query->row) {
+                    return json_decode($query->row['setting'], true);
+                } else {
+                    return array();	
+                }
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/extension/module/featured.php">
+        <operation>
+            <search><![CDATA[if ($data['products']) {]]></search>
+            <add position="before"><![CDATA[
+            $data['is_share_module'] = false;
+            if (strtolower($setting['name']) == 'shares module') {
+                $data['is_share_module'] = true;
+            }
+
+            $data['is_marketplace_module'] = false;
+            if (strtolower($setting['name']) == 'marketplace module') {
+                $data['is_marketplace_module'] = true;
+            }
+            $data['login_link'] = $this->url->link('account/store', '', true);
+            ]]></add>
+        </operation>
+    </file>
+	 
+</modification>

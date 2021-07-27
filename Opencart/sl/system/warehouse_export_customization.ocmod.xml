@@ -1,0 +1,355 @@
+<modification>
+	<name>Warehouse Export Customization</name>
+	<version>1.0.1</version>
+	<link>https://weismannweb.com</link>
+	<author>weismannweb</author>
+	<code>warehouse_export_customization</code>
+
+	<file path="admin/view/template/extension/module/warehouse_import.twig">
+
+		<operation>
+			<search><![CDATA[{% for warehouse in warehouses %}]]></search>
+			<add position="before"><![CDATA[
+				<!-- warehouse_export_customization -->
+				<option value="0">--Select--</option>
+				<option value="all">All</option>
+				<!--// warehouse_export_customization -->
+				]]>
+			</add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[{% for warehouse in warehouses %}]]></search>
+			<add position="after" offset="5"><![CDATA[
+				<!-- warehouse_export_customization -->
+				<div class="form-group hide required" id="harvest_id">
+					<label class="col-sm-2 control-label">Harvest</label>
+					<div class="col-sm-10">
+					<select name="harvest_id" class="form-control">
+						<option value="">Choose one</option>
+						{% for harvest in harvests %}
+						<option value="{{ harvest.harvest_id }}">{{ harvest.harvest_title }}</option>
+						{% endfor %}
+					</select>
+					</div>
+				</div>
+				<div class="form-group hide required" id="product_type">
+					<label class="col-sm-2 control-label">Product Type</label>
+					<div class="col-sm-10">
+						<select name="product_type" class="form-control">
+							<option value="">Choose one</option>
+							<option value="1">Marketplace Product</option>
+							<option value="2,3,4">All Share</option>
+							<option value="2">Normal Share</option>
+							<option value="3">Mandatory Share</option>
+							<option value="4">Suggested Share</option>
+						</select>
+					</div>
+				</div>
+				<!--// warehouse_export_customization -->
+				]]>
+			</add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[onclick="$('#exportform').submit();$(this).find('span').text('Processing...');"]]></search>
+			<add position="replace"><![CDATA[id="exportFormBtn"]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[$('.navigation th:nth-child(1)').addClass('active'); ]]></search>
+			<add position="after"><![CDATA[
+			<!-- warehouse_export_customization -->
+			$(document).ready(function() {
+				$('#exportform').addClass('form-horizontal');
+				var warehouse = $("select[name='warehouse_id']");
+				var harvest = $("#harvest_id");
+				var product_type = $("#product_type");
+				warehouse.change(function() {
+					$('.text-danger').remove();
+					if ($(this).val() == 'all') {
+						harvest.removeClass('hide');
+					} else {
+						harvest.addClass('hide');
+						product_type.addClass('hide');
+					}
+				});
+				harvest.find('select').change(function() {
+					$('.text-danger').remove();
+					if ($(this).val() != '') {
+						product_type.removeClass('hide');
+					} else {
+						product_type.addClass('hide');
+					}
+				})
+				$('#exportFormBtn').click(function(e) {
+					e.preventDefault();
+					$('.text-danger').remove();
+					if (warehouse.val() == 'all' && harvest.find('select').val() == '') {
+						harvest.find('select').parent().append('<div class="text-danger">Please select harvest</div>');
+					}  else if (warehouse.val() == 'all' && harvest.find('select').val() != '' && product_type.find('select').val() == '') {
+						product_type.find('select').parent().append('<div class="text-danger">Please select product type</div>');
+					} else {
+						$('#exportform').submit();
+						$(this).find('span').text('Processing...');
+					}
+				});
+			});
+			<!--// warehouse_export_customization -->
+			]]></add>
+		</operation>
+
+	</file>
+
+	<file path="admin/controller/extension/module/warehouse.php">
+		<operation>
+			<search><![CDATA[$data['exportreference'] =]]></search>
+			<add position="before"><![CDATA[
+			// warehouse_export_customization
+			// get All harvests
+			$this->load->model('csa/harvests');
+			$data['harvests'] = $this->model_csa_harvests->getHarvestList(array('filter_status' => 1));
+			//-- warehouse_export_customization
+			]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[$finalresult[$i]['optionname'] = "";]]></search>
+			<add position="after"><![CDATA[
+			// warehouse_export_customization
+			$customer_group_price = $this->model_catalog_product->getCustomerGroupPrice($customer_group_id, $value['id']);
+			$customer_group_price = ( !empty($customer_group_price) ) ? $customer_group_price['price'] : 0;
+			// -- warehouse_export_customization
+			]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[$finalresult[$i]['optionname'] = $product_option['name']." > ".$product_option_value['optionname'];]]></search>
+			<add position="after"><![CDATA[
+			// warehouse_export_customization
+			$customer_group_price = $this->model_catalog_product->getCustomerGroupOptions($value['id'], $customer_group_id, $product_option_value['product_option_value_id']);
+			// -- warehouse_export_customization
+			]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[$finalresult[$i]['warehouse_id'] = $warehouse_id;]]></search>
+			<add position="before"><![CDATA[
+			// warehouse_export_customization
+			$finalresult[$i]['product_option_id'] = $product_option_value['product_option_id'];
+			$finalresult[$i]['opt_id'] = $product_option_value['option_id'];
+			$finalresult[$i]['opt_value_id'] = $product_option_value['option_value_id'];
+			$finalresult[$i]['sku'] = $value['sku'];
+			$finalresult[$i]['warehousename'] = $warehouse['name'];
+			$finalresult[$i]['price'] = $value['price'];
+			$mandatory = $value['product_type'] == 3 ? 1 : 0;
+			$finalresult[$i]['mandatory'] = $mandatory;
+			$finalresult[$i]['customer_group_warehouse'] = $customer_group_id;
+			$finalresult[$i]['customer_group_price'] = $customer_group_price;
+			$finalresult[$i]['customer_group_csa'] = !empty($csa) ? $csa['customer_group_id'] : 0;
+			$finalresult[$i]['csa_fee'] = ($value['charge_admin_fee'] && !empty($csa)) ? $csa['csa_admin_fee'] : 0;
+			// -- warehouse_export_customization
+			]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[$finalresult[$i]['optionname'] = $product_option['name']." > ".$product_option_value['optionname'];]]></search>
+			<add><![CDATA[$finalresult[$i]['optionname'] = str_replace(',', '', $product_option['name']) ." > ".str_replace(',', '', $product_option_value['optionname']);]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[array_push($fields,'product_id','productname','warehouse_id','qty');]]></search>
+			<add position="replace"><![CDATA[
+			// warehouse_export_customization
+			$harvest_id = $this->request->post['harvest_id'];
+			$product_type = $this->request->post['product_type'];
+			$this->load->model('catalog/product');
+			if ($warehouse_id == 'all') {
+				$filters = array(
+					'filter_product_type' => $product_type,
+					'filter_harvest_id' => $harvest_id,
+					'sort' => 'pt.product_id',
+					'order' => 'ASC'
+				);
+
+				$warehouses = $this->model_extension_module_warehouse->getwarehouses();
+				array_push($fields, 'product_id', 'productname', 'product_option_id', 'opt_id', 'opt_value_id', 'optionid', 'optionname', 'sku', 'price', 'customer_group_warehouse', 'customer_group_csa', 'customer_group_price', 'csa_fee', 'warehouse_id', 'warehousename', 'mandatory', 'qty');
+				$results = $this->model_extension_module_warehouse->getProductsForCsv($filters);
+				$i = 0;
+				$finalresult = array();
+				foreach($results as $key => $value) {
+					foreach ($warehouses as $warehouse) {
+						$warehouse_id = $warehouse['warehouse_id'];
+						$warehouse = $this->model_extension_module_warehouse->getwarehouse($warehouse_id);
+						$customer_group = $this->model_extension_module_warehouse->getCustomerGroupWarehouse($warehouse_id);
+						$customer_group_id = $customer_group[0];
+						$csa = $this->model_extension_module_warehouse->getCustomerGroupCsa($warehouse_id);
+						$customer_group_price = $this->model_catalog_product->getCustomerGroupPrice($customer_group_id, $value['id']);
+						
+						$mandatory = $value['product_type'] == 3 ? 1 : 0;
+						$finalresult[$i]['product_id'] = $value['id'];
+						$finalresult[$i]['productname'] = str_replace(",", "", $value['productname']);
+						$finalresult[$i]['sku'] = $value['sku'];
+						$finalresult[$i]['optionname'] = "";
+						$finalresult[$i]['optionid'] = "";
+						$finalresult[$i]['product_option_id'] = "";
+						$finalresult[$i]['opt_id'] = "";
+						$finalresult[$i]['opt_value_id'] = "";
+						$finalresult[$i]['warehouse_id'] = $warehouse_id;
+						$finalresult[$i]['warehousename'] = $warehouse['name'];
+						$finalresult[$i]['price'] = $value['price'];
+						$finalresult[$i]['mandatory'] = $mandatory;
+						$finalresult[$i]['customer_group_warehouse'] = $customer_group_id;
+						$finalresult[$i]['customer_group_csa'] = !empty($csa) ? $csa['customer_group_id'] : 0;
+						$finalresult[$i]['csa_fee'] = ($value['charge_admin_fee'] && !empty($csa)) ? $csa['csa_admin_fee'] : 0;
+						$finalresult[$i]['customer_group_price'] = !empty($customer_group_price) ? $customer_group_price['price'] : 0;
+						$finalresult[$i]['qty'] = $this->model_extension_module_warehouse->getQtyByWarehouseProducrId($value['id'],$warehouse_id);
+						$product_options = $this->model_extension_module_warehouse->getProductOptions($value['id']);
+					
+						foreach ($product_options as $product_option) {
+			
+							if (isset($product_option['product_option_value'])) {
+								foreach ($product_option['product_option_value'] as $product_option_value) {
+									++$i;
+									$customer_group_price = $this->model_catalog_product->getCustomerGroupOptions($value['id'], $customer_group_id, $product_option_value['product_option_value_id']);
+									$finalresult[$i]['product_id'] = $value['id'];
+									$finalresult[$i]['productname'] = str_replace(",", "", $value['productname']);
+									$finalresult[$i]['sku'] = $value['sku'];
+									$finalresult[$i]['optionname'] = $product_option['name']." > ".$product_option_value['optionname'];
+									$finalresult[$i]['optionid'] = $product_option_value['product_option_value_id'];
+									$finalresult[$i]['product_option_id'] = $product_option_value['product_option_id'];
+									$finalresult[$i]['opt_id'] = $product_option_value['option_id'];
+									$finalresult[$i]['opt_value_id'] = $product_option_value['option_value_id'];
+									$finalresult[$i]['warehouse_id'] = $warehouse_id;
+									$finalresult[$i]['warehousename'] = $warehouse['name'];
+									$finalresult[$i]['price'] = $value['price'];
+									$finalresult[$i]['mandatory'] = $mandatory;
+									$finalresult[$i]['customer_group_warehouse'] = $customer_group_id;
+									$finalresult[$i]['customer_group_csa'] = !empty($csa) ? $csa['customer_group_id'] : 0;
+									$finalresult[$i]['csa_fee'] = ($value['charge_admin_fee'] && !empty($csa)) ? $csa['csa_admin_fee'] : 0;
+									$finalresult[$i]['customer_group_price'] = $customer_group_price;
+									$finalresult[$i]['qty'] = $this->model_extension_module_warehouse->getQtyByWarehouseProducrIdOptionID($value['id'],$product_option_value['product_option_value_id'],$warehouse_id);
+								}
+							}
+						}
+						++$i;
+					}
+				}
+			} else {
+				array_push($fields, 'product_id', 'productname', 'product_option_id', 'opt_id', 'opt_value_id', 'optionid', 'optionname', 'sku', 'price', 'customer_group_warehouse', 'customer_group_csa', 'customer_group_price', 'csa_fee', 'warehouse_id', 'warehousename', 'mandatory', 'qty');
+				$warehouse = $this->model_extension_module_warehouse->getwarehouse($warehouse_id);
+				$customer_group = $this->model_extension_module_warehouse->getCustomerGroupWarehouse($warehouse_id);
+				$customer_group_id = $customer_group[0];
+				$csa = $this->model_extension_module_warehouse->getCustomerGroupCsa($warehouse_id);
+			// -- warehouse_export_customization
+			]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[$csv->result = $finalresult;]]></search>
+			<add position="before" offset="2"><![CDATA[
+			// warehouse_export_customization
+			} // else end // -- warehouse_export_customization]]></add>
+		</operation>
+
+	</file>
+
+	<file path="admin/model/extension/module/warehouse.php">
+		<operation>
+			<search><![CDATA[public function getProductsForCsv($data = array()) {]]></search>
+			<add position="after" offset="24"><![CDATA[
+			// warehouse_export_customization
+			if (isset($data['filter_product_type']) && $data['filter_product_type'] !== null) {
+				$sql .= " AND pt.product_type IN (" . $data['filter_product_type'] . ")";
+			}
+
+			if (isset($data['filter_harvest_id']) && $data['filter_harvest_id'] !== null) {
+				$sql .= " AND pt.harvest_id = '" . (int)$data['filter_harvest_id'] . "'";
+			}
+			// -- warehouse_export_customization
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[SELECT DISTINCT pt.product_id,p.name AS productname,p.product_id as id]]></search>
+			<add position="replace"><![CDATA[SELECT DISTINCT pt.product_id,p.name AS productname,p.product_id as id, pt.sku, pt.price, pt.product_type, pt.charge_admin_fee]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[public function createTable() {]]></search>
+			<add position="before"><![CDATA[
+			// warehouse_export_customization
+			public function getCustomerGroupWarehouse($warehouse_id) {
+				$customer_group = array();
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "warehouse_to_customergroup WHERE warehouse_id = '" . (int)$warehouse_id . "'");
+				
+				foreach ($query->rows as $key => $value) {
+					$customer_group[] =  $value['customer_group_id'];
+				}
+				
+				return $customer_group;
+			}
+
+			public function getCustomerGroupCsa($warehouse_id) {
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "csa WHERE warehouse_id = '" . (int)$warehouse_id . "'");
+				return $query->row;
+			}
+			// -- warehouse_export_customization
+			]]></add>
+		</operation>
+		<operation>
+			<search index="0"><![CDATA['p.name']]></search>
+			<add position="after"><![CDATA[
+			// warehouse_export_customization
+			,'pt.product_id',
+			// -- warehouse_export_customization
+			]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA['product_option_value_id' => $product_option_value['product_option_value_id'],]]></search>
+			<add position="after"><![CDATA[
+			// warehouse_export_customization
+			'product_option_id'       => $product_option_value['product_option_id'],
+			'option_id'       		  => $product_option_value['option_id'],
+			'option_value_id'         => $product_option_value['option_value_id'],
+			// -- warehouse_export_customization
+			]]></add>
+		</operation>
+		
+	</file>
+
+	<file path="admin/model/catalog/product.php">
+		<operation>
+			<search><![CDATA[public function getTotalProductsByLayoutId($layout_id) {]]></search>
+			<add position="before"><![CDATA[
+			// warehouse_export_customization
+			public function getCustomerGroupPrice($customer_group_id, $product_id) {
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_price WHERE product_id = '" . (int) $product_id . "' AND customer_group_id = '" . (int) $customer_group_id . "'");
+
+				return $query->row;
+			}
+			// -- warehouse_export_customization
+			]]></add>
+		</operation>
+
+	</file>
+
+	<file path="admin/view/template/extension/module/warehouse_order.twig">
+		<operation>
+			<search><![CDATA[<b>{{ warehouse.name }}</b>]]></search>
+			<add position="replace" offset="1"><![CDATA[<b>{{ warehouse.name }}</b>]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[<label>]]></search>
+			<add position="replace"><![CDATA[<label style="display: grid; grid-template-columns: 75% 25%; align-items:center;padding: 0;">]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[style="width:60%;display:inline-block;"]]></search>
+			<add position="replace"><![CDATA[style="display:inline-block;"]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[<div class="checkbox">]]></search>
+			<add position="after"><![CDATA[<div class="checkbox" style="border-bottom: 1px solid #efecec; padding-bottom: 5px; padding-top: 0;">]]></add>
+		</operation>
+	</file>
+
+</modification>

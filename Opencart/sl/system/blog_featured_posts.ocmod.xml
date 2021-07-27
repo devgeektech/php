@@ -1,0 +1,59 @@
+<modification>
+	<name>Add Post type in Featured Posts Module</name>
+	<code>blog_featured_posts</code>
+	<version>1.0.0</version>
+	<author>weismannweb</author>
+	 <file path="admin/view/template/extension/module/d_blog_module_featured_posts.twig">
+        <operation error="skip">
+            <search><![CDATA[<label class="col-sm-2 control-label" for="input-category">{{ entry_posts }}</label>]]></search>
+            <add position="before" offset="1"><![CDATA[
+               <div class="form-group">
+				<label class="col-sm-2 control-label" for="input-category">Type</label>
+				<div class="col-sm-10">
+				   <select name="post_type" id="post_type" class="form-control">
+						<option value="2">News</option>
+						<option value="1">Recipes</option>
+						<option value="0">Posts</option>
+				   </select>
+				   
+				</div>
+			</div>
+            ]]></add>
+        </operation>
+		<operation error="skip">
+            <search><![CDATA[url: '{{ posts_autocomplete }}&filter_title=' + encodeURIComponent(request),]]></search>
+            <add position="replace"><![CDATA[url: '{{ posts_autocomplete }}&filter_title=' + encodeURIComponent(request) + '&type=' + $('#post_type').val() ,]]></add>
+        </operation>
+	</file>
+	
+	 <file path="catalog/model/extension/d_blog_module/post.php">
+        <operation error="skip">
+            <search index="0"><![CDATA[SELECT p.post_id, p.user_id,]]></search>
+            <add position="replace"><![CDATA[SELECT p.post_id, p.user_id, p.type, ]]></add>
+        </operation>
+	</file>
+	<file path="catalog/controller/extension/d_blog_module/post.php">
+        <operation error="skip">
+            <search><![CDATA[$data['views'] = $post['viewed'];]]></search>
+            <add position="before"><![CDATA[				$data['type'] = $post['type'];]]></add>
+        </operation>
+	</file>
+	<file path="catalog/controller/extension/module/d_blog_module_featured_posts.php">
+        <operation error="skip">
+            <search><![CDATA[ if (empty($data['posts'])) {]]></search>
+            <add position="before"><![CDATA[
+			
+			$post_type =  $data['posts'][0]['type'];
+			$data['post_type'] = $post_type;
+			$data['module_name'] = $module_info['name'];
+			if($post_type == '1') {
+				$data['see_all_link'] = $this->url->link('extension/d_blog_module/post/type&type=recipes');
+			} else if($post_type == '2') {
+				$data['see_all_link'] = $this->url->link('extension/d_blog_module/post/type&type=news');
+			} else {
+				$data['see_all_link'] = '';
+			}
+			]]></add>
+        </operation>
+	</file>
+</modification>

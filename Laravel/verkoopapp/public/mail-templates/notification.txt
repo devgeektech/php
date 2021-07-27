@@ -1,0 +1,3 @@
+@title: Hi;
+@content: #CONTENT#;
+@footer: Best Regards,<br>Verkoop Team;

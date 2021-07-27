@@ -1,0 +1,100 @@
+/*<div class="displayTest">
+YELLOW = Default (Resposive not detected)
+RED = Large Screen desktops and laptops: RED<br>
+GREEN = Landscape tablets and medium desktops (iPad mini Landscape & Kindle Fire landscape)<br>
+BLUE = Portrait tablets and small desktops (iPad portrait)<br>
+ORANGE = Landscape phones and portrait tablets: (iPhone landscape / Kindle Fire Portrait)<br>
+GRAY = Portrait phones and smaller devices (iPhone Portrait)<br>
+</div>*/
+
+/* --------------------------------------------------
+RESPONSIVE CSS
+-------------------------------------------------- */
+
+/* Large screen desktops and laptops */
+@media (min-width: 1200px) {
+	/*.displayTest {
+		background-color:red;
+		padding:20px;
+		color:black
+	}*/
+
+}
+
+/* Landscape tablets and medium desktops (iPad mini Landscape & Kindle Fire landscape) */
+@media (min-width: 992px) and (max-width: 1199px) {
+	/*.displayTest {
+		background-color:green;
+		padding:20px;
+		color:black
+	}*/
+
+}
+
+/* Portrait tablets and small desktops (iPad portrait) */
+@media (min-width: 768px) and (max-width: 991px) {
+	/*.displayTest {
+		background-color:blue;
+		padding:20px;
+		color:black
+	}*/
+
+}
+
+/* Landscape phones and portrait tablets: (iPhone landscape / Kindle Fire Portrait) */
+@media (max-width: 767px) {
+	/*.displayTest {
+		background-color:orange;
+		padding:20px;
+		color:black
+	}*/
+	
+.row-eq-height {
+	display: block;
+}
+
+.tagline {
+	margin-bottom: 15px;
+}
+
+.memberLogin {
+	width: 287px;
+}
+.memberLogin a {
+	letter-spacing: 1px;
+}
+
+.accountBlock {
+	text-align: left;	
+	margin-top: 25px;
+}
+
+.page-content-header {
+	min-height: auto;
+}
+
+.intro-heading {
+	padding-top: 25px;
+}
+
+footer,
+.copyright > div:last-child {
+	text-align: center;
+}
+
+.accountBlock {
+	text-align: left;	
+}
+
+}
+
+/* Portrait phones and smaller devices (iPhone Portrait) */
+@media (max-width: 480px) {
+	/*.displayTest {
+		background-color:gray;
+		padding:20px;
+		color:black
+	}*/
+
+}
+/* -------------------------------------------------- */

@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap');
+.headerSiderSection { position: relative; }
+.HeaderTopSection { background-color: rgb(11, 120, 227); padding: 10px 0px; }
+.HeaderTopSection .ContactInfo { list-style: none; padding-left: 0px; margin: 0px; display: inline-block; vertical-align: middle; }
+.HeaderTopSection .ContactInfo li { display: inline-block; margin-right: 20px; vertical-align: middle; }
+.HeaderTopSection .ContactInfo li a { color: #ffffff; text-decoration: none; }
+.HeaderTopSection .ContactInfo li a .Icon { padding-right: 10px; vertical-align: middle; }
+.HeaderTopSection .ContactInfo li a .Icon .fa-envelope-open { font-size: 15px; }
+.HeaderTopSection .ContactInfo li a .Text { font-size: 13px; vertical-align: middle; }
+.HeaderSocialIcons { display: inline-block; padding: 0px; margin: 0px; list-style: none; vertical-align: middle; }
+.HeaderSocialIcons li { margin-right: 7px; display: inline-block; vertical-align: middle; line-height: 100%; }
+.HeaderSocialIcons li a { width: 25px; height: 25px; border: solid 1px white; border-radius: 50px; display: inline-block; text-align: center; position: relative; }
+.HeaderSocialIcons li a i { font-size: 12px; color: #ffffff; position: absolute; top: 50%; left: 55%; transform: translate(-55%, -50%); }
+.HeaderTopSection .SelectLanguageSec { list-style: none; margin: 0px; padding: 0px; text-align: right; }
+.HeaderTopSection .SelectLanguageSec li.LabelText { font-size: 13px; color: #ffffff; margin-right: 3px; }
+.HeaderTopSection .SelectLanguageSec li { display: inline-block; }
+.HeaderTopSection .SelectLanguageSec li a { }
+.HeaderTopSection .SelectLanguageSec li a img { width: 18px; height: 14px; margin-left: 7px; }
+.HeaderMenuSection { background: rgba(0,0,0,0.4); position: absolute; top: 48px; left: auto; right: auto; width: 100%; z-index: 99; -webkit-transition: all 0.5s ease-out; -moz-transition: all 0.5s ease-out; -o-transition: all 0.5s ease-out; transition: all 0.5s ease-out; }
+.HeaderMenuSection .row { align-items: center; }
+.HeaderMenuSection .logo img { width: 235px; }
+.HeaderMenuSection .mainmenuInner { list-style: none; margin: 0px; padding: 0px; }
+.HeaderMenuSection .mainmenuInner li { display: inline-block; }
+.HeaderMenuSection .mainmenuInner li a { font-family: "Lato"; font-size: 26px; color: #ffffff; font-weight: 500; line-height: 100%; text-decoration: none; padding: 10px 22px; -o-transition: .5s; -ms-transition: .5s; -moz-transition: .5s; -webkit-transition: .5s; transition: .5s; }
+.HeaderMenuSection .mainmenuInner li:hover a,
+.HeaderMenuSection .mainmenuInner li:focus a,
+.HeaderMenuSection .mainmenuInner li:active a { color: #0c79e3; }
+.HeaderMenuSection .search { position: relative; font-family: "Lato", Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.7em; color: #888; }
+.HeaderMenuSection .search input { border-radius: 60px; border: none; padding: 2px 20px 2px 20px; width: 100px; opacity: .7; font-family: "Lato"; background: #eee; -o-transition: .5s; -ms-transition: .5s; -moz-transition: .5s; -webkit-transition: .5s; transition: .5s; }
+.HeaderMenuSection .search input:hover,
+.HeaderMenuSection .search input:focus,
+.HeaderMenuSection .search input:active { outline: none; }
+.HeaderMenuSection .search .search-form .search-submit { width: 32px; height: 28px; background: transparent; position: absolute; top: 0; right: 0; border: none; text-indent: -9999px; padding: 0px; }
+.HeaderMenuSection .search .search-form:before { content: '\f002'; font-family: FontAwesome; color: #0c79e3; position: absolute; top: 0; right: 0; font-size: 15px; width: 32px; height: 26px; line-height: 26px; text-align: center; cursor: pointer; }
+.HeaderMenuSection .mainmenu { text-align: center; }
+.SliderHomeBanner.owl-carousel .owl-item { height: 100vh; }
+.SliderHomeBanner.owl-carousel .owl-nav { position: absolute; top: 50%; transform: translate( 0, -50%); width: 100%; }
+.SliderHomeBanner.owl-carousel .owl-nav .owl-prev { position: absolute; left: 25px; }
+.SliderHomeBanner.owl-carousel .owl-nav .owl-prev:hover,
+.SliderHomeBanner.owl-carousel .owl-nav .owl-prev:focus,
+.SliderHomeBanner.owl-carousel .owl-nav .owl-prev:active { outline: none; }
+.SliderHomeBanner.owl-carousel .owl-nav .owl-next { position: absolute; right: 25px; }
+.SliderHomeBanner.owl-carousel .owl-nav .owl-next:hover,
+.SliderHomeBanner.owl-carousel .owl-nav .owl-next:focus,
+.SliderHomeBanner.owl-carousel .owl-nav .owl-next:active { outline: none; }
+.SliderHomeBanner.owl-carousel .owl-dots { display: none; }
+.EqualSecPadTop { padding-top: 90px; }
+.AboutUsSec .EqualStyleBothSec { }
+.AboutUsSec .EqualStyleBothSec h1 { color: #121212; font-family: "Lato"; font-size: 25px; font-weight: bold; margin: 0px; }
+.AboutUsSec .DividerAboutSec { background: #e1e1e1; height: 1px; margin: 20px 0 20px 0; }
+.AboutUsSec .EqualStyleBothSec p { color: #121212; margin: 0 0 10px; font-family: "Lato", Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.7em; }
+.AboutUsSec .EqualStyleBothSec p:last-child { margin-bottom: 0px; }
+.AboutUsSec .DividerAboutSec span { background-color: #0c79e3; width: 30px; height: 1px; display: block; margin: 0px auto; }
+.EqualSecHeading { text-align: center; }
+.EqualSecHeading h2 { color: #121212; font-family: "Lato"; font-size: 25px; font-weight: bold; margin: 0px; }
+.EqualSecHeading .EqualSecDivider { background: #e1e1e1; height: 1px; margin: 20px 0 20px 0; }
+.EqualSecHeading .EqualSecDivider span { margin: 0 auto; background-color: #0c79e3; width: 30px; height: 1px; display: block; }
+.ServicesSec2 { padding-top: 90px; padding-bottom: 90px; background-attachment: fixed; }
+.ServicesSec2 .ServicesSectionTextDetails { background-color: rgba(255, 255, 255, 0.87); padding: 25px 20px; border-radius: 3px; width: 40%; margin: 50px 0px 50px -5%; }
+.ServicesSec2 .ServicesSectionTextDetails p { color: #121212; line-height: 185%; margin-bottom: 10px; margin: 0 0 10px; font-family: "Lato", Arial, Helvetica, sans-serif; font-size: 14px; }
+.WhyShouldSecmain .TopiconSec { background-color: #0b78e3; width: 100%; height: 170px; text-align: center; line-height: 170px; }
+.WhyShouldSecmain .TopiconSec .TruckImg { width: 150px; }
+.WhyShouldSecmain .TopiconSec .usericon { width: 54px; }
+.WhyShouldSecmain .TopiconSec .checkmark { width: 52px; }
+.WhyShouldSecmain .TopiconSec .badgeicon { width: 54px; }
+.WhyShouldSecmain .BottomtextSec { background-color: #f4f4f4; padding: 10px 10px; text-align: center; margin-top: 20px; min-height: 250px; }
+.WhyShouldSecmain .BottomtextSec h3 { color: #0a77e3; font-family: "Lato"; margin: 20px 0px 15px; font-size: 18px; font-weight: bold; line-height: 28px; }
+.WhyShouldSecmain .BottomtextSec p { color: #121212; font-family: "Lato"; margin: 0 0 10px; font-size: 14px; line-height: 1.7em; }
+.ContactBgBanner .col-md-4:first-child .EqualcontactInfoSec,
+.ContactBgBanner .col-md-4:nth-child(2) .EqualcontactInfoSec,
+.ContactBgBanner .col-md-4:nth-child(3) .EqualcontactInfoSec { margin-top: 0px; }
+.EqualcontactInfoSec { text-align: center; background: #ffffff; padding: 30px 0px; border-radius: 5px; width: 320px; margin: 0px auto; margin-top: 35px; }
+.EqualcontactInfoSec .userimg { width: 170px; }
+.EqualcontactInfoSec h2 { font-family: "Lato"; font-size: 20px; font-weight: bold; text-transform: uppercase; color: #1c1c1c; margin: 20px 0 45px; }
+.EqualcontactInfoSec .userinfodetails { text-align: left; padding: 0px 18%; margin: 0px auto; }
+.EqualcontactInfoSec .userinfodetails li { display: inline-block; width: 100%; margin-bottom: 8px; }
+.EqualcontactInfoSec .userinfodetails li .icon { display: inline-block; width: 15%; margin-right: 10px; }
+.EqualcontactInfoSec .userinfodetails li .Title { font-family: "Lato"; text-align: center; font-size: 20px; color: #1c1c1c; font-weight: 500; margin: 0px; }
+.EqualcontactInfoSec .userinfodetails li .icon .img-whatsapp { width: 30px; }
+.EqualcontactInfoSec .userinfodetails li .icon .img-email { width: 30px; }
+.EqualcontactInfoSec .userinfodetails li .text { display: inline-block; width: 80%; color: #888; font-family: "Lato", Arial, Helvetica, sans-serif; font-size: 14px; }
+.EqualSecPadTop.ContactBgBanner { padding-top: 90px; padding-bottom: 90px; }
+.EqualSecPadTop.ContactBgBanner { padding-top: 90px; padding-bottom: 90px; background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+.FooterContactInfo .AreaLocation { display: inline-block; width: 100%; }
+.FooterContactInfo .AreaLocation .lefttext { display: inline-flex; width: auto; vertical-align: middle; font-family: "Lato"; font-size: 16px; font-weight: bold; color: #ffffff; margin-right: 12px; }
+.FooterContactInfo .AreaLocation .RightImg { display: inline-flex; width: auto; text-align: right; vertical-align: middle; height: 100%; }
+.FooterContactInfo .AreaLocation .RightImg img { width: 32px; height: 19px; }
+.FooterContactInfo .SiteAddress { font-family: "Lato"; font-size: 14px; font-weight: 400; color: #ffffff; margin: 7px 0; line-height: 165%; }
+.FooterContactInfo .FooterMobEmailText { padding-left: 0px; list-style: none; margin: 0px; padding-top: 13px; }
+.FooterContactInfo .FooterMobEmailText li { display: inline-block; width: 100%; margin-bottom: 5px; }
+.FooterContactInfo .FooterMobEmailText li:last-child { margin-bottom: 0px; }
+.FooterContactInfo .FooterMobEmailText li .LeftImg { display: inline-block; width: 12%; vertical-align: middle; }
+.FooterContactInfo .FooterMobEmailText li .LeftImg img { width: 22px; }
+.FooterContactInfo .FooterMobEmailText li .RightText { display: inline-block; width: 85%; vertical-align: middle; font-family: "Lato"; font-size: 14px; color: #ffffff; font-weight: bold; }
+.FooterBgColor { background-color: #475358; padding: 60px 0; }
+.Footermenu { padding: 0px; list-style: none; margin: 0px; }
+.Footermenu li { }
+.Footermenu li a { color: #ffffff; font-family: "Lato", Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.7em; }
+.Footermenu li a i { color: #888; margin-right: 7px; }
+.FooterSocialIcon { list-style: none; padding: 0px; margin: 0px 0 10px; }
+.FooterSocialIcon li { display: inline-block; }
+.FooterSocialIcon li a { background: #0b78e3; width: 32px; height: 32px; display: inline-block; position: relative; font-size: 16px; }
+.FooterSocialIcon li a i { color: #ffffff; position: absolute; top: 50%; left: 55%; transform: translate(-55%, -50%); }
+.CopyRightText { color: #ffffff; margin-bottom: 0px; font-family: "Lato", Arial, Helvetica, sans-serif; font-size: 14px; }
+.FooterBgColor .row { align-items: flex-end; }
+.HeaderMenuSection.animated-header { background-color: #ffffff; position: fixed; top: 0px; left: 0px; right: 0px; width: 100%; }
+.HeaderMenuSection.animated-header .logo .logo-2 { display: block; }
+.HeaderMenuSection.animated-header .logo-1 { display: none; }
+.HeaderMenuSection .logo .logo-2 { display: none; }
+.HeaderMenuSection.animated-header .mainmenuInner li a { color: #555555; }
+#GetAQuotePopUp { width: 760px; padding: 0px; overflow-x: hidden; cursor: inherit;/* box-shadow: 0px 19px 15px -22px #ffffff; */ }
+.GetAQuotePopUpInner { display: flex; align-items: center; }
+#GetAQuotePopUp .LeftBannerimage { height: 640px; background-size: cover; background-repeat: no-repeat; background-position: center center; }
+.RightFormText { padding: 0px 20px 0px 20px; }
+.RightFormText h2 { font-size: 20px; text-transform: uppercase; font-weight: 800; text-align: center; color: #121212; }
+.RightFormText .EqualFieldStyle { margin-top: 15px; }
+.RightFormText .EqualFieldStyle label { display: block; width: 100%; color: #2b2b2b; font-weight: bold; font-size: 14px; }
+.RightFormText .EqualFieldStyle input { display: block; width: 100%; border-radius: 5px; border: none; padding: 5px 10px; background-color: white; box-shadow: 0px 2px 0px 0px #f1f1f1; border: solid 1px #e8e8e8; }
+.RightFormText .EqualFieldStyle input:hover,
+.RightFormText .EqualFieldStyle input:focus,
+.RightFormText .EqualFieldStyle input:active { outline: none; }
+.RightFormText .EqualFieldStyle textarea { display: block; width: 100%; border-radius: 5px; border: none; padding: 5px 10px; background-color: white; box-shadow: 0px 2px 0px 0px #f1f1f1; border: solid 1px #e8e8e8; }
+.RightFormText .EqualFieldStyle textarea:hover,
+.RightFormText .EqualFieldStyle textarea:focus,
+.RightFormText .EqualFieldStyle textarea:active { outline: none; }
+.EqualFieldStyle.SubmitBtn { width: 130px; margin: 0px auto; max-width: 100%; position: relative; }
+.EqualFieldStyle.SubmitBtn input[type="Submit"] { background-color: #0b78e3; color: #ffffff; border: none; width: 130px; margin: 20px auto 0px; border-radius: 5px; box-shadow: none; }
+.EqualFieldStyle.SubmitBtn i { position: absolute; top: 9px; right: 10px; font-size: 16px; color: #ffffff; }
+.RightFormText .responsemsg { text-align: center; display: block; color: #006b1b; }
+.FixedEnvelopeIcon { position: fixed; right: 0px; top: 40%; background-color: #0b78e3; color: #ffffff; width: 40px; height: 40px; text-align: center; line-height: 40px; border-top-left-radius: 10px; font-size: 15px; z-index: 999; }
+.FixedEnvelopeIcon:hover,
+.FixedEnvelopeIcon:focus,
+.FixedEnvelopeIcon:active { color: #ffffff; }
+.ShowMoreAboutBtn { background: #0b78e3; border: none; line-height: 100%; color: #ffffff; padding: 4px 6px; border-radius: 2px; }
+.ShowLessAboutBtn { background: #0b78e3; border: none; line-height: 100%; color: #ffffff; padding: 4px 6px; border-radius: 2px; }
+.ShowMoreServicesBtn { background: #0b78e3; border: none; line-height: 100%; color: #ffffff; padding: 4px 6px; border-radius: 2px; }
+.ShowLessServicesBtn { background: #0b78e3; border: none; line-height: 100%; color: #ffffff; padding: 4px 6px; border-radius: 2px; }
+.ShowMoreWhyShouldBtn1 { background: #0b78e3; border: none; line-height: 100%; color: #ffffff; padding: 4px 6px; border-radius: 2px; }
+.ShowLessWhyShouldBtn1 { background: #0b78e3; border: none; line-height: 100%; color: #ffffff; padding: 4px 6px; border-radius: 2px; }
+.ShowMoreWhyShouldBtn2 { background: #0b78e3; border: none; line-height: 100%; color: #ffffff; padding: 4px 6px; border-radius: 2px; }
+.ShowLessWhyShouldBtn2 { background: #0b78e3; border: none; line-height: 100%; color: #ffffff; padding: 4px 6px; border-radius: 2px; }
+.ShowMoreWhyShouldBtn4 { background: #0b78e3; border: none; line-height: 100%; color: #ffffff; padding: 4px 6px; border-radius: 2px; }
+.ShowLessWhyShouldBtn4 { background: #0b78e3; border: none; line-height: 100%; color: #ffffff; padding: 4px 6px; border-radius: 2px; }
+.SliderHomeBanner.owl-carousel .owl-item { height: 600px; }
+.ForMobilePartners { display: none; }
+.HeaderMenuSection.animated-header .mainmenuInner li a.active { color: #0c79e3; }
+.ForDesktopPartners { margin-bottom: 90px; }
+#back-to-top { background-color: #0c79e3; color: #fff; width: 32px; height: 32px; display: inline-block; text-align: center; position: fixed; top: 89%; right: 40px; font-size: 23px; line-height: 28px; border-radius: 2px; }
+.HeaderMenuSection .logo {
+    margin: 3px 0px;
+}
+.ForMobCarousel {
+    display: none !important;
+}
+@media only screen and (min-width: 992px) {
+#MobileToggleMenu { display: none; }
+}
+
+@media only screen and (max-width: 991px) {
+/*.animated-header { display: none; }*/
+.HeaderMenuSection.animated-header { position: inherit; }
+.HeaderMenuSection { background: #ffffff; position: inherit; top: 0px; }
+#GetAQuotePopUp { max-width: 90%; width: 100%; }
+#GetAQuotePopUp .LeftBannerimage { height: inherit; }
+.RightFormText { padding: 25px; }
+.HeaderMenuSection .logo .logo-1 { display: none; }
+.HeaderMenuSection .logo .logo-2 { display: block; width: 200px; }
+#GetAQuotePopUp .LeftBannerimage { height: 645px; }
+#MobileToggleMenu { position: relative; right: 0px; margin-top: -50px; float: right; background-color: #0c79e3; color: #fff; width: 35px; height: 35px; text-align: center; border-radius: 2px; font-size: 20px; line-height: 34px; }
+#HeaderMenu { display: none; margin-top: 8px; margin-bottom: 20px; }
+.HeaderMenuSection .mainmenuInner li { display: block; text-align: left; border-bottom: solid 1px #eee; -o-transition: .5s; -ms-transition: .5s; -moz-transition: .5s; -webkit-transition: .5s; transition: .5s; }
+.HeaderMenuSection .mainmenuInner li:hover,
+.HeaderMenuSection .mainmenuInner li:focus,
+.HeaderMenuSection .mainmenuInner li:active { background-color: #0c79e3; }
+.HeaderMenuSection .mainmenuInner li:hover a,
+.HeaderMenuSection .mainmenuInner li:focus a,
+.HeaderMenuSection .mainmenuInner li:active a { color: #ffffff; }
+.HeaderMenuSection .mainmenuInner li a { font-size: 20px; color: #000000; display: inline-block; padding: 10px 22px 8px 22px; }
+.HeaderMenuSection .logo { margin: 3px 0px; }
+.HeaderSocialIcons {     display: inline-block;
+    text-align: right;
+    margin-bottom: 5px;
+    margin-left: 15px;
+}
+.HeaderTopSection .ContactInfo { display: inline-block; text-align: right; margin-bottom: 10px; }
+.HeaderTopSection .ContactInfo li:last-child { margin-right: 0px; }
+.SliderHomeBanner.owl-carousel .owl-item { height: 500px; }
+.SliderHomeBanner.owl-carousel .owl-item img { height: 100vh; object-fit: cover; }
+.SliderHomeBanner.owl-carousel .owl-item video { height: 100vh; object-fit: cover; }
+.HeaderTopSection .ContactInfo li { margin-right: 0px; }
+.ServicesSec2 .ServicesSectionTextDetails { padding: 25px 20px; background-color: rgba(8, 8, 8, 0.31); width: 100%; margin: 0px 0px 0px 0%; }
+.ServicesSec2 .ServicesSectionTextDetails p { color: #ffffff; }
+.ServicesSec2 { padding-top: 45px; padding-bottom: 45px; background-position: center center; }
+.EqualSecHeading h2 { font-size: 20px; }
+.ForMobilePartners .row .col-6 { margin-bottom: 30px; }
+.WhyShouldSecmainMob .row .col-6:nth-child(3),
+.WhyShouldSecmainMob .row .col-6:nth-child(4) { margin-bottom: 0px; }
+.ForDesktopPartners { display: none; }
+.ForMobilePartners { display: block; }
+.EqualcontactInfoSec { max-width: 100%; }
+.FooterBgColor { padding: 35px 0; }
+.HeaderSocialIcons li {
+    margin-right: 0px;
+}
+.Footermenu li a {
+    text-decoration: none;
+}
+.HeaderTopSection .row .col-12 {
+    text-align: right; 
+}
+}
+
+@media only screen and (max-width: 767px) {
+#GetAQuotePopUp .LeftBannerimage { height: inherit; display: none; }
+.HeaderMenuSection .mainmenuInner li a { font-size: 18px; }
+.EqualSecPadTop { padding-top: 45px; }
+.AboutUsSec .EqualStyleBothSec h1 { font-size: 20px; text-align: center; }
+.AboutUsSec .EqualStyleBothSec p { margin: 0 0 5px; }
+.AboutUsSec .OurTeamText.EqualStyleBothSec h1 { margin-top: 20px; }
+.WhyShouldSecmain .TopiconSec .TruckImg { width: 120px; }
+.WhyShouldSecmain .TopiconSec .usericon { width: 45px; }
+.WhyShouldSecmain .TopiconSec .checkmark { width: 45px; }
+.WhyShouldSecmain .TopiconSec .badgeicon { width: 38px; }
+.WhyShouldSecmain .BottomtextSec { min-height: inherit; }
+.EqualSecPadTop.ContactBgBanner { padding-top: 45px; padding-bottom: 45px; }
+.EqualSecPadTop.ContactBgBanner .row .col-6:nth-child(1) .EqualcontactInfoSec,
+.EqualSecPadTop.ContactBgBanner .row .col-6:nth-child(2) .EqualcontactInfoSec { margin-top: 0px; }
+.EqualcontactInfoSec .userimg { width: 95px; }
+.EqualcontactInfoSec h2 { font-size: 16px; margin: 20px 0 20px; }
+.EqualcontactInfoSec .userinfodetails { padding: 0px 5%; }
+.EqualcontactInfoSec .userinfodetails li .icon .img-whatsapp { width: 24px; }
+.EqualcontactInfoSec .userinfodetails li .icon .img-email { width: 24px; }
+.EqualcontactInfoSec .userinfodetails li .icon { display: block; width: 100%; vertical-align: top; }
+.EqualcontactInfoSec .userinfodetails li { display: block; width: 100%; margin-bottom: 8px; text-align: center; }
+.EqualcontactInfoSec .userinfodetails li .text { word-break: break-all; display: block; width: 100%; }
+.FooterSecMain .row .col-12 { margin-bottom: 25px; }
+.FooterSecMain .row .col-12:last-child { margin-bottom: 0px; }
+.FooterContactInfo .FooterMobEmailText { padding-top: 3px; }
+.ForMobCarousel {
+    display: block !important;
+}
+.ForDesktopCarousel {
+    display: none !important;
+}
+.SliderHomeBanner.owl-carousel .owl-item video { object-position: center; }
+}
+
+@media only screen and (max-width: 380px) {
+.WhyShouldSecmain .BottomtextSec h3 { font-size: 14px; }
+}

@@ -1,0 +1,1 @@
+<?php class ControllerExtensionModuleWarehouse extends Controller{public function stockupdate(){if($this->config->get('module_warehouse_automaticstockreduce')){$this->load->model('extension/module/warehouse');$this->model_extension_module_warehouse->reduceStock();}}}

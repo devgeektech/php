@@ -1,0 +1,1 @@
+<?php include (DIR_APPLICATION.'language/ru-ru/extension/d_seo_module_manager/d_visual_designer_landing.php');

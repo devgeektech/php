@@ -1,0 +1,27 @@
+<style>
+    .vd-social-icon-container > .vd-social-icon {
+        width: 47px;
+        height: 47px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        float: left;
+        margin-right: 3px;
+    }
+
+    .vd-social-icon-container > .vd-social-icon:hover {
+        text-decoration: none;
+    }
+
+    .vd-social-icon-container > .vd-social-icon > i {
+        font-size: 25px;
+    }
+</style>
+<div class="vd-social-icon-container {{id}}">
+    {% for key, value in setting.global.icons %}
+        {% if value.link %}
+            <a href="{{ value.link }}" target="_blank" class="vd-social-icon {key}" style="background-color: {{ value.background }}; color: {{ value.color }}"><i class="{{value.icon}}" aria-hidden="true" style="font-size:{{value.size}};"></i></a>
+        {% endif %}
+    {% endfor %}
+</div>

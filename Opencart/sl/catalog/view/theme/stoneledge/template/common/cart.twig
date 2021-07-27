@@ -1,0 +1,40 @@
+<div class="btn-group btn-block">
+    <div class="block-heading">Your Shopping Cart</div>
+    {% if products or vouchers %}
+    <ul class="cart-list">
+    {% for product in products %}
+    
+    <li class="cart-list-item">
+        <form action="{{ cart_action }}" method="post" enctype="multipart/form-data">
+        <h4>{{ product.name }} <button type="button" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger close_btn" onclick="cart.remove('{{ product.cart_id }}');"><i class="fa fa-times-circle"></i></button></h4>
+        <p>{{ product.model }}</p>
+        <div class="form-group">
+        <input type="text" name="quantity[{{ product.cart_id }}]" value="{{ product.quantity }}" size="1" class="form-control" />
+        <strong>{{ product.total }}</strong>
+      <input type="submit" data-toggle="tooltip" title="{{ button_update }}" value="Update" style="background: none; border: none; padding: 0px; text-decoration: underline; float: right; padding-top: 7px;">
+        </div>
+    </form>
+    </li>
+           
+    {% endfor %}
+</ul>
+
+    <div class="cartTotal">
+        {% for total in totals %}
+        <p class="{{ total.title }}"><span>{{ total.title }}:</span> {{ total.text }}</p>
+    {% endfor %}
+    </div>
+    <br/>
+    <a href="{{ checkout }}" class="primary-cta" style="width: 100%;">{{ button_checkout }}</a><br/><br/>
+    <a href="{{ continue }}" class="primary-cta" style="width: 100%;">{{ button_shopping }}</a>
+    {% else %}
+      <p class="text-center">{{ text_empty }}</p>
+    {% endif %}
+
+</div>
+<script type="text/javascript"><!--
+$('#cart .close_btn').on('click', function(){
+    //$('#cart').load('index.php?route=common/cart/info');
+    window.location.reload();
+});
+//--></script> 

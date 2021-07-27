@@ -1,0 +1,1032 @@
+<modification>
+	<name>Multiple Warehouse Stock Management</name>
+	<version>5.1b</version>
+	<link>https://www.cartbinder.com/store/</link>
+	<author>CartBinder</author>
+	<code>mwsm</code>
+	<file path="admin/controller/common/column_left.php">
+		<operation>
+			<search><![CDATA[if ($system) {]]></search>
+			<add position="before"><![CDATA[
+        if ($this->user->hasPermission('access', 'extension/module/warehouse')) {
+        $this->load->language("extension/module/warehouse_links");
+					$data['menus'][] = array(
+					    'id'       => 'menu-warehouse',
+						'name'	   => $this->language->get('text_warehouse'),
+						'icon'	   => 'fa-industry', 
+						'href'     => $this->url->link('extension/module/warehouse', 'user_token=' . $this->session->data['user_token'], true),
+						'children' => array()
+					);
+        } 
+				]]></add>
+		</operation>
+	</file>
+<file path="admin/controller/catalog/product.php">
+  <operation>
+    <search><![CDATA[if (isset($this->request->post['price'])) {]]>
+    </search>
+    <add position="before"><![CDATA[
+    $this->load->model('extension/module/warehouse');
+   $this->load->language("extension/module/warehouse_links");
+	$data['warehouses'] = $this->model_extension_module_warehouse->getwarehouses();
+
+	if (isset($this->request->post['product_warehouse'])) {
+		$data['product_warehouse'] = $this->request->post['product_warehouse'];
+	} elseif (isset($this->request->get['product_id'])) {
+		$data['product_warehouse'] = $this->model_extension_module_warehouse->getGroupsById($this->request->get['product_id']);
+	} else {
+		$data['product_warehouse'] = array();
+	}
+    ]]>
+    </add>
+  </operation>
+  <operation>
+    <search index="0"><![CDATA[$product_option_value_data[] = array(]]>
+    </search>
+    <add position="after"><![CDATA[
+    'warehouse'               => $product_option_value['warehouse'],
+    ]]>
+    </add>
+  </operation>
+</file>
+<file path="admin/model/catalog/product.php">
+	<operation>
+    <search><![CDATA[if (isset($data['product_store'])) {]]>
+    </search>
+    <add position="before"><![CDATA[
+      $warehouses = array();
+      if(isset($data['product_warehouse'])) {
+        $warehouses = $data['product_warehouse'];
+      }
+      $this->load->model("extension/module/warehouse");
+      $this->model_extension_module_warehouse->saveProductWarehouse($warehouses,$product_id);
+  ]]></add>
+  </operation>
+  <operation>
+    <search><![CDATA[$product_option_value_data[] = array(]]>
+    </search>
+    <add position="before"><![CDATA[
+    	$this->load->model('extension/module/warehouse');
+		$product_option_warehouse = $this->model_extension_module_warehouse->getOptionsGroupsById($product_option_value['product_option_value_id']);
+  ]]></add>
+  </operation>
+  <operation>
+    <search><![CDATA[$product_option_value_data[] = array(]]>
+    </search>
+    <add position="after"><![CDATA[
+    	'warehouse'               => $product_option_warehouse,
+  ]]></add>
+  </operation>
+   <operation>
+  <search><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_id = '"]]>
+  </search>
+  <add position="after"><![CDATA[
+    if(isset($product_option_value['warehouse']) && !empty($product_option_value['warehouse'])) {
+      $product_optionvalue_id = $this->db->getLastId();
+      $this->load->model('extension/module/warehouse');
+      $this->model_extension_module_warehouse->saveProductOptionWarehouse($product_option_value['warehouse'], $product_id, $product_optionvalue_id);
+    }
+  ]]></add>
+  </operation>
+  <operation>
+  <search><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_value_id = '"]]>
+  </search>
+  <add position="after"><![CDATA[
+    if(isset($product_option_value['warehouse']) && !empty($product_option_value['warehouse'])) {
+      $product_optionvalue_id = $this->db->getLastId();
+      $this->load->model('extension/module/warehouse');
+      $this->model_extension_module_warehouse->saveProductOptionWarehouse($product_option_value['warehouse'], $product_id, $product_optionvalue_id);
+    }
+  ]]></add>
+  </operation>
+</file>
+<file path="admin/view/template/catalog/product_form.twig">
+	<operation>
+  <search index="16"><![CDATA[<div class="col-sm-10">]]>
+  </search>
+  <add position="replace"><![CDATA[
+  	<div class="col-sm-3">
+  ]]></add>
+  </operation>
+  <operation>
+    <search><![CDATA[<input type="text" name="quantity"]]>
+    </search>
+    <add position="after" offset="2"><![CDATA[
+    <script>
+      function uncheckallboxes() {
+          var sumqty = 0;
+          $("#tab-data input.case").each(function(){
+             if($(this).val()) {
+              sumqty = parseInt(sumqty) + parseInt($(this).val());
+             }
+          });
+          $('input[name=quantity]').val(sumqty);
+      }
+      function checkallboxes() {
+          $("#tab-data input.case").each(function(){
+             $(this).val(0);    
+          });
+      }
+    </script>
+    <div class="col-sm-2">
+    </div>
+			<div class="col-sm-10 warehouse_qty">
+          <div class="well well-sm" style="min-height:200px; overflow: auto;">
+            <label class="col-sm-12 control-label" for="input-warehouse" style="text-align:left;">{{ entry_warehouse }}</label>
+            {% for key,warehouse  in warehouses %}
+            <div class="checkbox">
+              <label style="display: grid; grid-template-columns: 40% 60%; align-items:center;">
+                 {% if product_warehouse[warehouse.warehouse_id] is defined %}
+                <b>{{ warehouse.name }}</b>
+                <input type="text" placeholder="{{ entry_warehouse_qty }}" name="product_warehouse[{{ warehouse.warehouse_id }}][qty]" value="{{ product_warehouse[warehouse.warehouse_id] }}" class="form-control case" style="width:100%;display:inline-block;" />
+                {% else %}
+                <b>{{ warehouse.name }}</b>
+                 <input type="text" placeholder="{{ entry_warehouse_qty }}" name="product_warehouse[{{ warehouse.warehouse_id }}][qty]" value="0" class="form-control case" style="width:100%;display:inline-block;" />
+                {% endif %}
+              </label>
+            </div>
+            <hr style="border: 1px solid #efecec;margin: 9px 0 0 0;"/>
+            {% endfor %}
+          </div>
+          <div>
+            <label onclick='checkallboxes();' class="btn btn-primary"> {{ text_reset }} </label>
+            <label onclick='uncheckallboxes();' class="btn btn-primary"> {{ text_sumup }} </label>
+          </div>
+      </div>
+        ]]>
+    </add>
+  </operation>
+  <operation>
+    <search><![CDATA[<td class="text-right"><input type="text" name="product_option[{{ option_row }}][product_option_value][{{ option_value_row }}][quantity]" value="{{ product_option_value.quantity }}" placeholder="{{ entry_quantity }}" class="form-control"/></td>]]>
+    </search>
+    <add position="replace"><![CDATA[
+   <td class="text-right"><input type="text" name="product_option[{{ option_row }}][product_option_value][{{ option_value_row }}][quantity]" value="{{ product_option_value.quantity }}" placeholder="{{ entry_quantity }}" class="form-control" />
+   <div class="warehouse_qty">
+    <br><table class="table table-bordered text-left"><thead>
+  {% for key,warehouse in warehouses %}
+      {% if product_option_value.warehouse is not empty and product_option_value.warehouse[warehouse.warehouse_id] is defined %}
+        <tr>
+        <td style="width:40%;">
+        <b>{{ warehouse.name }}</b>
+        &nbsp &nbsp
+      </td>
+      <td>
+        <input type="text" placeholder="{{ entry_warehouse_qty }}" name="product_option[{{ option_row }}][product_option_value][{{ option_value_row }}][warehouse][{{ warehouse.warehouse_id }}][qty]" value="{{ product_option_value.warehouse[warehouse.warehouse_id] }}" class="form-control case" />
+      </td>
+    </tr>
+        {% else %}
+        <tr>
+         <td style="width:40%;">
+        <b>{{ warehouse.name }}</b>
+        &nbsp &nbsp
+        </td>
+      <td>
+         <input type="text" placeholder="{{ entry_warehouse_qty }}" name="product_option[{{ option_row }}][product_option_value][{{ option_value_row }}][warehouse][{{ warehouse.warehouse_id }}][qty]" value="0" class="form-control case" />
+         </td>
+         </tr>
+        {% endif %}
+    {% endfor %}
+  </thead></table>
+  </div>
+</td>
+        ]]>
+    </add>
+  </operation>
+  <operation>
+    <search><![CDATA[html += '  <td class="text-right"><input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][quantity]" value="" placeholder="{{ entry_quantity }}" class="form-control" /></td>';]]>
+    </search>
+    <add position="replace"><![CDATA[
+    html += '  <td class="text-right"><input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][quantity]" value="" placeholder="{{ entry_quantity }}" class="form-control" />';
+    html += '<div class="warehouse_qty">';
+    html += '<br><table class="table table-bordered text-left"><thead>';
+   {% for key,warehouse in warehouses %}
+        html += '<tr><td style="width:40%;"><b>{{ warehouse.name }}</b> &nbsp; &nbsp;';
+        html += '</td><td><input type="text" placeholder="{{ entry_warehouse_qty }}" name="product_option. + option_row + [product_option_value]. + option_value_row + [warehouse][{{ warehouse["warehouse_id"] }}][qty]" value="0" class="form-control case" /></td></tr>';
+    {% endfor %}
+  html += '</thead></table>';
+  html += '</div>';
+  html += '</td>';
+        ]]>
+    </add>
+  </operation>
+</file>
+<file path="admin/controller/customer/customer_group.php">
+  <operation>
+    <search><![CDATA[if (isset($this->request->post['sort_order'])) {]]>
+    </search>
+    <add position="before"><![CDATA[
+    $this->load->model("extension/module/warehouse");
+    $this->load->language("extension/module/warehouse_links");
+    $data['warehouses'] = $this->model_extension_module_warehouse->getwarehouses();
+
+    if (isset($this->request->post['cg_warehouse'])) {
+      $data['cg_warehouse'] = $this->request->post['cg_warehouse'];
+    } elseif (!empty($customer_group_info)) {
+      $data['cg_warehouse'] = $this->model_extension_module_warehouse->getWarehouseCustomerGroup($customer_group_info['customer_group_id']);
+    } else {
+      $data['cg_warehouse'] = array();
+    }
+    ]]>
+    </add>
+  </operation>
+</file>
+<file path="admin/model/customer/customer_group.php">
+  <operation>
+    <search><![CDATA[foreach ($data['customer_group_description'] as $language_id => $value) {]]>
+    </search>
+    <add position="before"><![CDATA[
+    $this->load->model("extension/module/warehouse");
+    $this->model_extension_module_warehouse->saveWarehouseCustomerGroup($customer_group_id,$data);
+    ]]>
+    </add>
+  </operation>
+</file>
+<file path="admin/view/template/customer/customer_group_form.twig">
+  <operation>
+    <search><![CDATA[<label class="col-sm-2 control-label" for="input-sort-order">{{ entry_sort_order }}</label>]]>
+    </search>
+    <add position="before"><![CDATA[
+    <label class="col-sm-2 control-label" for="input-warehouse">{{ text_select_warehouse }}</label>
+      <div class="col-sm-10">
+        {% for key,warehouse in warehouses %} 
+        <div class="checkbox">
+          <label>
+             {% if (warehouse['warehouse_id'] in  cg_warehouse) %} 
+            <input type="checkbox" name="cg_warehouse[]" value="{{ warehouse['warehouse_id'] }}" checked="checked" />
+            {% else %} 
+            <input type="checkbox" name="cg_warehouse[]" value="{{ warehouse['warehouse_id'] }}" />
+            {% endif %} 
+            {{ warehouse['name'] }} 
+          </label>
+        </div>
+        {% endfor %}              
+      </div>
+    </div>
+    <div class="form-group">
+    ]]>
+    </add>
+  </operation>
+</file>
+<file path="admin/controller/sale/order.php">
+    <operation>
+      <search><![CDATA[$data['accept_language'] = $order_info['accept_language'];]]></search>
+      <add position="before"><![CDATA[
+        $this->load->language("extension/module/warehouse_links");
+        $data['warehouse'] = $this->load->controller("extension/module/warehouse/orderStock");
+        ]]></add>
+    </operation>
+    <operation>
+      <search index="2"><![CDATA[foreach ($products as $product) {]]></search>
+      <add position="before"><![CDATA[
+        if($this->config->get('module_warehouse_showininvoice')) {
+          $this->load->model('extension/module/warehouse');
+          $warehouses = $this->model_extension_module_warehouse->getwarehouses();
+        }
+        ]]></add>
+    </operation>
+    <operation>
+      <search index="0"><![CDATA[$product_data[] = array(]]></search>
+      <add position="before"><![CDATA[
+        if($this->config->get('module_warehouse_showininvoice')) {
+       $stock_added_warehouse = $this->model_extension_module_warehouse->getWarehouseTransactionById($order_id,$product['order_product_id'],$product['product_id']);
+       foreach ($warehouses as $key => $warehouse) {
+        if (array_key_exists($warehouse['warehouse_id'], $stock_added_warehouse)) {
+         $product['name'] .=  "<br>".$warehouse['name'].": ".$stock_added_warehouse[$warehouse['warehouse_id']]."";
+        }
+       }
+       }
+        ]]></add>
+    </operation>
+    <operation>
+      <search index="2"><![CDATA[$option_data[] = array(]]></search>
+      <add position="before"><![CDATA[
+        if($this->config->get('module_warehouse_showininvoice')) {
+       $stock_added_warehouse = $this->model_extension_module_warehouse->getWarehouseTransactionById($order_id,$product['order_product_id'],$product['product_id'],$option['order_option_id'],$option['product_option_value_id']);
+       foreach ($warehouses as $key => $warehouse) {
+        if (array_key_exists($warehouse['warehouse_id'], $stock_added_warehouse)) {
+          $value .=  "<br>".$warehouse['name'].": ".$stock_added_warehouse[$warehouse['warehouse_id']]."";
+        }
+       }
+       }
+        ]]></add>
+    </operation>
+     <operation>
+      <search><![CDATA[$this->load->model('setting/store');]]></search>
+      <add position="before"><![CDATA[
+        $this->load->language("extension/module/warehouse_links");
+        $this->load->model('extension/module/warehouse');
+        $data['warehouses'] = $this->model_extension_module_warehouse->getwarehouses();
+        ]]></add>
+    </operation>
+</file>
+<file path="admin/view/template/sale/order_info.twig">
+    <operation>
+      <search><![CDATA[<h1>{{ heading_title }}</h1>]]></search>
+      <add position="after"><![CDATA[
+       {% if warehouse is defined %}
+        <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#warehouseorder"><i class="fa fa-industry" aria-hidden="true"></i> {{ button_warehouseorder }}</button> &nbsp; </div>
+        {% endif %}
+        ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[{{ footer }}]]></search>
+      <add position="before"><![CDATA[
+       {% if warehouse is defined %}
+        {{ warehouse }}
+        {% endif %}
+        ]]></add>
+    </operation>
+</file>
+<file path="admin/view/template/sale/order_form.twig">
+    <operation>
+      <search><![CDATA[<div id="option"></div>]]></search>
+      <add position="after"><![CDATA[
+        {% if order_id %}
+        <div class="alert-info" style="padding: 10px;margin-bottom: 17px;border: 1px solid transparent;border-radius: 3px;"><i class="fa fa-check-circle"></i>{{ text_warehouseditorder_info }}
+       </div>
+       {% endif %}
+        {% if (warehouses is defined and warehouses is not empty) %} 
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-warehouse"><span data-toggle="tooltip" title="{{ help_select_warehouse }}">{{ text_select_warehouse }}</span></label>
+              <div class="col-sm-10">
+              <select name="option_warehouse_id" class="form-control">
+                <option selected="selected" value="">NONE</option>
+              {% for warehouse in warehouses %} 
+                <option value="{{ warehouse['warehouse_id'] }}">{{ warehouse['name'] }}</option>
+              {% endfor %} 
+              </select>
+          </div>
+        {% endif %}
+        ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[html += '  <input type="hidden" name="product[' + i + '][product_id]" value="' + product['product_id'] + '" />';]]></search>
+      <add position="after"><![CDATA[
+        if (product['warehouse_id']) {
+            html += '  <input type="hidden" name="product[' + i + '][warehouse_id]" value="'+product['warehouse_id']+'" />';
+          }
+        ]]></add>
+    </operation>
+</file>
+<file path="catalog/controller/api/cart.php">
+    <operation>
+      <search><![CDATA[if (isset($this->request->post['product'])) {]]></search>
+      <add position="after"><![CDATA[
+        $this->session->data['admin_warehouse_order_product'] = array();
+        $this->load->model("extension/module/cartid");
+        ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$this->cart->add($product['product_id'], $product['quantity'], $option);]]></search>
+      <add position="after"><![CDATA[
+        if(isset($product['warehouse_id']) && $product['warehouse_id']) {
+            $cart_id = $this->model_extension_module_cartid->getCartId($product['product_id'], $product['quantity'], $option);
+            if($cart_id) {
+              $this->session->data['admin_warehouse_order_product'][$cart_id] = $product['warehouse_id'];
+            }
+          }
+        ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$product_options = $this->model_catalog]]></search>
+      <add position="before"><![CDATA[
+        //using name as option_warehouse_id because it would be sent me data on button product add with default code
+          if (isset($this->request->post['option_warehouse_id'])) {
+            $this->load->model("extension/module/cartid");
+            $warehouse_id = $this->request->post['option_warehouse_id'];
+          } else {
+            $warehouse_id = 0;
+          }
+        ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$this->cart->add($this->request->post['product_id'], $quantity, $option);]]></search>
+      <add position="after"><![CDATA[
+        if($warehouse_id) {
+          $cart_id = $this->model_extension_module_cartid->getCartId($this->request->post['product_id'], $quantity, $option);
+          if($cart_id) {
+            $this->session->data['admin_warehouse_order_product'][$cart_id] = $warehouse_id;
+          }
+          
+        }
+        ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$json['products'][] = array(]]></search>
+      <add position="before"><![CDATA[
+        $warehouse_id = 0;
+        if(isset($this->session->data['admin_warehouse_order_product']) && !empty($this->session->data['admin_warehouse_order_product'])) {
+          if(isset($this->session->data['admin_warehouse_order_product'][$product['cart_id']])) {
+            $warehouse_id = $this->session->data['admin_warehouse_order_product'][$product['cart_id']];
+            $stockavailable = $this->model_extension_module_warehouse->getWarehouseProductStock($warehouse_id,$product['product_id']);
+            if($stockavailable <= 0) {
+              $product['stock'] = false;
+              $json['error']['stock'] = $this->language->get('error_stock');
+            }
+            if($stockavailable < $product['quantity']) {
+              $product['stock'] = false;
+              $json['error']['stock'] = $this->language->get('error_stock');
+            }
+          }
+        }
+        ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$json['products'][] = array(]]></search>
+      <add position="after"><![CDATA[
+        'warehouse_id' => $warehouse_id,
+        ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[public function products() {]]></search>
+      <add position="after"><![CDATA[
+        $this->load->model("extension/module/warehouse");
+        ]]></add>
+    </operation>
+</file>
+<file path="catalog/controller/api/order.php">
+    <operation>
+      <search><![CDATA[$order_data['products'][] = array(]]></search>
+      <add position="before"><![CDATA[
+        $warehouse_id = 0;
+        if(isset($this->session->data['admin_warehouse_order_product']) && !empty($this->session->data['admin_warehouse_order_product'])) {
+          if(isset($this->session->data['admin_warehouse_order_product'][$product['cart_id']])) {
+            $warehouse_id = $this->session->data['admin_warehouse_order_product'][$product['cart_id']];
+          }
+        }
+        ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$order_data['products'][] = array(]]></search>
+      <add position="after"><![CDATA[
+        'warehouse_id' => $warehouse_id,
+        ]]></add>
+    </operation>
+</file>
+<file path="catalog/controller/checkout/register.php">
+    <operation>
+      <search index="1"><![CDATA[if (!$json) {]]></search>
+      <add position="before"><![CDATA[
+        if($this->config->get('module_warehouse_stopcheckout')) {
+          if (!empty($this->request->post['shipping_address'])) {
+            $this->load->model('extension/module/warehouse');
+            $this->load->language('extension/module/warehouse');
+            $stock = $this->model_extension_module_warehouse->checkStock($this->request->post['zone_id']);
+            if($stock) {
+              $arraymessage[] = $this->language->get('text_stock_error');
+              foreach ($stock as $key => $value) {
+                $arraymessage[] = sprintf($this->language->get('text_stock_array'),$value['name'],$value['qty']);
+              }
+              $arraymessage[] = $this->language->get('text_updateqty');
+              $json['error']['warning'] = implode("<br>", $arraymessage);
+            }
+          }  
+        }
+        ]]></add>
+    </operation>
+</file>
+<file path="catalog/controller/checkout/guest.php">
+    <operation>
+      <search index="1"><![CDATA[if (!$json) {]]></search>
+      <add position="before"><![CDATA[
+        if($this->config->get('module_warehouse_stopcheckout')) {
+          if (!empty($this->request->post['shipping_address'])) {
+            $this->load->model('extension/module/warehouse');
+            $this->load->language('extension/module/warehouse');
+            $stock = $this->model_extension_module_warehouse->checkStock($this->request->post['zone_id']);
+            if($stock) {
+              $arraymessage[] = $this->language->get('text_stock_error');
+              foreach ($stock as $key => $value) {
+                $arraymessage[] = sprintf($this->language->get('text_stock_array'),$value['name'],$value['qty']);
+              }
+              $arraymessage[] = $this->language->get('text_updateqty');
+              $json['error']['warning'] = implode("<br>", $arraymessage);
+            }
+          }  
+        }
+        ]]></add>
+    </operation>
+</file>
+<file path="catalog/controller/checkout/guest_shipping.php">
+    <operation>
+      <search index="1"><![CDATA[if (!$json) {]]></search>
+      <add position="before"><![CDATA[
+        if($this->config->get('module_warehouse_stopcheckout')) {
+          $this->load->model('extension/module/warehouse');
+          $this->load->language('extension/module/warehouse');
+          $stock = $this->model_extension_module_warehouse->checkStock($this->request->post['zone_id']);
+          if($stock) {
+            $arraymessage[] = $this->language->get('text_stock_error');
+            foreach ($stock as $key => $value) {
+              $arraymessage[] = sprintf($this->language->get('text_stock_array'),$value['name'],$value['qty']);
+            }
+            $arraymessage[] = $this->language->get('text_updateqty');
+            $json['error']['warning'] = implode("<br>", $arraymessage);
+          }
+        }
+        ]]></add>
+    </operation>
+</file>
+<file path="catalog/controller/checkout/shipping_address.php">
+    <operation>
+      <search index="1"><![CDATA[if (!$json) {]]></search>
+      <add position="before"><![CDATA[
+        if($this->config->get('module_warehouse_stopcheckout')) {
+          $this->load->model('extension/module/warehouse');
+          $this->load->language('extension/module/warehouse');
+          $zone_id = $this->model_extension_module_warehouse->getZoneIdByAddressId($this->request->post['address_id']);
+          $stock = $this->model_extension_module_warehouse->checkStock($zone_id);
+          if($stock) {
+            $arraymessage[] = $this->language->get('text_stock_error');
+            foreach ($stock as $key => $value) {
+              $arraymessage[] = sprintf($this->language->get('text_stock_array'),$value['name'],$value['qty']);
+            }
+            $arraymessage[] = $this->language->get('text_updateqty');
+            $json['error']['warning'] = implode("<br>", $arraymessage);
+          }
+
+        }
+        ]]></add>
+    </operation>
+    <operation>
+      <search index="2"><![CDATA[if (!$json) {]]></search>
+      <add position="before"><![CDATA[
+        if($this->config->get('module_warehouse_stopcheckout')) {
+          $this->load->model('extension/module/warehouse');
+          $this->load->language('extension/module/warehouse');
+          $stock = $this->model_extension_module_warehouse->checkStock($this->request->post['zone_id']);
+          if($stock) {
+            $arraymessage[] = $this->language->get('text_stock_error');
+            foreach ($stock as $key => $value) {
+              $arraymessage[] = sprintf($this->language->get('text_stock_array'),$value['name'],$value['qty']);
+            }
+            $arraymessage[] = $this->language->get('text_updateqty');
+            $json['error']['warning'] = implode("<br>", $arraymessage);
+          }
+
+        }
+        ]]></add>
+    </operation>
+</file>
+<file path="catalog/model/checkout/order.php">
+    <operation>
+      <search><![CDATA[if (isset($data['vouchers'])) {]]></search>
+      <add position="before"><![CDATA[
+        if($this->config->get('module_warehouse_automaticstockreduce')) {
+        $this->load->model('extension/module/warehouse');
+        $this->model_extension_module_warehouse->saveForCronJob($order_id);
+        }
+        ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$this->cache->delete('product');]]></search>
+      <add position="before"><![CDATA[
+        if($order_status_id) {
+          $automaticreduce = $this->config->get('module_warehouse_automaticstockreduce');
+          if($automaticreduce && $this->config->get('module_warehouse_reduceafterorderplaced')) {
+            $this->load->model('extension/module/warehouse');
+            $this->model_extension_module_warehouse->reduceStockOrder($order_id);
+          }
+        }  
+        ]]></add>
+    </operation>
+    <operation>
+      <search index="1"><![CDATA[if (isset($data['products'])) {]]></search>
+      <add position="before"><![CDATA[
+       // Need to remove it as old order product id is no longer needed
+       if(isset($order_id) && $order_id) {
+        $this->load->model("extension/module/warehouse");
+        $this->model_extension_module_warehouse->removeFromOrderStockProduct($order_id);
+       } 
+        ]]></add>
+    </operation>
+</file>
+  <file path="admin/view/template/sale/order_list.twig">
+    <operation>
+      <search><![CDATA[<li><a href="{{ order.edit }}"><i class="fa fa-pencil"></i> {{ button_edit }}</a></li>]]>
+      </search>
+      <add position="after"><![CDATA[
+        <li><a onclick="getorder({{ order.order_id }})"><i class="fa fa-industry"></i> Warehouse Stock Update</a></li>
+          ]]>
+      </add>
+    </operation>
+    <operation>
+      <search><![CDATA[{{ footer }}]]>
+      </search>
+      <add position="after"><![CDATA[
+        <script type="text/javascript">
+          var cid;
+          function getorder(id) {
+            cid = id;
+            $.ajax({
+            url: 'index.php?route=extension/module/warehouse/orderStock&user_token={{ user_token }}&order_id=' + id + '&listpage=1',
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+              $('#warehouseorder').remove();
+              $('body').append(data['html']);
+              $('#warehouseorder').modal();  
+            } ,
+           error: function(jqXHR, textStatus, errorThrown){
+                  alert('error');
+                  alert('jqXHR : '+jqXHR );
+                  alert('textStatus : '+textStatus );
+                  alert('errorThrown : '+errorThrown );
+              }   
+            
+          });
+        }
+        </script>
+        ]]>
+      </add>
+    </operation>
+  </file>
+  <file path="admin/view/template/extension/module/{warehouse_list,warehouse_setting,warehouse_transaction,warehouse_producteditview}*.twig">
+    <operation>
+      <search><![CDATA[<button type="button" class="btn btn-info howitworks" data-toggle="modal" data-target="#howitworks">{{ text_howitworks }} <i class="fa fa-question" aria-hidden="true"></i></button>]]>
+      </search>
+      <add position="after"><![CDATA[
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#helpGuide"><i class="fa fa-book" aria-hidden="true"></i> Need Help ?</button>
+        ]]>
+      </add>
+    </operation>
+    <operation>
+      <search><![CDATA[{{ footer }}]]>
+      </search>
+      <add position="after"><![CDATA[<div id="helpGuide" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{ heading_title }}</h4>
+      </div>
+      <div class="modal-body">
+          <div class="row" style="text-align:center;">
+        <div class="col-sm-12" style="margin-bottom:1em;">
+            <a href="https://support.cartbinder.com/" data-toggle="tooltip" target="_blank" title="Create / view support ticket" class="btn btn-info" style="width:200px;"><i class="fa fa-life-ring" aria-hidden="true"></i> Create Support Ticket</a>
+             </div>
+             
+              <div class="col-sm-12">
+      <div class="col-sm-6" style="margin-bottom:1em;">
+             <a href="https://www.cartbinder.com/store/multiple-warehouse-stock-management-in-house-opencart-extension" data-toggle="tooltip" target="_blank" title="{{ heading_title }} link" class="btn btn-primary" style="width:200px;"><i class="fa fa-link" aria-hidden="true"></i> Extension Link</a>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:1em;">
+             <a href="https://www.cartbinder.com/store/any-questions" data-toggle="tooltip" target="_blank" title="Need customization" class="btn btn-success" style="width:200px;"><i class="fa fa-edit" aria-hidden="true"></i> Need Customization</a>
+      </div>
+      </div>
+      <div class="col-sm-12">
+        <br>
+        <label class="col-sm-12">An extension by</label>
+        <h3><a href="https://www.cartbinder.com/store/" target="_blank" title="CartBinder : Opencart Extensions & Customizations" style="color:black;">CART<font style="color:#1D8F9D;font-size:27px;">B</font>INDER</a></h3>
+      </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>]]>
+      </add>
+    </operation>
+  </file>
+  <file path="admin/language/*/extension/module/warehouse.php">
+    <operation>
+      <search><![CDATA[$_['error_permission']]]>
+      </search>
+      <add position="before"><![CDATA[
+        $_['regerror_email'] = 'Email Address Error';
+$_['regerror_orderid']  = 'Order ID Error';
+$_['regerror_noreferer']  = 'Please Contact Support';
+$_['regerror_localhost']  = 'This extension can not be used on a localhost server!';
+$_['regerror_licensedupe']  = 'This extension is already licensed to a different domain!';
+$_['regerror_quote_msg'] = '<p>Please quote the error message below when contacting support.</p>';
+
+$_['license_purchase_thanks'] = '<p>Thanks for purchasing our OpenCart Extension.</p>
+    <p>Please complete the form below to register this extension on our licensing server.</p>
+    <p>If you experience any problems installing this extension or registering your license, please email support at %s</p>';
+
+
+$_['license_registration'] = 'Register License';
+$_['license_opencart_email'] = 'Email Address Of Purchase';
+$_['license_opencart_orderid'] = 'Order Id';
+
+$_['check_email'] = 'Please check and correct your email address. The address you entered does not match our records. It could be that when you purchased the extension, you used a different email address to the one you have entered here.';
+$_['check_orderid'] = 'Please check and correct your order id. The order id you have entered does not match our records. Please check this in your account.';
+
+$_['server_error_curl'] = '<h2>Server Error - Curl Required</h2>
+    <p>Your server does not appear to have the \'curl\' PHP module installed. The \'curl\' PHP module is required for OpenCart to function correctly. Please contact your web host to ask them to install the \'curl\' PHP module for you.</p>';
+
+$_['text_free_support_remaining'] = 'You have <strong><span style="color:red;">%s</span></strong> days of free support remaining - <a href="https://support.cartbinder.com/" target="_blank">Visit Support Now</a>';
+$_['text_free_support_expired'] = '<span style="color:red;">Your 12 months of free support has expired</span> - <a href="https://www.cartbinder.com/store/free-support.php?path=%d&ssl=%d&domain=%s&ext=%s&token=%s">Extend Now</a>';
+
+$_['text_deregister'] = 'De-Register License';
+$_['help_deregister'] = 'Are you sure you want to de-register the license for this domain?\n\nDe-registering will free up this license for use on another OpenCart Installation / Domain Name.\n\nWARNING - You will no longer be able to access the settings on this domain until a license is registered!';
+        ]]>
+      </add>
+    </operation>
+  </file>
+
+  <file path="admin/controller/extension/module/warehouse.php">
+    <operation>
+      <search><![CDATA[$this->response->setOutput($this->load->view('extension/module/warehouse_list', $data));]]>
+      </search>
+      <add position="before"><![CDATA[
+   $data['oc_licensing_home'] = 'https://www.cartbinder.com/store/'; $data['extension_id'] = 33319; $admin_support_email = 'support@cartbinder.com'; $data['license_purchase_thanks'] = sprintf($this->language->get('license_purchase_thanks'), $admin_support_email); if(isset($this->request->get['emailmal'])){ $data['emailmal'] = true; } if(isset($this->request->get['regerror'])){ if($this->request->get['regerror']=='emailmal'){ $this->error['warning'] = $this->language->get('regerror_email'); }elseif($this->request->get['regerror']=='orderidmal'){ $this->error['warning'] = $this->language->get('regerror_orderid'); }elseif($this->request->get['regerror']=='noreferer'){ $this->error['warning'] = $this->language->get('regerror_noreferer'); }elseif($this->request->get['regerror']=='localhost'){ $this->error['warning'] = $this->language->get('regerror_localhost'); }elseif($this->request->get['regerror']=='licensedupe'){ $this->error['warning'] = $this->language->get('regerror_licensedupe'); } } $domainssl = explode("//", HTTPS_SERVER); $domainnonssl = explode("//", HTTP_SERVER); $domain = ($domainssl[1] != '' ? $domainssl[1] : $domainnonssl[1]); $data['domain'] = $domain; $data['licensed'] = @file_get_contents($data['oc_licensing_home'] . 'licensed.php?domain=' . $domain . '&extension=' . $data['extension_id']); if(!$data['licensed'] || $data['licensed'] == ''){ if(extension_loaded('curl')) { $post_data = array('domain' => $domain, 'extension' => $data['extension_id']); $curl = curl_init(); curl_setopt($curl, CURLOPT_HEADER, false); curl_setopt($curl, CURLINFO_HEADER_OUT, true); curl_setopt($curl, CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17'); $follow_allowed = ( ini_get('open_basedir') || ini_get('safe_mode')) ? false : true; if ($follow_allowed) { curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1); } curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 9); curl_setopt($curl, CURLOPT_TIMEOUT, 60); curl_setopt($curl, CURLOPT_AUTOREFERER, true); curl_setopt($curl, CURLOPT_VERBOSE, 1); curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false); curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); curl_setopt($curl, CURLOPT_FORBID_REUSE, false); curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); curl_setopt($curl, CURLOPT_URL, $data['oc_licensing_home'] . 'licensed.php'); curl_setopt($curl, CURLOPT_POST, true); curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($post_data)); $data['licensed'] = curl_exec($curl); curl_close($curl); }else{ $data['licensed'] = 'curl'; } } $data['licensed_md5'] = md5($data['licensed']); $data['entry_free_support'] = $this->language->get('entry_free_support'); $order_details = @file_get_contents($data['oc_licensing_home'] . 'order_details.php?domain=' . $domain . '&extension=' . $data['extension_id']); $order_data = json_decode($order_details, true); if(!is_array($order_data) || $order_data == ''){ if(extension_loaded('curl')) { $post_data2 = array('domain' => $domain, 'extension' => $data['extension_id']); $curl2 = curl_init(); curl_setopt($curl2, CURLOPT_HEADER, false); curl_setopt($curl2, CURLINFO_HEADER_OUT, true); curl_setopt($curl2, CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17'); $follow_allowed2 = ( ini_get('open_basedir') || ini_get('safe_mode')) ? false : true; if ($follow_allowed2) { curl_setopt($curl2, CURLOPT_FOLLOWLOCATION, 1); } curl_setopt($curl2, CURLOPT_CONNECTTIMEOUT, 9); curl_setopt($curl2, CURLOPT_TIMEOUT, 60); curl_setopt($curl2, CURLOPT_AUTOREFERER, true); curl_setopt($curl2, CURLOPT_VERBOSE, 1); curl_setopt($curl2, CURLOPT_SSL_VERIFYHOST, false); curl_setopt($curl2, CURLOPT_SSL_VERIFYPEER, false); curl_setopt($curl2, CURLOPT_FORBID_REUSE, false); curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true); curl_setopt($curl2, CURLOPT_URL, $data['oc_licensing_home'] . 'order_details.php'); curl_setopt($curl2, CURLOPT_POST, true); curl_setopt($curl2, CURLOPT_POSTFIELDS, http_build_query($post_data2)); $order_data = json_decode(curl_exec($curl2), true); curl_close($curl2); }else{ $order_data['status'] = 'disabled'; } } if(isset($order_data['status']) && $order_data['status'] == 'enabled'){ $isSecure = false; if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) { $isSecure = true; } elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') { $isSecure = true; } $data['support_status'] = 'enabled'; $data['support_order_id'] = $order_data['order_id']; $data['support_extension_name'] = $order_data['extension_name']; $data['support_domain'] = $order_data['domain']; $data['support_username'] = $order_data['username']; $data['support_email'] = $order_data['email']; $data['support_registered_date'] = strftime('%Y-%m-%d', $order_data['registered_date']); $data['support_order_date'] = strftime('%Y-%m-%d', ($order_data['order_date'] + 31536000)); if((time() - $order_data['order_date']) > 31536000){ $data['text_free_support_remaining'] = sprintf($this->language->get('text_free_support_expired'), 1, ($isSecure ? 1 : 0), urlencode($domain) , $data['extension_id'] , $this->session->data['token']); }else{ $data['text_free_support_remaining'] = sprintf($this->language->get('text_free_support_remaining'), 366 - ceil((time() - $order_data['order_date']) / 86400)); } }else{ $data['support_status'] = 'disabled'; $data['text_free_support_remaining'] = sprintf($this->language->get('text_free_support_remaining'), 'unknown'); }
+        ]]>
+      </add>
+    </operation>
+  </file>
+  <file path="admin/view/template/extension/module/warehouse_list.twig">
+    <operation>
+      <search><![CDATA[<a href="{{ add }}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>]]>
+      </search>
+      <add position="replace"><![CDATA[{% if licensed_md5 == 'd9a22d7a8178d5b42a8750123cbfe5b1' %}
+       <a href="{{ add }}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+       {% endif %}
+       ]]>
+      </add>
+    </operation>
+    <operation>
+      <search><![CDATA[<form action="{{ delete }}" method="post" enctype="multipart/form-data" id="form-warehouse">]]>
+      </search>
+      <add position="before"><![CDATA[
+       {% if licensed_md5 == 'd9a22d7a8178d5b42a8750123cbfe5b1' %}
+        ]]>
+      </add>
+    </operation>
+    <operation>
+      <search><![CDATA[</form>]]>
+      </search>
+      <add position="after"><![CDATA[
+        {% endif %}
+        {% if (licensed == 'none') %} 
+    {{ license_purchase_thanks }} 
+    {% if (regerror is defined) %} {{ regerror_quote_msg }} {% endif %} 
+    {% if (regerror is defined) %}<p style="color:red;">error msg: {{ regerror }}</p>{% endif %} 
+      <h2>{{ license_registration }}</h2>
+      <form name="reg" method="post" action="{{ oc_licensing_home }}register.php" id="reg" class="form-horizontal containr-fluid">
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="opencart_email">{{ license_opencart_email }}</label>
+              <div class="col-sm-10">
+                <input name="opencart_email" type="text" autofocus required id="opencart_email" form="reg" class="form-control"></div>
+            </div>
+    {% if (emailmal is defined and regerror == 'emailmal') %}<p style="color:red;">{{ check_email }}</p>{% endif %} 
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="order_id">{{ license_opencart_orderid }}</label>
+              <div class="col-sm-10">
+                <input name="order_id" type="text" autofocus required id="order_id" form="reg" class="form-control"></div>
+            </div>
+    {% if (regerror is defined and regerror == 'orderid') %}<p style="color:red;">{{ check_orderid }}</p>{% endif %} 
+          <div class="form-group">
+              <div class="col-sm-12">
+                <button type="submit" form="reg" data-toggle="tooltip" title="{{ license_registration }}" class="btn btn-primary"><i class="fa fa-save"></i></button><input name="extension_id" type="hidden" id="extension_id" form="reg" value="{{ extension_id }}"></div>
+            </div>
+    </form>
+    {% else %} 
+    <div class="form-horizontal containr-fluid"></div>
+    {% endif %} 
+    {% if (licensed == 'curl') %} 
+    {{ server_error_curl }} 
+    {% endif %}
+        ]]>
+      </add>
+    </operation>
+    <operation>
+      <search index="0"><![CDATA[{% if error_warning %}]]>
+      </search>
+      <add position="before"><![CDATA[
+        {% if support_status == 'enabled' %}
+        <div class="table-responsive"> 
+          <table id="order_details" class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+              <td style="width:7%;background: #8e8e8e;color: white;">License Info</td>
+              <td style="width:5%;background: #efefef;">Order Id</td>
+              <td>{{ support_order_id }}</td>
+              <td style="width:4%;background: #efefef;">Domain</td>
+              <td>{{ domain }}</td>
+              <td style="width:8%;background: #efefef;">Registered To</td>
+              <td>{{ support_email }}</td>
+              <td style="width:7%;background: #efefef;">Registered</td>
+              <td>{{ support_registered_date }}</td>
+              <td style="width:7%;background: #efefef;">Support Ends</td>
+              <td>{{ support_order_date }}</td>
+            </tr>
+            </tbody>
+            <tfooter>
+              <tr>
+                <td colspan="11" class="text-center">{{ text_free_support_remaining }}</td>
+              </tr>
+            </tfooter>
+          </table>
+        </div>
+      {% else %}
+       <div class="table-responsive"> 
+          <table id="order_details" class="table table-bordered table-striped">
+            <tfooter>
+              <tr>
+                <td class="text-center">{{ text_free_support_remaining }}</td>
+              </tr>
+            </tfooter>
+          </table>
+        </div>
+        {% endif %}
+        ]]>
+      </add>
+    </operation>
+  </file>
+  <file path="catalog/model/checkout/order.php">
+    <operation>
+      <search index="0">
+        <![CDATA[$this->db->query("DELETE `or`, ort FROM `" . DB_PREFIX . "order_recurring` `or`,]]>
+      </search>
+      <add position="before">
+        <![CDATA[
+          $this->load->model('extension/module/warehouse');
+          $this->model_extension_module_warehouse->reStockWarehouse($order_id);
+        ]]>
+      </add>
+    </operation>
+  </file>
+
+    <file path="admin/language/*/extension/module/warehouse.php">
+        <operation error="skip">
+            <search><![CDATA[$_['entry_option']]]></search>
+            <add position="before"><![CDATA[
+                $_['entry_harvest']         = 'Harvest Seasons';
+                $_['entry_product_type']    = "Product Type";
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="admin/controller/extension/module/warehouse.php">
+     
+        <operation error="skip">
+            <search><![CDATA[$filter_options = $this->request->get['filter_options'];]]></search>
+            <add position="before" offset="1"><![CDATA[
+		if (isset($this->request->get['filter_harvest_id'])) {
+			$filter_harvest_id = $this->request->get['filter_harvest_id'];
+                        $filter_zero_harvest_id = TRUE;
+		} else {
+                        $this->load->model('csa/harvests');
+                        $result_current_harvest = $this->model_csa_harvests->getCurrentActiveHarvest();
+			$filter_harvest_id = $result_current_harvest['harvest_id'];
+                        $filter_zero_harvest_id = TRUE;
+		}
+                
+                if (isset($this->request->get['filter_product_type'])) {
+			$filter_product_type = $this->request->get['filter_product_type'];
+		} else {
+			$filter_product_type = '';
+		}
+            ]]></add>
+        </operation>
+        
+        
+        <operation error="skip">
+            <search><![CDATA[$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));]]></search>
+            <add position="before" offset="1"><![CDATA[
+		if (isset($this->request->get['filter_harvest_id'])) {
+			$url .= '&filter_harvest_id=' . urlencode(html_entity_decode($this->request->get['filter_harvest_id'], ENT_QUOTES, 'UTF-8'));
+		}
+                if (isset($this->request->get['filter_product_type'])) {
+			$url .= '&filter_product_type=' . urlencode(html_entity_decode($this->request->get['filter_product_type'], ENT_QUOTES, 'UTF-8'));
+		}
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search><![CDATA['filter_model'	  => $filter_model,]]></search>
+            <add position="before"><![CDATA[
+		'filter_harvest_id' => $filter_harvest_id,
+                'filter_product_type' => $filter_product_type,
+                'filter_zero_harvest_id' => $filter_zero_harvest_id,
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search><![CDATA[$product_option_value_data = array();]]></search>
+            <add position="before"><![CDATA[
+		$this->load->model('csa/harvests');
+		$data['harvests'] = $this->model_csa_harvests->getHarvestList(array('sort' => 'start_date', 'order' => 'DESC'));
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[$data['filter_model'] = $filter_model;]]></search>
+            <add position="before"><![CDATA[
+		$data['filter_harvest_id'] = $filter_harvest_id;
+                $data['filter_product_type'] = $filter_product_type;
+            ]]></add>
+        </operation>
+    </file>
+    <file path="admin/view/template/extension/module/warehouse_producteditview.twig">
+        <operation error="skip">
+            <search><![CDATA[<th>{{ column_warehouse }}]]></search>
+            <add position="replace"><![CDATA[<th style="width: 38%;">{{ column_warehouse }}]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[<th style="width:25%;" class="text-center">{{ column_action }}</th>]]></search>
+            <add position="replace"><![CDATA[<th style="width:5%;" class="text-center">{{ column_action }}</th>]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[style="width:60%;display:inline-block;"]]></search>
+            <add position="replace"><![CDATA[style="width:100%;display:inline-block;"]]></add>
+        </operation>
+        <operation>
+          <search><![CDATA[<div class="checkbox">]]></search>
+          <add position="replace" offset="1"><![CDATA[
+          <div class="checkbox">
+          <label style="display: grid; grid-template-columns: 70% 0 30%; align-items:center;">
+          ]]></add>
+        </operation>
+        <operation>
+          <search><![CDATA[<td class="text-center">]]></search>
+          <add position="before" offset="3"><![CDATA[<hr style="border: 1px solid #efecec;margin: 10px 0 0 0;"/>]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[<button type="button" id="button-filter" class="btn btn-primary pull-right usefilter"><i class="fa fa-search"></i> {{ button_filter }}</button>]]></search>
+            <add position="replace"><![CDATA[ ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[<table class="table table-bordered table-hover">]]></search>
+            <add position="before" offset="2"><![CDATA[
+                <div class="col-sm-4">  
+                    <div class="form-group">
+                    <label class="control-label" for="input-harvest">{{ entry_harvest }}</label>
+                    <select name="filter_harvest_id" id="input-harvest" class="form-control">                
+                          {% for harvest in harvests %}
+                            {% if harvest.harvest_id == filter_harvest_id %}
+                              <option value="{{ harvest.harvest_id }}" selected="selected">{{ harvest.harvest_title }}</option>
+                            {% else %}
+                              <option value="{{ harvest.harvest_id }}">{{ harvest.harvest_title }}</option>
+                            {% endif %}
+                          {% endfor %}
+                    </select>
+                  </div>
+                 </div> 
+                  <div class="col-sm-4">     
+                    <div class="form-group">
+                      <label class="control-label" for="input-product_type">{{ entry_product_type }}</label>
+                      <select name="filter_product_type" id="input-product_type" class="form-control">
+                        <option value="*" {% if filter_product_type == '*' %} selected {% endif %}></option>
+                        <option value="0" {% if filter_product_type == '0' %} selected {% endif %}>All Shares</option>
+                        <option value="1" {% if filter_product_type == '1' %} selected {% endif %}>Marketplace Product</option>                
+                        <option value="3" {% if filter_product_type == '3' %} selected {% endif %}>Mandatory Share</option>
+                        <option value="4" {% if filter_product_type == '4' %} selected {% endif %}>Suggested Share</option>
+                      </select>
+                    </div>     
+                  <button type="button" id="button-filter" class="btn btn-primary pull-right usefilter"><i class="fa fa-search"></i> {{ button_filter }}</button>
+                </div>
+              </div>
+            ]]></add>
+        </operation>
+         <operation error="log">
+            <search><![CDATA[var filter_manufacturer_id = $('select[name=\'filter_manufacturer_id\']').val();]]></search>
+            <add position="before"><![CDATA[
+                var filter_harvest_id = $('select[name=\'filter_harvest_id\']').val();
+
+                if (filter_harvest_id) {
+                        url += '&filter_harvest_id=' + encodeURIComponent(filter_harvest_id);
+                }
+
+                var filter_product_type= $('select[name=\'filter_product_type\']').val();
+
+                if (filter_product_type) {
+                        url += '&filter_product_type=' + encodeURIComponent(filter_product_type);
+                }                
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="admin/model/extension/module/warehouse.php">
+        <operation error="skip">
+            <search><![CDATA[if (!empty($data['filter_model'])) {]]></search>
+            <add position="before"><![CDATA[
+		if (isset($data['filter_harvest_id']) && $data['filter_harvest_id'] !== '') {
+                    if($data['filter_zero_harvest_id']) {
+                        $sql .= " AND (pt.harvest_id = '" . (int)$data['filter_harvest_id'] . "' OR pt.harvest_id = '0' ) ";
+                    } else {
+                        $sql .= " AND pt.harvest_id = '" . (int)$data['filter_harvest_id'] . "'";
+                    }
+		}
+                if (isset($data['filter_product_type']) && $data['filter_product_type'] !== '') {
+                        if($data['filter_product_type'] == '0') {//For All Shares display normal shares, mandatory shares and suggested shares.
+                            $sql .= " AND p.product_type IN (3,4) ";
+                        } elseif($data['filter_product_type'] != '0' && $data['filter_product_type'] != '*') {
+                            $sql .= " AND p.product_type = '" . (int)$data['filter_product_type'] . "' ";
+                        }
+                }
+            ]]></add>
+        </operation>
+        
+         <operation error="skip">
+            <search><![CDATA[return $query->row['name'];]]></search>
+            <add position="replace"><![CDATA[
+		$zone_name = isset($query->row['name'])?$query->row['name']:'';
+                return $zone_name;
+            ]]></add>
+        </operation>
+    </file>
+</modification>

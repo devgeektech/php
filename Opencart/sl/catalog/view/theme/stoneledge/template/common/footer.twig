@@ -1,0 +1,125 @@
+</div>
+</div>
+<footer id="footer">
+	<div class="container">
+	<div class="row">
+			{% if not is_store_page %}
+			<div class="col-sm-12 text-center">
+				
+				<ul class="quick-links">
+					
+					<li><a href="{{contact_link}}">{{ text_contact }}</a></li>
+					
+					<li><a href="{{our_csa_link}}#locations">CSA Locations</a></li>
+					
+					<li><a href="{{our_csa_link}}">CSA Shares</a></li>
+					
+					<li><a href="{{marketplace_link}}">Marketplace</a></li>
+					
+					<li><a href="{{ login_link }}">Member Log In</a></li>
+					
+				</ul>
+				
+			</div>
+			{% endif %}
+		</div>
+		<div class="row copyright">
+			<div class="col-lg-6">
+				{{ copyright }}
+			</div>
+			<div class="col-lg-6">
+				{{ powered }}<!--a href="http://www.spiraldesign.com/" target="_blank" name="Website Design , Albany, NY" style="color: inherit;">Spiral Design</a-->       
+			</div>
+		</div>
+	</div>
+</footer>
+
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js" integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA==" crossorigin="anonymous"></script>
+<script src="catalog/view/theme/stoneledge/js/parallax.js" rel="stylesheet"></script>
+<script type="text/javascript">
+	$('#recipeslider').owlCarousel({
+		loop:false,
+		margin:0,
+		nav:false,
+		dots:true,
+		items: 1,
+	})
+</script>
+	<script type="text/javascript">
+							$('#newsslider').owlCarousel({
+								
+								loop:false,
+								
+								margin:0,
+								nav:false,
+								items: 1,
+								dots:false,
+							})
+						</script>
+
+						<script type="text/javascript">
+				function home_pagehowitowrk(){
+					slideStatus = slideStatus?false:true;
+					adjustHeights(slideStatus);
+					$('.intro-bg.slide1, .intro-bg.slide2').toggleClass('active');
+				}
+				//$(function(){
+					slideStatus = false;
+				    $('.intro-cta, .unslide').on('click', function(){
+						slideStatus = slideStatus?false:true;
+						adjustHeights(slideStatus);
+						$('.intro-bg.slide1, .intro-bg.slide2').toggleClass('active');
+					});
+					$(window).on('resize', function(){
+						adjustHeights(slideStatus)
+					});
+					function adjustHeights(bool){
+						var toChange = $('.page-content-header');
+						if (bool){
+							var height = $('.slide2wrap').height();
+						} else {
+							var height = $('.slide1wrap').height();
+						}
+						toChange.height(height);
+					}
+				//});
+			</script>
+
+			<script type="text/javascript">
+                        $('#logoslider').owlCarousel({
+                            loop:false,
+                            margin:15,
+                            responsiveClass:true,
+                            responsive:{
+                                0:{
+                                    items:2,
+                                    nav:false,
+                                    dots:true
+                                },
+                                600:{
+                                    items:4,
+                                    nav:false
+                                },
+                                1000:{
+                                    items:6,
+                                    nav:false
+                                }
+                            }
+                        })
+                    </script>
+<script type="text/javascript">
+	$( document ).ready(function() {
+		$( "#goTo" ).change(function() {
+			var address = $(this).val();
+			window.location = address;
+		});
+	});
+</script>
+<!--
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//-->
+</body></html>

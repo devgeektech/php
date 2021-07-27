@@ -1,0 +1,65 @@
+<style type="text/css" media="screen">
+    .vd-rating {
+        text-align: center;
+        width: 100%;
+    }
+
+    .vd-rating > .vd-rating-stars {
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .vd-rating > .vd-rating-stars > i {
+        float: left;
+    }
+
+    .vd-rating > .title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .vd-rating .fas.fa-star {
+        color: #FC0;
+    }
+
+    .vd-rating .fa-1x {
+        font-size: 16px;
+    }
+
+    .vd-rating .vd-rating-stars-stack {
+        position: relative;
+        margin: 2px;
+    }
+
+    .vd-rating .far.fa-star {
+        color: #999;
+    }
+
+    .vd-rating .fas.fa-star + .far.fa-star {
+        position: absolute;
+        color: #E69500;
+        left: 0;
+        top: 0;
+        width: 100%;
+        text-align: center;
+    }
+</style>
+<div class="vd-rating {{id}}">
+    <div class="vd-rating-stars">
+        {% for value in range(1, setting.global.rating) %}
+            <span class="vd-rating-stars-stack">
+                <i class="fas fa-star fa-{{ setting.global.star_size }}x" aria-hidden="true"></i>
+                <i class="far fa-star fa-{{ setting.global.star_size }}x" aria-hidden="true"></i>
+            </span>
+        {% endfor %}
+        {% if setting.global.rating < 5 %}
+            {% for value in range(setting.global.rating + 1, 5) %}
+                <span class="vd-rating-stars-stack">
+        <i class="far fa-star fa-{{ setting.global.star_size }}x" aria-hidden="true"></i>
+        </span>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <p class="title">{{ setting.global.title }}</p>
+</div>

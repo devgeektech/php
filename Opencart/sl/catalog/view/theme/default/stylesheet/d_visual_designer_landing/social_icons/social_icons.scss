@@ -1,0 +1,71 @@
+.vd-social-icon-container {
+    display: flex;
+    flex-flow: row;
+    &.vd-si-type-{
+        &circle{
+            > .vd-social-icon{
+                border-radius: 50%;
+            }
+        }
+        &text{
+            > .vd-social-icon{
+                border-radius: 0;
+            }
+        }
+    }
+    &.vd-si-align-{
+        &left {
+            justify-content: flex-start;
+        }
+        &center {
+            justify-content: center;
+        }
+        &right {
+            justify-content: flex-end;
+        }
+    }
+    &.vd-si-tablet-align-{
+        &left {
+            @media screen and (min-width: 768px) and (max-width: 992px) {
+                justify-content: flex-start;
+            }
+        }
+        &center {
+            @media screen and (min-width: 768px) and (max-width: 992px) {
+                justify-content: center;
+            }
+        }
+        &right {
+            @media screen and (min-width: 768px) and (max-width: 992px) {
+                justify-content: flex-end;
+            }
+        }
+    }
+    &.vd-si-phone-align-{
+        &left {
+            @media screen and (max-width: 767px) {
+                justify-content: flex-start;
+            }
+        }
+        &center {
+            @media screen and (max-width: 767px) {
+                justify-content: center;
+            }
+        }
+        &right {
+            @media screen and (max-width: 767px) {
+                justify-content: flex-end;
+            }
+        }
+    }
+}
+
+.vd-social-icon-container>.vd-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vd-social-icon-container>.vd-social-icon:hover {
+    text-decoration: none;
+}

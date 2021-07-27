@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="38.717" viewBox="0 0 40 38.717">
+  <g id="property_grey" transform="translate(-3 -2.79)">
+    <g id="Icon" transform="translate(3 3)">
+      <path id="Combined_Shape" data-name="Combined Shape" d="M0,12.962a2,2,0,0,1,.957-1.707L19.479-.063a1,1,0,0,1,1.043,0L39.043,11.255A2,2,0,0,1,40,12.962V36.507a2,2,0,0,1-2,2H2a2,2,0,0,1-2-2Z" transform="translate(0 0)" fill="#d1d1d1"/>
+      <path id="Shape" d="M12,0C10.569,0,8.9,1.622,8,2.667,7.1,1.622,5.431,0,4,0,1.468,0,0,1.975,0,4.489c0,4.177,8,8.844,8,8.844s8-4.667,8-8.667C16,2.153,14.532,0,12,0Z" transform="translate(12 18.507)" fill="#9c9c9c"/>
+    </g>
+  </g>
+</svg>

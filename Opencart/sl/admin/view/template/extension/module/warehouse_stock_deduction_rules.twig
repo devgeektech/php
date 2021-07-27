@@ -1,0 +1,287 @@
+{{ header }}{{ column_left }}
+<div id="content">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="pull-right">
+				<a id="save-button" class="btn btn-primary">
+					<i class="fa fa-floppy-o pad-right-sm"></i>
+					{{ text_save }}</a>
+				<a href="{{ back }}" class="btn btn-default">
+					<i class="fa fa-reply pad-right-sm"></i>
+					{{ text_back }}</a>
+			</div>
+			<h1>{{ heading_title }}</h1>
+			<ul class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+					<li>
+						<a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid">
+		{% if error_warning %}
+			<div class="alert alert-danger">
+				<i class="fa fa-exclamation-circle"></i>
+				{{ error_warning }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		{% if success %}
+			<div class="alert alert-success">
+				<i class="fa fa-check-circle"></i>
+				{{ success }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+	</div>
+
+	<div class="container-fluid">
+		<form method="post" id="rules_form">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a data-toggle="tab" href="#rule_sets" aria-expanded="false">{{ text_rule_sets }}</a>
+				</li>
+				<li>
+					<a data-toggle="tab" href="#log">{{ text_log }}</a>
+				</li>
+			</ul>
+			<div class="tab-content rules-tab-content">
+				<div class="tab-pane active" id="rule_sets">
+					<table class="table table-hover table-condensed ">
+						<thead>
+							<tr>
+								<th width="6%">{{ entry_action }}</th>
+								<th width="10%">{{ entry_rule_name }}</th>
+								<th>{{ entry_product_type }}</th>
+								<th width="30%">{{ entry_csa }}</th>
+								<th width="30%">{{ entry_rules }}</th>
+								<th width="8%">{{ entry_priority }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for index, rule in rules %}
+								{% set i = index + 1 %}
+								{% set dbWarehouses = rule.warehouses|split(',') %}
+								<tr class="rule_set">
+									<td>
+										<div class="setting">
+											<a class="btn btn-warning add-button btn-sm" onclick="copyRow($(this).parents('tr')); $('.tooltip').hide();" title="Copy" style="margin-bottom: 2px;">
+												<i class="fa fa-files-o fa-lg fa-fw"></i>
+											</a>
+										</div>
+										<div class="setting">
+											<a class="btn btn-danger btn-sm" onclick=" removeRow($(this).parents('tr'))" title="Delete">
+												<i class="fa fa-trash-o fa-lg fa-fw"></i>
+											</a>
+										</div>
+									</td>
+									<td>
+										<input type="text" class="form-control " name="rule_set_name_{{i}}" id="input-rule_set_name_{{i}}" value="{{ rule.name }}">
+									</td>
+									<td>
+										<select name="product_type_{{i}}" id="product_type_{{i}}" class="form-control">
+											<option value="" {% if rule.product_type == '' %}selected="selected"{% endif %}>--Select--</option>
+											<option value="share" {% if rule.product_type == 'share' %}selected="selected"{% endif %}>Share</option>
+											<option value="marketplace" {% if rule.product_type == 'marketplace' %}selected="selected"{% endif %}>Marketplace</option>
+										</select>
+									</td>
+									<td>
+										<div class="well well-sm" style="height: 120px; overflow: auto;">
+											{% for csa in csas %}
+												<div class="checkbox">
+													<label>
+														<input type="checkbox" name="csas_{{i}}[]"  id="csa_{{i}}" value="{{csa.csa_id}}" {% if csa.csa_id in rule.csas %}checked="checked"{% endif %} class="csa-select">
+														{{csa.csaname}}
+													</label>
+												</div>
+											{% endfor %}
+										</div>
+									</td>
+									<td>
+										<select name="rule_type_{{i}}" class="form-control rule_type">
+											<option value="">--Select--</option>
+											<option value="primary" {% if rule.rule_type == 'primary' %}selected="selected"{% endif %}>Is Primary</option>
+											<option value="warehouse" {% if rule.rule_type == 'warehouse' %}selected="selected"{% endif %}>Warehouse</option>
+										</select>
+										<select name="warehouse_{{i}}" class="form-control" style="margin-top: 10px;">
+											{% for warehouse in warehouses %}
+												<option value="{{warehouse.warehouse_id}}" {% if rule.warehouse_id == warehouse.warehouse_id %}selected="selected"{% endif %}>{{ warehouse.name }}</option>
+											{% endfor %}
+										</select>
+									</td>
+									<td>
+										<input type="text" name="priority_{{i}}" class="form-control" placeholder="Priority" value={{ rule.priority }}>
+									</td>
+								</tr>
+							{% endfor %}
+							<tr class="rule_set">
+								<td>
+									<div class="setting">
+										<a class="btn btn-warning add-button btn-sm" onclick="copyRow($(this).parents('tr')); $('.tooltip').hide();" title="Copy" style="margin-bottom: 2px;">
+											<i class="fa fa-files-o fa-lg fa-fw"></i>
+										</a>
+									</div>
+									<div class="setting">
+										<a class="btn btn-danger btn-sm" onclick=" removeRow($(this).parents('tr'))" title="Delete">
+											<i class="fa fa-trash-o fa-lg fa-fw"></i>
+										</a>
+									</div>
+								</td>
+								<td>
+									<input type="text" class="form-control " name="rule_set_name_1" id="input-rule_set_name_1" value="">
+								</td>
+								<td>
+									<select name="product_type_1" id="product_type_1" class="form-control">
+										<option value="">Select</option>
+										<option value="share">Share</option>
+										<option value="marketplace">Marketplace</option>
+									</select>
+								</td>
+								<td>
+									<div class="well well-sm" style="height: 120px; overflow: auto;">
+										{% for csa in csas %}
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" name="csas_1[]" id="csa_1" value="{{csa.csa_id}}" class="csa-select">
+													{{csa.csaname}}
+												</label>
+											</div>
+										{% endfor %}
+									</div>
+								</td>
+								<td>
+									<select name="rule_type_1" class="form-control rule_type">
+										<option value="">--Select--</option>
+										<option value="primary">Is Primary</option>
+										<option value="warehouse">Warehouse</option>
+									</select>
+									<select name="warehouse_1" class="form-control" style="margin-top: 10px;">
+										{% for warehouse in warehouses %}
+											<option value="{{warehouse.warehouse_id}}">{{ warehouse.name }}</option>
+										{% endfor %}
+									</select>
+								</td>
+								<td>
+									<input type="text" name="priority_1" class="form-control" placeholder="Priority">
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="3">
+									<a class="btn btn-primary add-button" id="add_rule"><i class="fa fa-plus pad-right-sm"></i> {{ text_add_rule }}</a>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+                <div class="tab-pane" id="log">
+					<div class="pull-right">
+						<a class="btn btn-info" id="refreshLog"><i class="fa fa-refresh pad-right-sm"></i> Refresh Log</a>
+						<a class="btn btn-danger" id="clearLog"><i class="fa fa-trash-o pad-right-sm"></i> Clear Log</a>
+					</div>
+					<br />
+					<textarea class="form-control" rows="15" style="max-width: 100%; margin-top: 35px;" readonly>{{ log }}</textarea>
+                </div>
+			</div>
+		</form>
+	</div>
+</div>
+<script>
+
+	function removeRow(elem) {
+		if ($(elem).parent().find('tr').length > 1) {
+			$(elem).remove();
+			resetAttributes();
+		}
+	}
+
+	function copyRow(row) {
+		const clonedRow = $(row).clone();
+		var selects = $(row).find("select");
+		$(selects).each(function(i) {
+			var select = this;
+			$(clonedRow).find("select").eq(i).val($(select).val());
+		});
+		$(row).after(clonedRow);
+		resetAttributes();
+	}
+
+	function replaceIndex(elem, index) {
+		const regex = /\d/;
+		if (elem.attr('name')) {
+			elem.attr('name', elem.attr('name').replace(regex, index));
+		}
+		if (elem.attr('id')) {
+			elem.attr('id', elem.attr('id').replace(regex, index));
+		}
+		if (elem.attr('for')) {
+			elem.attr('for', elem.attr('for').replace(regex, index));
+		}
+	}
+
+	function resetAttributes() {
+		$('.rules-tab-content table tbody tr').each(function(index, elem) {
+			$(elem).find('input,select,label').each(function(i, el) {
+				replaceIndex($(el), index+1);
+			});
+		});
+	}
+	resetAttributes(); // need to reset if values fetched from DB
+	$(document).ready(function() {
+		$('#add_rule').click(function() {
+			const tr = $('.rules-tab-content table tbody tr:first').clone();
+			tr.find('input').val('');
+			tr.find('input').removeAttr('checked');
+			$('.rules-tab-content table tbody').append(tr);
+			resetAttributes();
+		});
+
+		$('#save-button').click(function(e) {
+			e.preventDefault();
+			$('#rules_form').submit();
+		})
+
+		// initially fix rules based on values
+		function setRule(ruleType, elem) {
+			if (ruleType == 'primary' || ruleType == '') {
+				elem.nextAll('select').hide();
+			} else {
+				elem.nextAll('select').show();
+			}
+		}
+
+		$('.rule_type').each(function() {
+			const ruleType = $(this).val();
+			setRule(ruleType, $(this));
+		});
+
+		$(document).on('change', '.rule_type', function() {
+			const ruleType = $(this).val();
+			setRule(ruleType, $(this));
+		});
+
+		$('#refreshLog').click(function() {
+			$.ajax({
+				url: 'index.php?route=extension/module/warehouse/refreshLog&user_token={{ user_token }}',
+				type: 'post',
+				success: function(data) {
+					$('#log textarea').val(data);
+				}
+			});
+		});
+
+		$('#clearLog').click(function() {
+			$.ajax({
+				url: 'index.php?route=extension/module/warehouse/clearLog&user_token={{ user_token }}',
+				type: 'post',
+				success: function(data) {
+					$('#log textarea').val('');
+				}
+			});
+		});
+	});
+</script>
+{{ footer }}

@@ -1,0 +1,60 @@
+.s-nav-stacked {
+    > li{
+        cursor: pointer;
+        > a{
+            width: 100%;
+            display: block;
+            margin-left: 0px !important;
+            margin-bottom: 2px;    
+        }
+        > span{
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -6px;
+        }
+    }
+}
+.nav.nav-tabs{
+    > li{
+        cursor: pointer;
+    }
+}
+.vdl-btn-tab{
+    background-color: transparent;
+    border:0px;
+    cursor:pointer;
+}
+.tile{
+    .tile-heading{
+        > span.pull-right{
+            > a{
+                &.copy{
+                    margin-right:5px;
+                }
+                > i{
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+    .tile-body{
+        > a{
+            display: inline-block;
+            &.view-setting{
+                > i{
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+    .tile-footer{
+        min-height: 36px;
+        > div{
+            > .status{
+                margin-bottom: 5px;
+                margin-top:2px;
+            }
+        }
+    }
+}

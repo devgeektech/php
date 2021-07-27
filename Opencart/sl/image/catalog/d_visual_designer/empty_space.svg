@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="72" height="72" viewBox="0 0 72 72">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ededed;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        stroke: #ababab;
+        stroke-linecap: round;
+        stroke-width: 2px;
+        stroke-dasharray: 2,10;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect width="72" height="72" rx="12" ry="12" class="cls-1"/>
+    <rect x="12" y="22" width="50" height="30" rx="4" ry="4" class="cls-2"/>
+  </g>
+</svg>

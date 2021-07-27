@@ -1,0 +1,10 @@
+    <div class="vd-custom-heading vd-custom-heading-align-{{setting.global.align}} {{id}}">
+        {% if settign.global.link %}
+            <a href={{setting.global.link}}>
+                <{{setting.global.tag}}>{{setting.user.text}}</{{setting.global.tag}}>
+            </a>
+        {% endif %}
+        {% if not settign.global.link %}
+                <{{setting.global.tag}}>{{setting.user.text}}</{{setting.global.tag}}>
+        {% endif %}
+    </div>

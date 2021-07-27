@@ -1,0 +1,112 @@
+<div id="warehouseorder" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:81%;margin:0px auto;margin-top:4em;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{ text_selectwarehouse_warehouseorder }}</h4>
+      </div>
+      <div class="modal-body form-horizontal warehouseorder">
+        <input type="hidden" name="order_id" value="{{ order_id }}" >
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td class="text-left">{{ column_product }}</td>
+                <td class="text-left">{{ column_quantity }}</td>
+                <td class="text-center">{{ column_quantityavailable }}</td>
+                <td class="text-center">{{ column_selectwarehouse }}</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product in products %}
+              <input type="hidden" name="product[{{ product.key }}][product_id]" value="{{ product.product_id }}">
+              <input type="hidden" name="product[{{ product.key }}][order_product_id]" value="{{ product.order_product_id }}">
+              <input type="hidden" name="product[{{ product.key }}][order_option_id]" value="{{ product.order_option_id }}">
+              <input type="hidden" name="product[{{ product.key }}][product_option_value_id]" value="{{ product.product_option_value_id }}">
+              <input type="hidden" name="product[{{ product.key }}][name]" value="{{ product.name }}">
+              <tr>
+                <td class="text-left">{{ product.name }}
+                  {% if not product.subtract %}
+                  <div class="alert alert-info">{{ text_subtractisno }}</div>
+                  {% endif %}
+                 </td>
+                <td class="text-left">{{ product.quantity }}</td>
+                <td class="text-left">
+                   <div class="well well-sm" style="min-height:200px; overflow: auto;">
+                    {% for key,warehouse in warehouses %}
+                    <div class="checkbox">
+<div class="checkbox" style="border-bottom: 1px solid #efecec; padding-bottom: 5px; padding-top: 0;">
+                      <label style="display: grid; grid-template-columns: 80% 20%; align-items:center;padding: 0;">
+                         {% if product.stock_available_warehouse[warehouse.warehouse_id] is defined %}
+                        <b>{{ warehouse.name }}</b>
+                        <input type="text" disabled value="{{ product.stock_available_warehouse[warehouse.warehouse_id] }}" class="form-control case" style="display:inline-block;" />
+                        {% else %}
+                        <b>{{ warehouse.name }}</b>
+                         <input type="text" disabled value="" class="form-control case" style="display:inline-block;" />
+                        {% endif %}
+                      </label>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </td>
+                <td class="text-left">
+                  <input type="hidden" name="">
+                  <div class="well well-sm" style="min-height:200px; overflow: auto;">
+                    {% for key,warehouse in warehouses %}
+                    <div class="checkbox">
+<div class="checkbox" style="border-bottom: 1px solid #efecec; padding-bottom: 5px; padding-top: 0;">
+                      <label style="display: grid; grid-template-columns: 80% 20%; align-items:center;padding: 0;">
+                         {% if product.stock_added_warehouse[warehouse.warehouse_id] is defined %}
+                        <b>{{ warehouse.name }}</b>
+                        <input type="text" name="product[{{ product.key }}][warehouse][{{ warehouse.warehouse_id }}]" value="{{ product.stock_added_warehouse[warehouse.warehouse_id] }}" class="form-control case" style="display:inline-block;" />
+                        {% else %}
+                        <b>{{ warehouse.name }}</b>
+                         <input type="text" name="product[{{ product.key }}][warehouse][{{ warehouse.warehouse_id }}]" value="" class="form-control case" style="display:inline-block;" />
+                        {% endif %}
+                      </label>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+           </table> 
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="form-warehouseorder" data-toggle="tooltip" title="{{ button_warehouseorder }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+// Shipping Address
+$(document).delegate('#form-warehouseorder', 'click', function() {
+    $.ajax({
+        url: 'index.php?route=extension/module/warehouse/save&user_token={{ user_token }}',
+        type: 'post',
+        data: $('.warehouseorder input[type=\'text\'],.warehouseorder input[type=\'hidden\']'),
+        dataType: 'json',
+        beforeSend: function() {
+          $('#form-warehouseorder').button('loading');
+        },
+        complete: function() {
+          $('#form-warehouseorder').button('reset');
+        },
+        success: function(json) {
+            $('.alert, .text-danger').remove();
+            if(json.success) {
+              alert(json.success);
+            } else {
+              alert(json.error);
+            }
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+});
+</script>

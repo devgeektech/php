@@ -1,0 +1,129 @@
+{{ header }}
+<div class="page-content-header">
+    <div class="container">
+        <div class="row intro-heading">
+            <div class="col-lg-12">
+                <h1 class="pageTitle" id="list">{#{ heading_title }#}FARM NEWS</h1>
+                <p>Check back regularly to find out the goings on at our certified organic farm!</p>
+                <p>Select a category:</p>
+                <form class="plain-select" id="" action="" method="post">
+                    <select id="goTo" name="goTo">
+                        <option value="{{all_new_link}}">All News</option>
+                                {% for news_category in news_categories %}
+                                {% if news_category.category_id == category_id %}
+                        <option value="{{news_category.href}}" selected="selected">{{news_category.title}}</option>
+                                {% else %}
+                        <option value="{{news_category.href}}" >{{news_category.title}}</option>
+                                {% endif %}
+                                {% endfor %}
+
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="page-content-body">
+    <div class="container page-content-wrapper">
+    {% if post %}
+            <div class="row">
+                <div class="col-lg-12">
+                        {% if pagination %}
+                            <div class="news-pagination">
+                                <nav>
+                                    {{pagination}}
+                                </nav>
+                            </div>
+                        {% endif %}
+                    <div class="row news-content grid">
+                {% for p in post %}
+                            <div class="col-md-4 col-sm-6">
+                                <div class=" news-content-box" style="min-height: 643px;">
+                                    <div class="news-header">
+                                        <div class="newsDate ">
+                                            <span>{{p.date_published|date("d M Y")}}</span>
+                                        </div>
+                                    <a href="{{ p.href }}" title="{{ p.text }}">
+                                        <img src="{{ p.thumb }}" alt="{{ p.text }}">
+                                    </a>
+                                    </div>
+                                    <div class="news-body">
+                                           <h3 class="title"><a href="{{p.href}}">{{p.text}}</a></h3>
+                                           <p>
+                                              {{p.description|striptags}}
+                                           </p>
+                                    </div>
+                                </div>                                                                                                                                                                                                          
+                           </div>
+                 
+                {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+        {% if pagination %}
+                        <div class="row">
+                            <div class="news-pagination">
+                                <nav>
+                                    {{pagination}}
+                                </nav></div>
+                            <!--div class="col-sm-6 text-right">{{ results }}</div-->
+                        </div>
+        {% endif %}
+        {% else %}
+                        <p>No Post Found</p>
+        {% endif %}
+                    </div>
+                </div>
+                <div class="widget-panel">
+                    <div class="container-fluid" style="padding:0px;">
+					{{ content_bottom }}
+                                    <div class="col-md-4 block">
+                                        <h2>Instagram</h2> <a href="https://www.instagram.com/stoneledge.farm/" class="greenborder-cta ctaHeading" target="_blank">See All &rsaquo;</a>
+                                        <div class="clear"></div>
+                                        <p>Don't forget to follow us on Instagram to catch a glimpse at life on the farm!</p>
+                                        <div class="block-item instagram">
+
+                                            <div class="postbox">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-12 block">
+                                            <div class="block-item logos">
+                                                <div class="owl-carousel owl-theme" id="logoslider">
+
+                                                    <div class="item"><img src="image/catalog/Pure-Catskills-923335510271017.png" /></div>
+
+                                                    <div class="item"><img src="image/catalog/Parnter-Charter-60221911271017.png" /></div>
+
+                                                    <div class="item"><img src="image/catalog/image-2361.png" /></div>
+
+                                                    <div class="item"><img src="image/catalog/USDA-Organic-906541011271017.png" /></div>
+
+                                                    <div class="item"><img src="image/catalog/Pride-of-New-York-591351111271017.png" /></div>
+
+                                                    <div class="item"><img src="image/catalog/image-8842.png" /></div>
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="widget-panel-wrapper"></div>
+                                <div class="farm-sketch"></div>
+
+{{ footer }}
+                                <script>
+                                        $('.parallax-window').parallax({imageSrc: 'image/catalog/banner_ji1pwfacaw.jpg'});
+                                    </script>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Move Admin Menu</name>
+    <code>move_admin_menu</code>
+    <version>1.0</version>
+    <author>Sukhdev</author>
+    <link>Sukhdev</link>
+	<file path="admin/controller/common/column_left.php">
+		<operation error="skip">
+			<search><![CDATA[if ($marketplace) {]]></search>
+			<add position="replace" offset="8"><![CDATA[
+				// Move to under system
+					/*if ($marketplace) {					
+						$data['menus'][] = array(
+							'id'       => 'menu-extension',
+							'icon'	   => 'fa-puzzle-piece', 
+							'name'	   => $this->language->get('text_extension'),
+							'href'     => '',
+							'children' => $marketplace
+						);		
+					}*/
+
+				// Move to under system - END
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[// Users]]></search>
+			<add position="before"><![CDATA[
+				if ($marketplace) {					
+					$system[] = array(
+						'id'       => 'menu-extension',
+						'icon'	   => 'fa-puzzle-piece', 
+						'name'	   => $this->language->get('text_extension'),
+						'href'     => '',
+						'children' => $marketplace
+					);		
+				}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[if ($design) {]]></search>
+			<add position="replace" offset="8"><![CDATA[
+				// Move to under system
+					/*if ($design) {
+						$data['menus'][] = array(
+							'id'       => 'menu-design',
+							'icon'	   => 'fa-television', 
+							'name'	   => $this->language->get('text_design'),
+							'href'     => '',
+							'children' => $design
+						);	
+					}*/
+
+				// Move to under system - END
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[// Users]]></search>
+			<add position="before"><![CDATA[
+				if ($design) {
+					$system[] = array(
+						'id'       => 'menu-design',
+						'icon'	   => 'fa-television', 
+						'name'	   => $this->language->get('text_design'),
+						'href'     => '',
+						'children' => $design
+					);	
+				}
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/extension/module/d_seo_module.php">
+		
+		<operation error="skip">
+			<search index="1"><![CDATA[if ($menu_items) {]]></search>
+			<add position="replace" offset="8"><![CDATA[
+				/*if ($menu_items) {
+					$data['menus'][] = array(
+						'id'       => 'menu-seo',
+						'icon'	   => 'fa-search',
+						'name'	   => $this->language->get('text_seo'),
+						'href'     => '',
+						'children' => $menu_items
+					);
+				}*/
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search index="1"><![CDATA[$menu_items = $this->{'model_extension_module_' . $this->codename}->sortArrayByColumn($menu_items, 'sort_order');]]></search>
+			<add position="after"><![CDATA[
+				if ($menu_items) {
+					foreach( $data['menus'] as $k => $m) {
+						if($m['id'] == 'menu-system') { 
+							$data['menus'][$k]['children'][] = array(
+								'id'       => 'menu-seo',
+								'icon'	   => 'fa-search',
+								'name'	   => $this->language->get('text_seo'),
+								'href'     => '',
+								'children' => $menu_items
+							);
+						}
+					}
+				}
+			]]></add>
+		</operation>
+	</file>
+</modification>

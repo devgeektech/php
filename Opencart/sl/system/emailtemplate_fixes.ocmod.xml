@@ -1,0 +1,13 @@
+<modification>
+	<name>Email Templates Fixes</name>
+	<code>emailtemplates_fixes</code>
+	<version>1.0.0</version>
+	<author>weismannweb</author>
+
+	<file path="catalog/model/extension/module/emailtemplate.php">
+        <operation>
+            <search index="1"><![CDATA[return false;]]></search>
+            <add postition="replace"><![CDATA[// return false;  // Email Templates Fixes]]></add>
+        </operation>
+    </file>
+</modification>

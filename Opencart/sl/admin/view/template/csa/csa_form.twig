@@ -1,0 +1,416 @@
+{{ header }}{{ column_left }}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <button type="submit" form="form-csa" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                    {% endfor %}
+            </ul><br>
+            <span>{{subheading}}</span>
+        </div>
+    </div>
+    <div class="container-fluid"> {% if error_warning %}
+        <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        {% endif %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_form }}</h3>
+    </div>
+    <div class="panel-body">
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-csa" class="form-horizontal">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab-general" data-toggle="tab">{{ tab_general }}</a></li>
+        <li><a href="#tab-delivery-dates" data-toggle="tab">{{tab_delivery_date}}</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab-general">
+        <fieldset>
+            <legend>{{ text_website_info }}</legend>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-display">{{ entry_display }}</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline"> {% if display %}
+                        <input type="radio" name="display" value="1" checked="checked"/>
+                        {{ text_yes }}
+                        {% else %}
+                            <input type="radio" name="display" value="1"/>
+                            {{ text_yes }}
+                            {% endif %} </label> <label class="radio-inline"> {% if not display %}
+                                    <input type="radio" name="display" value="0" checked="checked"/>
+                                    {{ text_no }}
+                                {% else %}
+                                    <input type="radio" name="display" value="0"/>
+                                    {{ text_no }}
+                                {% endif %} </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-registration">{{ entry_registration }}</label>
+                        <div class="col-sm-10">
+                            <select name="registration" class="form-control">
+                                {% if registration %}
+                                    <option value="1" selected="selected"> {{ text_registration_open }}</option>
+                                    <option value="0">{{ text_waiting_list }}</option>
+                                {% else %}
+                                    <option value="1">{{ text_registration_open }}</option>
+                                    <option value="0" selected="selected">{{ text_waiting_list }}</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-csaname">{{ entry_csa_name }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="csaname" value="{{ csaname }}" placeholder="{{ entry_csa_name }}" id="input-csaname" class="form-control" />
+                            {% if error_csaname %}
+                                <div class="text-danger">{{ error_csaname }}</div>
+                            {% endif %}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-desc">{{ entry_description }}</label>
+                        <div class="col-sm-10">
+                            <textarea name="description" data-toggle="summernote" data-lang="{{ summernote }}" rows="5" placeholder="{{ entry_description }}" id="input-desc" class="form-control" spellcheck="false">{{ description }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-membership_requirements">{{ entry_membership_requirements }}</label>
+                        <div class="col-sm-10">
+                            <textarea name="membership_requirements" data-toggle="summernote" data-lang="{{ summernote }}" rows="5" placeholder="{{ entry_membership_requirements }}" id="input-membership_requirements" class="form-control" spellcheck="false">{{ membership_requirements }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label"  for="input-pickup_address">{{ entry_pickup_address }}</label>
+                        <div class="col-sm-10">
+                            <textarea name="pickup_address" data-toggle="summernote" data-lang="{{ summernote }}" rows="5" placeholder="{{ entry_pickup_address }}" id="input-pickup_address" class="form-control" spellcheck="false">{{ pickup_address }}</textarea>
+                            {% if error_pickup_address %}
+                                <div class="text-danger">{{ error_pickup_address }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-customer-group">{{ entry_customer_group }}</label>
+                        <div class="col-sm-10">
+                            <select name="customer_group_id" id="input-customer-group" class="form-control">
+                                {% for customer_group in customer_groups %}
+                                    {% if customer_group.customer_group_id == customer_group_id %}
+                                        <option value="{{ customer_group.customer_group_id }}" selected="selected">{{ customer_group.name }}</option>
+                                    {% else %}
+                                        <option value="{{ customer_group.customer_group_id }}">{{ customer_group.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-customer-group">{{ entry_warehouse }}</label>
+                        <div class="col-sm-10">
+                            <select name="warehouse_id" id="input-customer-group" class="form-control">
+                                {% for warehouse in warehouses %}
+                                    {% if warehouse.warehouse_id == warehouse_id %}
+                                        <option value="{{ warehouse.warehouse_id }}" selected="selected">{{ warehouse.name }}</option>
+                                    {% else %}
+                                        <option value="{{ warehouse.warehouse_id }}">{{ warehouse.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-latitude">{{ entry_latitude }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="latitude" value="{{ latitude }}" placeholder="{{ entry_latitude }}" id="input-latitude" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-longitude">{{ entry_longitude }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="longitude" value="{{ longitude }}" placeholder="{{ entry_longitude }}" id="input-longitude" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-operating_hours">{{ entry_operating_hours }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="operating_hours" value="{{ operating_hours }}" placeholder="{{ entry_operating_hours }}" id="input-operating_hours" class="form-control" />
+                            {% if error_operating_hours %}
+                                <div class="text-danger">{{ error_operating_hours }}</div>
+                            {% endif %}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-delivery-day">{{ entry_delivery_day }}</label>
+                        <div class="col-sm-10">
+                            <select name="delivery_day" id="input-delivery-day" class="form-control">
+                                <option value="1" {% if delivery_day == '1' %} selected= "selected" {% endif%} >Monday</option>
+                                <option value="2" {% if delivery_day == '2' %} selected= "selected" {% endif%} >Tuesday</option>
+                                <option value="3" {% if delivery_day == '3' %} selected= "selected" {% endif%} >Wednesday</option>
+                                <option value="4" {% if delivery_day == '4' %} selected= "selected" {% endif%} >Thursday</option>
+                                <option value="5" {% if delivery_day == '5' %} selected= "selected" {% endif%} >Friday</option>
+                                <option value="6" {% if delivery_day == '6' %} selected= "selected" {% endif%} >Saturday</option>
+                                <option value="7" {% if delivery_day == '7' %} selected= "selected" {% endif%} >Sunday</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-csa_admin_fee">{{ entry_csa_admin_fee }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="csa_admin_fee" value="{{ csa_admin_fee }}" placeholder="{{ entry_csa_admin_fee }}" id="input-csa_admin_fee" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-csa_email">{{ entry_csa_email }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="csa_email" value="{{ csa_email }}" placeholder="{{ entry_csa_email }}" id="input-csa_email" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-csa_phone">{{ entry_csa_phone }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="csa_phone" value="{{ csa_phone }}" placeholder="{{ entry_csa_phone }}" id="input-csa_phone" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-website">{{ entry_website }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="website" value="{{ website }}" placeholder="{{ entry_website }}" id="input-website" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-brochure_link">{{ entry_brochure_link }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="brochure_link" value="{{ brochure_link }}" placeholder="{{ entry_brochure_link }}" id="input-brochure_link" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-csa_image_type">{{ entry_csa_image_type }}</label>
+                        <div class="col-sm-10">
+                            <div class="radio">
+                                <label><input type="radio" name="csa_image_type" value="1" class="csa_image_type" {% if csa_image_type == 1 %} checked {% endif %}>
+                                    {{ entry_link }}</label>
+                                <label><input type="radio" name="csa_image_type" value="2" class="csa_image_type" {% if csa_image_type == 2 %} checked {% endif %}>
+                                    {{ entry_browse_upload }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group csa_image_div" {% if csa_image_type == 0 %} style="display:none;" {% endif %}>
+                        <label class="col-sm-2 control-label" for="input-csa_image">{{ entry_csa_image }}</label>
+                        <div class="col-sm-8">
+                            <input type="hidden" name="image" value="{{ image }}" id="input-image"/>
+                            <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail" {% if csa_image_type == 1 %} style="display:none;" {% endif %}  ><img src="{{ csa_image }}" alt="" title="" data-placeholder="{{ placeholder }}"/></a>
+
+                            <input type="text" name="image_link" value="{{ image_link }}" placeholder="{{ entry_image_link }}" id="input-image-link" class="form-control" {% if csa_image_type == 2 %} style="display:none;" {% endif %}/>
+                        </div>
+
+                    </div>
+
+                    <legend>{{ text_order_options }}</legend>
+
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-order_email">{{ entry_order_email }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="order_notification_email" value="{{ order_notification_email }}" placeholder="{{ entry_order_email }}" id="input-order_email" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-volunteering_required">{{ entry_volunteering_required }}</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="volunteering_required" value="1" id="input-top" {% if volunteering_required == 1 %} checked {% endif %}></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-description">{{ entry_checkout_volunteer_messages }}</label>
+                        <div class="col-sm-10">
+                            <textarea name="checkout_volunteer_messages" data-toggle="summernote" data-lang="{{ summernote }}" rows="5" placeholder="{{ entry_checkout_volunteer_messages }}" id="input-volunteer_messages" class="form-control" spellcheck="false">{{ checkout_volunteer_messages }}</textarea>
+                        </div>
+                    </div>
+
+                    <legend>{{ text_share_options }}</legend>
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label" for="input-allow_share_partners">{{ entry_allow_share_partners }}</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="allow_share_partners" value="1" id="input-top" {% if allow_share_partners == 1 %} checked {% endif %}></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+                        <div class="col-sm-10">
+                            <select name="status" id="input-status" class="form-control">
+                                {% if status %}
+                                    <option value="1" selected="selected">{{ text_enabled }}</option>
+                                    <option value="0">{{ text_disabled }}</option>
+                                {% else %}
+                                    <option value="1">{{ text_enabled }}</option>
+                                    <option value="0" selected="selected">{{ text_disabled }}</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+            <div class="tab-pane" id="tab-delivery-dates">
+                  <div class="table-responsive">
+                <table id="delivery_date" class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <td class="text-left">{{entry_weeks}}</td>
+                      <td class="text-left">{{entry_date}}</td>
+                      <td class="text-left">{{entry_even_odd_week}}</td>
+                      <td class="text-left">{{entry_beginning_of}}</td>
+                      <td class="text-left">{{entry_note}}</td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% set delivery_date_row = 0 %}
+                    {% for delivery_date in delivery_dates %}
+                      <tr id="delivery-date{{ delivery_date_row }}">
+                        <td class="text-left">
+                            <input type="text" name="delivery_date[{{ delivery_date_row }}][weeks]" value="{{ delivery_date.weeks }}" placeholder="{{entry_weeks}}" class="form-control"/> 
+                            </td>
+                        <td class="text-left" style="width: 18%;">
+                          <div class="input-group date">
+                            <input type="text" name="delivery_date[{{ delivery_date_row }}][delivery_date]" value="{{ delivery_date.delivery_date }}" placeholder="{{entry_date}}" data-date-format="YYYY-MM-DD" class="form-control"/> <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>
+                          </div>
+                        </td>
+                        <td class="text-left">
+                            <select name="delivery_date[{{ delivery_date_row }}][odd_even_week]" class="form-control">
+                                <option value="odd" {% if delivery_date.odd_even_week == 'odd' %} selected {% endif %}>ODD WEEK</option>
+                                <option value="even" {% if delivery_date.odd_even_week == 'even' %} selected {% endif %}>EVEN WEEK</option>
+                            </select>
+                        </td>
+                        <td class="text-left">
+                            <select name="delivery_date[{{ delivery_date_row }}][beginning_of]" class="form-control">
+                                <option value="0"></option>                                
+                                {% for product_share in product_shares %}
+                                <option value="{{product_share.product_id}}" {% if delivery_date.beginning_of == product_share.product_id %} selected {% endif %}>{{product_share.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        
+                        <td  class="text-left"><textarea type="text" name="delivery_date[{{ delivery_date_row }}][note]" placeholder="{{entry_note}}" class="form-control"/>{{ delivery_date.note }}</textarea></td>
+
+                        <td  class="text-left"><button type="button" onclick="$('#delivery-date{{ delivery_date_row }}').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                      </tr>
+                      {% set delivery_date_row = delivery_date_row + 1 %}
+                    {% endfor %}
+                  </tbody>
+
+                  <tfoot>
+                    <tr>
+                      <td colspan="5"></td>
+                      <td class="text-left"><button type="button" onclick="adddDeliveryDate();" data-toggle="tooltip" title="Add" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+        </div>
+</div>
+
+</div>
+<script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+<link href="view/javascript/summernote/summernote.css" rel="stylesheet"/>
+<script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script>
+<script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
+<script type="text/javascript"><!--
+$('.csa_image_type').on('change', function () {
+    $('.csa_image_div').show();
+    if ($(this).val() == 1) {
+        $('#input-image-link').show();
+        $('#thumb-image').hide();
+    } else {
+        $('#input-image-link').hide();
+        $('#thumb-image').show();
+    }
+});
+//--></script>
+
+<script type="text/javascript"><!--
+  var delivery_date_row = {{ delivery_date_row }};
+
+  function adddDeliveryDate() {
+        html = '<tr id="delivery-date'+delivery_date_row+'">';
+        html += '<td class="text-left">';
+        html += '<input type="text" name="delivery_date['+delivery_date_row+'][weeks]" value="" placeholder="{{entry_weeks}}" class="form-control"/> ';
+        html += '              </td>';
+        html += '              <td class="text-left" style="width: 18%;">';
+        html += '               <div class="input-group date">';
+        html += '                  <input type="text" name="delivery_date['+delivery_date_row+'][delivery_date]" value="" placeholder="{{entry_date}}" data-date-format="YYYY-MM-DD" class="form-control"/> <span class="input-group-btn">';
+        html += '                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>';
+        html += '               </span>';
+        html += '               </div>';
+        html += '             </td>';
+        html += '             <td class="text-left">';
+        html += '                <select name="delivery_date['+delivery_date_row+'][odd_even_week]" class="form-control">';
+        html += '                    <option value="odd" >ODD WEEK</option>';
+        html += '                    <option value="even" >EVEN WEEK</option>';
+        html += '                </select>';
+        html += '           </td>';
+        html += '           <td class="text-left">';
+        html += '             <select name="delivery_date['+delivery_date_row+'][beginning_of]" class="form-control">';
+        html += '                 <option value="0"></option>';
+        {% for product_share in product_shares %}
+            var str = "{{product_share.name}}";
+            str = str.replace(/'/g, "\\'");
+        html += '                        <option value="{{product_share.product_id}}">'+str+'</option>';
+                                {% endfor %}              
+       
+        html += '             </select>';
+        html += '           </td>'; 
+        html += '            <td  class="text-left"><textarea type="text" name="delivery_date['+delivery_date_row+'][note]"  placeholder="{{entry_note}}" class="form-control"/></textarea></td>';
+        html += '  <td class="left">';
+	html += '    <a onclick="$(\'#delivery-date' + delivery_date_row + '\').remove()" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></a>';
+	html += '  </td>';
+	html += '</tr>';
+	  $('#delivery_date tbody').append(html);
+
+	  $('.date').datetimepicker({
+		  language: '{{ datepicker }}',
+		  pickTime: false
+	  });
+
+	  delivery_date_row++;
+  }
+$('.date').datetimepicker({
+		  language: '{{ datepicker }}',
+		  pickTime: false
+	  });
+  //--></script>
+<style>
+      .alert_week {
+    font-size: 13px;
+}
+    </style>
+{{ footer }}

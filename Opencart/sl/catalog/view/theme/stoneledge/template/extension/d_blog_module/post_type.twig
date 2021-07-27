@@ -1,0 +1,167 @@
+{{ header }}
+<div class="page-content-header">
+    <div class="container">
+        <div class="row intro-heading">
+            <div class="col-lg-12">
+                <h1 class="pageTitle" id="list">{#{ heading_title }#}RECIPES</h1>
+                <p>Please check back here for new recipes posted regularly. Want to submit a recipe? <a href="{{submit_recipe}}" title="Submit a Recipe">Click here</a>.</p>
+
+            {% if sub_Cat %}
+                <ul class="recipe-filter clearfix">
+                {% for category in sub_Cat %}
+                    <li class="{% if category.category_id == second_level_id or category.category_id == category_id %} selected {% endif %} "><a href="{{ category.href }}" title="{{ category.title }}"><div class="image"><img src="{{ category.image }}" alt="{{ category.title }}"></div><div>{{ category.title }}</div></a></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-content-body">
+    <div class="container page-content-wrapper">
+    
+        <div class="row">
+            <div class="col-lg-12">
+
+                {% if category_id %}
+                        <div class="recipe-subcats">
+                            {% if category_id %} <!--only show on 2 and 3 level cats--->
+                                {%if second_level_img %}
+                                    <div class="subcatIcon"><img src="{{ second_level_img }}" alt="{{second_level_title}}"></div>
+                                {% else %}
+                                    {% if thumb %}
+                                        <div class="subcatIcon"><img src="{{ thumb }}" alt="{{heading_title}}"></div>
+                                    {% endif %}
+                                {% endif %}
+
+                                <div class="subcatTitle">
+                                        {% if second_level_title %}
+                                            {{second_level_title}}
+                                        {% else %}
+                                            {{heading_title}}
+                                        {% endif %}
+                                </div>
+
+                                {% if categories %}
+                                <div class="subcats">
+        {% for category in categories %}
+                                            <div><a href="{{ category.href }}" title="{{ category.title }}" class="{% if category_id == category.category_id %} recipeSubNavOn {% endif %}">{{ category.title }}</a></div>
+         {% endfor %}
+                                 </div>
+                                {% endif %}
+                           {% endif %}
+                           {% if breadcrumbs%}
+                              <ul class="breadcrumb">
+                                {% for breadcrumb in breadcrumbs %}
+                                        {% if loop.length == 2 %}
+                                            {% if breadcrumb.href %}
+                                                <li><a href="{{breadcrumb.href}}">{{breadcrumb.text}} </a></li>
+                                            {% else %}
+                                                <li>{{breadcrumb.text}}</li>
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if loop.length == 3 %}
+                                            {% if breadcrumb.href and loop.index == 1 %}
+                                                <li><a href="{{breadcrumb.href}}">{{breadcrumb.text}} </a></li>
+                                            {% elseif loop.index == 2 %}
+                                                <li>{{breadcrumb.text}}</li>
+                                            {% endif %}
+                                        {% endif %}
+                                {% endfor %}
+                              </ul>
+                           {% endif %}
+                         </div>
+                {% endif %}
+                {% if post %}
+                <ul class="row recipe-grid clearfix">
+                    {% for p in post %}
+                    <li class="col-sm-3" animate="fadeIn">
+                        <div class="post_info">
+                            <a href="{{ p.href }}" title="{{ p.text }}">
+                                <img src="{{ p.thumb }}" alt="{{ p.text }}">
+
+                                <div class="info">
+                                    <div class="name">{{ p.text }}</div>
+                                    <div class="category">
+                                        <ul>
+                                        {% for category in p.categories|reverse %}
+                                            {% if loop.index != 1 %}
+                                                <li>{{category.title}}</li>
+                                             {% endif %}
+                                        {% endfor %}
+                                        </ul>
+                                    </div>
+
+                                </div>
+                           </a>     
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+                {% else %}
+                    <p>No Post Found</p>
+               {% endif %}
+            </div>
+        </div>
+        {% if pagination %}
+        <div class="row">
+            <div class="pagination_main">{{ pagination }}</div>
+            <!--div class="col-sm-6 text-right">{{ results }}</div-->
+        </div>
+        {% endif %}
+   
+    </div>
+</div>
+     <div class="widget-panel">
+	<div class="container-fluid" style="padding:0px;">
+      {{ content_bottom }}
+
+    <div class="col-md-4 block">
+      <h2>Instagram</h2> <a href="https://www.instagram.com/stoneledge.farm/" class="greenborder-cta ctaHeading" target="_blank">See All &rsaquo;</a>
+					<div class="clear"></div>
+					<p>Don't forget to follow us on Instagram to catch a glimpse at life on the farm!</p>
+					<div class="block-item instagram">
+
+						<div class="postbox">
+
+						</div>
+					</div>
+  </div>
+
+      </div>
+
+	   <div class="container">
+        <div class="row">
+            <div class="col-lg-12 block">
+                <div class="block-item logos">
+                    <div class="owl-carousel owl-theme" id="logoslider">
+
+                        <div class="item"><img src="image/catalog/Pure-Catskills-923335510271017.png" /></div>
+
+                        <div class="item"><img src="image/catalog/Parnter-Charter-60221911271017.png" /></div>
+
+                        <div class="item"><img src="image/catalog/image-2361.png" /></div>
+
+                        <div class="item"><img src="image/catalog/USDA-Organic-906541011271017.png" /></div>
+
+                        <div class="item"><img src="image/catalog/Pride-of-New-York-591351111271017.png" /></div>
+
+                        <div class="item"><img src="image/catalog/image-8842.png" /></div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <div class="widget-panel-wrapper"></div>
+      <div class="farm-sketch"></div>
+
+{{ footer }}
+<script>
+	$('.parallax-window').parallax({imageSrc: 'image/catalog/image-4983.jpg'});
+</script>

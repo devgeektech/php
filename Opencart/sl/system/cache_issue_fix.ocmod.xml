@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Cache issue fix</name>
+    <code>cache_issue_fix</code>
+    <version>1.0.1</version>
+    <author>weismannweb</author>
+    <link>weismannweb.com</link>
+ 
+     <file path="system/library/response.php">
+        <operation>
+            <search><![CDATA[$this->headers[] = $header;]]></search>
+            <add position="after"><![CDATA[
+            $cache_control_found = false;
+            $pargma_found = false;
+            foreach($this->headers as $header) {
+                // check if cache control header is already set
+                if (stripos($header, 'Cache-Control:') !== FALSE) {
+                    $cache_control_found = true;
+                }
+                if (stripos($header, 'Pragma:') !== FALSE) {
+                    $pargma_found = true;
+                }
+            }
+            if (!$cache_control_found) {
+                $this->headers[] = 'Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0';
+            }
+            if (!$pargma_found) {
+                $this->headers[] = 'Pragma: no-cache';
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+</modification>

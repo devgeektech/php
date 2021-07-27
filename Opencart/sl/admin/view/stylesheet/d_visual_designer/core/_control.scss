@@ -1,0 +1,88 @@
+.control-advanced {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 4px 0 0 4px;
+    width: 50px;
+    font-size: 32px;
+    &~.block-content{
+        left: 50px;
+        padding: 15px 15px 40px 15px!important;
+        width: calc(100% - 50px);
+        position: relative;
+        > .vd-new-child-block{
+            left: 25px;
+        }
+    }
+    > .vd-btn {
+        left: 8px;
+        z-index: 9;
+        position: absolute;
+        &.vd-btn-edit{
+            top: 7px;
+            bottom: auto;
+        }
+        &.vd-btn-copy{
+            top: 40px;
+            bottom: auto;
+        }
+        &.vd-btn-layout{
+            top: 72px;
+            bottom: auto;
+        }
+        &.vd-btn-add-child{
+            top: 104px;
+            bottom: auto;
+        }
+        &.vd-btn-remove{
+            top: auto;
+            bottom: 7px;
+        }
+    }
+}
+.control-top {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50px;
+    width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    z-index: 1;
+    &~.block-content{
+        padding: 65px 15px 40px 15px;
+    }
+    > .vd-btn {
+        position: absolute;
+        top:7px;
+        &.vd-btn-edit{
+            left: 5px;
+        }
+        &.vd-btn-copy{
+            left: 37px;
+        }
+        &.vd-btn-remove{
+            right: 5px;
+        }
+    }
+}
+.control-popup {
+    position: relative;
+    user-select: none;
+    > .title {
+        line-height: 32px;
+        min-height: 32px;
+    }
+    > .vd-btn {
+        &.vd-btn-edit{
+            float: left;
+        }
+        &.vd-btn-copy{
+            float:left;
+        }
+        &.vd-btn-remove{
+            float: right;
+        }
+    }
+}

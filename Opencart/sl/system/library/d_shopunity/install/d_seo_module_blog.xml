@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>d_seo_module_blog</name>
+	<code>d_seo_module_blog</code>
+	<description>SEO Blog</description>
+	<version>3.0.0</version>
+	<author>Dreamvention</author>
+	<link>http://dreamvention.com</link>
+	
+	<!-- VALIDATE & SAVE FORM -->
+	<file path="admin/controller/extension/d_blog_module/category.php">
+		<operation error="skip">
+            <search><![CDATA[if ($this->error && !isset($this->error['warning'])) {]]></search>
+            <add position="before"><![CDATA[				
+				//d_seo_module_blog
+				$this->error = $this->load->controller('extension/module/d_seo_module_blog/category_validate_form', $this->error);
+				///d_seo_module_blog
+            ]]></add>
+        </operation>
+	</file>
+	
+	<file path="admin/controller/extension/d_blog_module/post.php">
+		<operation error="skip">
+            <search><![CDATA[if ($this->error && !isset($this->error['warning'])) {]]></search>
+            <add position="before"><![CDATA[				
+				//d_seo_module_blog
+				$this->error = $this->load->controller('extension/module/d_seo_module_blog/post_validate_form', $this->error);
+				///d_seo_module_blog
+            ]]></add>
+        </operation>
+	</file>
+	
+	<file path="admin/controller/extension/d_blog_module/author.php">
+		<operation error="skip">
+            <search><![CDATA[if ($this->error && !isset($this->error['warning'])) {]]></search>
+            <add position="before"><![CDATA[				
+				//d_seo_module_blog
+				$this->error = $this->load->controller('extension/module/d_seo_module_blog/author_validate_form', $this->error);
+				///d_seo_module_blog
+            ]]></add>
+        </operation>
+	</file>
+	
+	<!-- POSTS FILTER -->
+	<file path="catalog/model/extension/d_blog_module/post.php">
+		<operation error="skip">
+			<search index="0,1"><![CDATA[LEFT JOIN " . DB_PREFIX . "bm_post_description pd ON (p.post_id = pd.post_id)]]></search>
+            <add position="replace"><![CDATA[LEFT JOIN " . DB_PREFIX . "bm_post_description pd ON (p.post_id = pd.post_id) LEFT JOIN " . DB_PREFIX . "d_meta_data md ON (md.route = CONCAT('bm_post_id=', p.post_id) AND md.store_id = '" . (int)$this->config->get('config_store_id') . "' AND md.language_id = '" . (int)$this->config->get('config_language_id') . "')]]></add>
+		</operation>
+		<operation error="skip">
+            <search index="0,1"><![CDATA[$query = $this->db->query($sql);]]></search>
+            <add position="before"><![CDATA[
+				//d_seo_module_blog
+				$field_info = $this->load->controller('extension/module/d_seo_module/getFieldInfo');
+				
+				if ($this->config->get('config_store_id') && isset($field_info['sheet']['blog_post']['field']['title']['multi_store']) && $field_info['sheet']['blog_post']['field']['title']['multi_store'] && isset($field_info['sheet']['blog_post']['field']['title']['multi_store_status']) && $field_info['sheet']['blog_post']['field']['title']['multi_store_status']) {
+					$sql = str_replace('pd.title', 'md.title', $sql);
+				}
+				
+				if ($this->config->get('config_store_id') && isset($field_info['sheet']['blog_post']['field']['description']['multi_store']) && $field_info['sheet']['blog_post']['field']['description']['multi_store'] && isset($field_info['sheet']['blog_post']['field']['description']['multi_store_status']) && $field_info['sheet']['blog_post']['field']['description']['multi_store_status']) {
+					$sql = str_replace('pd.description', 'md.description', $sql);
+				}
+				
+				if ($this->config->get('config_store_id') && isset($field_info['sheet']['blog_post']['field']['tag']['multi_store']) && $field_info['sheet']['blog_post']['field']['tag']['multi_store'] && isset($field_info['sheet']['blog_post']['field']['tag']['multi_store_status']) && $field_info['sheet']['blog_post']['field']['tag']['multi_store_status']) {
+					$sql = str_replace('pd.tag', 'md.tag', $sql);
+				}
+				///d_seo_module_blog
+            ]]></add>
+        </operation>
+	</file>
+		
+</modification>

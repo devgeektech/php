@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>CSA share product pages for logged in/out customers</name>
+    <code>csa_share_product_pages</code>
+    <version>1.0.1</version>
+    <author>weismannweb</author>
+    <link>weismannweb</link>
+    <file path="catalog/controller/product/product.php">
+        <operation>
+            <search><![CDATA[$this->response->setOutput($this->load->view('product/product', $data));]]></search>
+            <add position="replace"><![CDATA[
+            $data['is_marketplace_product'] = false;
+            if ($product_info['product_type'] == 1) {
+                $data['is_marketplace_product'] = true;
+            }
+            if ($data['is_marketplace_product']) {
+                $data['breadcrumbs'][0] = array(
+                    'text' => 'Marketplace',
+                    'href' => $this->url->link('information/information&information_id=9', '', true)
+                );
+            } else {
+                $data['breadcrumbs'][0] = array(
+                    'text' => 'Our CSA',
+                    'href' => $this->url->link('csa/csa', '', true)
+                );
+            }
+            if ($this->customer->isLogged()) {
+				$this->response->setOutput($this->load->view('product/product', $data));
+			} else {
+                $this->load->model('setting/module');
+                $module_name = 'Shares Module';
+                $setting_info = $this->model_setting_module->getModuleByName($module_name, 'featured');
+                $data['featured'] = '';
+                if ($setting_info && $setting_info['status']) {
+                    $data['featured'] = $this->load->controller('extension/module/featured', $setting_info);
+                }
+				$data['register_link'] = $this->url->link('csa/csa', '', true);
+				$data['login_link'] = $this->url->link('account/store', '', true);
+                if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+					$data['store_url'] = $this->config->get('config_ssl');
+				} else {
+					$data['store_url'] = $this->config->get('config_url');
+				}
+				$this->response->setOutput($this->load->view('product/product_static', $data));
+			}
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search><![CDATA[if (!$option_value['subtract'] || ($option_value['quantity'] > 0)) {]]></search>
+            <add position="replace"><![CDATA[
+                //If it is a share product and the csa warehouse has 0 then it does not show option in drop down. If warehouse has greater or equal to 1 then it shows that option. Also share type products ALWAYS use warehouses while MP products NEVER use warehouses.
+                $OtherProductType = FALSE;
+		$checkQty = FALSE;
+                if($product_info['product_type'] == '3' || $product_info['product_type'] == '4') {//Mandatory Share || Suggested Share
+                    $pro_opt_warehouse = $this->model_catalog_product->getProductOptionToWarehouse($product_info['product_id'], $option_value['product_option_value_id']);
+                    if($pro_opt_warehouse && $pro_opt_warehouse['qty'] > 0) {
+                        $checkQty = TRUE;
+                    }                    
+                } else {
+                    $OtherProductType = TRUE;
+		} 
+                
+		if($OtherProductType && ($option_value['quantity'] > 0)) {//for other types of products
+                    $checkQty = TRUE;
+		}                
+                
+                if (!$option_value['subtract'] || $checkQty) {
+            ]]></add>
+        </operation>
+    </file>
+</modification>

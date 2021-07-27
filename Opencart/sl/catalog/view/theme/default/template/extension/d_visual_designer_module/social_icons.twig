@@ -1,0 +1,51 @@
+{% set className = '' %}
+{% if setting.global.align %}
+    {% set className = className~' vd-si-align-'~setting.global.align %}
+{% endif %}
+{% if setting.global.icon_type %}
+    {% set className = className~' vd-si-type-'~setting.global.icon_type %}
+{% endif %}
+{% if setting.global.align_phone %}
+    {% set className = className~' vd-si-phone-align-'~setting.global.align_phone %}
+{% endif %}
+{% if setting.global.align_tablet %}
+    {% set className = className~' vd-si-tablet-align-'~setting.global.align_tablet %}
+{% endif %}
+<style>
+    {% for key, value in setting.global.icons %}
+        {% if setting.global.icon_type == 'circle' %}
+            .{{id}} > .vd-social-icon.{{key}} {
+                background-color: {{value.background}};
+                width: calc({{value.size}} + {{value.size}}); 
+                height: calc({{value.size}} + {{value.size}});
+            }
+        {% endif %}
+
+        .{{id}} > .vd-social-icon.{{key}} > i {
+            font-size: {{value.size}};
+            color: {{value.color}};
+        }
+    {% endfor %}
+       @media screen and (max-width: 767px){
+           .{{id}} .vd-social-icon{
+                margin-right: {{setting.global.margin_beetwen_phone}};
+           }
+       }
+       @media screen and (min-width: 768px) and (max-width: 991px){
+           .{{id}} .vd-social-icon{
+                margin-right: {{setting.global.margin_beetwen_tablet}};
+           }
+       }
+       @media screen and (min-width: 992px){
+           .{{id}} .vd-social-icon{
+                margin-right: {{setting.global.margin_beetwen}};
+           }
+       }
+</style>
+<div class="vd-social-icon-container {{id}} {{className}}">
+    {% for key, value in setting.global.icons %}
+        {% if value.link %}
+            <a href="{{ value.link }}" target="_blank" class="vd-social-icon {{key}}"><i class="{{value.icon}}" aria-hidden="true"></i></a>
+        {% endif %}
+    {% endfor %}
+</div>

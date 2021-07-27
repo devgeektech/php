@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Home Page Customizations</name>
+    <version>1.0.1</version>
+    <author>weismannweb</author>
+    <link>https://weismannweb.com</link>
+    <code>home_page_customizations</code>
+
+    <file error="skip" path="catalog/controller/common/menu.php">
+        <operation error="skip">
+            <search><![CDATA[return $this->load->view('common/menu', $data);]]></search>
+            <add position="before"><![CDATA[
+			$data['is_store_page'] = false;
+			if (isset($this->request->get['route'])) {
+				$route = $this->request->get['route'];
+				$store_routes = array('account/store', 'account/account', 'account/edit', 'account/password', 'account/edit', 'account/order', 'account/order/info', 'account/return', 'account/address', 'account/address/edit', 'account/wishlist', 'account/downloads', 'account/recurring', 'account/recurring/info', 'account/reward', 'account/return', 'account/return/info', 'account/newsletter', 'checkout/cart/checkout_thanks',  'checkout/cart', 'checkout/checkout');
+                
+                                //check if category is Suggested Share
+                                if($route == 'product/category' && !empty($this->request->get['path']) && $this->request->get['path'] == '95' ) {
+                                    $store_routes[] = 'product/category';
+                                }
+                                
+				if ($this->customer->isLogged()) {
+					$store_routes[] = 'product/product';
+				}
+                
+                                $data['current_route'] = $this->request->get['route'];
+				if (in_array($route, $store_routes)) {
+					$data['is_store_page'] = true;
+				}
+			}
+            if (isset($this->request->get['information_id'])) {
+                $data['information_id'] = $this->request->get['information_id'];
+            }                 
+
+            $data['our_farm_link'] = $this->url->link('information/information&information_id=4', '', true);
+            $data['our_csa_link'] = $this->url->link('csa/csa', '', true);
+            $data['marketplace_link'] = $this->url->link('information/information&information_id=9', '', true);
+            $data['faq_link'] = $this->url->link('information/information&information_id=7', '', true);
+                
+                $data['route'] = '';
+                if(!empty($this->request->get['route'])) {
+                    $data['route'] = $this->request->get['route'];
+                }
+                
+            $data['breadcrumbs'] = array();
+            if($data['route'] == 'account/store') {
+                $data['breadcrumbs'][] = array(
+                    'text' => $this->document->getTitle(),
+                    'href' => $this->url->link('account/store', '', true)
+                ); 
+            }                 
+                
+                if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1')))
+                    $url = "https://";   
+                else
+                    $url = "http://"; 
+                
+		// Append the host(domain name, ip) to the URL.   
+		$url.= $_SERVER['HTTP_HOST'];   
+		// Append the requested resource location to the URL   
+		$url.= $_SERVER['REQUEST_URI'];    
+		   $data['c_url'] = $url;
+		   
+		$data['login'] = $this->url->link('account/login', '', true);
+		$data['home'] = $this->url->link('common/home', '', true);
+		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+			$data['base_url'] = $this->config->get('config_ssl');
+		} else {
+			$data['base_url'] = $this->config->get('config_url');
+		}
+		$data['logged'] = $this->customer->isLogged();
+		$data['title'] = $this->document->getTitle();
+		$data['logout'] = $this->url->link('account/logout', '', true);
+		$data['account'] = $this->url->link('account/account', '', true);
+		$data['name'] = $this->customer->getFirstName();
+
+		$this->load->model('account/customer');
+		$user_info = $this->model_account_customer->getCustomer($this->customer->getId());
+                if ($user_info) {
+                    $data['date_added'] = date("F j, Y", strtotime($user_info['date_added']));
+                }                
+                
+			]]></add>
+        </operation>
+    </file>
+
+    <file error="skip" path="catalog/controller/account/login.php">
+        <operation error="skip">
+            <search><![CDATA[$this->response->redirect($this->url->link('account/account', '', true));]]></search>
+            <add position="replace"><![CDATA[$this->response->redirect($this->url->link('account/store', '', true));]]></add>
+        </operation>
+    </file>
+
+    <file error="skip" path="catalog/controller/common/footer.php">
+        <operation error="skip">
+            <search><![CDATA[$data['informations'] = array();]]></search>
+            <add position="after"><![CDATA[
+				$data['logged'] = $this->customer->isLogged();
+				$data['is_store_page'] = false;
+				if (isset($this->request->get['route'])) {
+					$route = $this->request->get['route'];
+					$store_routes = array('account/store', 'account/account', 'account/edit', 'account/password', 'account/edit', 'account/order', 'account/order/info', 'account/return', 'account/address', 'account/address/add', 'account/address/edit', 'account/wishlist', 'account/downloads', 'account/recurring', 'account/recurring/info', 'account/reward', 'account/return', 'account/return/info', 'account/newsletter', 'account/register', 'checkout/cart/checkout_thanks', 'checkout/cart', 'checkout/checkout');
+                
+                                         //check if category is Suggested Share
+                                        if($route == 'product/category' && !empty($this->request->get['path']) && $this->request->get['path'] == '95' ) {
+                                            $store_routes[] = 'product/category';
+                                        }
+                
+					if ($this->customer->isLogged()) {
+						$store_routes[] = 'product/product';
+					}
+					$data['current_route'] = $this->request->get['route'];
+					if (in_array($route, $store_routes)) {
+						$data['is_store_page'] = true;
+					}
+				}
+				$data['contact_link'] = $this->url->link('information/contact', '', true);
+				$data['our_csa_link'] = $this->url->link('csa/csa', '', true);
+				$data['marketplace_link'] = $this->url->link('information/information&information_id=9', '', true);
+				$data['login_link'] = $this->url->link('account/store', '', true);
+			]]></add>
+        </operation>
+    </file>
+
+    <file error="skip" path="catalog/controller/common/{home.php,header.php,menu.php}">
+        <operation error="skip">
+            <search><![CDATA[$data['login'] = $this->url->link('account/login', '', true);]]></search>
+            <add position="replace"><![CDATA[$data['login'] = $this->url->link('account/store', '', true);]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/common/home.php">
+        <operation error="skip">
+            <search><![CDATA[$data['img_folder_path'] = HTTPS_SERVER . 'image';]]></search>
+            <add position="after"><![CDATA[$data['register_link'] = $this->url->link('csa/csa', '', true);]]></add>
+        </operation>
+    </file>
+
+</modification>

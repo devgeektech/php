@@ -1,0 +1,84 @@
+<modification>
+	<name>Warehouse Import Customization</name>
+	<version>1.0.1</version>
+	<link>https://weismannweb.com</link>
+	<author>weismannweb</author>
+	<code>warehouse_import_customization</code>
+
+    <file path="admin/model/extension/module/warehouse.php">
+        <operation>
+			<search><![CDATA[$this->addWarehouseQtyProductOption($details);]]></search>
+			<add position="after"><![CDATA[
+            // warehouse_import_customization
+            $this->addCustomerGroupPriceProductOption($details);
+            // -- warehouse_import_customization
+            ]]></add>
+		</operation>
+
+        <operation>
+			<search><![CDATA[$this->deleteAndAddWarehouseQtyProductOption($details);]]></search>
+			<add position="after"><![CDATA[
+            // warehouse_import_customization
+            $this->addCustomerGroupPriceProductOption($details);
+            // -- warehouse_import_customization
+            ]]></add>
+		</operation>
+
+		<operation>
+			<search><![CDATA[$this->addWarehouseQtyProduct($details);]]></search>
+			<add position="after"><![CDATA[
+            // warehouse_import_customization
+            $this->addCustomerGroupPriceProduct($details);
+            // -- warehouse_import_customization
+            ]]></add>
+		</operation>
+
+        <operation>
+			<search><![CDATA[$this->deleteAndAddWarehouseQtyProduct($details);]]></search>
+			<add position="after"><![CDATA[
+            // warehouse_import_customization
+            $this->addCustomerGroupPriceProduct($details);
+            // -- warehouse_import_customization
+            ]]></add>
+		</operation>
+
+        <operation>
+            <search><![CDATA[public function bulkAddWarehouse($details,$sum_it,$main_qty) {]]></search>
+            <add position="before"><![CDATA[
+            // warehouse_import_customization
+            public function addCustomerGroupPriceProductOption($details) {
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_optionvalue WHERE product_id = '" . (int)$details['product_id'] . "' AND product_option_value_id = '" . (int)$details['optionid'] . "' AND customer_group_id = '".(int)$details['customer_group_csa']."'");
+				if($query->num_rows) {
+					$this->db->query("UPDATE " . DB_PREFIX . "product_customergroup_optionvalue SET price = '".$details['customer_group_price']."' WHERE product_id = '" . (int)$details['product_id'] . "' AND product_option_value_id = '" . (int)$details['optionid'] . "' AND customer_group_id = '".(int)$details['customer_group_csa']."'");
+				} else {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "product_customergroup_optionvalue SET product_id = '" . (int)$details['product_id'] . "', product_option_id = '" . (int)$details['product_option_id'] . "', option_id = '" . (int)$details['opt_id'] . "', option_value_id = '" . (int)$details[' opt_value_id'] . "', customer_group_id = '" . (int)$details['customer_group_csa'] . "',product_option_value_id = '" . (int)$details['optionid'] . "', price = '" . $details['customer_group_price'] . "'");
+				}
+			}
+
+            public function addCustomerGroupPriceProduct($details) {
+                $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_customergroup_price WHERE product_id = '" . (int)$details['product_id'] . "' AND customer_group_id = '".(int)$details['customer_group_csa']."'");
+                if($query->num_rows) {
+                    $this->db->query("UPDATE " . DB_PREFIX . "product_customergroup_price SET price = '". $details['customer_group_price']."' WHERE product_id = '" . (int)$details['product_id'] . "' AND customer_group_id = '".(int)$details['customer_group_csa']."'");
+                } else {
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "product_customergroup_price SET product_id = '" . (int)$details['product_id'] . "', customer_group_id = '" . (int)$details['customer_group_csa'] . "', price = '" . $details['customer_group_price'] . "'");
+                }
+            }
+            // -- warehouse_import_customization
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[if($main_qty) {]]></search>
+            <add position="before"><![CDATA[
+            // warehouse_import_customization
+            if ( !$details['optionid'] && isset($details['mandatory']) && $details['mandatory']) {
+				$product_type = 3;
+				$this->db->query("UPDATE " . DB_PREFIX . "product SET product_type = '" . $product_type . "', price = '" . $details['price'] . "'  WHERE product_id = '" . (int)$details['product_id'] . "'");
+                // if its mandatory update csa fee
+				$this->db->query("UPDATE " . DB_PREFIX . "csa SET csa_admin_fee = '" . $details['csa_fee'] . "'  WHERE customer_group_id = '" . (int)$details['customer_group_csa'] . "'");
+			}
+            // -- warehouse_import_customization
+            ]]></add>
+        </operation>
+    </file>
+</modification>
